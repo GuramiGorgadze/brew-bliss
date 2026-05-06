@@ -1,0 +1,41 @@
+.top-bar {
+    background-color: #0e0e0e;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: white;
+    font-size: 14px;
+    padding: 0 115px;
+
+    &__contact {
+        display: flex;
+
+        img {
+            color: white;
+            margin-right: 5px;
+        }
+    }
+
+    &__region {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+
+        img {
+            height: 15px;
+            margin-right: 5px;
+        }
+    }
+
+    &__language {
+        display: flex;
+        align-items: center;
+    }
+
+    &__divider {
+        height: 15px;
+        width: 1px;
+        background-color: white;
+    }
+}
