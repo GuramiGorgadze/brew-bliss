@@ -1,6 +1,12 @@
-// import axios from "axios";
+import axios from 'axios';
 
-// export const getProducts = async () => {
-//     const res = await axios.get('https://brew-blis.myshopify.com/products.json');
-//     return res.data.products;
-// };
+export const getProducts = async () => {
+  try {
+    const response = await axios.get(`http://localhost:3000/api/products`, {
+      withCredentials: true
+    });
+    return response.data;
+  } catch (err) {
+    console.error("Error fetching products:", err)
+  }
+};

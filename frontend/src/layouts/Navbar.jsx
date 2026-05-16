@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import cartIcon from '../assets/cart-icon.svg'
 import profileIcon from '../assets/profile-icon.svg'
 import searchIcon from '../assets/search-icon.svg'
@@ -11,6 +11,8 @@ function Navbar() {
   const [searchClosing, setSearchClosing] = useState(false)
   const [searchQuery, setSearchQuery] = useState('')
 
+  const navigate = useNavigate()
+
   const closeSearch = () => {
     setSearchClosing(true)
     setTimeout(() => {
@@ -19,7 +21,12 @@ function Navbar() {
     }, 300)
   }
 
-  const handleSearchSubmit = () => {}
+  const handleSearchSubmit = () => {
+     if (!searchQuery.trim()) return;
+     navigate(`/products?search=${encodeURIComponent(searchQuery.trim())}`)
+     setSearchQuery('')
+     closeSearch()
+  }
 
   const handleKeyDown = (e) => {
     if (e.key === 'Enter') handleSearchSubmit()
@@ -36,7 +43,7 @@ function Navbar() {
         <div className="navbar__nav">
           <ul>
             <li className='navbar__nav-item'><Link to="/">HOME</Link></li>
-            <li className='navbar__nav-item'><Link to="/">PRODUCT</Link></li>
+            <li className='navbar__nav-item'><Link to="/products">PRODUCT</Link></li>
             <li className='navbar__nav-item'><Link to="/">SHOP</Link></li>
             <li className='navbar__nav-item'><Link to="/">BLOG</Link></li>
             <li className='navbar__nav-item'><Link to="/">PAGES</Link></li>

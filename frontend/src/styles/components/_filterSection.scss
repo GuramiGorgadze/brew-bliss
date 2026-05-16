@@ -1,0 +1,233 @@
+.filter-section {
+    display: flex;
+    flex-direction: column;
+    width: 280px;
+
+    &__search {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border: 1px solid #45474f;
+        border-radius: 10px;
+        padding: 3px;
+        height: 45px;
+
+        input {
+            border: none;
+            outline: none;
+            padding-left: 10px;
+            width: 80%;
+            background-color: transparent;
+
+            &::placeholder {
+                color: #0e0e0e;
+                font-size: 14px;
+            }
+        }
+    }
+
+    &__search-btn {
+        background-color: #fea90c;
+        height: 45px;
+        width: 45px;
+        border: none;
+        border-radius: 7px;
+        cursor: pointer;
+
+        img {
+            height: 20px;
+        }
+    }
+
+    &__categories {
+        h1 {
+            font-size: 18px;
+            color: #0e0e0e;
+            font-weight: 500;
+            margin-top: 25px;
+        }
+
+        ul {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-top: 30px;
+
+            li {
+                list-style: none;
+            }
+        }
+    }
+
+    &__category-link {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        cursor: pointer;
+        text-decoration: none;
+        color: #0e0e0e;
+
+        p {
+            font-size: 14px;
+            margin: 0;
+        }
+    }
+
+    &__category-name {
+        font-size: 14px;
+    }
+
+    &__availability,
+    &__price {
+        display: flex;
+        flex-direction: column;
+        margin-top: 25px;
+        gap: 10px;
+    }
+
+    &__section-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        h4 {
+            font-size: 12px;
+            font-weight: 400;
+        }
+    }
+
+    &__toggle {
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+        margin-bottom: 5px;
+
+        h1 {
+            font-size: 18px;
+            color: #0e0e0e;
+            font-weight: 500;
+        }
+    }
+
+    &__toggle-icon {
+        font-size: 25px;
+        margin-right: 10px;
+        width: 10px;
+    }
+
+    &__options {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 20px;
+    }
+
+    &__option {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+
+        p {
+            font-size: 14px;
+            padding-left: 20px;
+        }
+    }
+
+    &__checkbox {
+        position: relative;
+        cursor: pointer;
+        font-size: 22px;
+        user-select: none;
+        transform: translateY(3px);
+
+        input {
+            display: inline-block;
+            opacity: 0;
+            cursor: pointer;
+            height: 0;
+            width: 0;
+
+            &:checked ~ .filter-section__checkmark {
+                background-color: #fea90c;
+                border-color: #fea90c;
+            }
+
+            &:checked ~ .filter-section__checkmark::after {
+                display: block;
+            }
+        }
+    }
+
+    &__checkmark {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 20px;
+        width: 20px;
+        background-color: #ffffff;
+        border-radius: 3px;
+        border: solid 1px #dbdbdb;
+
+        &::after {
+            content: "";
+            position: absolute;
+            display: none;
+            left: 7px;
+            top: 4px;
+            width: 4px;
+            height: 8px;
+            border: solid white;
+            border-width: 0 1.5px 1.5px 0;
+            border-radius: 1px;
+            transform: rotate(45deg);
+        }
+    }
+
+    &__divider {
+        width: 100%;
+        height: 1px;
+        background-color: #eaeaec;
+    }
+
+    &__highest-price {
+        color: #555555;
+        font-size: 14px;
+        margin: 10px 0;
+
+        span {
+            color: #e31b0c;
+        }
+    }
+
+    &__price-inputs {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 20px;
+    }
+
+    &__price-input {
+        border: 1px solid #45474f;
+        background-color: transparent;
+        border-radius: 3px;
+        padding: 12px 10px;
+        width: 100%;
+        outline: none;
+        font-size: 14px;
+    }
+
+    &__promotion {
+        margin-top: 40px;
+        width: 100%;
+        overflow: hidden;
+        border-radius: 20px;
+
+        img {
+            width: 100%;
+            transition: 0.7s ease-in-out;
+
+            &:hover {
+                transform: scale(1.1);
+            }
+        }
+    }
+}
