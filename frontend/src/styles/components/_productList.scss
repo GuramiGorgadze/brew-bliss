@@ -19,9 +19,9 @@
     }
 
     .nothing-found-wrapper {
-        background-color: #ffffff;
+        background-color: var(--color-white);
         height: 100px;
-        border: 1px solid #1f1f1f;
+        border: 1px solid var(--color-star-product);
         display: flex;
         justify-content: center;
         align-items: center;
@@ -30,15 +30,15 @@
             text-align: center;
             font-weight: 500;
             text-transform: capitalize;
-            color: #0e0e0e;
+            color: var(--color-text-body);
 
             .clear-all-btn {
-                color: #1f1f1f;
+                color: var(--color-star-product);
                 transition: 0.5s ease-in-out;
                 cursor: pointer;
 
                 &:hover {
-                    color: #fea90c;
+                    color: var(--color-btn);
                 }
             }
         }

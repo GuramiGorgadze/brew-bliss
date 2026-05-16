@@ -1,14 +1,14 @@
-@import './abstracts/variables';
-@import './abstracts/mixins';
-@import './abstracts/reset';
+@use './abstracts/variables';
+@use './abstracts/mixins';
+@use './abstracts/reset';
 
-@import './layouts/navbar';
-@import './layouts/topBar';
+@use './layouts/navbar';
+@use './layouts/topBar';
 
-@import './components/landingBanner';
-@import './components/productList';
-@import './components/product';
-@import './components/toolbar';
-@import './components/filterSection';
+@use './components/landingBanner';
+@use './components/productList';
+@use './components/product';
+@use './components/toolbar';
+@use './components/filterSection';
 
-@import './routes/products';
+@use './routes/products';

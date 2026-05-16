@@ -1,7 +1,7 @@
 .navbar {
     display: flex;
     height: 80px;
-    background-color: #fafafa;
+    background-color: var(--color-text-body-3);
     align-items: center;
     justify-content: space-between;
     padding: 0 100px;
@@ -20,12 +20,12 @@
     &__nav-item {
         a {
             text-decoration: none;
-            color: #222222;
+            color: var(--color-link);
             font-size: 14px;
             transition: color 0.3s ease;
 
             &:hover {
-                color: #fea90c;
+                color: var(--color-link-hover);
             }
         }
     }
@@ -81,7 +81,7 @@
 
         &:hover {
             transform: rotate(-180deg);
-            color: #fea90c;
+            color: var(--color-link-hover);
         }
     }
 
@@ -95,7 +95,7 @@
 
     &__input-wrapper {
         display: flex;
-        border: 1px solid #ddd;
+        border: 1px solid var(--color-input-border);
         border-radius: 2px;
 
         input {
@@ -104,16 +104,16 @@
             border: none;
             outline: none;
             font-size: 15px;
-            color: #333;
+            color: var(--color-input-text);
 
             &::placeholder {
-                color: #aaa;
+                color: var(--color-input-placeholder);
             }
         }
     }
 
     &__btn {
-        background-color: #fea90c;
+        background-color: var(--color-btn);
         border: none;
         padding: 0 18px;
         cursor: pointer;

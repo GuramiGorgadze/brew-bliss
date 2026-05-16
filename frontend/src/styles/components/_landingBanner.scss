@@ -5,7 +5,7 @@
     height: 650px;
     background-size: cover;
     padding: 0 100px;
-    color: #feedec;
+    color: var(--color-breadcrum);
     padding-top: 50px;
 
     &__left {
@@ -31,7 +31,7 @@
     }
 
     &__text {
-        color: #cccccc;
+        color: var(--color-text-secondary);
         font-size: 13px;
         line-height: 20px;
     }
@@ -51,20 +51,20 @@
 
         &--orange {
             width: 125px;
-            background-color: #fea90c;
+            background-color: var(--color-btn);
 
             &:hover {
-                background-color: #0f0f0f;
+                background-color: var(--color-btn-hover);
                 color: white;
             }
         }
 
         &--grey {
             width: 160px;
-            background-color: #e0e0e0;
+            background-color: var(--color-bg-body-2);
 
             &:hover {
-                background-color: #fea90c;
+                background-color: var(--color-btn);
             }
         }
     }
