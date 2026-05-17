@@ -1,7 +1,7 @@
 import React from 'react';
 import clsx from 'clsx';
-import GridWrap from '../assets/grid-wrap.svg?react';
-import GridList from '../assets/grid-list.svg?react';
+import GridWrap from '../assets/icons/grid-wrap.svg?react';
+import GridList from '../assets/icons/grid-list.svg?react';
 
 function Toolbar({ count, view, onViewChange, onSortChange }) {
   return (

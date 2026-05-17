@@ -1,10 +1,13 @@
 import React from 'react'
-import LandingBanner from '../components/LandingBanner'
+import { LandingBanner, PromoSection } from '../components'
+
 
 function home() {
   return (
     <>
-        <LandingBanner></LandingBanner>
+        <LandingBanner />
+        <PromoSection />
+        
     </>
   )
 }

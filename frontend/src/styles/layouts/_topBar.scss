@@ -1,30 +1,30 @@
 .top-bar {
     background-color: #0e0e0e;
-    height: 50px;
+    height: calc(50px * var(--app-scale));
     display: flex;
     align-items: center;
     justify-content: space-between;
     color: white;
-    font-size: 14px;
-    padding: 0 115px;
+    font-size: calc(14px * var(--app-scale));
+    padding: 0 calc(115px * var(--app-scale));
 
     &__contact {
         display: flex;
 
         img {
             color: white;
-            margin-right: 5px;
+            margin-right: calc(5px * var(--app-scale));
         }
     }
 
     &__region {
         display: flex;
         align-items: center;
-        gap: 20px;
+        gap: calc(20px * var(--app-scale));
 
         img {
-            height: 15px;
-            margin-right: 5px;
+            height: calc(15px * var(--app-scale));
+            margin-right: calc(5px * var(--app-scale));
         }
     }
 
@@ -34,8 +34,8 @@
     }
 
     &__divider {
-        height: 15px;
-        width: 1px;
+        height: calc(15px * var(--app-scale));
+        width: calc(1px * var(--app-scale));
         background-color: white;
     }
 }

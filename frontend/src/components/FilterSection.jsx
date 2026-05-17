@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import searchIcon from '../assets/search-icon.svg'
+import searchIcon from '../assets/icons/search-icon.svg'
 import { Link, useNavigate } from 'react-router-dom'
 import promotionBanner from '../assets/promotion-banner.avif'
 

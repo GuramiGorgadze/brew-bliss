@@ -1,18 +1,24 @@
 .navbar {
     display: flex;
-    height: 80px;
+    height: calc(80px * var(--app-scale));
     background-color: var(--color-text-body-3);
     align-items: center;
     justify-content: space-between;
-    padding: 0 100px;
+    padding: 0 calc(100px * var(--app-scale));
     position: sticky;
     top: 0;
     z-index: 9999;
 
+    &__brand {
+        img {
+            height: calc(64px * var(--app-scale))
+        }
+    }
+
     &__nav {
         ul {
             display: flex;
-            gap: 25px;
+            gap: calc(25px * var(--app-scale));
             list-style: none;
         }
     }
@@ -21,7 +27,7 @@
         a {
             text-decoration: none;
             color: var(--color-link);
-            font-size: 14px;
+            font-size: calc(14px * var(--app-scale));
             transition: color 0.3s ease;
 
             &:hover {
@@ -32,7 +38,7 @@
 
     &__actions {
         display: flex;
-        gap: 25px;
+        gap: calc(25px * var(--app-scale));
 
         button {
             background-color: transparent;
@@ -41,8 +47,8 @@
             user-select: none;
 
             img {
-                height: 24px;
-                width: 24px;
+                height: calc(24px * var(--app-scale));
+                width: calc(24px * var(--app-scale));
             }
         }
     }
@@ -55,7 +61,7 @@
     display: flex;
     align-items: flex-start;
     justify-content: center;
-    padding-top: 80px;
+    padding-top: calc(80px * var(--app-scale));
     animation: overlayIn 0.3s ease forwards;
     z-index: 9999;
 
@@ -65,17 +71,17 @@
 
     &__content {
         width: 100%;
-        max-width: 600px;
-        padding: 0 20px;
+        max-width: calc(600px * var(--app-scale));
+        padding: 0 calc(20px * var(--app-scale));
     }
 
     &__close {
         position: fixed;
-        top: 20px;
-        right: 24px;
+        top: calc(20px * var(--app-scale));
+        right: calc(24px * var(--app-scale));
         background: none;
         border: none;
-        font-size: 20px;
+        font-size: calc(20px * var(--app-scale));
         cursor: pointer;
         transition: 0.5s;
 
@@ -87,23 +93,23 @@
 
     &__title {
         text-align: center;
-        font-size: 18px;
+        font-size: calc(18px * var(--app-scale));
         font-weight: 700;
-        letter-spacing: 1px;
-        margin-bottom: 24px;
+        letter-spacing: calc(1px * var(--app-scale));
+        margin-bottom: calc(24px * var(--app-scale));
     }
 
     &__input-wrapper {
         display: flex;
         border: 1px solid var(--color-input-border);
-        border-radius: 2px;
+        border-radius: calc(2px * var(--app-scale));
 
         input {
             flex: 1;
-            padding: 14px 16px;
+            padding: calc(14px * var(--app-scale)) calc(16px * var(--app-scale));
             border: none;
             outline: none;
-            font-size: 15px;
+            font-size: calc(15px * var(--app-scale));
             color: var(--color-input-text);
 
             &::placeholder {
@@ -115,15 +121,15 @@
     &__btn {
         background-color: var(--color-btn);
         border: none;
-        padding: 0 18px;
+        padding: 0 calc(18px * var(--app-scale));
         cursor: pointer;
         display: flex;
         align-items: center;
         justify-content: center;
 
         img {
-            width: 18px;
-            height: 18px;
+            width: calc(18px * var(--app-scale));
+            height: calc(18px * var(--app-scale));
             filter: brightness(0) invert(1);
         }
     }

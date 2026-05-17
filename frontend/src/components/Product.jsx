@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigate } from 'react-router-dom'
 
 function Product({ product }) {
   const image = product.images?.[0]?.src;
@@ -13,8 +14,10 @@ function Product({ product }) {
     ? Math.round(((compareAtPrice - price) / compareAtPrice) * 100)
     : 0;
 
+  const navigate = useNavigate()
+
   return (
-    <div className="product-card">
+    <div className="product-card" onClick={() => navigate(`/products/${product.id}`)}>
       <div className="product-card__img-wrapper">
         <img src={image} alt={product.title} />
 

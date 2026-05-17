@@ -9,9 +9,9 @@ function LandingBanner() {
         <div className='landing-banner' style={{ backgroundImage: `url(${heroBanner})` }}>
             <div className="landing-banner__left">
                 <div className="landing-banner__new-arrival">
-                    <img src={wing1} alt="" />
+                    <img src={wing1} alt="" className="landing-banner__wing"/>
                     <p>NEW ARRIVAL</p>
-                    <img src={wing2} alt="" />
+                    <img src={wing2} alt="" className="landing-banner__wing"/>
                 </div>
 
                 <h2 className='landing-banner__title'>Discover Flavors, <br /> One Bottle at a Time!</h2>

@@ -85,7 +85,7 @@ body {
 }
 
 ::-webkit-scrollbar {
-  width: 5px;
+  width: calc(5px * var(--app-scale));
 }
 
 ::-webkit-scrollbar-track {
@@ -94,5 +94,5 @@ body {
 
 ::-webkit-scrollbar-thumb {
   background: var(--color-scrollbar);
-  border-radius: 5px;
+  border-radius: calc(5px * var(--app-scale));
 }

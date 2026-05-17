@@ -10,5 +10,7 @@
 @use './components/product';
 @use './components/toolbar';
 @use './components/filterSection';
+@use './components/promotionSection';
 
 @use './routes/products';
+@use './routes/notFound';

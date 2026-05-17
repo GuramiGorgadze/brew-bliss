@@ -1,18 +1,23 @@
 .title-wrapper {
-    height: 300px;
+    height: calc(300px * var(--app-scale));
     background-size: cover;
-    background-position-y: 330px;
+    background-position-y: calc(330px * var(--app-scale));
     display: flex;
     justify-content: center;
     align-items: center;
+
+    &__wing {
+        height: calc(50px * var(--app-scale));
+        width: calc(50px * var(--app-scale));
+    }
 
     .title {
         display: flex;
 
         p {
-            font-size: 38px;
+            font-size: calc(38px * var(--app-scale));
             color: white;
-            margin: 5px;
+            margin: calc(5px * var(--app-scale));
         }
     }
 }

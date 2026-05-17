@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-import cartIcon from '../assets/cart-icon.svg'
-import profileIcon from '../assets/profile-icon.svg'
-import searchIcon from '../assets/search-icon.svg'
+import cartIcon from '../assets/icons/cart-icon.svg'
+import profileIcon from '../assets/icons/profile-icon.svg'
+import searchIcon from '../assets/icons/search-icon.svg'
 import logo from '../assets/logo.webp'
 import clsx from 'clsx'
 

@@ -29,6 +29,13 @@ function useProductFilter(products = [], userSearch = '') {
       );
     }
 
+    const filteringAvailability = filters.inStock !== filters.outOfStock;
+    if (filteringAvailability) {
+      result = result.filter(p =>
+        filters.inStock ? p.variants[0].available : !p.variants[0].available
+      );
+    }
+
     if (filters.minPrice) {
       result = result.filter(p =>
         Number(p.variants?.[0]?.price) >= Number(filters.minPrice)

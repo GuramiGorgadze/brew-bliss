@@ -1,7 +1,5 @@
 import React, { useState } from 'react';
-import Product from './Product';
-import Toolbar from './Toolbar';
-import FilterSection from './FilterSection';
+import { Product, Toolbar, FilterSection } from '../components'
 import useProductFilter from '../hooks/useProductFilter';
 
 function ProductList({ originalProducts, userSearch }) {

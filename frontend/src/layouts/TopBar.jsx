@@ -1,5 +1,5 @@
 import React from 'react'
-import phoneIcon from '../assets/phone-icon.svg'
+import phoneIcon from '../assets/icons/phone-icon.svg'
 import flagEN from '../assets/flag-en.webp'
 
 function TopBar() {
