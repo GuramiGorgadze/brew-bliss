@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { useLoader } from '../context/LoaderContext';
 import wing1 from '../assets/breadcrumicon1.webp';
 import wing2 from '../assets/breadcrumicon2.webp';
 import { useNavigate } from 'react-router-dom'
@@ -8,15 +9,18 @@ import notFoundImg from '../assets/not-found-img.webp'
 function NotFound() {
   const navigate = useNavigate()
 
+  const { useFakeLoader } = useLoader();
+  useEffect(() => useFakeLoader(), []);
+
   return (
     <div className="not-found">
-        <div className="title-wrapper" style={{ backgroundImage: `url(${heroBanner})` }}>
-          <div className="title">
-            <img src={wing1} alt="" />
-            <p>404</p>
-            <img src={wing2} alt="" />
-          </div>
+      <div className="title-wrapper" style={{ backgroundImage: `url(${heroBanner})` }}>
+        <div className="title">
+          <img src={wing1} alt="" />
+          <p>404</p>
+          <img src={wing2} alt="" />
         </div>
+      </div>
 
       <div className="not-found__body">
         <img className="not-found__image" src={notFoundImg} alt="" />

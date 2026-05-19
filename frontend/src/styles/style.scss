@@ -1,16 +1,17 @@
-@use './abstracts/variables';
-@use './abstracts/mixins';
-@use './abstracts/reset';
+@use 'abstracts/reset';
+@use 'abstracts/variables';
+@use 'abstracts/mixins';
 
-@use './layouts/navbar';
-@use './layouts/topBar';
+@use 'layouts/navbar';
+@use 'layouts/topBar';
 
-@use './components/landingBanner';
-@use './components/productList';
-@use './components/product';
-@use './components/toolbar';
-@use './components/filterSection';
-@use './components/promotionSection';
+@use 'components/filterSection';
+@use 'components/landingBanner';
+@use 'components/loadingScreen';
+@use 'components/product';
+@use 'components/productList';
+@use 'components/promotionSection';
+@use 'components/toolbar';
 
-@use './routes/products';
-@use './routes/notFound';
+@use 'routes/notFound';
+@use 'routes/products';

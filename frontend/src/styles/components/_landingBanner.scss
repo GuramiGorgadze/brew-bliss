@@ -1,3 +1,5 @@
+@use '../abstracts' as *;
+
 .landing-banner {
     display: flex;
     align-items: center;
@@ -5,7 +7,7 @@
     height: calc(650px * var(--app-scale));
     background-size: cover;
     padding: 0 calc(100px * var(--app-scale));
-    color: var(--color-breadcrum);
+    color: $text-on-dark;
     padding-top: calc(50px * var(--app-scale));
 
     &__left {
@@ -25,9 +27,9 @@
 
     &__wing {
         height: calc(20px * var(--app-scale));
-        width: calc(20px * var(--app-scale))
+        width: calc(20px * var(--app-scale));
     }
-    
+
     &__title {
         font-weight: 500;
         font-size: calc(35px * var(--app-scale));
@@ -36,7 +38,7 @@
     }
 
     &__text {
-        color: var(--color-text-secondary);
+        color: $text-muted;
         font-size: calc(13px * var(--app-scale));
         line-height: calc(20px * var(--app-scale));
     }
@@ -57,20 +59,20 @@
 
         &--orange {
             width: calc(125px * var(--app-scale));
-            background-color: var(--color-btn);
+            background-color: $color-accent;
 
             &:hover {
-                background-color: var(--color-btn-hover);
+                background-color: $color-accent-hover;
                 color: white;
             }
         }
 
         &--grey {
             width: calc(160px * var(--app-scale));
-            background-color: var(--color-bg-body-2);
+            background-color: $bg-muted;
 
             &:hover {
-                background-color: var(--color-btn);
+                background-color: $color-accent;
             }
         }
     }

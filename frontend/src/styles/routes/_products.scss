@@ -1,3 +1,5 @@
+@use '../abstracts' as *; 
+
 .title-wrapper {
     height: calc(300px * var(--app-scale));
     background-size: cover;
@@ -16,7 +18,7 @@
 
         p {
             font-size: calc(38px * var(--app-scale));
-            color: white;
+            color: $color-white;
             margin: calc(5px * var(--app-scale));
         }
     }

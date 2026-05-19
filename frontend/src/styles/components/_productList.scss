@@ -1,8 +1,11 @@
+@use '../abstracts' as *;
+
 .product-list {
     display: flex;
     padding: calc(10px * var(--app-scale)) calc(100px * var(--app-scale));
     gap: calc(20px * var(--app-scale));
     justify-content: center;
+    width: 80%;
 
     .product-list-right {
         display: flex;
@@ -19,9 +22,9 @@
     }
 
     .nothing-found-wrapper {
-        background-color: var(--color-white);
+        background-color: $color-white;
         height: calc(100px * var(--app-scale));
-        border: 1px solid var(--color-star-product);
+        border: 1px solid $border-dark;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -30,15 +33,15 @@
             text-align: center;
             font-weight: 500;
             text-transform: capitalize;
-            color: var(--color-text-body);
+            color: $text-primary;
 
             .clear-all-btn {
-                color: var(--color-star-product);
+                color: $border-dark;
                 transition: 0.5s ease-in-out;
                 cursor: pointer;
 
                 &:hover {
-                    color: var(--color-btn);
+                    color: $color-accent;
                 }
             }
         }

@@ -1,10 +1,12 @@
+@use '../abstracts' as *;
+
 .toolbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 0 calc(10px * var(--app-scale));
     height: calc(50px * var(--app-scale));
-    border: 1px var(--color-border-2) solid;
+    border: 1px $text-subtle solid;
     border-radius: calc(10px * var(--app-scale));
 
     &__views {
@@ -17,10 +19,10 @@
     &__view-btn {
         background: none;
         border: none;
-        color: var(--color-toolbar-view-inactive);
+        color: $icon-inactive;
 
         &--active {
-            color: var(--color-text-body);
+            color: $text-primary;
         }
     }
 
@@ -41,7 +43,7 @@
             height: calc(30px * var(--app-scale));
             font-size: calc(14px * var(--app-scale));
             width: calc(150px * var(--app-scale));
-            background-color: var(--color-border-3);
+            background-color: $border-subtle;
             border-radius: calc(5px * var(--app-scale));
             border: none;
             outline: none;

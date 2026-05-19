@@ -1,9 +1,10 @@
 import React from 'react'
-import './styles/style.css';
+import './styles/style.scss';
   
 import { Navbar, Footer, Main, TopBar } from './layouts';
 import { Routes, Route, useNavigate } from 'react-router-dom'
 import { Home, Products, About, Contact, NotFound, ProductSingle } from './routes'
+import { LoadingScreen } from './components';
 
 // Hooks
 import useDocumentTitle from './hooks/useDocumentTitle';
@@ -34,6 +35,7 @@ function App() {
         </Routes>
       </Main>
       <Footer />
+      <LoadingScreen />
     </>
   )
 }

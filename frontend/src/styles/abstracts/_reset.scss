@@ -1,87 +1,13 @@
-:root {
-    --color-bg-body: #F3F9EC;
-    --color-bg-body-2: #E0E0E0;
-    --color-bg-body-3: #0E0E0E;
-    --color-bg-body-4: #FEA90C;
-    --color-text-body: #0E0E0E;
-    --color-text-body-2: #3D3D3D;
-    --color-text-body-3: #FAFAFA;
-    --color-text-body-4: #FEA90C;
-    --color-border: #45474F;
-    --color-border-2: #696969;
-    --color-border-3: #EAEAEC;
-    --color-border-4: #FEA90C;
-    --color-title-contact: #85B748;
-    --color-main: #0E0E0E;
-    --color-eyebrow: #00A850;
-    --color-breadcrum: #FEEDEC;
-    --sidebar-color: #EAEAEC;
-    --color-paraghraph: #696969;
-    --color-secondary: #FEA90C;
-    --color-orange: #FF782C;
-    --color-lavender-purple: #FEA90C;
-    --color-green: #FEA90C;
-    --color-link: #222222;
-    --color-link-hover: #FEA90C;
-    --color-scrollbar: #222222;
-    --color-link-menu: #3D3D3D;
-    --color-link-menu-heading: #0C0C0D;
-    --color-link-menu-sub: #3D3D3D;
-    --color-link-menu-hover: #FEA90C;
-    --color-name-product: #0E0E0E;
-    --color-name-product-hover: #FEA90C;
-    --color-star-product: #1F1F1F;
-    --color-compare-price-product: #696969;
-    --color-price-product: #E31B0C;
-    --color-current-product: #222222;
-    --color-cart-product: #0C0816;
-    --color-out-product: #1e882f;
-    --color-btn-product: #F3F0FA;
-    --color-btn-product-hover: #F3F0FA;
-    --color-tb-btn: #0E0E0E;
-    --bg-btn-product: #006937;
-    --bg-btn-product-hover: #FEA90C;
-    --color-label-hot: #cc1414;
-    --color-label-new: #FF782C;
-    --color-label-sale: #DD3842;
-    --color-label-in: #1e882f;
-    --color-label-out: #cc1414;
-    --color-btn-text: #0F0F0F;
-    --color-btn: #FEA90C;
-    --color-border-btn: #EAEAEC;
-    --color-btn-text_hover: #fafafa;
-    --color-btn-hover: #0F0F0F;
-    --btn-border-radius: 5px;
-    --color-cl-btn-p-n: #EAEAEC;
-    --color-bg-btn-p-n: #FEA90C;
-    --color-cl-btn-p-n-hover: #fafafa;
-    --color-bg-btn-p-n-hover: #FEA90C;
-    --bg-purple: #A0205B;
-    --ui-border-radius: 12px;
-    --ui-gap: 10px;
-    --ui-row: -10px;
-    --ui-gap-mobile: 5px;
-    --ui-row-mobile: -5px;
-    --ui-container-width: 1344px;
-    --color-input-border: #ddd;
-    --color-input-text: #333;
-    --color-input-placeholder: #aaa;
-    --color-toolbar-view-inactive: #d7d7e0;
-    --color-white: #ffffff;
-    --color-product-img-bg: #e2e6eb;
-    --color-price-label: #555555;
-    --color-text-secondary: #cccccc;
-    --color-checkbox-border: #dbdbdb;
-}
+@use 'variables' as *; 
 
 * {
     margin: 0;
     padding: 0;
-    font-family: "Montserrat", sans-serif;
+    font-family: 'Nunito Sans', sans-serif;
 }
 
 body {
-  background-color: var(--color-bg-body);
+  background-color: $bg-body;
 }
 
 ::-webkit-scrollbar {
@@ -89,7 +15,7 @@ body {
 }
 
 ::-webkit-scrollbar-track {
-  background: var(--color-bg-body);
+  background: $bg-scrollbar;
 }
 
 ::-webkit-scrollbar-thumb {

@@ -1,3 +1,5 @@
+@use '../abstracts' as *; 
+
 .not-found {
   display: flex;
   flex-direction: column;
@@ -18,7 +20,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: var(--color-cl-btn-p-n-hover);
+    background-color: $bg-muted;
     margin-top: calc(80px * var(--app-scale));
     width: 80%;
     gap: calc(20px * var(--app-scale));
@@ -29,14 +31,14 @@
   }
 
   &__heading {
-    color: var(--color-main);
+    color: $text-primary;
     font-weight: 500;
     font-size: calc(20px * var(--app-scale));
     margin-top: calc(10px * var(--app-scale));
   }
 
   &__text {
-    color: var(--color-border);
+    color: $text-subtle;
     text-align: center;
     font-size: calc(13px * var(--app-scale));
   }

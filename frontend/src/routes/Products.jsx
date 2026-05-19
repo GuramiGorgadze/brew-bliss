@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
+import { useLoader } from '../context/LoaderContext'
 import wing1 from '../assets/breadcrumicon1.webp';
 import wing2 from '../assets/breadcrumicon2.webp';
 import heroBanner from '../assets/Hero_Banner.webp';
@@ -12,9 +13,12 @@ function Products() {
   const [searchParams] = useSearchParams()
   const userSearch = searchParams.get('search') || ''
 
+  const { loading, useDataLoader } = useLoader();
+
   useEffect(() => {
     const fetchProductsData = async () => {
-      const data = await api.getProducts()
+      const data = await useDataLoader(api.getProducts);
+      
       if (data?.data) {
         setOriginalProducts(data.data)
       } else if (data.err) {

@@ -1,10 +1,12 @@
+@use '../abstracts' as *; 
+
 .top-bar {
-    background-color: #0e0e0e;
+    background-color: $text-primary;
     height: calc(50px * var(--app-scale));
     display: flex;
     align-items: center;
     justify-content: space-between;
-    color: white;
+    color: $color-white;
     font-size: calc(14px * var(--app-scale));
     padding: 0 calc(115px * var(--app-scale));
 
@@ -12,7 +14,7 @@
         display: flex;
 
         img {
-            color: white;
+            color: $color-white;
             margin-right: calc(5px * var(--app-scale));
         }
     }
@@ -36,6 +38,6 @@
     &__divider {
         height: calc(15px * var(--app-scale));
         width: calc(1px * var(--app-scale));
-        background-color: white;
+        background-color: $color-white;
     }
 }

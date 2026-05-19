@@ -1,3 +1,5 @@
+@use '../abstracts' as *;
+
 .promo-section {
     display: flex;
     align-items: center;
@@ -28,7 +30,7 @@
 
     &__wing {
         height: calc(20px * var(--app-scale));
-        width: calc(20px * var(--app-scale))
+        width: calc(20px * var(--app-scale));
     }
 
     &__heading {
@@ -40,7 +42,7 @@
         height: calc(50px * var(--app-scale));
         width: calc(130px * var(--app-scale));
         border-radius: calc(5px * var(--app-scale));
-        border: calc(1px * var(--app-scale)) solid var(--color-border);
+        border: calc(1px * var(--app-scale)) solid $border-default;
         background-color: transparent;
         font-size: calc(15px * var(--app-scale));
         transition: 0.5s;
@@ -48,8 +50,8 @@
 
         &:hover {
             cursor: pointer;
-            background-color: var(--color-border-4);
-            border: calc(1px * var(--app-scale)) solid var(--color-border-4);
-        }   
+            background-color: $color-accent;
+            border: calc(1px * var(--app-scale)) solid $color-accent;
+        }
     }
 }
