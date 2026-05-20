@@ -4,6 +4,7 @@ import dotenv from 'dotenv'
 import connectDB from './db/connection.js'
 import cookieParser from 'cookie-parser';
 import ProductsRouter from './routes/products.js'
+import UsersRouter from './routes/users.js'
 
 const app = express()
 
@@ -20,6 +21,7 @@ app.use(cors({
 }));
 
 app.use('/api/products', ProductsRouter)
+app.use('/api/users', UsersRouter)
 
 app.listen(3000, () => {
     console.log('server has started')

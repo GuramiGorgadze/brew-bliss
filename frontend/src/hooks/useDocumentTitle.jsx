@@ -18,6 +18,12 @@ const useDocumentTitle = () => {
       case '/contact':
         document.title = 'Contact - Brew Bliss';
         break;
+      case '/register':
+        document.title = 'Register - Brew Bliss';
+        break;
+      case '/login':
+        document.title = 'Login - Brew Bliss';
+        break;
       default:
         document.title = 'Brew Bliss - Raise Your Mood, Not Just Your Glass';
     }

@@ -21,3 +21,27 @@ export const getProductById = async (id) => {
     console.error("Error fetching products:", err)
   }
 }
+
+export const registerUser = async (email, password, confirmPassword, firstName, lastName) => {
+    const response = await axios.post(
+        'http://localhost:3000/api/users/register',
+        JSON.stringify({ firstName, lastName, email, password, confirmPassword }),
+        {
+            headers: { 'Content-Type': 'application/json' },
+            withCredentials: true
+        }
+    )
+    return response.data
+}
+
+export const loginUser = async (email, password) => {
+  const response = await axios.post(
+    'http://localhost:3000/api/users/login', 
+    JSON.stringify({email: email, password: password}),
+    {
+      headers: { 'Content-Type': 'application/json' },
+      withCredentials: true
+    }
+  );
+  return response.data
+}

@@ -12,6 +12,7 @@
 @use 'components/productList';
 @use 'components/promotionSection';
 @use 'components/toolbar';
+@use 'components/pageTitle';
 
 @use 'routes/notFound';
-@use 'routes/products';
+@use 'routes/auth';

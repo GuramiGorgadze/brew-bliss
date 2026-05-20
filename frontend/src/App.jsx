@@ -3,7 +3,7 @@ import './styles/style.scss';
   
 import { Navbar, Footer, Main, TopBar } from './layouts';
 import { Routes, Route, useNavigate } from 'react-router-dom'
-import { Home, Products, About, Contact, NotFound, ProductSingle } from './routes'
+import { Home, Products, About, Contact, NotFound, ProductSingle, Register, Login } from './routes'
 import { LoadingScreen } from './components';
 
 // Hooks
@@ -30,6 +30,9 @@ function App() {
 
           <Route path='/about'        element={<About />} />
           <Route path='/contact'      element={<Contact />} />
+
+          <Route path='/register'     element={<Register />} />
+          <Route path='/login'        element={<Login />} />
 
           <Route path='*'             element={<NotFound />} />
         </Routes>
