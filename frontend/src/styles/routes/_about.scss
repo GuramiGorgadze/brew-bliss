@@ -1,0 +1,41 @@
+@use "../abstracts" as *;
+
+.our-story {
+  display: flex;
+  flex-direction: column;
+  margin: calc(100px * var(--app-scale));
+  align-items: center;
+
+  &__title {
+    display: flex;
+    font-size: calc(16px * var(--app-scale));
+    color: $color-accent-hover;
+  }
+
+  &__wing {
+    height: calc(20px * var(--app-scale));
+    width: calc(20px * var(--app-scale));
+  }
+
+  &__desc {
+    text-align: center;
+    color: $color-accent-hover;
+    font-weight: 500;
+    font-size: calc(24px * var(--app-scale));
+    margin: calc(20px * var(--app-scale)) 0;
+    line-height: 1.1;
+    .orange {
+      color: $color-accent;
+    }
+  }
+
+  &__banner {
+    width: 100%;
+    margin: calc(20px * var(--app-scale)) 0;
+    transition: 0.3s;
+
+    &:hover {
+      transform: scale(0.9);
+    }
+  }
+}

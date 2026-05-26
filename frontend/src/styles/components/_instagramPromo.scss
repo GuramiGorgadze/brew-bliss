@@ -1,0 +1,37 @@
+@use "../abstracts" as *;
+
+.instagram-promo {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  flex-wrap: wrap;
+
+  &__card {
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+
+    img {
+      width: calc(160px * var(--app-scale));
+    }
+
+    &__overlay {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+        border: none;
+      transition: opacity 0.5s;
+
+      img {
+        height: calc(50px * var(--app-scale));
+      }
+    }
+
+    &:hover &__overlay {
+        opacity: 1;
+    }
+  }
+}

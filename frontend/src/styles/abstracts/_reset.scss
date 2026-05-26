@@ -4,6 +4,7 @@
     margin: 0;
     padding: 0;
     font-family: 'Nunito Sans', sans-serif;
+    outline: none;
 }
 
 body {
@@ -19,6 +20,6 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--color-scrollbar);
+  background: $color-link;
   border-radius: calc(5px * var(--app-scale));
 }

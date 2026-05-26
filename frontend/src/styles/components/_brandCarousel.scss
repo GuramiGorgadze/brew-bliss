@@ -1,0 +1,28 @@
+.embla {
+  --slide-size: 25%;
+  margin:  100px;
+  cursor: pointer;
+
+  &__viewport {
+    overflow: hidden;
+  }
+
+  &__container {
+    display: flex;
+    touch-action: pan-y pinch-zoom;
+  }
+
+  &__slide {
+    transform: translate3d(0, 0, 0);
+    flex: 0 0 var(--slide-size);
+    min-width: 0;
+
+    &__img {
+      transition: 0.5s;
+    }
+
+    &__img:hover {
+      scale: 1.05;
+    }
+  }
+}

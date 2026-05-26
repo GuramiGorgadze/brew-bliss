@@ -11,8 +11,13 @@
 @use 'components/product';
 @use 'components/productList';
 @use 'components/promotionSection';
+@use 'components/promoSection2';
 @use 'components/toolbar';
 @use 'components/pageTitle';
+@use 'components/instagramPromo';
+@use 'components/brandCarousel';
+@use 'components/storeFeatures';
 
 @use 'routes/notFound';
 @use 'routes/auth';
+@use 'routes/about';

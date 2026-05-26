@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { useLoader } from '../context/LoaderContext';
+import { InstagramPromo } from '../components';
 import wing1 from '../assets/breadcrumicon1.webp';
 import wing2 from '../assets/breadcrumicon2.webp';
 import { useNavigate } from 'react-router-dom'
@@ -36,6 +37,8 @@ function NotFound() {
           Back To Homepage
         </button>
       </div>
+
+      <InstagramPromo />
     </div>
   )
 }

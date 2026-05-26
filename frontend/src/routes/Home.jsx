@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { LandingBanner, PromoSection } from '../components'
+import { LandingBanner, PromoSection, BrandCarousel, PromoSection2, InstagramPromo, StoreFeatures } from '../components'
 import { useLoader } from '../context/LoaderContext';
 
 function home() {
@@ -10,7 +10,10 @@ function home() {
     <>
       <LandingBanner />
       <PromoSection />
-
+      <StoreFeatures />
+      <BrandCarousel />
+      <PromoSection2 />
+      <InstagramPromo />
     </>
   )
 }
