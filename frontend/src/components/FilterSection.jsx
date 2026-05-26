@@ -1,36 +1,53 @@
-import React, { useState } from 'react'
-import searchIcon from '../assets/icons/search-icon.svg'
-import { Link, useNavigate } from 'react-router-dom'
-import promotionBanner from '../assets/promotion-banner.avif'
+import React, { useState, useEffect } from "react";
+import searchIcon from "../assets/icons/search-icon.svg";
+import { Link } from "react-router-dom";
+import promotionBanner from "../assets/promotion-banner.avif";
+import Slider from "rc-slider";
+import "rc-slider/assets/index.css";
 
-function FilterSection({ updateFilter }) {
+function FilterSection({ updateFilter, filters, updateFilters, stockCounts }) {
   const [availabilityOpen, setAvailabilityOpen] = useState(true);
   const [priceOpen, setPriceOpen] = useState(true);
-  const [searchQuery, setSearchQuery] = useState('')
+  const [searchQuery, setSearchQuery] = useState(filters.search);
 
-  const navigate = useNavigate()
+  const [localPrice, setLocalPrice] = useState([
+    Number(filters.minPrice) || 0,
+    Number(filters.maxPrice) || 200,
+  ]);
+
+  useEffect(() => {
+    setLocalPrice([
+      Number(filters.minPrice) || 0,
+      Number(filters.maxPrice) || 200,
+    ]);
+  }, [filters.minPrice, filters.maxPrice]);
+
+  useEffect(() => {
+    setSearchQuery(filters.search);
+  }, [filters.search]);
 
   const handleSearchSubmit = () => {
-    if (!searchQuery.trim()) return;
-    navigate(`/products?search=${encodeURIComponent(searchQuery.trim())}`)
-    setSearchQuery('')
-  }
+    updateFilter("search", searchQuery.trim());
+  };
 
   const handleKeyDown = (e) => {
-    if (e.key === 'Enter') handleSearchSubmit()
-  }
-
-
-  const handleAvailability = (key, checked) => {
-    updateFilter(key, checked)
-  }
+    if (e.key === "Enter") handleSearchSubmit();
+  };
 
   const handlePrice = (key, value) => {
-    updateFilter(key, value)
-  }
+    updateFilter(key, value);
+  };
+
+  const handleSliderChange = (values) => {
+    setLocalPrice(values);
+  };
+
+  const handleSliderAfterChange = (values) => {
+    updateFilters({ minPrice: values[0], maxPrice: values[1] });
+  };
 
   return (
-    <div className='filter-section'>
+    <div className="filter-section">
       <div className="filter-section__search">
         <input
           type="text"
@@ -39,7 +56,10 @@ function FilterSection({ updateFilter }) {
           onChange={(e) => setSearchQuery(e.target.value)}
           onKeyDown={handleKeyDown}
         />
-        <button className="filter-section__search-btn" onClick={handleSearchSubmit}>
+        <button
+          className="filter-section__search-btn"
+          onClick={handleSearchSubmit}
+        >
           <img src={searchIcon} alt="Search" draggable="false" />
         </button>
       </div>
@@ -47,7 +67,13 @@ function FilterSection({ updateFilter }) {
       <div className="filter-section__categories">
         <h1>Product Categories</h1>
         <ul>
-          {['Beer', 'Wisky', 'Wheat Beer', 'Non-Alcoholic Beer', 'IPA (India Pale Ale)'].map(cat => (
+          {[
+            "Beer",
+            "Wisky",
+            "Wheat Beer",
+            "Non-Alcoholic Beer",
+            "IPA (India Pale Ale)",
+          ].map((cat) => (
             <li key={cat}>
               <Link className="filter-section__category-link">
                 <span className="filter-section__category-name">{cat}</span>
@@ -60,78 +86,132 @@ function FilterSection({ updateFilter }) {
 
       <div className="filter-section__availability">
         <div className="filter-section__section-header">
-          <div className="filter-section__toggle" onClick={() => setAvailabilityOpen(prev => !prev)}>
-            <span className='filter-section__toggle-icon'>{availabilityOpen ? '–' : '+'}</span>
+          <div
+            className="filter-section__toggle"
+            onClick={() => setAvailabilityOpen((prev) => !prev)}
+          >
+            <span className="filter-section__toggle-icon">
+              {availabilityOpen ? "–" : "+"}
+            </span>
             <h1>AVAILABILITY</h1>
           </div>
         </div>
 
         {availabilityOpen && (
           <div className="filter-section__options">
-            <div className='filter-section__option'>
+            <div className="filter-section__option">
               <label className="filter-section__checkbox">
                 <input
                   type="checkbox"
-                  onChange={(e) => handleAvailability('inStock', e.target.checked)}
+                  checked={filters.inStock}
+                  onChange={(e) =>
+                    updateFilter("inStock", e.target.checked)
+                  }
                 />
                 <span className="filter-section__checkmark"></span>
               </label>
-              <p>In Stock (9)</p>
+              <p>In Stock ({stockCounts.inStock})</p>
             </div>
 
-            <div className='filter-section__option'>
+            <div className="filter-section__option">
               <label className="filter-section__checkbox">
                 <input
                   type="checkbox"
-                  onChange={(e) => handleAvailability('outOfStock', e.target.checked)}
+                  checked={filters.outOfStock}
+                  onChange={(e) =>
+                    updateFilter("outOfStock", e.target.checked)
+                  }
                 />
                 <span className="filter-section__checkmark"></span>
               </label>
-              <p>Out of Stock (6)</p>
+              <p>Out of Stock ({stockCounts.outOfStock})</p>
             </div>
           </div>
         )}
-
-        <span className='filter-section__divider'></span>
+        <span className="filter-section__divider"></span>
       </div>
 
       <div className="filter-section__price">
         <div className="filter-section__section-header">
-          <div className="filter-section__toggle" onClick={() => setPriceOpen(prev => !prev)}>
-            <span className='filter-section__toggle-icon'>{priceOpen ? '–' : '+'}</span>
+          <div
+            className="filter-section__toggle"
+            onClick={() => setPriceOpen((prev) => !prev)}
+          >
+            <span className="filter-section__toggle-icon">
+              {priceOpen ? "–" : "+"}
+            </span>
             <h1>PRICE</h1>
           </div>
         </div>
 
         {priceOpen && (
           <>
-            <p className="filter-section__highest-price">The Highest Price Is <span>$200.00</span></p>
+            <p className="filter-section__highest-price">
+              The Highest Price Is <span>$200.00</span>
+            </p>
+
+            <div className="filter-section__slider-container">
+              <Slider
+                range
+                min={0}
+                max={200}
+                value={localPrice}
+                onChange={handleSliderChange}
+                onChangeComplete={handleSliderAfterChange}
+                trackStyle={[{ backgroundColor: "#FF9E00", height: 8 }]}
+                handleStyle={[
+                  {
+                    borderColor: "#FF9E00",
+                    backgroundColor: "#FFF",
+                    height: 16,
+                    width: 16,
+                    marginLeft: 8,
+                    borderRadius: 3,
+                    marginTop: -4,
+                    opacity: 1,
+                  },
+                  {
+                    borderColor: "#FF9E00",
+                    backgroundColor: "#FFF",
+                    height: 16,
+                    width: 16,
+                    borderRadius: 3,
+                    marginLeft: -8,
+                    marginTop: -4,
+                    opacity: 1,
+                  },
+                ]}
+                railStyle={{ backgroundColor: "#E5E5E5", height: 8 }}
+              />
+            </div>
+
             <div className="filter-section__price-inputs">
               <span>$</span>
               <input
-                className='filter-section__price-input'
+                className="filter-section__price-input"
                 type="number"
-                placeholder='From'
-                onChange={(e) => handlePrice('minPrice', e.target.value)}
+                placeholder="From"
+                value={filters.minPrice}
+                onChange={(e) => handlePrice("minPrice", e.target.value)}
               />
               <input
-                className='filter-section__price-input'
+                className="filter-section__price-input"
                 type="number"
-                placeholder='To'
-                onChange={(e) => handlePrice('maxPrice', e.target.value)}
+                placeholder="To"
+                value={filters.maxPrice}
+                onChange={(e) => handlePrice("maxPrice", e.target.value)}
               />
             </div>
           </>
         )}
-
-        <span className='filter-section__divider'></span>
+        <span className="filter-section__divider"></span>
       </div>
 
       <div className="filter-section__promotion">
         <img src={promotionBanner} alt="" />
       </div>
     </div>
-  )
+  );
 }
 
-export default FilterSection
+export default FilterSection;

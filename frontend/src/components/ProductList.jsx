@@ -1,38 +1,116 @@
-import React, { useState } from 'react';
-import { Product, Toolbar, FilterSection } from '../components'
-import useProductFilter from '../hooks/useProductFilter';
+import React, { useState, useMemo } from "react";
+import { Product, Toolbar, FilterSection } from "../components";
+import useProductFilter from "../hooks/useProductFilter";
+import deleteIcon from "../assets/icons/x-icon.svg";
 
-function ProductList({ originalProducts, userSearch }) {
-  const [view, setView] = useState('grid-wrap');
-  const { products, updateFilter, resetFilters } = useProductFilter(originalProducts, userSearch);
+function ProductList({ originalProducts }) {
+  const [view, setView] = useState("grid-wrap");
+  const { products, filters, updateFilter, updateFilters, resetFilters } =
+    useProductFilter(originalProducts);
+
+  const stockCounts = useMemo(() => {
+    let inStock = 0;
+    let outOfStock = 0;
+
+    products.forEach((p) => {
+      if (p.variants?.[0]?.available) {
+        inStock++;
+      } else {
+        outOfStock++;
+      }
+    });
+
+    return { inStock, outOfStock };
+  }, [products]);
+
+  const activeFilters = useMemo(() => {
+    const active = [];
+
+    if (filters.search) {
+      active.push({ key: "search", label: "Search" });
+    }
+    if (filters.inStock) {
+      active.push({ key: "inStock", label: "In Stock" });
+    }
+    if (filters.outOfStock) {
+      active.push({ key: "outOfStock", label: "Out of Stock" });
+    }
+    if (filters.minPrice || filters.maxPrice) {
+      active.push({ key: "price", label: "Price" });
+    }
+
+    return active;
+  }, [filters]);
 
   return (
     <div className="product-list">
       <div className="product-list-left">
-        <FilterSection updateFilter={updateFilter} />
+        <FilterSection
+          updateFilter={updateFilter}
+          updateFilters={updateFilters}
+          filters={filters}
+          stockCounts={stockCounts}
+        />
       </div>
 
       <div className="product-list-right">
         <Toolbar
           count={products.length}
+          originalProducts={originalProducts}
           view={view}
           onViewChange={setView}
-          onSortChange={(sort) => updateFilter('sort', sort)}
+          onSortChange={(sort) => updateFilter("sort", sort)}
         />
 
+        <div className="active-filters-badges">
+          {activeFilters.map((filter) => (
+            <div
+              key={filter.key}
+              className="filter-badge"
+              onClick={() => {
+                if (filter.key === "price") {
+                  updateFilters({ minPrice: "", maxPrice: "" });
+                } else {
+                  updateFilter(
+                    filter.key,
+                    filter.key === "search" ? "" : false,
+                  );
+                }
+              }}
+            >
+              {filter.label}
+              <button type="button" className="clear-single-filter-btn">
+                <img src={deleteIcon} alt="" />
+              </button>
+            </div>
+          ))}
+
+          {activeFilters.length > 0 && (
+            <div className="filter-badge" onClick={resetFilters}>
+              Clear All
+              <button type="button" className="clear-single-filter-btn">
+                <img src={deleteIcon} alt="" />
+              </button>
+            </div>
+          )}
+        </div>
+
         <div className={`product-cards-wrapper product-cards-wrapper--${view}`}>
-          {products.map(product => (
+          {products.map((product) => (
             <Product key={product.id} product={product} />
           ))}
         </div>
 
-        {products.length == 0 && (
-          <>
-            <div className="nothing-found-wrapper">
-              <h2 className='nothing-found-wrapper__title'>No products found <br />
-                Use fewer filters or <span className='clear-all-btn' onClick={resetFilters}>clear all</span></h2>
-            </div>
-          </>
+        {products.length === 0 && (
+          <div className="nothing-found-wrapper">
+            <h2 className="nothing-found-wrapper__title">
+              No products found <br />
+              Use fewer filters or{" "}
+              <span className="clear-all-btn" onClick={resetFilters}>
+                clear all
+              </span>
+            </h2>
+          </div>
         )}
       </div>
     </div>

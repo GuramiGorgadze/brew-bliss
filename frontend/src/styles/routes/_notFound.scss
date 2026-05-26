@@ -17,11 +17,13 @@
 
   &__body {
     display: flex;
+    background-color: $bg-navbar;
     flex-direction: column;
+    padding: calc(50px * var(--app-scale)) 0;
+    border-radius: 5px;
     justify-content: center;
     align-items: center;
-    background-color: $bg-muted;
-    margin-top: calc(80px * var(--app-scale));
+    margin: calc(50px * var(--app-scale)) 0;
     width: 80%;
     gap: calc(20px * var(--app-scale));
   }

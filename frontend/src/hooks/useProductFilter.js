@@ -1,63 +1,106 @@
-import { useState, useMemo, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useMemo } from "react";
+import { useSearchParams } from "react-router-dom";
 
-function useProductFilter(products = [], userSearch = '') {
-  const [filters, setFilters] = useState({
-    search: userSearch,
-    minPrice: '',
-    maxPrice: '',
-    sort: 'most-relevant',
-  });
+function useProductFilter(products = []) {
+  const [searchParams, setSearchParams] = useSearchParams();
 
-  const navigate = useNavigate()
-
-  useEffect(() => {
-    setFilters(prev => ({ ...prev, search: userSearch }));
-  }, [userSearch]);
+  const filters = useMemo(() => {
+    return {
+      search: searchParams.get("search") || "",
+      inStock: searchParams.get("inStock") === "true",
+      outOfStock: searchParams.get("outOfStock") === "true",
+      minPrice: searchParams.get("minPrice") || "",
+      maxPrice: searchParams.get("maxPrice") || "",
+      sort: searchParams.get("sort") || "most-relevant",
+    };
+  }, [searchParams]);
 
   const resetFilters = () => {
-    setFilters({ search: '', minPrice: '', maxPrice: '', sort: 'most-relevant' });
-    navigate('/products');
+    setSearchParams({});
+  };
+
+  const updateFilter = (key, value) => {
+    setSearchParams((prevParams) => {
+      const nextParams = new URLSearchParams(prevParams);
+
+      if (
+        value === "" ||
+        value === false ||
+        value === null ||
+        value === undefined
+      ) {
+        nextParams.delete(key);
+      } else {
+        nextParams.set(key, String(value));
+      }
+      return nextParams;
+    });
+  };
+
+  const updateFilters = (updates) => {
+    setSearchParams((prevParams) => {
+      const nextParams = new URLSearchParams(prevParams);
+      Object.entries(updates).forEach(([key, value]) => {
+        if (
+          value === "" ||
+          value === false ||
+          value === null ||
+          value === undefined
+        ) {
+          nextParams.delete(key);
+        } else {
+          nextParams.set(key, String(value));
+        }
+      });
+      return nextParams;
+    });
   };
 
   const filtered = useMemo(() => {
     let result = [...products];
 
     if (filters.search) {
-      result = result.filter(p =>
-        p.title?.toLowerCase().includes(filters.search.toLowerCase())
+      result = result.filter((p) =>
+        p.title?.toLowerCase().includes(filters.search.toLowerCase()),
       );
     }
 
-    const filteringAvailability = filters.inStock !== filters.outOfStock;
-    if (filteringAvailability) {
-      result = result.filter(p =>
-        filters.inStock ? p.variants[0].available : !p.variants[0].available
-      );
+    const isFilteringInStock = filters.inStock && !filters.outOfStock;
+    const isFilteringOutOfStock = filters.outOfStock && !filters.inStock;
+
+    if (isFilteringInStock) {
+      result = result.filter((p) => p.variants?.[0]?.available === true);
+    } else if (isFilteringOutOfStock) {
+      result = result.filter((p) => p.variants?.[0]?.available === false);
     }
 
     if (filters.minPrice) {
-      result = result.filter(p =>
-        Number(p.variants?.[0]?.price) >= Number(filters.minPrice)
+      result = result.filter(
+        (p) => Number(p.variants?.[0]?.price) >= Number(filters.minPrice),
       );
     }
 
     if (filters.maxPrice) {
-      result = result.filter(p =>
-        Number(p.variants?.[0]?.price) <= Number(filters.maxPrice)
+      result = result.filter(
+        (p) => Number(p.variants?.[0]?.price) <= Number(filters.maxPrice),
       );
     }
 
-    if (filters.sort !== 'most-relevant') {
+    if (filters.sort !== "most-relevant") {
       result.sort((a, b) => {
         const priceA = Number(a.variants?.[0]?.price);
         const priceB = Number(b.variants?.[0]?.price);
         switch (filters.sort) {
-          case 'title-asc': return a.title.localeCompare(b.title);
-          case 'title-desc': return b.title.localeCompare(a.title);
-          case 'price-asc': return priceA - priceB;
-          case 'price-desc': return priceB - priceA;
-          default: return 0;
+          case "title-asc":
+            return a.title.localeCompare(b.title);
+          case "title-desc":
+            return b.title.localeCompare(a.title);
+          case "price-asc":
+            return priceA - priceB;
+          case "price-desc":
+            return priceB - priceA;
+          default:
+            return 0;
         }
       });
     }
@@ -65,10 +108,7 @@ function useProductFilter(products = [], userSearch = '') {
     return result;
   }, [products, filters]);
 
-  const updateFilter = (key, value) =>
-    setFilters(prev => ({ ...prev, [key]: value }));
-
-  return { products: filtered, updateFilter, resetFilters };
+  return { products: filtered, filters, updateFilter, updateFilters, resetFilters };
 }
 
 export default useProductFilter;

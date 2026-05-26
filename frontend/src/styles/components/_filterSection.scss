@@ -203,6 +203,7 @@
     &__price-inputs {
         display: flex;
         align-items: center;
+        margin-top: 20px;
         gap: calc(10px * var(--app-scale));
         margin-bottom: calc(20px * var(--app-scale));
     }

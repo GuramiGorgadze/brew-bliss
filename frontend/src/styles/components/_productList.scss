@@ -12,6 +12,36 @@
         flex-direction: column;
         gap: calc(20px * var(--app-scale));
         width: 100%;
+
+        .active-filters-badges {
+            display: flex;
+            gap: 10px;
+
+            .filter-badge {
+                height: calc(50px * var(--app-scale));
+                background-color: $color-white;
+                border: $border-dark solid 1px;
+                border-radius: 3px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                gap: calc(15px * var(--app-scale));
+                box-sizing: border-box;
+                padding: 0 calc(15px * var(--app-scale));
+                transition: 0.3s;
+
+                .clear-single-filter-btn {
+                    display: flex;
+                    background-color: transparent;
+                    border: none;
+                }
+
+                &:hover {
+                    color: $color-accent;
+                    cursor: pointer;
+                }
+            }
+        }
     }
 
     .product-cards-wrapper {
