@@ -54,7 +54,7 @@ function Navbar() {
           <button onClick={() => setSearchOpen(true)}>
             <img src={searchIcon} alt="" draggable="false" />
           </button>
-          <button><img src={profileIcon} alt="" draggable="false" /></button>
+          <button><Link to="/account"><img src={profileIcon} alt="" draggable="false" /></Link></button>
           <button><img src={cartIcon} alt="" draggable="false" /></button>
         </div>
       </nav>

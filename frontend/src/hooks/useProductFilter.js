@@ -7,6 +7,7 @@ function useProductFilter(products = []) {
   const filters = useMemo(() => {
     return {
       search: searchParams.get("search") || "",
+      category: searchParams.get("category") || "",
       inStock: searchParams.get("inStock") === "true",
       outOfStock: searchParams.get("outOfStock") === "true",
       minPrice: searchParams.get("minPrice") || "",
@@ -65,13 +66,19 @@ function useProductFilter(products = []) {
       );
     }
 
+    if (filters.category) {
+      result = result.filter((p) =>
+        p.tags?.includes(filters.category.toLowerCase())
+      );
+    }
+
     const isFilteringInStock = filters.inStock && !filters.outOfStock;
     const isFilteringOutOfStock = filters.outOfStock && !filters.inStock;
 
     if (isFilteringInStock) {
-      result = result.filter((p) => p.variants?.[0]?.available === true);
+      result = result.filter((p) => p?.available === true);
     } else if (isFilteringOutOfStock) {
-      result = result.filter((p) => p.variants?.[0]?.available === false);
+      result = result.filter((p) => p?.available === false);
     }
 
     if (filters.minPrice) {

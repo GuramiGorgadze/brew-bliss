@@ -24,6 +24,7 @@
     font-size: calc(24px * var(--app-scale));
     margin: calc(20px * var(--app-scale)) 0;
     line-height: 1.1;
+
     .orange {
       color: $color-accent;
     }
@@ -36,6 +37,70 @@
 
     &:hover {
       transform: scale(0.9);
+    }
+  }
+}
+
+.team {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: calc(100px * var(--app-scale));
+
+  &__title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: calc(10px * var(--app-scale));
+
+    p {
+      font-size: calc(26px * var(--app-scale));
+    }
+  }
+
+  &__wing {
+    height: calc(20px * var(--app-scale));
+    width: calc(20px * var(--app-scale));
+  }
+
+  &__desc {
+    font-size: calc(16px * var(--app-scale));
+    color: $border-default;
+    text-align: center;
+    margin-top: calc(5px * var(--app-scale));
+  }
+
+  &__cards {
+    display: flex;
+    gap: calc(20px * var(--app-scale));
+    margin-top: calc(50px * var(--app-scale));
+
+    &__card {
+      display: flex;
+      flex-direction: column;
+
+      &__img {
+        width: calc(260px * var(--app-scale));
+        cursor: pointer;
+      }
+
+      &__content {
+        margin-top: calc(20px * var(--app-scale));
+        display: flex;
+        flex-direction: column;
+        gap: calc(7px * var(--app-scale));
+      }
+
+      &__title {
+        color: $text-primary;
+        font-size: calc(18px * var(--app-scale));
+        font-weight: 500;
+      }
+
+      &__text {
+        color: $text-primary;
+        font-size: calc(14px * var(--app-scale));
+      }
     }
   }
 }

@@ -3,31 +3,48 @@ import { Product, Toolbar, FilterSection } from "../components";
 import useProductFilter from "../hooks/useProductFilter";
 import deleteIcon from "../assets/icons/x-icon.svg";
 
-function ProductList({ originalProducts }) {
+function ProductList({ originalProducts = [] }) {
   const [view, setView] = useState("grid-wrap");
   const { products, filters, updateFilter, updateFilters, resetFilters } =
     useProductFilter(originalProducts);
 
-  const stockCounts = useMemo(() => {
+  const filterStats = useMemo(() => {
     let inStock = 0;
     let outOfStock = 0;
+    const categoryCounts = {
+      stout: 0,
+      ipa: 0,
+      alcohol: 0,
+      citrus: 0,
+      lager: 0,
+    };
 
-    products.forEach((p) => {
-      if (p.variants?.[0]?.available) {
+    originalProducts.forEach((p) => {
+      if (p?.available) {
         inStock++;
       } else {
         outOfStock++;
       }
+
+      p.tags?.forEach((tag) => {
+        const normalizedTag = tag.toLowerCase();
+        if (normalizedTag in categoryCounts) {
+          categoryCounts[normalizedTag]++;
+        }
+      });
     });
 
-    return { inStock, outOfStock };
-  }, [products]);
+    return { stockCounts: { inStock, outOfStock }, categoryCounts };
+  }, [originalProducts]);
 
   const activeFilters = useMemo(() => {
     const active = [];
 
     if (filters.search) {
-      active.push({ key: "search", label: "Search" });
+      active.push({ key: "search", label: `Search: "${filters.search}"` });
+    }
+    if (filters.category) {
+      active.push({ key: "category", label: `Category: ${filters.category}` });
     }
     if (filters.inStock) {
       active.push({ key: "inStock", label: "In Stock" });
@@ -36,7 +53,7 @@ function ProductList({ originalProducts }) {
       active.push({ key: "outOfStock", label: "Out of Stock" });
     }
     if (filters.minPrice || filters.maxPrice) {
-      active.push({ key: "price", label: "Price" });
+      active.push({ key: "price", label: "Price Range" });
     }
 
     return active;
@@ -49,7 +66,8 @@ function ProductList({ originalProducts }) {
           updateFilter={updateFilter}
           updateFilters={updateFilters}
           filters={filters}
-          stockCounts={stockCounts}
+          stockCounts={filterStats.stockCounts}
+          categoryCounts={filterStats.categoryCounts}
         />
       </div>
 
@@ -73,7 +91,7 @@ function ProductList({ originalProducts }) {
                 } else {
                   updateFilter(
                     filter.key,
-                    filter.key === "search" ? "" : false,
+                    filter.key === "search" || filter.key === "category" ? "" : false,
                   );
                 }
               }}
@@ -87,7 +105,7 @@ function ProductList({ originalProducts }) {
 
           {activeFilters.length > 0 && (
             <div className="filter-badge" onClick={resetFilters}>
-              Clear All
+              Remove All
               <button type="button" className="clear-single-filter-btn">
                 <img src={deleteIcon} alt="" />
               </button>
@@ -97,7 +115,7 @@ function ProductList({ originalProducts }) {
 
         <div className={`product-cards-wrapper product-cards-wrapper--${view}`}>
           {products.map((product) => (
-            <Product key={product.id} product={product} />
+            <Product key={product._id} product={product} />
           ))}
         </div>
 

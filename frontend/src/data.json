@@ -1,0 +1,268 @@
+{
+  "products": [
+    {
+      "id": 8022790045831,
+      "title": "Velvet Dark Stout",
+      "handle": "velvet-dark-stout",
+      "description": "A velvety, full-bodied stout featuring rich notes of roasted coffee and dark chocolate. Perfect for slow sipping by the fireplace.",
+      "tags": ["stout", "dark-beer", "craft-brew", "alcohol"],
+      "published_at": "2025-01-17T06:54:46-05:00",
+      "image": "https://cdn.shopify.com/s/files/1/0637/2799/2967/files/prod01_299f21d8-68df-49b7-85b8-b7da2a46f336.png?v=1737114902",
+      "available": true,
+      "variants": [
+        { "size": "250 ml", "price": 45.0, "compare_at_price": 60.0, "available": true },
+        { "size": "500 ml", "price": 85.0, "compare_at_price": 110.0, "available": true },
+        { "size": "750 ml", "price": 125.0, "compare_at_price": 150.0, "available": false }
+      ],
+      "rating": 4.8,
+      "reviews": [
+        { "reviewer": "Arthur M.", "rating": 5, "comment": "Tastes exactly as described. The coffee notes are robust and the mouthfeel is incredibly smooth." },
+        { "reviewer": "Elena R.", "rating": 4, "comment": "Incredibly cozy beer. Perfect for a cold winter night, though a bit heavy if you want more than one." },
+        { "reviewer": "Liam T.", "rating": 5, "comment": "The balance between the dark chocolate bitterness and roasted malts is absolute perfection." },
+        { "reviewer": "Chloe P.", "rating": 5, "comment": "My absolute favorite stout. Silky texture and a beautiful thick head when poured." }
+      ]
+    },
+    {
+      "id": 8022789849223,
+      "title": "Fresh Citrus Stout",
+      "handle": "fresh-citrus-stout",
+      "description": "A surprising and refreshing twist on a classic dark brew. Infused with bright orange and grapefruit zest to balance the deep, roasted malts.",
+      "tags": ["stout", "citrus", "experimental", "alcohol"],
+      "published_at": "2025-01-17T06:53:07-05:00",
+      "image": "https://cdn.shopify.com/s/files/1/0637/2799/2967/files/prod12.png?v=1737114902",
+      "available": true,
+      "variants": [
+        { "size": "250 ml", "price": 50.0, "compare_at_price": 70.0, "available": true },
+        { "size": "500 ml", "price": 95.0, "compare_at_price": 120.0, "available": true },
+        { "size": "750 ml", "price": 140.0, "compare_at_price": 175.0, "available": false }
+      ],
+      "rating": 4.3,
+      "reviews": [
+        { "reviewer": "Marcus G.", "rating": 4, "comment": "I was skeptical about citrus in a stout, but the orange zest really lifts the heavy malts." },
+        { "reviewer": "Sara W.", "rating": 5, "comment": "An experimental masterpiece! The grapefruit bitterness blends beautifully with the roasted finish." },
+        { "reviewer": "David K.", "rating": 4, "comment": "Very unique flavor profile. Refreshing for a dark beer, but definitely an acquired taste." },
+        { "reviewer": "Nadia S.", "rating": 4, "comment": "Brings a great brightness to the glass. Hope this comes back in stock soon!" }
+      ]
+    },
+    {
+      "id": 8022788866183,
+      "title": "Red Grapes Tasty Beer",
+      "handle": "ocean-breeze-ipa-copy",
+      "description": "A unique fruit-forward hybrid brew fermented with dark wine grapes, offering a crisp, tart profile with a gorgeous ruby hue.",
+      "tags": ["fruit-beer", "sour", "grapes", "refreshing"],
+      "published_at": "2025-01-17T06:51:19-05:00",
+      "image": "https://cdn.shopify.com/s/files/1/0637/2799/2967/files/prod10.png?v=1737114902",
+      "available": true,
+      "variants": [
+        { "size": "250 ml", "price": 60.0, "compare_at_price": 80.0, "available": false },
+        { "size": "500 ml", "price": 110.0, "compare_at_price": 140.0, "available": true },
+        { "size": "750 ml", "price": 165.0, "compare_at_price": 195.0, "available": true }
+      ],
+      "rating": 4.6,
+      "reviews": [
+        { "reviewer": "Julian V.", "rating": 5, "comment": "If you love natural wines and sour beers, this is the holy grail. Stunning color." },
+        { "reviewer": "Sophia L.", "rating": 4, "comment": "Wonderfully tart and effervescent. Great alternative to a traditional rosé." },
+        { "reviewer": "Oliver H.", "rating": 4, "comment": "Crisp and punchy grape flavor. Very refreshing when served ice cold." },
+        { "reviewer": "Emma B.", "rating": 5, "comment": "A beautiful hybrid drink. Love the subtle dryness it gets from the dark grapes." }
+      ]
+    },
+    {
+      "id": 802278800647,
+      "title": "Ocean Breeze IPA",
+      "handle": "ocean-breeze-ipa",
+      "description": "Bursting with tropical Citra hops, this West Coast style IPA brings waves of pineapple and passionfruit aroma straight to your palate.",
+      "tags": ["ipa", "hops", "tropical", "craft-beer"],
+      "published_at": "2025-01-17T06:50:40-05:00",
+      "image": "https://cdn.shopify.com/s/files/1/0637/2799/2967/files/prod09.png?v=1737114658",
+      "available": true,
+      "variants": [
+        { "size": "250 ml", "price": 35.0, "compare_at_price": 45.0, "available": true },
+        { "size": "500 ml", "price": 70.0, "compare_at_price": 90.0, "available": true },
+        { "size": "750 ml", "price": 105.0, "compare_at_price": 130.0, "available": false }
+      ],
+      "rating": 4.7,
+      "reviews": [
+        { "reviewer": "Lucas N.", "rating": 5, "comment": "The aroma hits you the second you crack it open. Pure tropical bliss." },
+        { "reviewer": "Isabella M.", "rating": 4, "comment": "Classic West Coast bitterness backed by tons of pineapple notes. Sad it's sold out." },
+        { "reviewer": "Ethan J.", "rating": 5, "comment": "Incredible hop profile. Citra hops shine perfectly here without being overly harsh." },
+        { "reviewer": "Maya D.", "rating": 5, "comment": "Everything a tropical IPA should be. Crisply bitter and immensely fragrant." }
+      ]
+    },
+    {
+      "id": 8022783885447,
+      "title": "Summer Glow Lager",
+      "handle": "summer-glow-lager",
+      "description": "Light, crisp, and brilliantly clear. This easy-drinking golden lager features a subtle honey malt sweetness built for hot sunny days.",
+      "tags": ["lager", "light-beer", "summer", "sessionable"],
+      "published_at": "2025-01-17T06:31:41-05:00",
+      "image": "https://cdn.shopify.com/s/files/1/0637/2799/2967/files/prod08.png?v=1737113515",
+      "available": true,
+      "variants": [
+        { "size": "250 ml", "price": 25.0, "compare_at_price": 35.0, "available": true },
+        { "size": "500 ml", "price": 55.0, "compare_at_price": 70.0, "available": false },
+        { "size": "750 ml", "price": 85.0, "compare_at_price": 110.0, "available": true }
+      ],
+      "rating": 4.2,
+      "reviews": [
+        { "reviewer": "Tom C.", "rating": 4, "comment": "The ultimate backyard barbecue beer. Super clean finish with just a touch of sweetness." },
+        { "reviewer": "Clara F.", "rating": 4, "comment": "Very easy drinking. It's simple, light, and perfectly sessionable for hot days." },
+        { "reviewer": "Ryan B.", "rating": 4, "comment": "Nice clear golden pour. The honey malt gives it a pleasant, subtle character." },
+        { "reviewer": "Zoe A.", "rating": 5, "comment": "Extremely refreshing. Exactly what you want out of a premium summer lager." }
+      ]
+    },
+    {
+      "id": 8022783656071,
+      "title": "Crisp Golden IPA",
+      "handle": "crisp-golden-ipa",
+      "description": "A highly refreshing, piney IPA with a sharp bitterness up front and a clean, bone-dry finish that keeps you coming back for more.",
+      "tags": ["ipa", "bitter", "classic", "alcohol"],
+      "published_at": "2025-01-17T06:30:28-05:00",
+      "image": "https://cdn.shopify.com/s/files/1/0637/2799/2967/files/prod07.png?v=1737113515",
+      "available": true,
+      "variants": [
+        { "size": "250 ml", "price": 40.0, "compare_at_price": 55.0, "available": true },
+        { "size": "500 ml", "price": 75.0, "compare_at_price": 95.0, "available": false },
+        { "size": "750 ml", "price": 115.0, "compare_at_price": 145.0, "available": true }
+      ],
+      "rating": 4.5,
+      "reviews": [
+        { "reviewer": "Derek S.", "rating": 5, "comment": "An absolute throwback to classic, piney IPAs. Love the bone-dry finish." },
+        { "reviewer": "Gina L.", "rating": 4, "comment": "Sharp, deliberate bitterness that lingers just long enough. Excellent craft quality." },
+        { "reviewer": "Owen M.", "rating": 4, "comment": "No gimmicks here, just an honest, brilliantly bitter golden ale." },
+        { "reviewer": "Fiona T.", "rating": 5, "comment": "Bracingly crisp! If you love an assertive hop bite, grab a 750 ml bottle immediately." }
+      ]
+    },
+    {
+      "id": 8022783557767,
+      "title": "Stout Rich Dark",
+      "handle": "dark-chocolate-stout-copy",
+      "description": "An intense, heavy-hitting imperial dark stout. Expect deep undertones of molasses, espresso, and a warming, premium finish.",
+      "tags": ["stout", "imperial", "heavy", "dark-ale"],
+      "published_at": "2025-01-17T06:29:29-05:00",
+      "image": "https://cdn.shopify.com/s/files/1/0637/2799/2967/files/prod06.png?v=1737113515",
+      "available": true,
+      "variants": [
+        { "size": "250 ml", "price": 65.0, "compare_at_price": 85.0, "available": true },
+        { "size": "500 ml", "price": 130.0, "compare_at_price": 160.0, "available": true },
+        { "size": "750 ml", "price": 185.0, "compare_at_price": 200.0, "available": false }
+      ],
+      "rating": 4.9,
+      "reviews": [
+        { "reviewer": "Victor K.", "rating": 5, "comment": "A massive beer. The complexity of molasses and espresso expands as it warms up." },
+        { "reviewer": "Harriet E.", "rating": 5, "comment": "Incredibly dark and opaque. Thick, rich, and packs a fantastic warming punch." },
+        { "reviewer": "Nathan D.", "rating": 4, "comment": "An absolute sipper. Sip it slowly to catch all the deep roasted notes." },
+        { "reviewer": "Alisha C.", "rating": 5, "comment": "Top-tier imperial stout. Velvety, rich, and sophisticated finish." }
+      ]
+    },
+    {
+      "id": 8022782541959,
+      "title": "Dark Chocolate Stout",
+      "handle": "dark-chocolate-stout",
+      "description": "Indulgence in a glass. Brewed with organic cacao nibs, this dessert stout offers a luxurious, creamy milkshake texture.",
+      "tags": ["stout", "chocolate", "dessert", "sweet"],
+      "published_at": "2025-01-17T06:24:00-05:00",
+      "image": "https://cdn.shopify.com/s/files/1/0637/2799/2967/files/prod04.png?v=1737114902",
+      "available": true,
+      "variants": [
+        { "size": "250 ml", "price": 55.0, "compare_at_price": 75.0, "available": true },
+        { "size": "500 ml", "price": 105.0, "compare_at_price": 135.0, "available": true },
+        { "size": "750 ml", "price": 160.0, "compare_at_price": 190.0, "available": false }
+      ],
+      "rating": 4.6,
+      "reviews": [
+        { "reviewer": "Beatrice G.", "rating": 5, "comment": "Literally feels like drinking a chocolate milkshake, but with a grown-up twist." },
+        { "reviewer": "Sam P.", "rating": 4, "comment": "Very sweet and decadent. It is the ultimate liquid dessert, though maybe too sweet for some." },
+        { "reviewer": "Leo F.", "rating": 5, "comment": "The cacao nibs give it an authentic dark chocolate profile rather than artificial syrup flavors." },
+        { "reviewer": "Mia W.", "rating": 4, "comment": "Luxurious, creamy, and wonderfully smooth texture. Sad I can't order more right now." }
+      ]
+    },
+    {
+      "id": 8022782083207,
+      "title": "Citrus Smooth IPA",
+      "handle": "citrus-smooth-ipa",
+      "description": "A beautifully balanced, low-bitterness hazy IPA packed with citrus peel aromas and a smooth, pillowy mouthfeel.",
+      "tags": ["ipa", "hazy", "citrus", "smooth"],
+      "published_at": "2025-01-17T06:20:55-05:00",
+      "image": "https://cdn.shopify.com/s/files/1/0637/2799/2967/files/prod04.png?v=1737114902",
+      "available": true,
+      "variants": [
+        { "size": "250 ml", "price": 45.0, "compare_at_price": 60.0, "available": true },
+        { "size": "500 ml", "price": 90.0, "compare_at_price": 115.0, "available": true },
+        { "size": "750 ml", "price": 135.0, "compare_at_price": 165.0, "available": false }
+      ],
+      "rating": 4.7,
+      "reviews": [
+        { "reviewer": "Xavier J.", "rating": 5, "comment": "Wonderfully soft, pillowy mouthfeel. Hazy IPA lovers will absolutely adore this." },
+        { "reviewer": "Nina Q.", "rating": 4, "comment": "Very low bitterness which lets the juicy citrus aroma do all the heavy lifting." },
+        { "reviewer": "Miles O.", "rating": 5, "comment": "Like drinking fresh juice with a kick. Incredibly smooth finish." },
+        { "reviewer": "Gaby V.", "rating": 5, "comment": "Perfect balance of haze, citrus aroma, and smooth, creamy carbonation." }
+      ]
+    },
+    {
+      "id": 8022781919367,
+      "title": "Amber Gold Lager",
+      "handle": "amber-gold-lager",
+      "description": "A beautiful copper-colored lager showcasing toasted biscuit malts and a delicate floral hop finish. Balanced and highly crushable.",
+      "tags": ["lager", "amber", "malt", "traditional"],
+      "published_at": "2025-01-17T06:19:23-05:00",
+      "image": "https://cdn.shopify.com/s/files/1/0637/2799/2967/files/prod01_299f21d8-68df-49b7-85b8-b7da2a46f336.png?v=1737114902",
+      "available": true,
+      "variants": [
+        { "size": "250 ml", "price": 30.0, "compare_at_price": 40.0, "available": false },
+        { "size": "500 ml", "price": 65.0, "compare_at_price": 85.0, "available": true },
+        { "size": "750 ml", "price": 100.0, "compare_at_price": 125.0, "available": true }
+      ],
+      "rating": 4.4,
+      "reviews": [
+        { "reviewer": "Walter B.", "rating": 4, "comment": "Great to find a traditional lager that prioritizes clean biscuit malts over excessive hops." },
+        { "reviewer": "Diana N.", "rating": 5, "comment": "Beautiful copper pour. Highly crushable, refreshing, and clean on the palate." },
+        { "reviewer": "Ian Y.", "rating": 4, "comment": "The delicate floral hop note right at the end ties the whole brew together nicely." },
+        { "reviewer": "Ruby S.", "rating": 4, "comment": "A reliable, deeply satisfying session lager. Highly recommended for daily sipping." }
+      ]
+    },
+    {
+      "id": 8022781788295,
+      "title": "Amber Crisp Ale",
+      "handle": "amber-crisp-ale",
+      "description": "A lively pub-style amber ale featuring a perfect tug-of-war between sweet caramel malts and clean, spicy earthy hops.",
+      "tags": ["ale", "amber", "caramel", "classic"],
+      "published_at": "2025-01-17T06:17:58-05:00",
+      "image": "https://cdn.shopify.com/s/files/1/0637/2799/2967/files/prod02.png?v=1737114828",
+      "available": true,
+      "variants": [
+        { "size": "250 ml", "price": 35.0, "compare_at_price": 50.0, "available": true },
+        { "size": "500 ml", "price": 75.0, "compare_at_price": 95.0, "available": false },
+        { "size": "750 ml", "price": 110.0, "compare_at_price": 140.0, "available": true }
+      ],
+      "rating": 4.5,
+      "reviews": [
+        { "reviewer": "George H.", "rating": 4, "comment": "Classic pub vibes in a bottle. The sweet caramel upfront balances the spicy hop bite perfectly." },
+        { "reviewer": "Paige M.", "rating": 5, "comment": "Extremely well-balanced amber. Not too sweet, not too bitter, just right." },
+        { "reviewer": "Julian K.", "rating": 4, "comment": "Lively carbonation. Hits all the traditional benchmarks for a high-quality crisp ale." },
+        { "reviewer": "Stella E.", "rating": 5, "comment": "Pairs excellently with dinner. Crisp, earthy, and leaves you wanting another sip." }
+      ]
+    },
+    {
+      "id": 802249053063,
+      "title": "Red Grapes Tasty Beer",
+      "handle": "red-grapes-tasty-beer",
+      "description": "Our vintage selection batch. Aged slightly longer to allow the rich vinous grape characteristics and natural carbonation to truly mature.",
+      "tags": ["fruit-beer", "reserve", "limited", "vintage"],
+      "published_at": "2025-01-17T01:55:16-05:00",
+      "image": "https://cdn.shopify.com/s/files/1/0637/2799/2967/files/prod01_299f21d8-68df-49b7-85b8-b7da2a46f336.png?v=1737114902",
+      "available": true,
+      "variants": [
+        { "size": "250 ml", "price": 75.0, "compare_at_price": 95.0, "available": false },
+        { "size": "500 ml", "price": 135.0, "compare_at_price": 165.0, "available": true },
+        { "size": "750 ml", "price": 195.0, "compare_at_price": 200.0, "available": true }
+      ],
+      "rating": 5.0,
+      "reviews": [
+        { "reviewer": "Charles D.", "rating": 5, "comment": "An extraordinary reserve batch. The extra maturation gives it incredible vinous depth." },
+        { "reviewer": "Victoria L.", "rating": 5, "comment": "Worth every dollar of the premium price. Fine natural carbonation and intense grape flavor." },
+        { "reviewer": "Alistair P.", "rating": 5, "comment": "Tastes like a high-end wild ale meets fine heritage wine. A true masterpiece." },
+        { "reviewer": "Isla G.", "rating": 5, "comment": "The perfect celebratory drink. Complex, beautifully aged, and deeply satisfying." }
+      ]
+    }
+  ]
+}

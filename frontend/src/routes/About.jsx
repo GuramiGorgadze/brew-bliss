@@ -8,8 +8,39 @@ import {
 import AboutBanner from "../assets/about-banner.webp";
 import wing1 from "../assets/wing1.png";
 import wing2 from "../assets/wing2.png";
+import Team1 from "../assets/team/team01.png";
+import Team2 from "../assets/team/team02.png";
+import Team3 from "../assets/team/team03.png";
+import Team4 from "../assets/team/team04.png";
 
 function About() {
+  const teamMembers = [
+    {
+      id: 1,
+      imgSrc: Team1,
+      title: "Emily Johnson",
+      description: "Founder/CEO",
+    },
+    {
+      id: 2,
+      imgSrc: Team2,
+      title: "Michael Brown",
+      description: "Customer Service Manager",
+    },
+    {
+      id: 3,
+      imgSrc: Team3,
+      title: "Sarah Davis",
+      description: "Marketing Specialist",
+    },
+    {
+      id: 4,
+      imgSrc: Team4,
+      title: "Sophia Martinez",
+      description: "Art Curator",
+    },
+  ];
+
   return (
     <div>
       <PageTitle pageName="About Us" />
@@ -32,8 +63,6 @@ function About() {
       </div>
 
       <StoreFeatures />
-      <BrandCarousel />
-      <InstagramPromo />
 
       <div className="team">
         <div className="team__title">
@@ -42,15 +71,27 @@ function About() {
           <img src={wing2} alt="" className="team__wing" />
         </div>
 
-        <h3 className="our-story__desc">
-          welcome to <span className="orange">Brew Bliss,</span> your ultimate
-          destination for fresh flavors <br /> and delightful sips. We’re
-          passionate about delivering premium food <br /> and beverages to
-          satisfy every craving, anytime, anywhere!
-        </h3>
+        <p className="team__desc">
+          See why everyone’s raving about our products and service – real
+          stories <br /> from happy customers!
+        </p>
 
-        <img src={AboutBanner} alt="" className="our-story__banner" />
+        <div className="team__cards">
+          {teamMembers.map((tm8) => (
+            <div key={tm8.id} className="team__cards__card">
+              <img src={tm8.imgSrc} alt="" className="team__cards__card__img" />
+
+              <div className="team__cards__card__content">
+                <h3 className="team__cards__card__title">{tm8.title}</h3>
+                <p className="team__cards__card__text">{tm8.description}</p>
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
+
+      <BrandCarousel />
+      <InstagramPromo />
     </div>
   );
 }

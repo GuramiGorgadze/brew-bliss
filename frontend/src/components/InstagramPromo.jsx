@@ -24,8 +24,8 @@ function instagramPromo() {
   return (
     <div className="instagram-promo">
       {instagramImages.map((img, index) => (
-        <a href="https://www.instagram.com/" target="blank">
-          <div className="instagram-promo__card" key={index}>
+        <a key={index} href="https://www.instagram.com/" target="blank">
+          <div className="instagram-promo__card" >
             <img src={img} alt="" />
 
             <div className="instagram-promo__card__overlay">

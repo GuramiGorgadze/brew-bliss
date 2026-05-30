@@ -1,16 +1,19 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect } from "react";
 import clsx from "clsx";
-import { useLoader } from '../context/LoaderContext';
-import { useNavigate } from 'react-router-dom'
-import { useForm } from 'react-hook-form'
-import { Link } from 'react-router-dom'
-import * as yup from 'yup'
+import { useLoader } from "../context/LoaderContext";
+import { useNavigate } from "react-router-dom";
+import { useForm } from "react-hook-form";
+import { Link } from "react-router-dom";
+import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { loginUser } from '../api/api'
-import { PageTitle } from '../components';
+import { loginUser } from "../api/api";
+import { PageTitle } from "../components";
+import { useUserData } from "../context/UserContext.jsx";
 
 function Login() {
-  const navigate = useNavigate()
+  const { login } = useUserData();
+
+  const navigate = useNavigate();
 
   const { useFakeLoader } = useLoader();
   useEffect(() => useFakeLoader(), []);
@@ -18,94 +21,98 @@ function Login() {
   const schema = yup.object({
     email: yup
       .string()
-      .required('Email is required')
-      .email('Invalid email address'),
+      .required("Email is required")
+      .email("Invalid email address"),
 
     password: yup
       .string()
-      .required('Password is required')
-      .min(8, 'Password must be at least 8 characters'),
-  })
+      .required("Password is required")
+      .min(8, "Password must be at least 8 characters"),
+  });
 
   const {
     register,
     handleSubmit,
     setError,
-    formState: { errors }
+    formState: { errors },
   } = useForm({
-    resolver: yupResolver(schema)
+    resolver: yupResolver(schema),
   });
 
   const onSubmit = async (formData) => {
     try {
-      const data = await loginUser(
-        formData.email,
-        formData.password,
-      )
-      navigate('/products')
+      const data = await loginUser(formData.email, formData.password);
+      login(data)
+      navigate("/products");
     } catch (error) {
-      setError('root.serverError', {
-        message: error.response?.data?.message || 'Something went wrong'
-      })
-      window.scrollTo({ top: 0, behavior: 'smooth' })
+      setError("root.serverError", {
+        message: error.response?.data?.message || "Something went wrong",
+      });
+      window.scrollTo({ top: 0, behavior: "smooth" });
     }
-  }
+  };
 
   return (
-    <div className='auth-wrapper'>
+    <div className="auth-wrapper">
       <PageTitle pageName="Login"></PageTitle>
 
-      <div className='auth'>
-        <h2 className='auth__title'>Log In</h2>
-        <form className='auth__form' onSubmit={handleSubmit(onSubmit)}>
-          <div className='auth__form__item'>
-            <label className='auth__form__item__label' htmlFor="email">Email Address <span className='required'>*</span></label>
+      <div className="auth">
+        <h2 className="auth__title">Log In</h2>
+        <form className="auth__form" onSubmit={handleSubmit(onSubmit)}>
+          <div className="auth__form__item">
+            <label className="auth__form__item__label" htmlFor="email">
+              Email Address <span className="required">*</span>
+            </label>
             <input
               type="text"
-              placeholder='Email Address'
+              placeholder="Email Address"
               maxLength={30}
-              id='email'
+              id="email"
               className={clsx("auth__form__item__input", {
                 error: errors.email?.message,
               })}
-              {
-              ...register('email')
-              }
+              {...register("email")}
             />
-            <p className='auth__form__item__error'>{errors.email?.message}</p>
+            <p className="auth__form__item__error">{errors.email?.message}</p>
           </div>
 
-          <div className='auth__form__item'>
-            <label className='auth__form__item__label' htmlFor="password">Password <span className='required'>*</span></label>
+          <div className="auth__form__item">
+            <label className="auth__form__item__label" htmlFor="password">
+              Password <span className="required">*</span>
+            </label>
             <input
               type="password"
-              placeholder='Password'
+              placeholder="Password"
               maxLength={30}
-              id='password'
+              id="password"
               className={clsx("auth__form__item__input", {
                 error: errors.password?.message,
               })}
-              {
-              ...register('password')
-              }
+              {...register("password")}
             />
-            <p className='auth__form__item__error'>{errors.password?.message}</p>
+            <p className="auth__form__item__error">
+              {errors.password?.message}
+            </p>
           </div>
 
-          <p className='auth__form__forgot-password'>Forgot your password ?</p>
+          <p className="auth__form__forgot-password">Forgot your password ?</p>
 
-          <p className='auth__error'>{errors.root?.serverError?.message}</p>
+          <p className="auth__error">{errors.root?.serverError?.message}</p>
 
-          <button className='auth__form__submit' type='submit'>Login</button>
+          <button className="auth__form__submit" type="submit">
+            Login
+          </button>
 
           <Link to="/register">
-            <button type='button' className='auth__form__register'>Create New Account</button>
+            <button type="button" className="auth__form__register">
+              Create New Account
+            </button>
           </Link>
         </form>
       </div>
       <div />
     </div>
-  )
+  );
 }
 
-export default Login
+export default Login;

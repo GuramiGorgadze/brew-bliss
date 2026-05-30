@@ -10,3 +10,4 @@ export { default as PageTitle } from './PageTitle';
 export { default as InstagramPromo } from './InstagramPromo';
 export { default as BrandCarousel } from './BrandCarousel';
 export { default as StoreFeatures } from './StoreFeatures';
+export { default as ProtectedRoute } from './ProtectedRoute';

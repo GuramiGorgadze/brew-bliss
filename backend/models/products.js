@@ -1,62 +1,99 @@
 import mongoose from "mongoose";
 
-const ImageSchema = new mongoose.Schema({
-  id: Number,
-  created_at: Date,
-  position: Number,
-  updated_at: Date,
-  product_id: Number,
-  variant_ids: [Number],
-  src: String,
-  width: Number,
-  height: Number,
-});
-
-const VariantSchema = new mongoose.Schema({
-  id: Number,
-  title: String,
-  option1: String,
-  option2: String,
-  option3: String,
-  sku: String,
-  requires_shipping: Boolean,
-  taxable: Boolean,
-  featured_image: String,
-  available: Boolean,
-  price: Number,
-  grams: Number,
-  compare_at_price: Number,
-  position: Number,
-  product_id: Number,
-  created_at: Date,
-  updated_at: Date,
-});
-
-const OptionSchema = new mongoose.Schema({
-  name: String,
-  position: Number,
-  values: [String],
-});
-
-const ProductSchema = new mongoose.Schema({
-  id: {
-    type: Number,
-    required: true,
-    unique: true,
+const variantSchema = new mongoose.Schema(
+  {
+    size: {
+      type: String,
+      required: true,
+      trim: true,
+    },
+    price: {
+      type: Number,
+      required: true,
+      min: 0,
+    },
+    compare_at_price: {
+      type: Number,
+      min: 0,
+    },
+    available: {
+      type: Boolean,
+      default: true,
+    },
   },
-  title: String,
-  handle: String,
-  body_html: String,
-  published_at: Date,
-  created_at: Date,
-  updated_at: Date,
-  vendor: String,
-  product_type: String,
-  tags: [String],
+  { _id: false },
+);
 
-  variants: [VariantSchema],
-  images: [ImageSchema],
-  options: [OptionSchema],
-});
+const reviewSchema = new mongoose.Schema(
+  {
+    reviewer: {
+      type: String,
+      required: true,
+      trim: true,
+    },
+    rating: {
+      type: Number,
+      required: true,
+      min: 1,
+      max: 5,
+    },
+    comment: {
+      type: String,
+      trim: true,
+    },
+  },
+  { timestamps: true },
+);
+
+const ProductSchema = new mongoose.Schema(
+  {
+    _id: {
+      type: Number,
+      required: true,
+    },
+    title: {
+      type: String,
+      required: true,
+      trim: true,
+    },
+    handle: {
+      type: String,
+      required: true,
+      unique: true,
+      trim: true,
+    },
+    description: {
+      type: String,
+      trim: true,
+    },
+    tags: {
+      type: [String],
+      default: [],
+    },
+    published_at: {
+      type: Date,
+      required: true,
+    },
+    image: {
+      type: String,
+      trim: true,
+    },
+    available: {
+      type: Boolean,
+      default: true,
+    },
+    variants: [variantSchema],
+    rating: {
+      type: Number,
+      min: 0,
+      max: 5,
+      default: 0,
+    },
+    reviews: [reviewSchema],
+  },
+  {
+    timestamps: true,
+  },
+);
 
 export default mongoose.model("Product", ProductSchema);

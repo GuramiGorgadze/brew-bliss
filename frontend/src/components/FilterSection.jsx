@@ -1,11 +1,17 @@
 import React, { useState, useEffect } from "react";
+import clsx from "clsx";
 import searchIcon from "../assets/icons/search-icon.svg";
-import { Link } from "react-router-dom";
 import promotionBanner from "../assets/promotion-banner.avif";
 import Slider from "rc-slider";
 import "rc-slider/assets/index.css";
 
-function FilterSection({ updateFilter, filters, updateFilters, stockCounts }) {
+function FilterSection({
+  updateFilter,
+  filters,
+  updateFilters,
+  stockCounts,
+  categoryCounts,
+}) {
   const [availabilityOpen, setAvailabilityOpen] = useState(true);
   const [priceOpen, setPriceOpen] = useState(true);
   const [searchQuery, setSearchQuery] = useState(filters.search);
@@ -46,6 +52,15 @@ function FilterSection({ updateFilter, filters, updateFilters, stockCounts }) {
     updateFilters({ minPrice: values[0], maxPrice: values[1] });
   };
 
+  const handleCategoryClick = (e, cat) => {
+    e.preventDefault();
+    if (filters.category === cat) {
+      updateFilter("category", "");
+    } else {
+      updateFilter("category", cat);
+    }
+  };
+
   return (
     <div className="filter-section">
       <div className="filter-section__search">
@@ -67,20 +82,29 @@ function FilterSection({ updateFilter, filters, updateFilters, stockCounts }) {
       <div className="filter-section__categories">
         <h1>Product Categories</h1>
         <ul>
-          {[
-            "Beer",
-            "Wisky",
-            "Wheat Beer",
-            "Non-Alcoholic Beer",
-            "IPA (India Pale Ale)",
-          ].map((cat) => (
-            <li key={cat}>
-              <Link className="filter-section__category-link">
-                <span className="filter-section__category-name">{cat}</span>
-                <p>(12)</p>
-              </Link>
-            </li>
-          ))}
+          {["stout", "ipa", "alcohol", "citrus", "lager"].map((cat) => {
+            const isActive = filters.category === cat;
+            const count = categoryCounts?.[cat] || 0;
+
+            return (
+              <li key={cat}>
+                <a
+                  onClick={(e) => handleCategoryClick(e, cat)}
+                  className={clsx("filter-section__category-link", {
+                    "filter-section__category-link__active": isActive,
+                  })}
+                >
+                  <span
+                    className="filter-section__category-name"
+                    style={{ textTransform: "capitalize" }}
+                  >
+                    {cat}
+                  </span>
+                  <p>({count})</p>
+                </a>
+              </li>
+            );
+          })}
         </ul>
       </div>
 
@@ -104,9 +128,7 @@ function FilterSection({ updateFilter, filters, updateFilters, stockCounts }) {
                 <input
                   type="checkbox"
                   checked={filters.inStock}
-                  onChange={(e) =>
-                    updateFilter("inStock", e.target.checked)
-                  }
+                  onChange={(e) => updateFilter("inStock", e.target.checked)}
                 />
                 <span className="filter-section__checkmark"></span>
               </label>
@@ -118,9 +140,7 @@ function FilterSection({ updateFilter, filters, updateFilters, stockCounts }) {
                 <input
                   type="checkbox"
                   checked={filters.outOfStock}
-                  onChange={(e) =>
-                    updateFilter("outOfStock", e.target.checked)
-                  }
+                  onChange={(e) => updateFilter("outOfStock", e.target.checked)}
                 />
                 <span className="filter-section__checkmark"></span>
               </label>

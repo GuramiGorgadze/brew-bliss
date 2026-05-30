@@ -12,15 +12,22 @@
   "dependencies": {
     "@hookform/resolvers": "^5.2.2",
     "axios": "^1.16.0",
+    "bootstrap-icons": "^1.13.1",
     "clsx": "^2.1.1",
     "embla-carousel-autoplay": "^8.6.0",
     "embla-carousel-react": "^8.6.0",
+    "magnifier": "^1.0.0",
+    "photoswipe": "^5.4.4",
     "rc-slider": "^11.1.9",
     "react": "^19.2.6",
     "react-dom": "^19.2.6",
     "react-hook-form": "^7.76.0",
+    "react-inner-image-zoom": "^4.0.1",
+    "react-magnifier": "^3.0.4",
+    "react-medium-image-zoom": "^5.4.5",
     "react-router-dom": "^7.15.1",
     "sass": "^1.99.0",
+    "yet-another-react-lightbox": "^3.32.0",
     "yup": "^1.7.1"
   },
   "devDependencies": {
