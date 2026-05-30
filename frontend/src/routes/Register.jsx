@@ -65,8 +65,8 @@ function Register({ setIsLoggedIn }) {
         formData.firstName,
         formData.lastName,
       );
-      login(data);
-      navigate("/products");
+      login(data.data);
+      navigate("/account");
     } catch (error) {
       setError("root.serverError", {
         message: error.response?.data?.message || "Something went wrong",

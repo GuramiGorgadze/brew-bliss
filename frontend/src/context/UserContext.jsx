@@ -9,8 +9,9 @@ export const useUserData = () => useContext(UserContext);
 const UserProvider = ({ children }) => {
   const [userData, setUserData] = useState(null);
   const [loggedIn, setLoggedIn] = useState(false);
+  const [isAuthLoading, setIsAuthLoading] = useState(true);
 
-  const login = async (userData) => {
+  const login = (userData) => {
     setUserData(userData);
     setLoggedIn(true);
   }  
@@ -21,7 +22,7 @@ const UserProvider = ({ children }) => {
   };
 
   return (
-    <UserContext.Provider value={{ loggedIn, userData, login, logout  }}>
+    <UserContext.Provider value={{ loggedIn, userData, login, logout, isAuthLoading, setIsAuthLoading }}>
       {children}
     </UserContext.Provider>
   );

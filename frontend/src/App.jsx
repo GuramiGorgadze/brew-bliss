@@ -15,6 +15,7 @@ import {
   Register,
   Login,
   Account,
+  Address,
 } from "./routes";
 
 // Hooks
@@ -28,7 +29,7 @@ function App() {
   useScrollTop();
   useAppScale();
 
-  const { loggedIn, login } = useUserData();
+  const { loggedIn, login, setIsAuthLoading } = useUserData();
 
   useEffect(() => {
     const getUserInfo = async () => {
@@ -40,6 +41,8 @@ function App() {
         }
       } catch (error) {
         console.error("Failed to log in", error);
+      } finally {
+        setIsAuthLoading(false)
       }
     };
     getUserInfo();
@@ -67,6 +70,15 @@ function App() {
             element={
               <ProtectedRoute>
                 <Account />
+              </ProtectedRoute>
+            }
+          />
+
+          <Route
+            path="/account/address"
+            element={
+              <ProtectedRoute>
+                <Address />
               </ProtectedRoute>
             }
           />

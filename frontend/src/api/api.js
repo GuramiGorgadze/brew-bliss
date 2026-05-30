@@ -83,3 +83,15 @@ export const getUser = async (token) => {
     throw new Error(message);
   }
 };
+
+export const updateAddress = async (addressData) => {
+  const response = await axios.put(
+    "http://localhost:3000/api/users/address",
+    JSON.stringify(addressData),
+    {
+      headers: { "Content-Type": "application/json" },
+      withCredentials: true,
+    },
+  );
+  return response.data;
+};

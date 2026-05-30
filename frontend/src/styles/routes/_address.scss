@@ -1,0 +1,120 @@
+@use "../abstracts" as *;
+
+.address {
+  display: flex;
+  flex-direction: column;
+
+  &__header {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: calc(20px * var(--app-scale)) calc(100px * var(--app-scale));
+  }
+
+  &__title {
+    font-size: calc(38px * var(--app-scale));
+    font-weight: 500;
+    color: $text-primary;
+  }
+
+  &__divider {
+    height: calc(2px * var(--app-scale));
+    background-color: $text-desc;
+    width: 100%;
+    margin-top: calc(10px * var(--app-scale));
+  }
+
+  &__body {
+    display: flex;
+    flex-direction: column;
+    padding: 0 calc(100px * var(--app-scale));
+  }
+
+  &__body-title {
+    font-size: calc(22px * var(--app-scale));
+    font-weight: 400;
+    margin-bottom: calc(20px * var(--app-scale));
+    letter-spacing: calc(2px * var(--app-scale));
+    color: $text-primary;
+    display: flex;
+    align-items: center;
+
+    .bi {
+      cursor: pointer;
+    }
+  }
+
+  &__form {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: calc(40px * var(--app-scale));
+  }
+
+  &__form-left {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__form-column {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__field {
+    display: flex;
+    flex-direction: column;
+    gap: calc(5px * var(--app-scale));
+    margin-top: calc(10px * var(--app-scale));
+  }
+
+  &__field-label {
+    display: flex;
+    font-size: calc(14px * var(--app-scale));
+    color: $text-primary;
+  }
+
+  &__field-input {
+    height: calc(45px * var(--app-scale));
+    border-radius: calc(10px * var(--app-scale));
+    border: 1px solid $text-desc;
+    padding-left: calc(15px * var(--app-scale));
+
+    &:focus {
+      border: 1px solid $color-accent;
+    }
+  }
+
+  &__buttons {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: calc(40px * var(--app-scale));
+    margin-top: calc(30px * var(--app-scale));
+    margin-bottom: calc(100px * var(--app-scale));
+  }
+
+  &__btn {
+    width: 100%;
+    height: calc(45px * var(--app-scale));
+    background-color: $color-accent;
+    border: none;
+    border-radius: calc(5px * var(--app-scale));
+    font-size: calc(14px * var(--app-scale));
+    transition: 0.5s ease;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: calc(5px * var(--app-scale));
+
+    &--reset {
+      background-color: $text-price-sale;
+      color: $color-white;
+    }
+
+    &:hover {
+      background-color: $color-accent-hover;
+      color: $color-white;
+    }
+  }
+}

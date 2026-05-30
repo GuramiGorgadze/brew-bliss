@@ -1,0 +1,151 @@
+@use "../abstracts" as *;
+
+.account {
+  display: flex;
+  flex-direction: column;
+
+  &__header {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: calc(20px * var(--app-scale)) calc(100px * var(--app-scale));
+  }
+
+  &__title {
+    font-size: calc(38px * var(--app-scale));
+    font-weight: 500;
+    color: $text-primary;
+  }
+
+  &__divider {
+    height: calc(2px * var(--app-scale));
+    background-color: $text-desc;
+    width: 100%;
+    margin-top: calc(10px * var(--app-scale));
+  }
+
+  &__body {
+    display: flex;
+    gap: calc(20px * var(--app-scale));
+    padding-top: calc(40px * var(--app-scale));
+    padding: calc(20px * var(--app-scale)) calc(100px * var(--app-scale));
+  }
+
+  &__nav {
+    display: flex;
+    flex-direction: column;
+    width: calc(350px * var(--app-scale));
+  }
+
+  &__nav-welcome {
+    font-size: calc(14px * var(--app-scale));
+    font-weight: 700;
+
+    .orange {
+      color: $color-accent;
+    }
+  }
+
+  &__nav-links {
+    display: flex;
+    flex-direction: column;
+    gap: calc(10px * var(--app-scale));
+    padding-top: calc(40px * var(--app-scale));
+  }
+
+  a {
+    text-decoration: none;
+  }
+
+  &__nav-btn {
+    display: flex;
+    gap: calc(10px * var(--app-scale));
+    padding: calc(10px * var(--app-scale)) calc(15px * var(--app-scale));
+    background-color: $color-white;
+    border: solid 1px $text-primary;
+    border-radius: calc(10px * var(--app-scale));
+    font-size: calc(13px * var(--app-scale));
+    align-items: center;
+    cursor: pointer;
+    transition: 0.5s ease;
+    width: 100%;
+
+    i {
+      font-size: calc(18px * var(--app-scale));
+    }
+
+    &--logout {
+      text-decoration: underline;
+    }
+
+    &:hover {
+      background-color: $text-primary;
+      color: $color-white;
+    }
+  }
+
+  &__details {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-bottom: calc(40px * var(--app-scale));
+  }
+
+  &__details-title {
+    font-size: calc(20px * var(--app-scale));
+    font-weight: 400;
+    color: $text-primary;
+  }
+
+  &__table {
+    margin-top: calc(20px * var(--app-scale));
+    background-color: $color-white;
+    border-radius: calc(10px * var(--app-scale));
+    border-collapse: separate;
+    border-spacing: 0;
+    overflow: hidden;
+    width: 100%;
+  }
+
+  &__table-header {
+    font-size: calc(15px * var(--app-scale));
+    font-weight: 400;
+    width: calc(150px * var(--app-scale));
+    text-align: left;
+    padding: calc(10px * var(--app-scale)) calc(15px * var(--app-scale));
+    border: 1px solid #dddddd;
+  }
+
+  &__table-data {
+    padding: calc(10px * var(--app-scale)) calc(15px * var(--app-scale));
+    border: 1px solid #dddddd;
+    width: auto;
+  }
+
+  &__table-header:not(:first-child),
+  &__table-data:not(:first-child) {
+    border-left: 0;
+  }
+
+  &__table-row:not(:first-child) &__table-header,
+  &__table-row:not(:first-child) &__table-data {
+    border-top: 0;
+  }
+
+  &__table-row:first-child &__table-header:first-child {
+    border-top-left-radius: calc(10px * var(--app-scale));
+  }
+
+  &__table-row:first-child &__table-data:last-child {
+    border-top-right-radius: calc(10px * var(--app-scale));
+  }
+
+  &__table-row:last-child &__table-header:first-child {
+    border-bottom-left-radius: calc(10px * var(--app-scale));
+  }
+
+  &__table-row:last-child &__table-data:last-child {
+    border-bottom-right-radius: calc(10px * var(--app-scale));
+  }
+}

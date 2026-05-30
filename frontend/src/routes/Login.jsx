@@ -42,8 +42,8 @@ function Login() {
   const onSubmit = async (formData) => {
     try {
       const data = await loginUser(formData.email, formData.password);
-      login(data)
-      navigate("/products");
+      login(data.data)
+      navigate("/account");
     } catch (error) {
       setError("root.serverError", {
         message: error.response?.data?.message || "Something went wrong",

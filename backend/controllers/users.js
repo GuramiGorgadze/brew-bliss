@@ -117,3 +117,21 @@ const returnAllExceptPassword = (user) => {
   const { password, ...safeUser } = user._doc || user;
   return safeUser;
 };
+
+export const updateAddress = async (req, res) => {
+  try {
+    const token = req.cookies.token;
+    const decoded = jwt.verify(token, process.env.JWT_SECRET_KEY);
+
+    const updatedUser = await Users.findByIdAndUpdate(
+      decoded.id,
+      { address: req.body },
+      { new: true },
+    ).select("-password");
+
+    return res.status(200).json({ data: updatedUser });
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ message: "Server error" });
+  }
+};
