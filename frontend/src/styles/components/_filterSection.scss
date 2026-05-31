@@ -3,7 +3,6 @@
 .filter-section {
   display: flex;
   flex-direction: column;
-  width: calc(280px * var(--app-scale));
 
   &__search {
     display: flex;
@@ -237,5 +236,11 @@
         transform: scale(1.1);
       }
     }
+  }
+}
+
+@media (max-width: 768px) {
+  .filter-hidden {
+    display: none;
   }
 }

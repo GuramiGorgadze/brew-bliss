@@ -1,148 +1,282 @@
-@use '../abstracts' as *; 
+@use "../abstracts" as *;
 
 .navbar {
+  display: flex;
+  height: calc(80px * var(--app-scale));
+  background-color: $bg-navbar;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 calc(100px * var(--app-scale));
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  box-shadow: 10px 10px 60px -29px rgba(0, 0, 0, 0.45);
+  -webkit-box-shadow: 10px 10px 60px -29px rgba(0, 0, 0, 0.45);
+  -moz-box-shadow: 10px 10px 60px -29px rgba(0, 0, 0, 0.45);
+
+  &__hamburger {
+    display: none;
+    cursor: pointer;
+
+    i {
+      font-size: calc(25px * var(--app-scale));
+    }
+  }
+
+  &__brand {
+    img {
+      height: calc(64px * var(--app-scale));
+    }
+  }
+
+  &__nav {
+    ul {
+      display: flex;
+      gap: calc(25px * var(--app-scale));
+      list-style: none;
+    }
+  }
+
+  &__nav-item {
+    a {
+      text-decoration: none;
+      color: $color-link;
+      font-size: calc(14px * var(--app-scale));
+      transition: color 0.3s ease;
+
+      &:hover {
+        color: $color-accent;
+      }
+    }
+  }
+
+  &__actions {
     display: flex;
-    height: calc(80px * var(--app-scale));
-    background-color: $bg-navbar;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 calc(100px * var(--app-scale));
-    position: sticky;
-    top: 0;
-    z-index: 50;
+    gap: calc(25px * var(--app-scale));
 
-    &__brand {
-        img {
-            height: calc(64px * var(--app-scale))
-        }
+    button {
+      background-color: transparent;
+      border: none;
+      cursor: pointer;
+      user-select: none;
+
+      img {
+        height: calc(24px * var(--app-scale));
+        width: calc(24px * var(--app-scale));
+      }
     }
+  }
+}
 
-    &__nav {
-        ul {
-            display: flex;
-            gap: calc(25px * var(--app-scale));
-            list-style: none;
-        }
+.drawer-backdrop {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 998;
+  animation: overlayIn 0.3s ease forwards;
+
+  &--closing {
+    animation: overlayOut 0.3s ease forwards;
+  }
+}
+
+.drawer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 300px;
+  height: 100%;
+  background-color: $bg-navbar;
+  z-index: 999;
+  padding: calc(60px * var(--app-scale)) calc(20px * var(--app-scale))
+    calc(20px * var(--app-scale));
+  animation: drawerIn 0.3s ease forwards;
+
+  &--closing {
+    animation: drawerOut 0.3s ease forwards;
+  }
+
+  &__close {
+    position: absolute;
+    top: calc(16px * var(--app-scale));
+    right: calc(16px * var(--app-scale));
+    background: none;
+    border: none;
+    font-size: calc(15px * var(--app-scale));
+    font-weight: 800;
+    cursor: pointer;
+    transition: 0.3s;
+    color: $color-accent;
+    display: flex;
+    gap: 5px;
+
+    i {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 16px;
     }
+  }
 
-    &__nav-item {
-        a {
-            text-decoration: none;
-            color: $color-link;
-            font-size: calc(14px * var(--app-scale));
-            transition: color 0.3s ease;
+  &__input {
+    margin: 0 10px;
+  }
 
-            &:hover {
-                color: $color-accent;
-            }
-        }
-    }
+  &__links {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin: 0 15px;
+    margin-top: 30px;
+  }
 
-    &__actions {
-        display: flex;
-        gap: calc(25px * var(--app-scale));
+  a {
+    text-decoration: none;
+  }
 
-        button {
-            background-color: transparent;
-            border: none;
-            cursor: pointer;
-            user-select: none;
+  &__link {
+    color: $text-primary;
+    font-size: 14px;
+  }
 
-            img {
-                height: calc(24px * var(--app-scale));
-                width: calc(24px * var(--app-scale));
-            }
-        }
-    }
+  &__divider {
+    height: 1px;
+    background-color: $border-subtle;
+    width: 100%;
+  }
 }
 
 .search-overlay {
+  position: fixed;
+  inset: 0;
+  background-color: $bg-overlay;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding-top: calc(80px * var(--app-scale));
+  animation: overlayIn 0.3s ease forwards;
+  z-index: 9999;
+
+  &--closing {
+    animation: overlayOut 0.3s ease forwards;
+  }
+
+  &__content {
+    width: 100%;
+    max-width: calc(600px * var(--app-scale));
+    padding: 0 calc(20px * var(--app-scale));
+  }
+
+  &__close {
     position: fixed;
-    inset: 0;
-    background-color: $bg-overlay;
+    top: calc(20px * var(--app-scale));
+    right: calc(24px * var(--app-scale));
+    background: none;
+    border: none;
+    font-size: calc(20px * var(--app-scale));
+    cursor: pointer;
+    transition: 0.5s;
+
+    &:hover {
+      transform: rotate(-180deg);
+      color: $color-accent;
+    }
+  }
+
+  &__title {
+    text-align: center;
+    font-size: calc(18px * var(--app-scale));
+    font-weight: 700;
+    letter-spacing: calc(1px * var(--app-scale));
+    margin-bottom: calc(24px * var(--app-scale));
+  }
+
+  &__input-wrapper {
     display: flex;
-    align-items: flex-start;
+    border: 1px solid $border-subtle;
+    border-radius: calc(2px * var(--app-scale));
+
+    input {
+      flex: 1;
+      padding: calc(14px * var(--app-scale)) calc(16px * var(--app-scale));
+      border: none;
+      outline: none;
+      font-size: calc(15px * var(--app-scale));
+      color: $text-primary;
+
+      &::placeholder {
+        color: $text-muted;
+      }
+    }
+  }
+
+  &__btn {
+    background-color: $color-accent;
+    border: none;
+    padding: 0 calc(18px * var(--app-scale));
+    cursor: pointer;
+    display: flex;
+    align-items: center;
     justify-content: center;
-    padding-top: calc(80px * var(--app-scale));
-    animation: overlayIn 0.3s ease forwards;
-    z-index: 9999;
 
-    &--closing {
-        animation: overlayOut 0.3s ease forwards;
+    img {
+      width: calc(18px * var(--app-scale));
+      height: calc(18px * var(--app-scale));
+      filter: brightness(0) invert(1);
     }
-
-    &__content {
-        width: 100%;
-        max-width: calc(600px * var(--app-scale));
-        padding: 0 calc(20px * var(--app-scale));
-    }
-
-    &__close {
-        position: fixed;
-        top: calc(20px * var(--app-scale));
-        right: calc(24px * var(--app-scale));
-        background: none;
-        border: none;
-        font-size: calc(20px * var(--app-scale));
-        cursor: pointer;
-        transition: 0.5s;
-
-        &:hover {
-            transform: rotate(-180deg);
-            color: $color-accent;
-        }
-    }
-
-    &__title {
-        text-align: center;
-        font-size: calc(18px * var(--app-scale));
-        font-weight: 700;
-        letter-spacing: calc(1px * var(--app-scale));
-        margin-bottom: calc(24px * var(--app-scale));
-    }
-
-    &__input-wrapper {
-        display: flex;
-        border: 1px solid $border-subtle;
-        border-radius: calc(2px * var(--app-scale));
-
-        input {
-            flex: 1;
-            padding: calc(14px * var(--app-scale)) calc(16px * var(--app-scale));
-            border: none;
-            outline: none;
-            font-size: calc(15px * var(--app-scale));
-            color: $text-primary;
-
-            &::placeholder {
-                color: $text-muted;
-            }
-        }
-    }
-
-    &__btn {
-        background-color: $color-accent;
-        border: none;
-        padding: 0 calc(18px * var(--app-scale));
-        cursor: pointer;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-
-        img {
-            width: calc(18px * var(--app-scale));
-            height: calc(18px * var(--app-scale));
-            filter: brightness(0) invert(1);
-        }
-    }
+  }
 }
 
 @keyframes overlayIn {
-    from { opacity: 0; }
-    to   { opacity: 1; }
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 @keyframes overlayOut {
-    from { opacity: 1; }
-    to   { opacity: 0; }
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes drawerIn {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes drawerOut {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-100%);
+  }
+}
+
+@media (max-width: 1024px) {
+  .navbar {
+    padding: 0 5%;
+
+    &__hamburger {
+      display: flex;
+    }
+
+    &__nav {
+      display: none;
+    }
+
+    &__mobile-hidden {
+      display: none;
+    }
+  }
 }

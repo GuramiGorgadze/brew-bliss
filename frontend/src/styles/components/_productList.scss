@@ -1,79 +1,232 @@
-@use '../abstracts' as *;
+@use "../abstracts" as *;
 
 .product-list {
+  display: flex;
+  gap: calc(20px * var(--app-scale));
+  justify-content: center;
+  width: 100%;
+  max-width: calc(1400px * var(--app-scale));
+  margin: 0 auto;
+  padding: 0 calc(100px * var(--app-scale));
+  box-sizing: border-box;
+  margin-top: 50px;
+
+  .product-list-right {
     display: flex;
-    padding: calc(10px * var(--app-scale)) calc(100px * var(--app-scale));
+    flex-direction: column;
     gap: calc(20px * var(--app-scale));
-    justify-content: center;
-    width: 80%;
+    width: 100%;
 
-    .product-list-right {
+    .mobile-filter {
+      display: none;
+      align-items: center;
+      justify-content: space-between;
+      border-radius: 5px;
+      background-color: $color-white;
+      padding: 10px 15px;
+      cursor: pointer;
+
+      .left {
         display: flex;
-        flex-direction: column;
-        gap: calc(20px * var(--app-scale));
-        width: 100%;
-
-        .active-filters-badges {
-            display: flex;
-            gap: 10px;
-
-            .filter-badge {
-                height: calc(50px * var(--app-scale));
-                background-color: $color-white;
-                border: $border-dark solid 1px;
-                border-radius: 3px;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                gap: calc(15px * var(--app-scale));
-                box-sizing: border-box;
-                padding: 0 calc(15px * var(--app-scale));
-                transition: 0.3s;
-
-                .clear-single-filter-btn {
-                    display: flex;
-                    background-color: transparent;
-                    border: none;
-                }
-
-                &:hover {
-                    color: $color-accent;
-                    cursor: pointer;
-                }
-            }
-        }
-    }
-
-    .product-cards-wrapper {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(calc(210px * var(--app-scale)), 1fr));
-        gap: calc(25px * var(--app-scale)) calc(20px * var(--app-scale));
-        width: 100%;
-    }
-
-    .nothing-found-wrapper {
-        background-color: $color-white;
-        height: calc(100px * var(--app-scale));
-        border: 1px solid $border-dark;
-        display: flex;
+        gap: 5px;
         justify-content: center;
         align-items: center;
 
-        &__title {
-            text-align: center;
-            font-weight: 500;
-            text-transform: capitalize;
+        i,
+        p {
+          font-weight: 800;
+          font-size: 15px;
+          color: $text-primary;
+        }
+      }
+      .right {
+        span {
             color: $text-primary;
+        }
+      }
+    }
 
-            .clear-all-btn {
-                color: $border-dark;
-                transition: 0.5s ease-in-out;
-                cursor: pointer;
+    .active-filters-badges {
+      display: flex;
+      gap: 10px;
 
-                &:hover {
-                    color: $color-accent;
-                }
-            }
+      .filter-badge {
+        height: calc(50px * var(--app-scale));
+        background-color: $color-white;
+        border: $border-dark solid 1px;
+        border-radius: 3px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: calc(15px * var(--app-scale));
+        box-sizing: border-box;
+        padding: 0 calc(15px * var(--app-scale));
+        transition: 0.3s;
+
+        .clear-single-filter-btn {
+          display: flex;
+          background-color: transparent;
+          border: none;
+        }
+
+        &:hover {
+          color: $color-accent;
+          cursor: pointer;
+        }
+      }
+    }
+  }
+
+  .product-cards-wrapper {
+    display: grid;
+    grid-template-columns: repeat(
+      auto-fill,
+      minmax(calc(200px * var(--app-scale)), 1fr)
+    );
+    gap: calc(25px * var(--app-scale)) calc(20px * var(--app-scale));
+    width: 100%;
+  }
+
+  .nothing-found-wrapper {
+    background-color: $color-white;
+    height: calc(100px * var(--app-scale));
+    border: 1px solid $border-dark;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &__title {
+      text-align: center;
+      font-weight: 500;
+      text-transform: capitalize;
+      color: $text-primary;
+
+      .clear-all-btn {
+        color: $border-dark;
+        transition: 0.5s ease-in-out;
+        cursor: pointer;
+
+        &:hover {
+          color: $color-accent;
+        }
+      }
+    }
+  }
+}
+
+.filter-drawer-backdrop {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 50;
+  animation: filterOverlayIn 0.3s ease forwards;
+
+  &--closing {
+    animation: filterOverlayOut 0.3s ease forwards;
+  }
+}
+
+.filter-drawer-close {
+  position: fixed;
+  z-index: 52;
+  top: calc(10px * var(--app-scale));
+  right: calc(20px * var(--app-scale));
+  background: none;
+  border: none;
+  font-size: calc(24px * var(--app-scale));
+  cursor: pointer;
+  transition: 0.3s;
+  color: $color-white;
+
+  &:hover {
+    color: $color-accent;
+  }
+}
+
+.filter-drawer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 350px;
+  height: 100%;
+  background-color: $color-white;
+  z-index: 51;
+  overflow-y: auto;
+  box-sizing: border-box;
+  animation: filterDrawerIn 0.3s ease forwards;
+
+  &--closing {
+    animation: filterDrawerOut 0.3s ease forwards;
+  }
+
+  &__info {
+    padding: 0 30px;
+  }
+
+  &__title {
+    background-color: $text-primary;
+    padding: 15px 25px;
+
+    h2 {
+      font-size: 14px;
+      color: $color-white;
+    }
+  }
+
+  &__quantity {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 15px 25px;
+    font-size: 18px;
+  }
+}
+
+@keyframes filterOverlayIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes filterOverlayOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes filterDrawerIn {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes filterDrawerOut {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-100%);
+  }
+}
+
+@media (max-width: 768px) {
+  .product-list {
+    flex-direction: column;
+    padding: 0 20px;
+
+    .product-list-right {
+        .mobile-filter {
+            display: flex;
         }
     }
+  }
 }

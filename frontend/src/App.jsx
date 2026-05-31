@@ -16,6 +16,7 @@ import {
   Login,
   Account,
   Address,
+  Team
 } from "./routes";
 
 // Hooks
@@ -61,6 +62,7 @@ function App() {
 
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/team" element={<Team />} />
 
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />

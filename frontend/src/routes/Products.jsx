@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useLoader } from '../context/LoaderContext';
-import { PageTitle } from '../components';
+import { InstagramPromo, PageTitle } from '../components';
 import * as api from '../api/api';
 import ProductList from '../components/ProductList';
 
@@ -26,6 +26,7 @@ function Products() {
     <>
       <PageTitle pageName="Products" />
       <ProductList originalProducts={originalProducts} />
+      <InstagramPromo />
     </>
   );
 }

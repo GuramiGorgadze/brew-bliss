@@ -11,6 +11,7 @@ function FilterSection({
   updateFilters,
   stockCounts,
   categoryCounts,
+  isDrawer
 }) {
   const [availabilityOpen, setAvailabilityOpen] = useState(true);
   const [priceOpen, setPriceOpen] = useState(true);
@@ -60,10 +61,13 @@ function FilterSection({
       updateFilter("category", cat);
     }
   };
-
   return (
-    <div className="filter-section">
-      <div className="filter-section__search">
+    <div className={clsx("filter-section", {
+      "filter-hidden": !isDrawer,
+    })}>
+      <div className={clsx("filter-section__search", {
+        "filter-hidden": isDrawer,
+      })}>
         <input
           type="text"
           placeholder="Search Here"
@@ -79,7 +83,9 @@ function FilterSection({
         </button>
       </div>
 
-      <div className="filter-section__categories">
+      <div className={clsx("filter-section__categories", {
+        "filter-hidden": isDrawer,
+      })}>
         <h1>Product Categories</h1>
         <ul>
           {["stout", "ipa", "alcohol", "citrus", "lager"].map((cat) => {

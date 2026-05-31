@@ -50,10 +50,48 @@
       background-color: $color-accent;
       margin-top: calc(30px * var(--app-scale));
       outline: none;
-      
+      color: $text-primary;
+
       &:hover {
         background-color: $color-accent-hover;
         color: white;
+      }
+    }
+  }
+}
+
+@media (max-width: 1024px) {
+  .promo-section2 {
+    padding: 60px 60px;
+    background-position: center;
+    height: auto;
+    justify-content: center;
+
+    &__left {
+      align-items: center;
+
+      &__paragraph-wrapper {
+        justify-content: center;
+      }
+
+      &__title {
+        text-align: center;
+      }
+
+      &__btn {
+        align-self: center;
+      }
+    }
+  }
+}
+
+@media (max-width: 430px) {
+  .promo-section2 {
+    padding: 40px 20px;
+
+    &__left {
+      &__title {
+        font-size: 24px;
       }
     }
   }

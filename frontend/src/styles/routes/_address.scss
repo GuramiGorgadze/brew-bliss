@@ -42,6 +42,7 @@
 
     .bi {
       cursor: pointer;
+      color: $color-accent;
     }
   }
 
@@ -115,6 +116,58 @@
     &:hover {
       background-color: $color-accent-hover;
       color: $color-white;
+    }
+  }
+}
+
+@media (max-width: 1024px) {
+  .address {
+    &__header {
+      padding: 20px 30px;
+    }
+
+    &__body {
+      padding: 20px 30px;
+    }
+  }
+}
+
+@media (max-width: 575px) {
+  .address {
+    &__form {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    &__buttons {
+      gap: 20px;
+    }
+  }
+}
+
+@media (max-width: 430px) {
+  .address {
+    &__header {
+      padding: 20px 15px;
+    }
+
+    &__body {
+      padding: 20px 15px;
+    }
+
+    &__body-title {
+      font-size: 18px;
+
+      .bi {
+        font-size: 16px;
+      }
+    }
+
+    &__buttons {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
     }
   }
 }

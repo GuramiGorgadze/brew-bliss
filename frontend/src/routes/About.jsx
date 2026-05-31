@@ -1,4 +1,4 @@
-import React from "react";
+import { useEffect } from "react";
 import {
   PageTitle,
   StoreFeatures,
@@ -12,8 +12,12 @@ import Team1 from "../assets/team/team01.png";
 import Team2 from "../assets/team/team02.png";
 import Team3 from "../assets/team/team03.png";
 import Team4 from "../assets/team/team04.png";
+import { useLoader } from '../context/LoaderContext';
 
 function About() {
+  const { useFakeLoader } = useLoader();
+  useEffect(() => useFakeLoader(), []);
+
   const teamMembers = [
     {
       id: 1,
@@ -54,8 +58,8 @@ function About() {
 
         <h3 className="our-story__desc">
           welcome to <span className="orange">Brew Bliss,</span> your ultimate
-          destination for fresh flavors <br /> and delightful sips. We’re
-          passionate about delivering premium food <br /> and beverages to
+          destination for fresh flavors  and delightful sips. We’re
+          passionate about delivering premium food  and beverages to
           satisfy every craving, anytime, anywhere!
         </h3>
 
@@ -73,7 +77,7 @@ function About() {
 
         <p className="team__desc">
           See why everyone’s raving about our products and service – real
-          stories <br /> from happy customers!
+          stories from happy customers!
         </p>
 
         <div className="team__cards">

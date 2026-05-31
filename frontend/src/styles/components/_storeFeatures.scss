@@ -2,7 +2,8 @@
 
 .store-features {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
+  gap: 20px;
   margin: 0 calc(100px * var(--app-scale));
   margin-top: calc(100px * var(--app-scale));
 
@@ -19,8 +20,8 @@
     &__image-wrapper {
       background-color: $color-accent;
       border-radius: 50%;
-      height: calc(35px * var(--app-scale));
-      width: calc(35px * var(--app-scale));
+      height: calc(40px * var(--app-scale));
+      width: calc(40px * var(--app-scale));
       display: flex;
       justify-content: center;
       align-items: center;
@@ -33,18 +34,18 @@
     }
 
     &__img {
-      height: calc(20px * var(--app-scale));
+      height: calc(25px * var(--app-scale));
       transition: transform 0.2s ease;
     }
 
     &__title {
-      font-size: calc(18px * var(--app-scale));
+      font-size: calc(20px * var(--app-scale));
       color: $text-primary;
       font-weight: 500;
     }
 
     &__text {
-      font-size: calc(14px * var(--app-scale));
+      font-size: calc(16px * var(--app-scale));
       color: $text-desc;
       display: -webkit-box;
       margin-top: calc(10px * var(--app-scale));
@@ -71,5 +72,47 @@
   }
   100% {
     transform: translateY(0);
+  }
+}
+
+@media (max-width: 1440px) {
+  .store-features {
+    margin: 0;
+    margin-top: 100px;
+    .feature-card {
+      width: 230px;
+    }
+  }
+}
+
+@media (max-width: 1024px) {
+  .store-features {
+    margin: 10px;
+    margin-top: 40px;
+    flex-wrap: wrap;
+    .feature-card {
+      width: 45%;
+      display: flex;
+      text-align: center;
+      align-items: center;
+
+      &__image-wrapper {
+        height: 35px;
+        width: 35px;
+      }
+
+      &__img {
+        height: 20px;
+      }
+    }
+  }
+}
+
+@media (max-width: 430px) {
+  .store-features {
+    .feature-card {
+      width: 100%;
+      margin: 0 10px;
+    }
   }
 }

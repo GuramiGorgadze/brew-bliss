@@ -1,4 +1,4 @@
-@use '../abstracts' as *; 
+@use "../abstracts" as *;
 
 .not-found {
   display: flex;
@@ -43,9 +43,45 @@
     color: $text-subtle;
     text-align: center;
     font-size: calc(13px * var(--app-scale));
+    width: 30%;
   }
 
   &__btn {
     width: calc(200px * var(--app-scale));
+    font-size: calc(16px * var(--app-scale));
+  }
+}
+
+@media (max-width: 1024px) {
+  .not-found {
+    &__text {
+      width: 60%;
+    }
+  }
+}
+@media (max-width: 768px) {
+  .not-found {
+    &__body {
+      width: 90%;
+    }
+  }
+}
+
+@media (max-width: 430px) {
+  .not-found {
+    &__heading {
+      font-size: 16px;
+    }
+    &__text {
+      padding: 0 20px;
+    }
+    &__image {
+      height: 120px;
+    }
+
+    &__btn {
+      font-size: 14px;
+      width: 175px;
+    }
   }
 }

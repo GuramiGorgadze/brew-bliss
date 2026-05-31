@@ -1,11 +1,15 @@
-import React from 'react'
+import { useEffect } from "react";
 import { useUserData } from '../context/UserContext.jsx'
 import { InstagramPromo } from '../components'
+import { useLoader } from '../context/LoaderContext';
 
 import { Link } from 'react-router-dom'
 
 function Account() {
   const { logout, userData } = useUserData()
+
+  const { useFakeLoader } = useLoader();
+  useEffect(() => useFakeLoader(), []);
 
   return (
     <div className='account'>
@@ -21,7 +25,7 @@ function Account() {
           </p>
 
           <div className='account__nav-links'>
-            <button className='account__nav-btn'><i className="bi bi-list-ul"></i>Dashboard</button>
+            <button className='account__nav-btn active'><i className="bi bi-list-ul"></i>Dashboard</button>
             <button className='account__nav-btn'><i className="bi bi-bag-check"></i>CHECK OUT</button>
             <Link to="/account/address">
               <button className='account__nav-btn'><i className="bi bi-geo-alt"></i>EDIT ADDRESS</button>
@@ -34,7 +38,7 @@ function Account() {
         </div>
 
         <div className='account__details'>
-          <h4 className='account__details-title'>Account details:</h4>
+          <h4 className='account__details-title'>Account Details:</h4>
 
           <table className='account__table'>
             <tbody>

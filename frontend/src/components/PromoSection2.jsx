@@ -17,8 +17,6 @@ function PromoSection2() {
           Beer at -20% Off!
         </h2>
 
-        <p className="promo-section2__left__text">Timeout</p>
-
         <Link to="/products">
           <button className="promo-section2__left__btn">Shop Sale</button>
         </Link>

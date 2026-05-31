@@ -4,10 +4,14 @@ import { InstagramPromo } from '../components'
 import { useForm } from 'react-hook-form'
 import { updateAddress } from '../api/api'
 import { Link } from 'react-router-dom'
+import { useLoader } from '../context/LoaderContext';
 
 function Address() {
     const { userData, login } = useUserData()
     const { register, handleSubmit, reset, formState: { isSubmitting } } = useForm()
+
+    const { useFakeLoader } = useLoader();
+    useEffect(() => useFakeLoader(), []);
 
     useEffect(() => {
         if (userData?.address) {
@@ -79,7 +83,7 @@ function Address() {
                         <i className="bi bi-pencil"></i> {isSubmitting ? 'Saving...' : 'Edit Address'}
                     </button>
                     <button className="address__btn address__btn--reset" type="button" onClick={() => reset(userData.address)}>
-                        <i className="bi bi-trash3"></i> Format Address
+                        <i className="bi bi-trash3"></i> Reset Address
                     </button>
                 </div>
             </div>

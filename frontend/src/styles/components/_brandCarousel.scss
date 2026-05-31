@@ -1,7 +1,9 @@
 .embla {
   --slide-size: 25%;
-  margin:  100px;
   cursor: pointer;
+  max-width: 1125px;
+  margin: 50px auto;
+  padding: 0 100px;
 
   &__viewport {
     overflow: hidden;
@@ -23,6 +25,25 @@
 
     &__img:hover {
       scale: 1.05;
+    }
+  }
+
+  @media (max-width: 1024px) {
+    --slide-size: 33.33%;
+    padding: 0 60px;
+  }
+
+  @media (max-width: 768px) {
+    --slide-size: 60%;
+    padding: 0 40px;
+  }
+
+  @media (max-width: 430px) {
+    --slide-size: 50%;
+    padding: 0 20px;
+
+    &__container {
+      margin-left: -40px;
     }
   }
 }

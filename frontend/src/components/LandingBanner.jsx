@@ -8,14 +8,14 @@ function LandingBanner() {
     return (
         <div className='landing-banner' style={{ backgroundImage: `url(${heroBanner})` }}>
             <div className="landing-banner__left">
-                <div className="landing-banner__new-arrival">
-                    <img src={wing1} alt="" className="landing-banner__wing"/>
+                <div className="landing-banner__new-arrival laptop">
+                    <img src={wing1} alt="" className="landing-banner__wing" />
                     <p>NEW ARRIVAL</p>
-                    <img src={wing2} alt="" className="landing-banner__wing"/>
+                    <img src={wing2} alt="" className="landing-banner__wing" />
                 </div>
 
-                <h2 className='landing-banner__title'>Discover Flavors, <br /> One Bottle at a Time!</h2>
-                <p className='landing-banner__text'>Explore the rich and diverse world of beer, savoring unique flavors crafted to <br /> perfection, one bottle at a time!</p>
+                <h2 className='landing-banner__title'>Discover Flavors, One Bottle at a Time!</h2>
+                <p className='landing-banner__text'>Explore the rich and diverse world of beer, savoring unique flavors crafted to perfection, one bottle at a time!</p>
 
                 <div className="landing-banner__actions">
                     <button className='landing-banner__btn landing-banner__btn--orange'>Shop Sale</button>
@@ -24,7 +24,12 @@ function LandingBanner() {
             </div>
 
             <div className="landing-banner__right">
-                <img src={landingBeer} alt="" />
+                <div className="landing-banner__new-arrival mobile">
+                    <img src={wing1} alt="" className="landing-banner__wing" />
+                    <p>NEW ARRIVAL</p>
+                    <img src={wing2} alt="" className="landing-banner__wing" />
+                </div>
+                <img className='landing-banner__image' src={landingBeer} alt="" />
             </div>
         </div>
     )

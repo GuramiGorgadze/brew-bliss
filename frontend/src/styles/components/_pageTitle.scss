@@ -1,26 +1,51 @@
-@use '../abstracts' as *; 
+@use "../abstracts" as *;
 
 .title-wrapper {
-    height: calc(300px * var(--app-scale));
-    background-size: cover;
-    background-position-y: calc(330px * var(--app-scale));
+  height: calc(300px * var(--app-scale));
+  background-size: cover;
+  background-position-y: calc(330px * var(--app-scale));
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+
+  &__wing {
+    height: calc(50px * var(--app-scale));
+    width: calc(50px * var(--app-scale));
+  }
+
+  .title {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 100%;
 
+    p {
+      font-size: calc(38px * var(--app-scale));
+      color: $color-white;
+      margin: calc(5px * var(--app-scale));
+      text-align: center;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .title-wrapper {
+    background-size: cover;
+    background-position-y: 0;
+    background-position: 50%;
+  }
+}
+
+@media (max-width: 430px) {
+  .title-wrapper {
     &__wing {
-        height: calc(50px * var(--app-scale));
-        width: calc(50px * var(--app-scale));
+      height: calc(30px * var(--app-scale));
+      width: calc(30px * var(--app-scale));
     }
-
     .title {
-        display: flex;
-
-        p {
-            font-size: calc(38px * var(--app-scale));
-            color: $color-white;
-            margin: calc(5px * var(--app-scale));
-        }
+      p {
+        font-size: 30px;
+      }
     }
+  }
 }

@@ -1,97 +1,170 @@
-@use '../abstracts' as *;
+@use "../abstracts" as *;
 
 .landing-banner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: calc(650px * var(--app-scale));
+  background-size: cover;
+  padding: 20px calc(100px * var(--app-scale));
+  color: $text-on-dark;
+  padding-top: calc(50px * var(--app-scale));
+
+  &__left {
+    display: flex;
+    flex-direction: column;
+
+    .laptop {
+      display: flex;
+    }
+  }
+
+  &__new-arrival {
     display: flex;
     align-items: center;
+
+    p {
+      font-size: calc(14px * var(--app-scale));
+      margin: 0 calc(5px * var(--app-scale));
+    }
+
+    img {
+      height: calc(20px * var(--app-scale));
+      width: calc(20px * var(--app-scale));
+    }
+  }
+
+  &__title {
+    font-weight: 500;
+    font-size: calc(40px * var(--app-scale));
+    letter-spacing: calc(1px * var(--app-scale));
+    margin: calc(20px * var(--app-scale)) 0;
+  }
+
+  &__text {
+    color: $text-muted;
+    font-size: calc(15px * var(--app-scale));
+    line-height: calc(20px * var(--app-scale));
+  }
+
+  &__actions {
+    margin-top: calc(55px * var(--app-scale));
+    display: flex;
+    gap: calc(15px * var(--app-scale));
+  }
+
+  &__btn {
+    height: calc(50px * var(--app-scale));
+    border: none;
+    border-radius: calc(5px * var(--app-scale));
+    transition: 0.6s;
+    cursor: pointer;
+    font-size: calc(14px * var(--app-scale));
+    color: $text-primary;
+
+    &--orange {
+      width: calc(125px * var(--app-scale));
+      background-color: $color-accent;
+
+      &:hover {
+        background-color: $color-accent-hover;
+        color: white;
+      }
+    }
+
+    &--grey {
+      width: calc(160px * var(--app-scale));
+      background-color: $bg-muted;
+
+      &:hover {
+        background-color: $color-accent;
+      }
+    }
+  }
+
+  &__right {
+    display: flex;
     justify-content: center;
-    height: calc(650px * var(--app-scale));
-    background-size: cover;
-    padding: 0 calc(100px * var(--app-scale));
-    color: $text-on-dark;
-    padding-top: calc(50px * var(--app-scale));
+    align-items: center;
+    height: 100%;
+
+    .mobile {
+      display: none;
+    }
+  }
+
+  &__image {
+    height: 100%;
+    margin-bottom: calc(50px * var(--app-scale));
+    transition: 0.3s;
+
+    &:hover {
+      transform: scale(0.9);
+    }
+  }
+}
+
+@media (max-width: 1024px) {
+  .landing-banner {
+    flex-direction: column-reverse;
+    height: auto;
+    padding: 20px;
+    padding-top: 40px;
+    padding-bottom: 60px;
+    background-position: 50%;
+
+    &__right {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+
+      img {
+        width: 100%;
+      }
+
+      .mobile {
+        display: flex;
+      }
+    }
 
     &__left {
-        display: flex;
-        flex-direction: column;
-    }
+      justify-content: center;
+      align-items: center;
 
-    &__new-arrival {
-        display: flex;
-        align-items: center;
+      .laptop {
+        display: none;
+      }
 
-        p {
-            font-size: calc(14px * var(--app-scale));
-            margin: 0 calc(5px * var(--app-scale));
-        }
-    }
-
-    &__wing {
-        height: calc(20px * var(--app-scale));
-        width: calc(20px * var(--app-scale));
+      * {
+        text-align: center;
+      }
     }
 
     &__title {
-        font-weight: 500;
-        font-size: calc(35px * var(--app-scale));
-        letter-spacing: calc(1px * var(--app-scale));
-        margin: calc(20px * var(--app-scale)) 0;
+      line-height: 1.1;
     }
 
-    &__text {
-        color: $text-muted;
-        font-size: calc(13px * var(--app-scale));
-        line-height: calc(20px * var(--app-scale));
-    }
+    &__new-arrival {
+      display: flex;
+      align-items: center;
+      justify-content: center;
 
-    &__actions {
-        margin-top: calc(55px * var(--app-scale));
-        display: flex;
-        gap: calc(15px * var(--app-scale));
+      p {
+        font-size: calc(18px * var(--app-scale));
+        margin: 0 calc(5px * var(--app-scale));
+      }
+
+      img {
+        height: 25px;
+        width: 25px;
+      }
     }
 
     &__btn {
-        height: calc(50px * var(--app-scale));
-        border: none;
-        border-radius: calc(5px * var(--app-scale));
-        transition: 0.6s;
-        cursor: pointer;
-        font-size: calc(14px * var(--app-scale));
-
-        &--orange {
-            width: calc(125px * var(--app-scale));
-            background-color: $color-accent;
-
-            &:hover {
-                background-color: $color-accent-hover;
-                color: white;
-            }
-        }
-
-        &--grey {
-            width: calc(160px * var(--app-scale));
-            background-color: $bg-muted;
-
-            &:hover {
-                background-color: $color-accent;
-            }
-        }
+      font-size: calc(16px * var(--app-scale));
+      height: calc(60px * var(--app-scale));
+      max-width: 200px;
     }
-
-    &__right {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-
-        img {
-            height: calc(700px * var(--app-scale));
-            margin-bottom: calc(50px * var(--app-scale));
-            transition: 0.3s;
-            position: relative;
-            left: calc(50px * var(--app-scale));
-
-            &:hover {
-                transform: scale(0.9);
-            }
-        }
-    }
+  }
 }

@@ -1,36 +1,36 @@
 import React, { useState, useMemo } from "react";
 import { Product, Toolbar, FilterSection } from "../components";
+import searchIcon from "../assets/icons/search-icon.svg";
 import useProductFilter from "../hooks/useProductFilter";
 import deleteIcon from "../assets/icons/x-icon.svg";
+import clsx from "clsx";
 
 function ProductList({ originalProducts = [] }) {
   const [view, setView] = useState("grid-wrap");
+  const [filterOpen, setFilterOpen] = useState(false);
+  const [filterClosing, setFilterClosing] = useState(false);
+
   const { products, filters, updateFilter, updateFilters, resetFilters } =
     useProductFilter(originalProducts);
+
+  const closeFilter = () => {
+    setFilterClosing(true);
+    setTimeout(() => {
+      setFilterOpen(false);
+      setFilterClosing(false);
+    }, 300);
+  };
 
   const filterStats = useMemo(() => {
     let inStock = 0;
     let outOfStock = 0;
-    const categoryCounts = {
-      stout: 0,
-      ipa: 0,
-      alcohol: 0,
-      citrus: 0,
-      lager: 0,
-    };
+    const categoryCounts = { stout: 0, ipa: 0, alcohol: 0, citrus: 0, lager: 0 };
 
     originalProducts.forEach((p) => {
-      if (p?.available) {
-        inStock++;
-      } else {
-        outOfStock++;
-      }
-
+      if (p?.available) { inStock++; } else { outOfStock++; }
       p.tags?.forEach((tag) => {
         const normalizedTag = tag.toLowerCase();
-        if (normalizedTag in categoryCounts) {
-          categoryCounts[normalizedTag]++;
-        }
+        if (normalizedTag in categoryCounts) categoryCounts[normalizedTag]++;
       });
     });
 
@@ -39,23 +39,11 @@ function ProductList({ originalProducts = [] }) {
 
   const activeFilters = useMemo(() => {
     const active = [];
-
-    if (filters.search) {
-      active.push({ key: "search", label: `Search: "${filters.search}"` });
-    }
-    if (filters.category) {
-      active.push({ key: "category", label: `Category: ${filters.category}` });
-    }
-    if (filters.inStock) {
-      active.push({ key: "inStock", label: "In Stock" });
-    }
-    if (filters.outOfStock) {
-      active.push({ key: "outOfStock", label: "Out of Stock" });
-    }
-    if (filters.minPrice || filters.maxPrice) {
-      active.push({ key: "price", label: "Price Range" });
-    }
-
+    if (filters.search) active.push({ key: "search", label: `Search: "${filters.search}"` });
+    if (filters.category) active.push({ key: "category", label: `Category: ${filters.category}` });
+    if (filters.inStock) active.push({ key: "inStock", label: "In Stock" });
+    if (filters.outOfStock) active.push({ key: "outOfStock", label: "Out of Stock" });
+    if (filters.minPrice || filters.maxPrice) active.push({ key: "price", label: "Price Range" });
     return active;
   }, [filters]);
 
@@ -68,10 +56,32 @@ function ProductList({ originalProducts = [] }) {
           filters={filters}
           stockCounts={filterStats.stockCounts}
           categoryCounts={filterStats.categoryCounts}
+          isDrawer={false}
         />
+        <div className="filter-section__search">
+          <input type="text" placeholder="Search Here" />
+          <button className="filter-section__search-btn">
+            <img src={searchIcon} alt="Search" draggable="false" />
+          </button>
+        </div>
       </div>
 
       <div className="product-list-right">
+        <div className="mobile-filter" onClick={() => setFilterOpen(true)}>
+          <div className="left">
+            <i className="bi bi-funnel"></i><p>FILTER & SORT</p>
+          </div>
+          <div className="right">
+            {originalProducts.length === products.length ? (
+              <span className="toolbar__count">{products.length} Products</span>
+            ) : (
+              <span className="toolbar__count">
+                {products.length} of {originalProducts.length} Products
+              </span>
+            )}
+          </div>
+        </div>
+
         <Toolbar
           count={products.length}
           originalProducts={originalProducts}
@@ -91,7 +101,7 @@ function ProductList({ originalProducts = [] }) {
                 } else {
                   updateFilter(
                     filter.key,
-                    filter.key === "search" || filter.key === "category" ? "" : false,
+                    filter.key === "search" || filter.key === "category" ? "" : false
                   );
                 }
               }}
@@ -102,7 +112,6 @@ function ProductList({ originalProducts = [] }) {
               </button>
             </div>
           ))}
-
           {activeFilters.length > 0 && (
             <div className="filter-badge" onClick={resetFilters}>
               Remove All
@@ -124,13 +133,49 @@ function ProductList({ originalProducts = [] }) {
             <h2 className="nothing-found-wrapper__title">
               No products found <br />
               Use fewer filters or{" "}
-              <span className="clear-all-btn" onClick={resetFilters}>
-                clear all
-              </span>
+              <span className="clear-all-btn" onClick={resetFilters}>clear all</span>
             </h2>
           </div>
         )}
       </div>
+
+      {filterOpen && (
+        <>
+          <div
+            className={clsx("filter-drawer-backdrop", { "filter-drawer-backdrop--closing": filterClosing })}
+            onClick={closeFilter}
+          />
+          <button className="filter-drawer-close" onClick={closeFilter}><i class="bi bi-x-lg"></i></button>
+
+          <div className={clsx("filter-drawer", { "filter-drawer--closing": filterClosing })}>
+
+            <div className="filter-drawer__title">
+              <h2>FILTER AND SORT</h2>
+            </div>
+
+            <div className="filter-drawer__info">
+              <div className="filter-drawer__quantity">
+                {originalProducts.length === products.length ? (
+                  <span className="toolbar__count">{products.length} Products</span>
+                ) : (
+                  <span className="toolbar__count">
+                    {products.length} of {originalProducts.length} Products
+                  </span>
+                )}
+              </div>
+
+              <FilterSection
+                updateFilter={updateFilter}
+                updateFilters={updateFilters}
+                filters={filters}
+                stockCounts={filterStats.stockCounts}
+                categoryCounts={filterStats.categoryCounts}
+                isDrawer={true}
+              />
+            </div>
+          </div>
+        </>
+      )}
     </div>
   );
 }

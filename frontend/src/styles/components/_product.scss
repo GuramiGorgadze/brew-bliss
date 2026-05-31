@@ -1,129 +1,148 @@
-@use '../abstracts' as *;
+@use "../abstracts" as *;
 
 .product-card {
-    border: 1px solid $text-subtle;
+  border: 1px solid $text-subtle;
+  border-radius: calc(10px * var(--app-scale));
+  padding: calc(15px * var(--app-scale));
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+
+  &:hover {
+    cursor: pointer;
+
+    .product-card__btn {
+      background-color: $color-accent;
+      color: white;
+      border-color: $color-accent;
+    }
+  }
+
+  &__img-wrapper {
+    background-color: $bg-product-image;
     border-radius: calc(10px * var(--app-scale));
-    padding: calc(10px * var(--app-scale));
+    padding: calc(20px * var(--app-scale)) 0;
+    width: 100%;
+    position: relative;
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
-    box-sizing: border-box;
 
-    &:hover {
-        cursor: pointer;
-
-        .product-card__btn {
-            background-color: $color-accent;
-            color: white;
-            border-color: $color-accent;
-        }
+    img {
+      width: calc(190px * var(--app-scale));
     }
+  }
 
-    &__img-wrapper {
-        background-color: $bg-product-image;
-        border-radius: calc(10px * var(--app-scale));
-        padding: calc(20px * var(--app-scale)) 0;
-        margin: calc(5px * var(--app-scale));
-        width: calc(205px * var(--app-scale));
-        position: relative;
-        display: flex;
-        justify-content: center;
-        align-items: center;
+  &__discount {
+    position: absolute;
+    top: calc(10px * var(--app-scale));
+    left: calc(10px * var(--app-scale));
+    z-index: 20;
+    display: flex;
+    color: white;
+    background-color: $label-sale;
+    font-size: calc(14px * var(--app-scale));
+    border-radius: calc(5px * var(--app-scale));
+    padding: calc(3px * var(--app-scale)) calc(7px * var(--app-scale));
+  }
 
-        img {
-            width: calc(190px * var(--app-scale));
-        }
-    }
+  .product-card-info-wrapper {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
 
-    &__discount {
-        position: absolute;
-        top: calc(10px * var(--app-scale));
-        left: calc(10px * var(--app-scale));
-        z-index: 20;
-        display: flex;
-        color: white;
-        background-color: $label-sale;
-        font-size: calc(14px * var(--app-scale));
-        border-radius: calc(5px * var(--app-scale));
-        padding: calc(3px * var(--app-scale)) calc(7px * var(--app-scale));
-    }
+  &__info {
+    display: flex;
+    flex-direction: column;
+    gap: calc(10px * var(--app-scale));
+    margin: calc(20px * var(--app-scale)) 0;
+    width: 100%;
+  }
 
-    .product-card-info-wrapper {
-        display: flex;
-        flex-direction: column;
-        width: 100%;
-    }
+  &__title {
+    font-size: calc(15px * var(--app-scale));
+    font-weight: 500;
+    color: $text-primary;
+  }
 
-    &__info {
-        display: flex;
-        flex-direction: column;
-        gap: calc(10px * var(--app-scale));
-        margin: calc(20px * var(--app-scale)) 0;
-        width: 100%;
-    }
+  &__size {
+    color: $text-subtle;
+    font-size: calc(14px * var(--app-scale));
+  }
 
-    &__title {
-        font-size: calc(18px * var(--app-scale));
-        font-weight: 500;
-        color: $text-primary;
-    }
+  &__stars {
+    font-size: calc(14px * var(--app-scale));
+  }
 
-    &__size {
-        color: $text-subtle;
-        font-size: calc(14px * var(--app-scale));
-    }
+  &__price {
+    color: $text-price-sale;
+    font-size: calc(18px * var(--app-scale));
+    display: flex;
+    gap: calc(15px * var(--app-scale));
+    align-items: center;
+  }
 
-    &__stars {
-        font-size: calc(14px * var(--app-scale));
-    }
+  &__old-price {
+    text-decoration: line-through;
+    color: $text-subtle;
+    font-size: calc(14px * var(--app-scale));
+  }
 
-    &__price {
-        color: $text-price-sale;
-        font-size: calc(18px * var(--app-scale));
-        display: flex;
-        gap: calc(15px * var(--app-scale));
-        align-items: center;
-    }
-
-    &__old-price {
-        text-decoration: line-through;
-        color: $text-subtle;
-        font-size: calc(14px * var(--app-scale));
-    }
-
-    &__btn {
-        width: 100%;
-        height: calc(40px * var(--app-scale));
-        background: none;
-        border: 1px solid $border-dark;
-        border-radius: calc(3px * var(--app-scale));
-        font-size: calc(14px * var(--app-scale));
-        font-weight: 400;
-        cursor: pointer;
-        transition: 0.4s ease-in-out;
-    }
+  &__btn {
+    width: 100%;
+    height: calc(40px * var(--app-scale));
+    background: none;
+    border: 1px solid $border-dark;
+    border-radius: calc(3px * var(--app-scale));
+    font-size: calc(14px * var(--app-scale));
+    font-weight: 400;
+    cursor: pointer;
+    transition: 0.4s ease-in-out;
+  }
 }
 
 .product-cards-wrapper--grid-list {
-    display: flex !important;
-    flex-direction: column;
+  display: flex !important;
+  flex-direction: column;
+
+  .product-card {
+    flex-direction: row;
+    width: 100%;
+
+    &__img-wrapper {
+      width: 100%;
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-right: calc(10px * var(--app-scale));
+
+      img {
+        width: 100%;
+      }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .product-cards-wrapper--grid-list {
+    display: grid !important;
+    flex-direction: unset;
 
     .product-card {
-        flex-direction: row;
+      flex-direction: column;
+
+      &__img-wrapper {
         width: 100%;
+        margin-right: 0;
 
-        &__img-wrapper {
-            width: calc(350px * var(--app-scale));
-            position: relative;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin-right: calc(10px * var(--app-scale));
-
-            img {
-                width: calc(350px * var(--app-scale));
-            }
+        img {
+          width: calc(190px * var(--app-scale));
         }
+      }
     }
+  }
 }

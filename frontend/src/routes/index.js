@@ -8,3 +8,4 @@ export { default as Register } from './Register';
 export { default as Login } from './Login';
 export { default as Account } from './Account'
 export { default as Address } from './Address'
+export { default as Team } from './Team'

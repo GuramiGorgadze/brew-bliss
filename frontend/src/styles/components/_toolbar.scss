@@ -8,6 +8,8 @@
     height: calc(50px * var(--app-scale));
     border: 1px $text-subtle solid;
     border-radius: calc(10px * var(--app-scale));
+    width: 100%;
+    box-sizing: border-box;
 
     &__views {
         display: flex;
@@ -21,6 +23,9 @@
         border: none;
         color: $icon-inactive;
         cursor: pointer;
+        display: flex;
+        justify-content: center;
+        align-items: center;
 
         &--active {
             color: $text-primary;
@@ -50,6 +55,34 @@
             outline: none;
             appearance: none;
             text-align: center;
+        }
+    }
+}
+
+@media (max-width: 768px) {
+  .toolbar {
+    display: none;
+  }
+}
+@media (max-width: 900px) {
+    .toolbar {
+        &__views {
+            gap: 10px;
+        }
+
+        &__count {
+            font-size: 12px;
+        }
+
+        &__sort {
+            gap: 5px;
+
+            label {
+                font-size: 12px;
+            }
+            select {
+                width: 125px;
+            }
         }
     }
 }

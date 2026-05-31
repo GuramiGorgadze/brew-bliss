@@ -1,57 +1,96 @@
-@use '../abstracts' as *;
+@use "../abstracts" as *;
 
 .promo-section {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: calc(20px * var(--app-scale));
+  margin-top: calc(100px * var(--app-scale));
+
+  &__card {
+    display: flex;
+    flex-direction: column;
+    height: calc(500px * var(--app-scale));
+    width: calc(360px * var(--app-scale));
+    border-radius: calc(15px * var(--app-scale));
+    background-size: cover;
+    gap: calc(20px * var(--app-scale));
+    padding: calc(30px * var(--app-scale)) calc(15px * var(--app-scale));
+    box-sizing: border-box;
+  }
+
+  &__title-container {
     display: flex;
     align-items: center;
-    justify-content: center;
-    gap: calc(20px * var(--app-scale));
-    margin-top: calc(100px * var(--app-scale));
+  }
 
+  &__tagline {
+    font-size: calc(14px * var(--app-scale));
+  }
+
+  &__wing {
+    height: calc(20px * var(--app-scale));
+    width: calc(20px * var(--app-scale));
+  }
+
+  &__heading {
+    font-size: calc(30px * var(--app-scale));
+    font-weight: 500;
+  }
+
+  &__button {
+    height: calc(50px * var(--app-scale));
+    width: calc(130px * var(--app-scale));
+    border-radius: calc(5px * var(--app-scale));
+    border: calc(1px * var(--app-scale)) solid $border-default;
+    background-color: transparent;
+    font-size: calc(15px * var(--app-scale));
+    transition: 0.5s;
+    outline: none;
+    color: $text-primary;
+
+    &:hover {
+      cursor: pointer;
+      background-color: $color-accent;
+      border: calc(1px * var(--app-scale)) solid $color-accent;
+    }
+  }
+}
+
+@media (max-width: 1440px) {
+  .promo-section {
     &__card {
-        display: flex;
-        flex-direction: column;
-        height: calc(360px * var(--app-scale));
-        width: calc(360px * var(--app-scale));
-        border-radius: calc(15px * var(--app-scale));
-        background-size: cover;
-        gap: calc(20px * var(--app-scale));
-        padding: calc(30px * var(--app-scale)) calc(15px * var(--app-scale));
-        box-sizing: border-box;
-    }
-
-    &__title-container {
-        display: flex;
-        align-items: center;
-    }
-
-    &__tagline {
-        font-size: calc(14px * var(--app-scale));
-    }
-
-    &__wing {
-        height: calc(20px * var(--app-scale));
-        width: calc(20px * var(--app-scale));
+      height: 360px;
+      width: auto;
     }
 
     &__heading {
-        font-size: calc(20px * var(--app-scale));
-        font-weight: 500;
+      font-size: 20px;
+    }
+  }
+}
+
+@media (max-width: 1024px) {
+  .promo-section {
+    &__card {
+      height: 360px;
+      width: 100%;
+      margin: 0 40px;
+      background-position: 0;
     }
 
-    &__button {
-        height: calc(50px * var(--app-scale));
-        width: calc(130px * var(--app-scale));
-        border-radius: calc(5px * var(--app-scale));
-        border: calc(1px * var(--app-scale)) solid $border-default;
-        background-color: transparent;
-        font-size: calc(15px * var(--app-scale));
-        transition: 0.5s;
-        outline: none;
-
-        &:hover {
-            cursor: pointer;
-            background-color: $color-accent;
-            border: calc(1px * var(--app-scale)) solid $color-accent;
-        }
+    &__heading {
+      font-size: 20px;
     }
+  }
+}
+
+@media (max-width: 430px) {
+  .promo-section {
+    
+    &__card {
+      margin: 0 20px;
+    }
+  }
 }

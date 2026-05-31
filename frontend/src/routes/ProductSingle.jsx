@@ -70,7 +70,6 @@ function ProductSingle() {
         <div className="product-page__gallery">
           {singleProduct?.image && (
             <Magnifier
-              width={380}
               zoomFactor={0.9}
               mgBorderWidth={0}
               className="product-page__gallery-image"

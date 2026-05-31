@@ -85,6 +85,12 @@
     }
   }
 
+  .active {
+    background-color: $text-primary;
+    color: $color-white;
+    cursor: default;
+  }
+
   &__details {
     display: flex;
     flex-direction: column;
@@ -121,6 +127,7 @@
     padding: calc(10px * var(--app-scale)) calc(15px * var(--app-scale));
     border: 1px solid #dddddd;
     width: auto;
+    font-size: calc(16px * var(--app-scale));
   }
 
   &__table-header:not(:first-child),
@@ -147,5 +154,52 @@
 
   &__table-row:last-child &__table-data:last-child {
     border-bottom-right-radius: calc(10px * var(--app-scale));
+  }
+}
+
+@media (max-width: 1024px) {
+  .account {
+    &__header {
+      padding: 20px 50px;
+    }
+
+    &__body {
+      padding: 20px 50px;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .account {
+    &__body {
+      flex-direction: column;
+    }
+
+    &__nav {
+      width: 100%;
+    }
+  }
+}
+
+@media (max-width: 430px) {
+  .account {
+    &__header {
+      padding: 20px 20px;
+    }
+
+    &__body {
+      padding: 20px 20px;
+    }
+    &__details-title {
+      font-size: 18px;
+    }
+
+    &__table-header {
+      font-size: 13px;
+    }
+
+    &__table-data {
+      font-size: 14px;
+    }
   }
 }
