@@ -1,9 +1,5 @@
-import React from "react";
+import React from 'react';
 
-const Main = (props) => (
-  <main>
-    {props.children}
-  </main>
-);
+const Main = (props) => <main>{props.children}</main>;
 
 export default Main;

@@ -1,0 +1,180 @@
+@use "../abstracts" as *;
+
+.contact {
+  &__cards {
+    display: flex;
+    width: 100%;
+    justify-content: space-evenly;
+    gap: 20px;
+    padding: 40px;
+    box-sizing: border-box;
+
+    .card {
+      display: flex;
+      flex-direction: column;
+      background-color: $bg-muted;
+      padding: 20px 20px;
+      align-items: center;
+      width: 100%;
+      justify-content: center;
+      gap: 10px;
+      border-radius: 10px;
+
+      &__image-wrapper {
+        background-color: $color-accent;
+        color: $color-white;
+        padding: 8px;
+        border-radius: 10px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        i {
+          font-size: 22px;
+        }
+      }
+
+      &__title {
+        font-size: 18px;
+        font-weight: 400;
+        text-align: center;
+        width: 100%;
+      }
+
+      &__desc {
+        text-align: center;
+
+        &--heading {
+          font-size: 13px;
+          font-weight: 400;
+        }
+
+        &--info {
+          color: $text-subtle;
+          font-size: 14px;
+        }
+      }
+    }
+  }
+
+  .get-in-touch {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding: 0 40px;
+    gap: 20px;
+    padding-bottom: 50px;
+
+    &__left {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+
+      &--title {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+
+        p {
+          font-size: 27px;
+        }
+      }
+
+      &--wing {
+        height: 20px;
+      }
+
+      &--desc {
+        color: $border-default;
+        font-size: 14px;
+      }
+
+      &--input {
+        display: flex;
+        border: $border-default 1px solid;
+        border-radius: 7px;
+        padding: 10px;
+        gap: 10px;
+
+        i {
+          color: $border-default;
+          font-size: 20px;
+        }
+
+        input {
+          border: none;
+          background-color: transparent;
+          width: 100%;
+
+          &::placeholder {
+            font-size: 12px;
+          }
+        }
+      }
+
+      &--btn {
+        background-color: $color-accent;
+        border: none;
+        width: 150px;
+        padding: 15px 20px;
+        border-radius: 5px;
+        cursor: pointer;
+        color: $text-primary;
+        transition: 0.3s ease;
+
+        &:hover {
+          background-color: $text-primary;
+          color: $color-white;
+        }
+      }
+
+      .textarea {
+        background-color: transparent;
+        resize: vertical;
+        max-height: 200px;
+        min-height: 125px;
+        transition: 0.3s ease;
+        color: $border-default;
+
+        &:focus {
+          border: 1px solid $color-accent;
+        }
+      }
+    }
+
+    &__right {
+      width: 100%;
+      iframe {
+        border: none;
+        border-radius: 10px;
+        outline: none;
+        width: 100%;
+      }
+    }
+  }
+}
+
+@media (max-width: 1024px) {
+  .contact {
+    &__cards {
+      flex-wrap: wrap;
+    }
+
+    .get-in-touch {
+      display: flex;
+      flex-direction: column;
+      gap: 70px;
+    }
+  }
+}
+
+@media (max-width: 430px) {
+  .contact {
+    &__cards {
+      padding: 20px;
+    }
+
+    .get-in-touch {
+      padding: 20px;
+    }
+  }
+}

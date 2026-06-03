@@ -18,6 +18,8 @@
 @use 'components/instagramPromo';
 @use 'components/brandCarousel';
 @use 'components/storeFeatures';
+@use 'components/scrollToTopButton';
+@use 'components/imageMagnifier';
 
 @use 'routes/notFound';
 @use 'routes/auth';
@@ -25,3 +27,4 @@
 @use 'routes/productSingle';
 @use 'routes/account';
 @use 'routes/address';
+@use 'routes/contact';

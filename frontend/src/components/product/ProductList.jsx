@@ -1,12 +1,12 @@
-import React, { useState, useMemo } from "react";
-import { Product, Toolbar, FilterSection } from "../components";
-import searchIcon from "../assets/icons/search-icon.svg";
-import useProductFilter from "../hooks/useProductFilter";
-import deleteIcon from "../assets/icons/x-icon.svg";
-import clsx from "clsx";
+import React, { useState, useMemo } from 'react';
+import { Product, Toolbar, FilterSection } from '..';
+import searchIcon from '../../assets/icons/search-icon.svg';
+import useProductFilter from '../../hooks/useProductFilter';
+import deleteIcon from '../../assets/icons/x-icon.svg';
+import clsx from 'clsx';
 
 function ProductList({ originalProducts = [] }) {
-  const [view, setView] = useState("grid-wrap");
+  const [view, setView] = useState('grid-wrap');
   const [filterOpen, setFilterOpen] = useState(false);
   const [filterClosing, setFilterClosing] = useState(false);
 
@@ -27,7 +27,11 @@ function ProductList({ originalProducts = [] }) {
     const categoryCounts = { stout: 0, ipa: 0, alcohol: 0, citrus: 0, lager: 0 };
 
     originalProducts.forEach((p) => {
-      if (p?.available) { inStock++; } else { outOfStock++; }
+      if (p?.available) {
+        inStock++;
+      } else {
+        outOfStock++;
+      }
       p.tags?.forEach((tag) => {
         const normalizedTag = tag.toLowerCase();
         if (normalizedTag in categoryCounts) categoryCounts[normalizedTag]++;
@@ -39,11 +43,11 @@ function ProductList({ originalProducts = [] }) {
 
   const activeFilters = useMemo(() => {
     const active = [];
-    if (filters.search) active.push({ key: "search", label: `Search: "${filters.search}"` });
-    if (filters.category) active.push({ key: "category", label: `Category: ${filters.category}` });
-    if (filters.inStock) active.push({ key: "inStock", label: "In Stock" });
-    if (filters.outOfStock) active.push({ key: "outOfStock", label: "Out of Stock" });
-    if (filters.minPrice || filters.maxPrice) active.push({ key: "price", label: "Price Range" });
+    if (filters.search) active.push({ key: 'search', label: `Search: "${filters.search}"` });
+    if (filters.category) active.push({ key: 'category', label: `Category: ${filters.category}` });
+    if (filters.inStock) active.push({ key: 'inStock', label: 'In Stock' });
+    if (filters.outOfStock) active.push({ key: 'outOfStock', label: 'Out of Stock' });
+    if (filters.minPrice || filters.maxPrice) active.push({ key: 'price', label: 'Price Range' });
     return active;
   }, [filters]);
 
@@ -59,17 +63,28 @@ function ProductList({ originalProducts = [] }) {
           isDrawer={false}
         />
         <div className="filter-section__search">
-          <input type="text" placeholder="Search Here" />
+          <input
+            type="text"
+            placeholder="Search Here"
+          />
           <button className="filter-section__search-btn">
-            <img src={searchIcon} alt="Search" draggable="false" />
+            <img
+              src={searchIcon}
+              alt="Search"
+              draggable="false"
+            />
           </button>
         </div>
       </div>
 
       <div className="product-list-right">
-        <div className="mobile-filter" onClick={() => setFilterOpen(true)}>
+        <div
+          className="mobile-filter"
+          onClick={() => setFilterOpen(true)}
+        >
           <div className="left">
-            <i className="bi bi-funnel"></i><p>FILTER & SORT</p>
+            <i className="bi bi-funnel"></i>
+            <p>FILTER & SORT</p>
           </div>
           <div className="right">
             {originalProducts.length === products.length ? (
@@ -87,7 +102,7 @@ function ProductList({ originalProducts = [] }) {
           originalProducts={originalProducts}
           view={view}
           onViewChange={setView}
-          onSortChange={(sort) => updateFilter("sort", sort)}
+          onSortChange={(sort) => updateFilter('sort', sort)}
         />
 
         <div className="active-filters-badges">
@@ -96,27 +111,42 @@ function ProductList({ originalProducts = [] }) {
               key={filter.key}
               className="filter-badge"
               onClick={() => {
-                if (filter.key === "price") {
-                  updateFilters({ minPrice: "", maxPrice: "" });
+                if (filter.key === 'price') {
+                  updateFilters({ minPrice: '', maxPrice: '' });
                 } else {
                   updateFilter(
                     filter.key,
-                    filter.key === "search" || filter.key === "category" ? "" : false
+                    filter.key === 'search' || filter.key === 'category' ? '' : false
                   );
                 }
               }}
             >
               {filter.label}
-              <button type="button" className="clear-single-filter-btn">
-                <img src={deleteIcon} alt="" />
+              <button
+                type="button"
+                className="clear-single-filter-btn"
+              >
+                <img
+                  src={deleteIcon}
+                  alt=""
+                />
               </button>
             </div>
           ))}
           {activeFilters.length > 0 && (
-            <div className="filter-badge" onClick={resetFilters}>
+            <div
+              className="filter-badge"
+              onClick={resetFilters}
+            >
               Remove All
-              <button type="button" className="clear-single-filter-btn">
-                <img src={deleteIcon} alt="" />
+              <button
+                type="button"
+                className="clear-single-filter-btn"
+              >
+                <img
+                  src={deleteIcon}
+                  alt=""
+                />
               </button>
             </div>
           )}
@@ -124,7 +154,10 @@ function ProductList({ originalProducts = [] }) {
 
         <div className={`product-cards-wrapper product-cards-wrapper--${view}`}>
           {products.map((product) => (
-            <Product key={product._id} product={product} />
+            <Product
+              key={product._id}
+              product={product}
+            />
           ))}
         </div>
 
@@ -132,8 +165,13 @@ function ProductList({ originalProducts = [] }) {
           <div className="nothing-found-wrapper">
             <h2 className="nothing-found-wrapper__title">
               No products found <br />
-              Use fewer filters or{" "}
-              <span className="clear-all-btn" onClick={resetFilters}>clear all</span>
+              Use fewer filters or{' '}
+              <span
+                className="clear-all-btn"
+                onClick={resetFilters}
+              >
+                clear all
+              </span>
             </h2>
           </div>
         )}
@@ -142,13 +180,19 @@ function ProductList({ originalProducts = [] }) {
       {filterOpen && (
         <>
           <div
-            className={clsx("filter-drawer-backdrop", { "filter-drawer-backdrop--closing": filterClosing })}
+            className={clsx('filter-drawer-backdrop', {
+              'filter-drawer-backdrop--closing': filterClosing,
+            })}
             onClick={closeFilter}
           />
-          <button className="filter-drawer-close" onClick={closeFilter}><i class="bi bi-x-lg"></i></button>
+          <button
+            className="filter-drawer-close"
+            onClick={closeFilter}
+          >
+            <i class="bi bi-x-lg"></i>
+          </button>
 
-          <div className={clsx("filter-drawer", { "filter-drawer--closing": filterClosing })}>
-
+          <div className={clsx('filter-drawer', { 'filter-drawer--closing': filterClosing })}>
             <div className="filter-drawer__title">
               <h2>FILTER AND SORT</h2>
             </div>

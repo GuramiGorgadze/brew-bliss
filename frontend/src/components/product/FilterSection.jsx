@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from "react";
-import clsx from "clsx";
-import searchIcon from "../assets/icons/search-icon.svg";
-import promotionBanner from "../assets/promotion-banner.avif";
-import Slider from "rc-slider";
-import "rc-slider/assets/index.css";
+import React, { useState, useEffect } from 'react';
+import clsx from 'clsx';
+import searchIcon from '../../assets/icons/search-icon.svg';
+import promotionBanner from '../../assets/promotion-banner.avif';
+import Slider from 'rc-slider';
+import 'rc-slider/assets/index.css';
 
 function FilterSection({
   updateFilter,
@@ -11,7 +11,7 @@ function FilterSection({
   updateFilters,
   stockCounts,
   categoryCounts,
-  isDrawer
+  isDrawer,
 }) {
   const [availabilityOpen, setAvailabilityOpen] = useState(true);
   const [priceOpen, setPriceOpen] = useState(true);
@@ -23,10 +23,7 @@ function FilterSection({
   ]);
 
   useEffect(() => {
-    setLocalPrice([
-      Number(filters.minPrice) || 0,
-      Number(filters.maxPrice) || 200,
-    ]);
+    setLocalPrice([Number(filters.minPrice) || 0, Number(filters.maxPrice) || 200]);
   }, [filters.minPrice, filters.maxPrice]);
 
   useEffect(() => {
@@ -34,11 +31,11 @@ function FilterSection({
   }, [filters.search]);
 
   const handleSearchSubmit = () => {
-    updateFilter("search", searchQuery.trim());
+    updateFilter('search', searchQuery.trim());
   };
 
   const handleKeyDown = (e) => {
-    if (e.key === "Enter") handleSearchSubmit();
+    if (e.key === 'Enter') handleSearchSubmit();
   };
 
   const handlePrice = (key, value) => {
@@ -56,18 +53,22 @@ function FilterSection({
   const handleCategoryClick = (e, cat) => {
     e.preventDefault();
     if (filters.category === cat) {
-      updateFilter("category", "");
+      updateFilter('category', '');
     } else {
-      updateFilter("category", cat);
+      updateFilter('category', cat);
     }
   };
   return (
-    <div className={clsx("filter-section", {
-      "filter-hidden": !isDrawer,
-    })}>
-      <div className={clsx("filter-section__search", {
-        "filter-hidden": isDrawer,
-      })}>
+    <div
+      className={clsx('filter-section', {
+        'filter-hidden': !isDrawer,
+      })}
+    >
+      <div
+        className={clsx('filter-section__search', {
+          'filter-hidden': isDrawer,
+        })}
+      >
         <input
           type="text"
           placeholder="Search Here"
@@ -79,16 +80,22 @@ function FilterSection({
           className="filter-section__search-btn"
           onClick={handleSearchSubmit}
         >
-          <img src={searchIcon} alt="Search" draggable="false" />
+          <img
+            src={searchIcon}
+            alt="Search"
+            draggable="false"
+          />
         </button>
       </div>
 
-      <div className={clsx("filter-section__categories", {
-        "filter-hidden": isDrawer,
-      })}>
+      <div
+        className={clsx('filter-section__categories', {
+          'filter-hidden': isDrawer,
+        })}
+      >
         <h1>Product Categories</h1>
         <ul>
-          {["stout", "ipa", "alcohol", "citrus", "lager"].map((cat) => {
+          {['stout', 'ipa', 'alcohol', 'citrus', 'lager'].map((cat) => {
             const isActive = filters.category === cat;
             const count = categoryCounts?.[cat] || 0;
 
@@ -96,13 +103,13 @@ function FilterSection({
               <li key={cat}>
                 <a
                   onClick={(e) => handleCategoryClick(e, cat)}
-                  className={clsx("filter-section__category-link", {
-                    "filter-section__category-link__active": isActive,
+                  className={clsx('filter-section__category-link', {
+                    'filter-section__category-link__active': isActive,
                   })}
                 >
                   <span
                     className="filter-section__category-name"
-                    style={{ textTransform: "capitalize" }}
+                    style={{ textTransform: 'capitalize' }}
                   >
                     {cat}
                   </span>
@@ -120,9 +127,7 @@ function FilterSection({
             className="filter-section__toggle"
             onClick={() => setAvailabilityOpen((prev) => !prev)}
           >
-            <span className="filter-section__toggle-icon">
-              {availabilityOpen ? "–" : "+"}
-            </span>
+            <span className="filter-section__toggle-icon">{availabilityOpen ? '–' : '+'}</span>
             <h1>AVAILABILITY</h1>
           </div>
         </div>
@@ -134,7 +139,7 @@ function FilterSection({
                 <input
                   type="checkbox"
                   checked={filters.inStock}
-                  onChange={(e) => updateFilter("inStock", e.target.checked)}
+                  onChange={(e) => updateFilter('inStock', e.target.checked)}
                 />
                 <span className="filter-section__checkmark"></span>
               </label>
@@ -146,7 +151,7 @@ function FilterSection({
                 <input
                   type="checkbox"
                   checked={filters.outOfStock}
-                  onChange={(e) => updateFilter("outOfStock", e.target.checked)}
+                  onChange={(e) => updateFilter('outOfStock', e.target.checked)}
                 />
                 <span className="filter-section__checkmark"></span>
               </label>
@@ -163,9 +168,7 @@ function FilterSection({
             className="filter-section__toggle"
             onClick={() => setPriceOpen((prev) => !prev)}
           >
-            <span className="filter-section__toggle-icon">
-              {priceOpen ? "–" : "+"}
-            </span>
+            <span className="filter-section__toggle-icon">{priceOpen ? '–' : '+'}</span>
             <h1>PRICE</h1>
           </div>
         </div>
@@ -184,11 +187,11 @@ function FilterSection({
                 value={localPrice}
                 onChange={handleSliderChange}
                 onChangeComplete={handleSliderAfterChange}
-                trackStyle={[{ backgroundColor: "#FF9E00", height: 8 }]}
+                trackStyle={[{ backgroundColor: '#FF9E00', height: 8 }]}
                 handleStyle={[
                   {
-                    borderColor: "#FF9E00",
-                    backgroundColor: "#FFF",
+                    borderColor: '#FF9E00',
+                    backgroundColor: '#FFF',
                     height: 16,
                     width: 16,
                     marginLeft: 8,
@@ -197,8 +200,8 @@ function FilterSection({
                     opacity: 1,
                   },
                   {
-                    borderColor: "#FF9E00",
-                    backgroundColor: "#FFF",
+                    borderColor: '#FF9E00',
+                    backgroundColor: '#FFF',
                     height: 16,
                     width: 16,
                     borderRadius: 3,
@@ -207,7 +210,7 @@ function FilterSection({
                     opacity: 1,
                   },
                 ]}
-                railStyle={{ backgroundColor: "#E5E5E5", height: 8 }}
+                railStyle={{ backgroundColor: '#E5E5E5', height: 8 }}
               />
             </div>
 
@@ -218,14 +221,14 @@ function FilterSection({
                 type="number"
                 placeholder="From"
                 value={filters.minPrice}
-                onChange={(e) => handlePrice("minPrice", e.target.value)}
+                onChange={(e) => handlePrice('minPrice', e.target.value)}
               />
               <input
                 className="filter-section__price-input"
                 type="number"
                 placeholder="To"
                 value={filters.maxPrice}
-                onChange={(e) => handlePrice("maxPrice", e.target.value)}
+                onChange={(e) => handlePrice('maxPrice', e.target.value)}
               />
             </div>
           </>
@@ -234,7 +237,10 @@ function FilterSection({
       </div>
 
       <div className="filter-section__promotion">
-        <img src={promotionBanner} alt="" />
+        <img
+          src={promotionBanner}
+          alt=""
+        />
       </div>
     </div>
   );

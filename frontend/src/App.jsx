@@ -1,10 +1,10 @@
-import { useEffect } from "react";
-import * as api from "./api/api.js";
-import "./styles/style.scss";
+import { useEffect } from 'react';
+import * as api from './api/api.js';
+import './styles/style.scss';
 
-import { Navbar, Footer, Main, TopBar } from "./layouts";
-import { LoadingScreen, ProtectedRoute } from "./components";
-import { Routes, Route, useNavigate } from "react-router-dom";
+import { Navbar, Footer, Main, TopBar } from './layouts';
+import { LoadingScreen, ProtectedRoute, ScrollToTopButton } from './components';
+import { Routes, Route } from 'react-router-dom';
 import {
   Home,
   Products,
@@ -16,21 +16,21 @@ import {
   Login,
   Account,
   Address,
-  Team
-} from "./routes";
+  Team,
+} from './routes';
 
 // Hooks
-import useDocumentTitle from "./hooks/useDocumentTitle";
-import useScrollTop from "./hooks/useScrollTop";
-import useAppScale from "./hooks/useAppScale";
-import { useUserData } from "./context/UserContext.jsx";
+import useDocumentTitle from './hooks/useDocumentTitle';
+import useScrollTop from './hooks/useScrollTop';
+import useAppScale from './hooks/useAppScale';
+import { useUserData } from './context/UserContext.jsx';
 
 function App() {
   useDocumentTitle();
   useScrollTop();
   useAppScale();
 
-  const { loggedIn, login, setIsAuthLoading } = useUserData();
+  const { login, setIsAuthLoading } = useUserData();
 
   useEffect(() => {
     const getUserInfo = async () => {
@@ -41,9 +41,9 @@ function App() {
           login(res.data);
         }
       } catch (error) {
-        console.error("Failed to log in", error);
+        alert('Failed to log in', error);
       } finally {
-        setIsAuthLoading(false)
+        setIsAuthLoading(false);
       }
     };
     getUserInfo();
@@ -54,18 +54,43 @@ function App() {
       <TopBar />
       <Navbar />
       <Main>
+        <ScrollToTopButton />
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route
+            path="/"
+            element={<Home />}
+          />
 
-          <Route path="/products" element={<Products />} />
-          <Route path="/products/:id" element={<ProductSingle />} />
+          <Route
+            path="/products"
+            element={<Products />}
+          />
+          <Route
+            path="/products/:id"
+            element={<ProductSingle />}
+          />
 
-          <Route path="/about" element={<About />} />
-          <Route path="/contact" element={<Contact />} />
-          <Route path="/team" element={<Team />} />
+          <Route
+            path="/about"
+            element={<About />}
+          />
+          <Route
+            path="/contact"
+            element={<Contact />}
+          />
+          <Route
+            path="/team"
+            element={<Team />}
+          />
 
-          <Route path="/register" element={<Register />} />
-          <Route path="/login" element={<Login />} />
+          <Route
+            path="/register"
+            element={<Register />}
+          />
+          <Route
+            path="/login"
+            element={<Login />}
+          />
 
           <Route
             path="/account"
@@ -85,7 +110,10 @@ function App() {
             }
           />
 
-          <Route path="*" element={<NotFound />} />
+          <Route
+            path="*"
+            element={<NotFound />}
+          />
         </Routes>
       </Main>
       <Footer />

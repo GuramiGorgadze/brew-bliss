@@ -1,14 +1,12 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React from 'react';
+import { Link } from 'react-router-dom';
 
-function PromoSection2() {
+function SaleBanner() {
   return (
     <div className="promo-section2">
       <div className="promo-section2__left">
         <span className="promo-section2__left__paragraph-wrapper">
-          <h5 className="promo-section2__left__paragraph-wrapper__paragraph">
-            Limited Time only!
-          </h5>
+          <h5 className="promo-section2__left__paragraph-wrapper__paragraph">Limited Time only!</h5>
           <div className="promo-section2__left__paragraph-wrapper__line"></div>
         </span>
 
@@ -25,4 +23,4 @@ function PromoSection2() {
   );
 }
 
-export default PromoSection2;
+export default SaleBanner;

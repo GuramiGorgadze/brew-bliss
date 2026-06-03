@@ -13,23 +13,17 @@ export const LoaderProvider = ({ children }) => {
     setLoading(true);
 
     try {
-      const delayPromise = new Promise((resolve) =>
-        setTimeout(resolve, loadingDelay)
-      );
+      const delayPromise = new Promise((resolve) => setTimeout(resolve, loadingDelay));
 
       const dataPromise = fetchReq();
 
-      const [response] = await Promise.all([
-        dataPromise,
-        delayPromise,
-      ]);
+      const [response] = await Promise.all([dataPromise, delayPromise]);
 
       return response;
     } finally {
       setLoading(false);
     }
   };
-
 
   // hook: useFakeLoader (for routes that simulate loading without fetch)
   const useFakeLoader = () => {

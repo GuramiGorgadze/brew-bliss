@@ -1,0 +1,18 @@
+@use "../abstracts" as *;
+
+.image-magnifier {
+    width: 100%;
+    background-color: $bg-product-image;
+    padding: 20px 0;
+    border-radius: 10px;
+    box-sizing: border-box;
+    
+  &__magnifier {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    border: 1px solid $text-subtle;
+    background-repeat: no-repeat;
+    pointer-events: none;
+  }
+}

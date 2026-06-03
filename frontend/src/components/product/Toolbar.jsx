@@ -1,37 +1,25 @@
-import React from "react";
-import clsx from "clsx";
-import GridWrap from "../assets/icons/grid-wrap.svg?react";
-import GridList from "../assets/icons/grid-list.svg?react";
+import React from 'react';
+import clsx from 'clsx';
+import GridWrap from '../../assets/icons/grid-wrap.svg?react';
+import GridList from '../../assets/icons/grid-list.svg?react';
 
-function Toolbar({
-  count,
-  view,
-  onViewChange,
-  onSortChange,
-  originalProducts,
-}) {
+function Toolbar({ count, view, onViewChange, onSortChange, originalProducts }) {
   return (
     <div className="toolbar">
       <div className="toolbar__views">
         <button
-          className={clsx(
-            "toolbar__view-btn",
-            view === "grid-wrap" && "toolbar__view-btn--active",
-          )}
-          onClick={() => onViewChange("grid-wrap")}
+          className={clsx('toolbar__view-btn', view === 'grid-wrap' && 'toolbar__view-btn--active')}
+          onClick={() => onViewChange('grid-wrap')}
         >
           <GridWrap />
         </button>
         <button
-          className={clsx(
-            "toolbar__view-btn",
-            view === "grid-list" && "toolbar__view-btn--active",
-          )}
-          onClick={() => onViewChange("grid-list")}
+          className={clsx('toolbar__view-btn', view === 'grid-list' && 'toolbar__view-btn--active')}
+          onClick={() => onViewChange('grid-list')}
         >
           <GridList />
         </button>
-        {originalProducts.length == count && (
+        {originalProducts.length === count && (
           <span className="toolbar__count">{count} Products</span>
         )}
         {originalProducts.length > count && (

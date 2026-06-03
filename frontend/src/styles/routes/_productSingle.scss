@@ -18,13 +18,6 @@
   &__gallery {
     position: sticky;
     top: calc(80px * var(--app-scale));
-    &-image {
-      background-color: $bg-muted;
-      border-radius: calc(15px * var(--app-scale));
-      padding: calc(20px * var(--app-scale));
-      box-sizing: border-box;
-      display: block;
-    }
   }
 
   &__details {

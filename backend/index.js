@@ -1,29 +1,31 @@
-import express from 'express'
-import cors from 'cors'
-import dotenv from 'dotenv'
-import connectDB from './db/connection.js'
-import cookieParser from 'cookie-parser';
-import ProductsRouter from './routes/products.js'
-import UsersRouter from './routes/users.js'
+import express from "express";
+import dotenv from "dotenv";
+import cookieParser from "cookie-parser";
+import connectDB from "./db/connection.js";
+import ProductsRouter from "./routes/products.js";
+import UsersRouter from "./routes/users.js";
+import {
+  helmetMiddleware,
+  corsMiddleware,
+  apiLimiter,
+} from "./middlewares/security.js";
+import { compressionMiddleware } from "./middlewares/compression.js";
 
-const app = express()
+dotenv.config();
 
-dotenv.config()
+const app = express();
 
-app.use(express.json())
-app.use(cookieParser()); 
+app.use(helmetMiddleware);
+app.use(corsMiddleware);
+app.use(compressionMiddleware);
+app.use(express.json());
+app.use(cookieParser());
+app.use("/api", apiLimiter);
 
-app.use(cors({
-    origin: (origin, callback) => {
-        callback(null, origin || '*'); 
-    },    
-    credentials: true 
-}));
-
-app.use('/api/products', ProductsRouter)
-app.use('/api/users', UsersRouter)
+app.use("/api/products", ProductsRouter);
+app.use("/api/users", UsersRouter);
 
 app.listen(3000, () => {
-    console.log('server has started')
-    connectDB(process.env.CONNECTION_STRING)
-})
+  console.log("server has started");
+  connectDB(process.env.CONNECTION_STRING);
+});

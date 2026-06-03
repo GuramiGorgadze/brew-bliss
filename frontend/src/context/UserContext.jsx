@@ -14,7 +14,7 @@ const UserProvider = ({ children }) => {
   const login = (userData) => {
     setUserData(userData);
     setLoggedIn(true);
-  }  
+  };
 
   const logout = () => {
     setUserData(null);
@@ -22,7 +22,9 @@ const UserProvider = ({ children }) => {
   };
 
   return (
-    <UserContext.Provider value={{ loggedIn, userData, login, logout, isAuthLoading, setIsAuthLoading }}>
+    <UserContext.Provider
+      value={{ loggedIn, userData, login, logout, isAuthLoading, setIsAuthLoading }}
+    >
       {children}
     </UserContext.Provider>
   );

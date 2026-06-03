@@ -66,6 +66,23 @@
       }
     }
   }
+
+  &__doc {
+    display: none;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: $color-accent;
+    height: 50px;
+    justify-content: space-evenly;
+    align-items: center;
+
+    a {
+      color: $color-white;
+      font-size: 24px;
+    }
+  }
 }
 
 .drawer-backdrop {
@@ -156,6 +173,10 @@
   padding-top: calc(80px * var(--app-scale));
   animation: overlayIn 0.3s ease forwards;
   z-index: 9999;
+
+  &__close {
+    color: $text-primary;
+  }
 
   &--closing {
     animation: overlayOut 0.3s ease forwards;
@@ -277,6 +298,10 @@
 
     &__mobile-hidden {
       display: none;
+    }
+
+    &__doc {
+      display: flex;
     }
   }
 }

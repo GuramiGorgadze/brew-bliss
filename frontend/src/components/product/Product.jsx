@@ -1,6 +1,6 @@
-import React from "react";
-import { useNavigate } from "react-router-dom";
-import clsx from "clsx";
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
+import clsx from 'clsx';
 
 function Product({ product }) {
   const image = product.image;
@@ -24,11 +24,14 @@ function Product({ product }) {
       onClick={() => navigate(`/products/${product._id}`)}
     >
       <div className="product-card__img-wrapper">
-        {image && <img src={product.image} alt={product.title} />}
-
-        {discountPercent > 0 && (
-          <span className="product-card__discount">-{discountPercent}%</span>
+        {image && (
+          <img
+            src={product.image}
+            alt={product.title}
+          />
         )}
+
+        {discountPercent > 0 && <span className="product-card__discount">-{discountPercent}%</span>}
       </div>
 
       <div className="product-card-info-wrapper">
@@ -42,31 +45,24 @@ function Product({ product }) {
               {Array.from({ length: 5 }, (_, i) => (
                 <i
                   key={i}
-                  className={clsx("bi", {
-                    "bi-star-fill": i < Math.floor(product?.rating),
-                    "bi-star-half":
-                      i === Math.floor(product?.rating) &&
-                      product?.rating % 1 >= 0.5,
-                    "bi-star":
+                  className={clsx('bi', {
+                    'bi-star-fill': i < Math.floor(product?.rating),
+                    'bi-star-half': i === Math.floor(product?.rating) && product?.rating % 1 >= 0.5,
+                    'bi-star':
                       i >= Math.floor(product?.rating) &&
-                      !(
-                        i === Math.floor(product?.rating) &&
-                        product?.rating % 1 >= 0.5
-                      ),
+                      !(i === Math.floor(product?.rating) && product?.rating % 1 >= 0.5),
                   })}
                 />
               ))}
-              ({product.reviews?.length || 0}{" "}
-              {product.reviews?.length === 1 ? "Review" : "Reviews"})
+              ({product.reviews?.length || 0} {product.reviews?.length === 1 ? 'Review' : 'Reviews'}
+              )
             </p>
           </div>
 
           <div className="product-card__price">
             ${price.toFixed(2)}
             {hasDiscount && (
-              <span className="product-card__old-price">
-                ${compareAtPrice.toFixed(2)}
-              </span>
+              <span className="product-card__old-price">${compareAtPrice.toFixed(2)}</span>
             )}
           </div>
         </div>

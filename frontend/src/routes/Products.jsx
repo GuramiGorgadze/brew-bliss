@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useLoader } from '../context/LoaderContext';
-import { InstagramPromo, PageTitle } from '../components';
+import { InstagramCarousel, PageTitle } from '../components';
 import * as api from '../api/api';
-import ProductList from '../components/ProductList';
+import { ProductList } from '../components';
 
 function Products() {
   const [originalProducts, setOriginalProducts] = useState([]);
@@ -11,7 +11,7 @@ function Products() {
   useEffect(() => {
     const fetchProductsData = async () => {
       const data = await useDataLoader(api.getProducts);
-      
+
       if (data?.data) {
         setOriginalProducts(data.data);
       } else if (data.err) {
@@ -26,7 +26,7 @@ function Products() {
     <>
       <PageTitle pageName="Products" />
       <ProductList originalProducts={originalProducts} />
-      <InstagramPromo />
+      <InstagramCarousel />
     </>
   );
 }

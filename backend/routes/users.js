@@ -4,13 +4,14 @@ import {
   loginUser,
   getToken,
   getUser,
-  updateAddress
+  updateAddress,
 } from "../controllers/users.js";
+import { authLimiter } from "../middlewares/security.js";
 
 const UsersRouter = express.Router();
 
-UsersRouter.post("/register", registerUser);
-UsersRouter.post("/login", loginUser);
+UsersRouter.post("/register", authLimiter, registerUser);
+UsersRouter.post("/login", authLimiter, loginUser);
 UsersRouter.post("/get-token", getToken);
 UsersRouter.get("/get", getUser);
 UsersRouter.put("/address", updateAddress);
