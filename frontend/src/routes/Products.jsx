@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useLoader } from '../context/LoaderContext';
-import { InstagramCarousel, PageTitle } from '../components';
+import { InstagramCarousel, PageTitle, ProductList } from '../components';
 import * as api from '../api/api';
-import { ProductList } from '../components';
 
 function Products() {
   const [originalProducts, setOriginalProducts] = useState([]);

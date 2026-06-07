@@ -19,15 +19,13 @@ function Product({ product }) {
   const navigate = useNavigate();
 
   return (
-    <div
-      className="product-card"
-      onClick={() => navigate(`/products/${product._id}`)}
-    >
+    <div className="product-card">
       <div className="product-card__img-wrapper">
         {image && (
           <img
             src={product.image}
             alt={product.title}
+            onClick={() => navigate(`/products/${product._id}`)}
           />
         )}
 
@@ -36,7 +34,12 @@ function Product({ product }) {
 
       <div className="product-card-info-wrapper">
         <div className="product-card__info">
-          <h3 className="product-card__title">{product.title}</h3>
+          <h3
+            className="product-card__title"
+            onClick={() => navigate(`/products/${product._id}`)}
+          >
+            {product.title}
+          </h3>
 
           <p className="product-card__size">{variant?.size}</p>
 

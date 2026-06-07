@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useUserData } from '../context/UserContext.jsx';
 import { PageTitle, InstagramCarousel } from '../components';
+import * as api from '../api/api';
 import { useLoader } from '../context/LoaderContext';
 import Facebook from '../assets/icons/facebook-icon.svg';
 import Twitter from '../assets/icons/twitter-icon.svg';
@@ -17,7 +18,7 @@ function Contact() {
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
   const [message, setMessage] = useState('');
-
+  const [status, setStatus] = useState('normal');
   useEffect(() => {
     useFakeLoader();
   }, []);
@@ -35,6 +36,27 @@ function Contact() {
       if (userData.address?.phone) setPhone(userData.address.phone);
     }
   }, [userData]);
+
+  const handleSubmit = async () => {
+    if (!message.trim()) return;
+    setStatus('loading');
+    try {
+      await api.contact({ email, message });
+      setStatus('success');
+      setMessage('');
+      setTimeout(() => setStatus('normal'), 4000);
+    } catch (err) {
+      setStatus('error');
+      setTimeout(() => setStatus('normal'), 4000);
+    }
+  };
+
+  const buttonLabel = {
+    normal: 'Send Message',
+    loading: 'Sending...',
+    success: 'Message Sent!',
+    error: 'Failed. Try Again',
+  }[status];
 
   return (
     <div className="contact">
@@ -200,9 +222,34 @@ function Contact() {
             placeholder="Write your message..."
             value={message}
             onChange={(e) => setMessage(e.target.value)}
+            maxLength={500}
           />
 
-          <button className="get-in-touch__left--btn">Send Message</button>
+          <button
+            className={`get-in-touch__left--btn ${status}`}
+            onClick={handleSubmit}
+            disabled={status === 'loading' || status === 'success'}
+          >
+            {status === 'loading' && (
+              <i
+                className="bi bi-arrow-repeat"
+                style={{ marginRight: '8px' }}
+              ></i>
+            )}
+            {status === 'success' && (
+              <i
+                className="bi bi-check-lg"
+                style={{ marginRight: '8px' }}
+              ></i>
+            )}
+            {status === 'error' && (
+              <i
+                className="bi bi-x-lg"
+                style={{ marginRight: '8px' }}
+              ></i>
+            )}
+            {buttonLabel}
+          </button>
         </div>
 
         <div className="get-in-touch__right">

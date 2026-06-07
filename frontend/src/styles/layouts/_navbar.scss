@@ -1,4 +1,4 @@
-@use "../abstracts" as *;
+@use '../abstracts' as *;
 
 .navbar {
   display: flex;
@@ -10,9 +10,12 @@
   position: sticky;
   top: 0;
   z-index: 50;
-  box-shadow: 10px 10px 60px -29px rgba(0, 0, 0, 0.45);
-  -webkit-box-shadow: 10px 10px 60px -29px rgba(0, 0, 0, 0.45);
-  -moz-box-shadow: 10px 10px 60px -29px rgba(0, 0, 0, 0.45);
+  box-shadow: calc(10px * var(--app-scale)) calc(10px * var(--app-scale))
+    calc(60px * var(--app-scale)) calc(-29px * var(--app-scale)) rgba(0, 0, 0, 0.45);
+  -webkit-box-shadow: calc(10px * var(--app-scale)) calc(10px * var(--app-scale))
+    calc(60px * var(--app-scale)) calc(-29px * var(--app-scale)) rgba(0, 0, 0, 0.45);
+  -moz-box-shadow: calc(10px * var(--app-scale)) calc(10px * var(--app-scale))
+    calc(60px * var(--app-scale)) calc(-29px * var(--app-scale)) rgba(0, 0, 0, 0.45);
 
   &__hamburger {
     display: none;
@@ -59,12 +62,42 @@
       border: none;
       cursor: pointer;
       user-select: none;
+      position: relative;
 
       img {
         height: calc(24px * var(--app-scale));
         width: calc(24px * var(--app-scale));
       }
     }
+  }
+
+  &__user-check {
+    background-color: #419b45;
+    position: absolute;
+    top: calc(-4px * var(--app-scale));
+    right: calc(-4px * var(--app-scale));
+    border-radius: 50%;
+    color: $color-white;
+    font-size: calc(10px * var(--app-scale));
+    padding: calc(2px * var(--app-scale));
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &__cart-badge {
+    background-color: $color-accent;
+    position: absolute;
+    top: calc(-4px * var(--app-scale));
+    right: calc(-4px * var(--app-scale));
+    border-radius: 50%;
+    color: $color-white;
+    font-size: calc(12px * var(--app-scale));
+    height: 14px;
+    width: 14px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 
   &__doc {
@@ -74,13 +107,13 @@
     left: 0;
     width: 100%;
     background-color: $color-accent;
-    height: 50px;
+    height: calc(50px * var(--app-scale));
     justify-content: space-evenly;
     align-items: center;
 
     a {
       color: $color-white;
-      font-size: 24px;
+      font-size: calc(24px * var(--app-scale));
     }
   }
 }
@@ -101,12 +134,11 @@
   position: fixed;
   top: 0;
   left: 0;
-  width: 300px;
+  width: calc(300px * var(--app-scale));
   height: 100%;
   background-color: $bg-navbar;
   z-index: 999;
-  padding: calc(60px * var(--app-scale)) calc(20px * var(--app-scale))
-    calc(20px * var(--app-scale));
+  padding: calc(60px * var(--app-scale)) calc(20px * var(--app-scale)) calc(20px * var(--app-scale));
   animation: drawerIn 0.3s ease forwards;
 
   &--closing {
@@ -125,26 +157,26 @@
     transition: 0.3s;
     color: $color-accent;
     display: flex;
-    gap: 5px;
+    gap: calc(5px * var(--app-scale));
 
     i {
       display: flex;
       justify-content: center;
       align-items: center;
-      font-size: 16px;
+      font-size: calc(16px * var(--app-scale));
     }
   }
 
   &__input {
-    margin: 0 10px;
+    margin: 0 calc(10px * var(--app-scale));
   }
 
   &__links {
     display: flex;
     flex-direction: column;
-    gap: 15px;
-    margin: 0 15px;
-    margin-top: 30px;
+    gap: calc(15px * var(--app-scale));
+    margin: 0 calc(15px * var(--app-scale));
+    margin-top: calc(30px * var(--app-scale));
   }
 
   a {
@@ -153,11 +185,11 @@
 
   &__link {
     color: $text-primary;
-    font-size: 14px;
+    font-size: calc(14px * var(--app-scale));
   }
 
   &__divider {
-    height: 1px;
+    height: calc(1px * var(--app-scale));
     background-color: $border-subtle;
     width: 100%;
   }
@@ -214,7 +246,7 @@
 
   &__input-wrapper {
     display: flex;
-    border: 1px solid $border-subtle;
+    border: calc(1px * var(--app-scale)) solid $border-subtle;
     border-radius: calc(2px * var(--app-scale));
 
     input {

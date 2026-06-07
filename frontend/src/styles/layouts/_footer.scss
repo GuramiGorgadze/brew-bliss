@@ -1,4 +1,4 @@
-@use "../abstracts" as *;
+@use '../abstracts' as *;
 
 .footer {
   background-color: $border-subtle;
@@ -42,6 +42,7 @@
 
     .grey {
       color: $text-slogan;
+      text-transform: none;
     }
   }
 

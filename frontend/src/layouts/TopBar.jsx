@@ -15,7 +15,7 @@ function TopBar() {
       </div>
 
       <div className="top-bar__promo">
-        <p>Free Shipping on Orders of $49+</p>
+        <p>Free Shipping on Orders of $500+</p>
       </div>
 
       <div className="top-bar__region">

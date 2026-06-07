@@ -1,4 +1,4 @@
-@use "../abstracts" as *;
+@use '../abstracts' as *;
 
 .product-list {
   display: flex;
@@ -83,10 +83,7 @@
 
   .product-cards-wrapper {
     display: grid;
-    grid-template-columns: repeat(
-      auto-fill,
-      minmax(calc(200px * var(--app-scale)), 1fr)
-    );
+    grid-template-columns: repeat(auto-fill, minmax(calc(200px * var(--app-scale)), 1fr));
     gap: calc(25px * var(--app-scale)) calc(20px * var(--app-scale));
     width: 100%;
   }
@@ -186,6 +183,10 @@
   }
 }
 
+.mobile-show {
+  display: none;
+}
+
 @keyframes filterOverlayIn {
   from {
     opacity: 0;
@@ -234,9 +235,13 @@
 
       .active-filters-badges {
         .filter-badge {
-          max-width: 100%; 
+          max-width: 100%;
         }
       }
     }
+  }
+
+  .mobile-show {
+    display: flex;
   }
 }

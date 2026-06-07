@@ -5,10 +5,15 @@
     padding: 0;
     font-family: 'Nunito Sans', sans-serif;
     outline: none;
+    text-transform: capitalize;
 }
 
 body {
   background-color: #f3f9ec;
+}
+
+input {
+  text-transform: none;
 }
 
 ::-webkit-scrollbar {

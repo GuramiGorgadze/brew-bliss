@@ -1,6 +1,7 @@
 import Users from "../models/users.js";
 import jwt from "jsonwebtoken";
 import bcrypt from "bcrypt";
+import { sendResetPasswordMail, sendContactMail, sendNewsletterMail } from "../utils/mailSender.js";
 
 export const registerUser = async (req, res) => {
   try {
@@ -82,6 +83,15 @@ export const loginUser = async (req, res) => {
   }
 };
 
+export const logoutUser = (req, res) => {
+  try {
+    res.clearCookie("token");
+    return res.status(200).json({ data: "User has logged out" });
+  } catch (err) {
+    return res.status(500).json({ err: "Something went wrong" });
+  }
+};
+
 export const getToken = (req, res) => {
   try {
     const token = req.cookies.token;
@@ -112,12 +122,6 @@ export const getUser = async (req, res) => {
   }
 };
 
-//helper functions
-const returnAllExceptPassword = (user) => {
-  const { password, ...safeUser } = user._doc || user;
-  return safeUser;
-};
-
 export const updateAddress = async (req, res) => {
   try {
     const token = req.cookies.token;
@@ -134,4 +138,121 @@ export const updateAddress = async (req, res) => {
     console.error(error);
     return res.status(500).json({ message: "Server error" });
   }
+};
+
+export const addToCart = async (req, res) => {
+  try {
+    const token = req.cookies.token;
+    const decoded = jwt.verify(token, process.env.JWT_SECRET_KEY);
+    const { productId, variantSize, quantity } = req.body;
+
+    const user = await Users.findById(decoded.id);
+
+    const existingItem = user.cart.find(
+      (item) =>
+        item.productId === productId && item.variantSize === variantSize,
+    );
+
+    if (existingItem) {
+      existingItem.quantity += quantity;
+    } else {
+      user.cart.push({ productId, variantSize, quantity });
+    }
+
+    await user.save();
+    return res.status(200).json({ data: user.cart });
+  } catch (err) {
+    return res.status(500).json({ err: "Something went wrong" });
+  }
+};
+
+export const removeFromCart = async (req, res) => {
+  try {
+    const token = req.cookies.token;
+    const decoded = jwt.verify(token, process.env.JWT_SECRET_KEY);
+    const { productId, variantSize } = req.body;
+
+    const user = await Users.findByIdAndUpdate(
+      decoded.id,
+      { $pull: { cart: { productId, variantSize } } },
+      { new: true },
+    ).select("-password");
+
+    return res.status(200).json({ data: user.cart });
+  } catch (err) {
+    return res.status(500).json({ err: "Something went wrong" });
+  }
+};
+
+export const getCart = async (req, res) => {
+  try {
+    const token = req.cookies.token;
+    const decoded = jwt.verify(token, process.env.JWT_SECRET_KEY);
+
+    const user = await Users.findById(decoded.id).populate({
+      path: "cart.productId",
+      model: "Product",
+      select: "title image variants tags",
+    });
+
+    return res.status(200).json({ data: user.cart });
+  } catch (err) {
+    return res.status(500).json({ err: "Something went wrong" });
+  }
+};
+
+export const updateCartQuantity = async (req, res) => {
+  try {
+    const token = req.cookies.token;
+    const decoded = jwt.verify(token, process.env.JWT_SECRET_KEY);
+    const { productId, variantSize, quantity } = req.body;
+
+    const user = await Users.findById(decoded.id);
+
+    const item = user.cart.find(
+      (item) =>
+        item.productId.toString() === productId &&
+        item.variantSize === variantSize,
+    );
+
+    if (!item) {
+      return res.status(404).json({ err: "Item not found in cart" });
+    }
+
+    item.quantity = Math.max(1, quantity);
+    await user.save();
+
+    return res.status(200).json({ data: user.cart });
+  } catch (err) {
+    console.error(err);
+    return res.status(500).json({ err: "Something went wrong" });
+  }
+};
+
+export const contact = async (req, res) => {
+  try {
+    const { email, message } = req.body;
+    await sendContactMail(email, message);
+    return res.status(200).json({ data: "Email has sent!" });
+  } catch (err) {
+    return res.status(500).json({ err: "Something went wrong" });
+  }
+};
+
+export const newsletter = async (req, res) => {
+  try {
+    const { email } = req.body;
+    if (!email) return res.status(400).json({ message: "Email is required" });
+    await sendNewsletterMail(email);
+    return res.status(200).json({ data: "Subscribed!" });
+  } catch (err) {
+    console.error(err);
+    return res.status(500).json({ err: "Something went wrong" });
+  }
+};
+
+//helper functions
+const returnAllExceptPassword = (user) => {
+  const { password, ...safeUser } = user._doc || user;
+  return safeUser;
 };

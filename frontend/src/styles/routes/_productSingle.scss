@@ -1,4 +1,4 @@
-@use "../abstracts" as *;
+@use '../abstracts' as *;
 
 .product-page {
   display: flex;
@@ -55,10 +55,42 @@
   }
 
   &__shipping {
-    display: flex;
-    justify-content: center;
-    align-items: center;
     margin-top: calc(30px * var(--app-scale));
+
+    &-track {
+      position: relative;
+      height: calc(25px * var(--app-scale));
+      display: flex;
+      align-items: center;
+    }
+
+    &-line {
+      position: absolute;
+      left: 0;
+      right: 0;
+      height: calc(5px * var(--app-scale));
+      background-color: #f2f2f6;
+      border-radius: calc(3px * var(--app-scale));
+      overflow: hidden;
+
+      &-fill {
+        height: 100%;
+        background-color: $color-accent;
+        border-radius: calc(3px * var(--app-scale));
+        transition: width 0.4s ease;
+      }
+    }
+
+    &-icon-wrapper {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      transition: left 0.4s ease;
+      z-index: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
 
     &-icon {
       height: calc(25px * var(--app-scale));
@@ -67,12 +99,6 @@
       border-radius: 50%;
       padding: calc(2px * var(--app-scale));
       box-sizing: border-box;
-    }
-
-    &-line {
-      height: calc(5px * var(--app-scale));
-      width: 100%;
-      background-color: #f2f2f6;
     }
   }
 
@@ -304,7 +330,7 @@
 
       &:hover {
         background-color: $color-accent;
-        transition: 0.3 ease;
+        transition: 0.3s ease;
       }
     }
 

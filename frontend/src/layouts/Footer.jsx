@@ -6,6 +6,7 @@ import Twitter from '../assets/icons/twitter-icon.svg';
 import Instagram from '../assets/icons/instagram-icon.svg';
 import TikTok from '../assets/icons/tiktok-icon.svg';
 import { useUserData } from '../context/UserContext.jsx';
+import * as api from '../api/api';
 import Amazon from '../assets/payments/amazon.svg';
 import ApplePay from '../assets/payments/apple-pay.svg';
 import Mastercard from '../assets/payments/mastercard.svg';
@@ -16,7 +17,7 @@ function Footer() {
   const { userData } = useUserData();
   const [email, setEmail] = useState('');
   const [openSection, setOpenSection] = useState(null);
-
+  const [subStatus, setSubStatus] = useState('normal');
   useEffect(() => {
     if (userData?.email) {
       setEmail(userData.email);
@@ -26,6 +27,26 @@ function Footer() {
   const toggleSection = (section) => {
     setOpenSection((prev) => (prev === section ? null : section));
   };
+
+  const handleSubscribe = async () => {
+    if (!email.trim()) return;
+    setSubStatus('loading');
+    try {
+      await api.newsletter(email);
+      setSubStatus('success');
+      setTimeout(() => setSubStatus('normal'), 4000);
+    } catch {
+      setSubStatus('error');
+      setTimeout(() => setSubStatus('normal'), 4000);
+    }
+  };
+
+  const subLabel = {
+    normal: 'Subscribe',
+    loading: 'Subscribing...',
+    success: 'Subscribed!',
+    error: 'Failed. Try Again',
+  }[subStatus];
 
   return (
     <footer className="footer">
@@ -125,7 +146,13 @@ function Footer() {
                 onChange={(e) => setEmail(e.target.value)}
               />
             </div>
-            <button className="footer__newsletter-btn">Subscribe</button>
+            <button
+              className="footer__newsletter-btn"
+              onClick={handleSubscribe}
+              disabled={subStatus === 'loading' || subStatus === 'success'}
+            >
+              {subLabel}
+            </button>
           </div>
           <h5 className="footer__newsletter-follow">Follow Us</h5>
           <div className="footer__socials">
@@ -289,7 +316,13 @@ function Footer() {
                   onChange={(e) => setEmail(e.target.value)}
                 />
               </div>
-              <button className="footer__newsletter-btn">Subscribe</button>
+              <button
+                className="footer__newsletter-btn"
+                onClick={handleSubscribe}
+                disabled={subStatus === 'loading' || subStatus === 'success'}
+              >
+                {subLabel}
+              </button>
             </div>
             <h5 className="footer__newsletter-follow">Follow Us</h5>
             <div className="footer__socials">

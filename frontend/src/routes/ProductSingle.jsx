@@ -4,6 +4,7 @@ import { useLoader } from '../context/LoaderContext';
 import { useParams } from 'react-router-dom';
 import * as api from '../api/api';
 import ShippingIcon from '../assets/icons/shipping-icon-white.svg';
+import { useNavigate } from 'react-router-dom';
 import clsx from 'clsx';
 import DeliveryIcon from '../assets/icons/delivery-icon.svg';
 import ReturnIcon from '../assets/icons/return-icon-single.svg';
@@ -14,15 +15,19 @@ import TikTok from '../assets/icons/tiktok-icon.svg';
 
 function ProductSingle() {
   const [singleProduct, setSingleProduct] = useState(null);
-  const [selectedVariant, setSelectedVariant] = useState(singleProduct?.variants[0]);
+  const [selectedVariant, setSelectedVariant] = useState(null);
   const [quantity, setQuantity] = useState(1);
+  const [cartTotal, setCartTotal] = useState(0);
   const { useDataLoader } = useLoader();
   const { id } = useParams();
+  const FreeShipping = 500;
+  const [cartStatus, setCartStatus] = useState('');
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchSingleProductData = async () => {
       const data = await useDataLoader(() => api.getProductById(id));
-
       if (data?.data) {
         setSingleProduct(data.data);
         setSelectedVariant(data.data.variants.find((v) => v.available) ?? data.data.variants[0]);
@@ -30,29 +35,46 @@ function ProductSingle() {
         setError(data.err);
       }
     };
-
     fetchSingleProductData();
   }, [id]);
+
+  useEffect(() => {
+    const fetchCartTotal = async () => {
+      const data = await useDataLoader(api.getCart);
+      if (data?.data) {
+        const total = data.data.reduce((sum, item) => {
+          const variant = item.productId.variants.find((v) => v.size === item.variantSize);
+          return sum + (variant?.price ?? 0) * item.quantity;
+        }, 0);
+        setCartTotal(total);
+      }
+    };
+    fetchCartTotal();
+  }, []);
+
+  const combinedTotal = cartTotal + (selectedVariant?.price ?? 0) * quantity;
+  const remaining = Math.max(0, FreeShipping - combinedTotal);
+  const progress = Math.min(100, (combinedTotal / FreeShipping) * 100);
 
   const getDeliveryRange = () => {
     const start = new Date();
     const end = new Date();
     start.setDate(start.getDate() + 3);
     end.setDate(end.getDate() + 7);
-
     const fmt = (date) => date.toLocaleDateString('en-US', { month: 'short', day: '2-digit' });
     return `${fmt(start)} - ${fmt(end)}`;
   };
 
-  const handleAddToCart = () => {
-    // const cartItem = {
-    //   id: singleProduct._id,
-    //   title: singleProduct.title,
-    //   tags: singleProduct.tags,
-    //   image: singleProduct.image,
-    //   variant: selectedVariant,
-    //   quantity,
-    // };
+  const handleAddToCart = async () => {
+    try {
+      setCartStatus('loading');
+      await api.addToCart(singleProduct._id, selectedVariant.size, quantity);
+      setCartStatus('');
+      navigate(0);
+    } catch (err) {
+      setCartStatus('');
+      alert('Failed to add to cart:', err);
+    }
   };
 
   return (
@@ -71,6 +93,7 @@ function ProductSingle() {
 
         <div className="product-page__details">
           <h1 className="product-page__title">{singleProduct?.title}</h1>
+
           <p className="product-page__reviews">
             {Array.from({ length: 5 }, (_, i) => (
               <i
@@ -94,17 +117,38 @@ function ProductSingle() {
           </h6>
 
           <div className="product-page__shipping">
-            <img
-              className="product-page__shipping-icon"
-              src={ShippingIcon}
-              alt=""
-            />
-            <div className="product-page__shipping-line"></div>
+            <div className="product-page__shipping-track">
+              <div className="product-page__shipping-line">
+                <div
+                  className="product-page__shipping-line-fill"
+                  style={{ width: `${progress}%` }}
+                />
+              </div>
+              <div
+                className="product-page__shipping-icon-wrapper"
+                style={{ left: `calc(${progress}% - 12.5px)` }}
+              >
+                <img
+                  className="product-page__shipping-icon"
+                  src={ShippingIcon}
+                  alt=""
+                />
+              </div>
+            </div>
           </div>
 
           <h5 className="product-page__promo">
-            Spend ${Math.max(0, 500 - selectedVariant?.price * quantity).toFixed(2)} more and get{' '}
-            <span className="product-page__promo-highlight">Free Shipping !</span>
+            {remaining === 0 ? (
+              <>
+                Congratulations! You've got{' '}
+                <span className="product-page__promo-highlight">Free Shipping!</span>
+              </>
+            ) : (
+              <>
+                Spend ${remaining.toFixed(2)} More And Get{' '}
+                <span className="product-page__promo-highlight">Free Shipping!</span>
+              </>
+            )}
           </h5>
 
           <p className="product-page__description-label">Description</p>
@@ -115,7 +159,6 @@ function ProductSingle() {
               Bottle Size:{' '}
               <span className="product-page__size-value">{selectedVariant?.size ?? '—'}</span>
             </h5>
-
             <div className="product-page__size-options">
               {singleProduct?.variants.map((variant) => (
                 <button
@@ -173,8 +216,10 @@ function ProductSingle() {
               <button
                 className="product-page__btn product-page__btn--dark"
                 onClick={handleAddToCart}
+                disabled={cartStatus !== ''}
               >
-                Add to Cart
+                {cartStatus === 'loading' && 'Adding...'}
+                {cartStatus === '' && 'Add to Cart'}
               </button>
               <button className="product-page__btn product-page__btn--primary">Buy it now</button>
             </div>
@@ -247,7 +292,7 @@ function ProductSingle() {
               />
             </a>
             <a
-              href="https://tikok.com/"
+              href="https://tiktok.com/"
               target="blank"
             >
               <img

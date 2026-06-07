@@ -128,6 +128,7 @@
     border: 1px solid #dddddd;
     width: auto;
     font-size: calc(16px * var(--app-scale));
+    text-transform: none;
   }
 
   &__table-header:not(:first-child),

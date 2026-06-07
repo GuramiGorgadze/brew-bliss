@@ -9,3 +9,4 @@ export { default as Login } from './Login';
 export { default as Account } from './Account';
 export { default as Address } from './Address';
 export { default as Team } from './Team';
+export { default as Cart } from './Cart';

@@ -1,4 +1,5 @@
 import { createContext, useState, useContext } from 'react';
+import { logoutUser as logoutApi } from '../api/api.js';
 
 const UserContext = createContext({
   userData: null,
@@ -16,7 +17,8 @@ const UserProvider = ({ children }) => {
     setLoggedIn(true);
   };
 
-  const logout = () => {
+  const logout = async () => {
+    await logoutApi();
     setUserData(null);
     setLoggedIn(false);
   };

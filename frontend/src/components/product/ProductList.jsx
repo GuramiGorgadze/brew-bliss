@@ -62,7 +62,7 @@ function ProductList({ originalProducts = [] }) {
           categoryCounts={filterStats.categoryCounts}
           isDrawer={false}
         />
-        <div className="filter-section__search">
+        <div className="filter-section__search mobile-show">
           <input
             type="text"
             placeholder="Search Here"

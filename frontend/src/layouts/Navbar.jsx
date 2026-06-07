@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { useUserData } from '../context/UserContext';
 import cartIcon from '../assets/icons/cart-icon.svg';
 import profileIcon from '../assets/icons/profile-icon.svg';
 import searchIcon from '../assets/icons/search-icon.svg';
+// import * as api from '../api/api';
 import logo from '../assets/logo.webp';
 import clsx from 'clsx';
 
@@ -12,6 +14,9 @@ function Navbar() {
   const [searchQuery, setSearchQuery] = useState('');
   const [menuOpen, setMenuOpen] = useState(false);
   const [menuClosing, setMenuClosing] = useState(false);
+  // const [cartCount, setCartCount] = useState(0);
+
+  const { loggedIn } = useUserData();
 
   const navigate = useNavigate();
 
@@ -38,6 +43,12 @@ function Navbar() {
     closeSearch();
     closeMenu();
   };
+
+  // useEffect(() => {
+  //   api.getCart().then((data) => {
+  //     if (data?.data) setCartCount(data.data.length);
+  //   });
+  // }, []);
 
   const handleKeyDown = (e) => {
     if (e.key === 'Enter') handleSearchSubmit();
@@ -96,7 +107,12 @@ function Navbar() {
             />
           </button>
           <button className="navbar__mobile-hidden">
-            <Link to="/account">
+            <Link
+              to="/account"
+              className="navbar__profile-link"
+            >
+              {loggedIn && <i className="bi bi-check-lg navbar__user-check"></i>}
+
               <img
                 src={profileIcon}
                 alt=""
@@ -104,13 +120,19 @@ function Navbar() {
               />
             </Link>
           </button>
-          <button>
-            <img
-              src={cartIcon}
-              alt=""
-              draggable="false"
-            />
-          </button>
+          <Link
+            to="/cart"
+            className="navbar__profile-link"
+          >
+            <button>
+              {/* {cartCount > 0 && <p className="navbar__cart-badge">{cartCount}</p>} */}
+              <img
+                src={cartIcon}
+                alt=""
+                draggable="false"
+              />
+            </button>
+          </Link>
         </div>
 
         <div className="navbar__doc">

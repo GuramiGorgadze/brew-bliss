@@ -1,15 +1,24 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
+import { useLoader } from '../context/LoaderContext';
 import { useUserData } from '../context/UserContext.jsx';
 import { InstagramCarousel } from '../components';
-import { useLoader } from '../context/LoaderContext';
+import * as api from '../api/api';
 
 import { Link } from 'react-router-dom';
 
 function Account() {
   const { logout, userData } = useUserData();
+  const [cartCount, setCartCount] = useState(0);
+  const { useDataLoader } = useLoader();
 
-  const { useFakeLoader } = useLoader();
-  useEffect(() => useFakeLoader(), []);
+  useEffect(() => {
+    const fetchData = async () => {
+      const data = await useDataLoader(api.getCart);
+      if (data?.data) setCartCount(data.data.length);
+    };
+
+    fetchData();
+  }, []);
 
   return (
     <div className="account">
@@ -36,9 +45,11 @@ function Account() {
                 <i className="bi bi-geo-alt"></i>EDIT ADDRESS
               </button>
             </Link>
-            <button className="account__nav-btn">
-              <i className="bi bi-heart"></i>VIEW WISHLIST (0)
-            </button>
+            <Link to="/cart">
+              <button className="account__nav-btn">
+                <i className="bi bi-heart"></i>VIEW WISHLIST ({cartCount})
+              </button>
+            </Link>
             <button
               className="account__nav-btn account__nav-btn--logout"
               onClick={logout}

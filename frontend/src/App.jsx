@@ -17,6 +17,7 @@ import {
   Account,
   Address,
   Team,
+  Cart,
 } from './routes';
 
 // Hooks
@@ -35,11 +36,14 @@ function App() {
   useEffect(() => {
     const getUserInfo = async () => {
       try {
-        const { data: tokenData } = await api.getToken();
-        const res = await api.getUser(tokenData);
-        if (res.data) {
-          login(res.data);
+        const tokenRes = await api.getToken();
+
+        if (!tokenRes.data) {
+          return;
         }
+
+        const res = await api.getUser(tokenRes.data);
+        if (res.data) login(res.data);
       } catch (error) {
         alert('Failed to log in', error);
       } finally {
@@ -97,6 +101,15 @@ function App() {
             element={
               <ProtectedRoute>
                 <Account />
+              </ProtectedRoute>
+            }
+          />
+
+          <Route
+            path="/cart"
+            element={
+              <ProtectedRoute>
+                <Cart />
               </ProtectedRoute>
             }
           />
