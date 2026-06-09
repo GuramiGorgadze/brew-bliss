@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { useLoader } from '../context/LoaderContext';
 import { useUserData } from '../context/UserContext.jsx';
 import { InstagramCarousel } from '../components';
@@ -10,6 +11,7 @@ function Account() {
   const { logout, userData } = useUserData();
   const [cartCount, setCartCount] = useState(0);
   const { useDataLoader } = useLoader();
+  const { t, i18n } = useTranslation();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -23,79 +25,85 @@ function Account() {
   return (
     <div className="account">
       <div className="account__header">
-        <h2 className="account__title">ACCOUNT</h2>
+        <h2 className="account__title">{t('account.title')}</h2>
         <div className="account__divider"></div>
       </div>
 
       <div className="account__body">
         <div className="account__nav">
           <p className="account__nav-welcome">
-            <span className="orange">Welcome</span> {userData?.firstName} {userData?.lastName}
+            <span className="orange">{t('account.welcome')}</span> {userData?.firstName}{' '}
+            {userData?.lastName}
           </p>
 
           <div className="account__nav-links">
             <button className="account__nav-btn active">
-              <i className="bi bi-list-ul"></i>Dashboard
+              <i className="bi bi-list-ul"></i>
+              {t('account.nav.dashboard')}
             </button>
             <button className="account__nav-btn">
-              <i className="bi bi-bag-check"></i>CHECK OUT
+              <i className="bi bi-bag-check"></i>
+              {t('account.nav.checkout')}
             </button>
             <Link to="/account/address">
               <button className="account__nav-btn">
-                <i className="bi bi-geo-alt"></i>EDIT ADDRESS
+                <i className="bi bi-geo-alt"></i>
+                {t('account.nav.editAddress')}
               </button>
             </Link>
             <Link to="/cart">
               <button className="account__nav-btn">
-                <i className="bi bi-heart"></i>VIEW WISHLIST ({cartCount})
+                <i className="bi bi-heart"></i>
+                {t('account.nav.viewWishlist')} ({cartCount})
               </button>
             </Link>
             <button
               className="account__nav-btn account__nav-btn--logout"
               onClick={logout}
             >
-              <i className="bi bi-box-arrow-right"></i>LOGOUT
+              <i className="bi bi-box-arrow-right"></i>
+              {t('account.nav.logout')}
             </button>
           </div>
         </div>
 
         <div className="account__details">
-          <h4 className="account__details-title">Account Details:</h4>
+          <h4 className="account__details-title">{t('account.details.title')}</h4>
 
           <table className="account__table">
             <tbody>
               <tr className="account__table-row">
-                <th className="account__table-header">Name</th>
+                <th className="account__table-header">{t('account.details.name')}</th>
                 <td className="account__table-data">
                   {userData?.address?.firstName} {userData?.address?.lastName}
                 </td>
               </tr>
               <tr className="account__table-row">
-                <th className="account__table-header">Country</th>
+                <th className="account__table-header">{t('account.details.country')}</th>
                 <td className="account__table-data">{userData?.address?.country}</td>
               </tr>
               <tr className="account__table-row">
-                <th className="account__table-header">E-Mail</th>
+                <th className="account__table-header">{t('account.details.email')}</th>
                 <td className="account__table-data">{userData?.email}</td>
               </tr>
               <tr className="account__table-row">
-                <th className="account__table-header">Phone</th>
+                <th className="account__table-header">{t('account.details.phone')}</th>
                 <td className="account__table-data">{userData?.address?.phone}</td>
               </tr>
               <tr className="account__table-row">
-                <th className="account__table-header">City</th>
+                <th className="account__table-header">{t('account.details.city')}</th>
                 <td className="account__table-data">{userData?.address?.city}</td>
               </tr>
               <tr className="account__table-row">
-                <th className="account__table-header">Zip</th>
+                <th className="account__table-header">{t('account.details.zip')}</th>
                 <td className="account__table-data">{userData?.address?.zip}</td>
               </tr>
               <tr className="account__table-row">
-                <th className="account__table-header">Address</th>
+                <th className="account__table-header">{t('account.details.address')}</th>
                 <td className="account__table-data">{userData?.address?.address}</td>
               </tr>
               <tr className="account__table-row">
-                <th className="account__table-header">Address 2</th>
+                <th className="account__table-header">{t('account.details.address2')}</th>
                 <td className="account__table-data">{userData?.address?.address2}</td>
               </tr>
             </tbody>

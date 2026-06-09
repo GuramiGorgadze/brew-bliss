@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import { PageTitle, StoreFeatures, BrandCarousel, InstagramCarousel } from '../components';
 import AboutBanner from '../assets/about-banner.webp';
 import wing1 from '../assets/wing1.png';
@@ -11,38 +12,39 @@ import { useLoader } from '../context/LoaderContext';
 
 function About() {
   const { useFakeLoader } = useLoader();
+  const { t, i18n } = useTranslation();
   useEffect(() => useFakeLoader(), []);
 
   const teamMembers = [
     {
       id: 1,
       imgSrc: Team1,
-      title: 'Emily Johnson',
-      description: 'Founder/CEO',
+      title: t('about.team.member1.title'),
+      description: t('about.team.member1.description'),
     },
     {
       id: 2,
       imgSrc: Team2,
-      title: 'Michael Brown',
-      description: 'Customer Service Manager',
+      title: t('about.team.member2.title'),
+      description: t('about.team.member2.description'),
     },
     {
       id: 3,
       imgSrc: Team3,
-      title: 'Sarah Davis',
-      description: 'Marketing Specialist',
+      title: t('about.team.member3.title'),
+      description: t('about.team.member3.description'),
     },
     {
       id: 4,
       imgSrc: Team4,
-      title: 'Sophia Martinez',
-      description: 'Art Curator',
+      title: t('about.team.member4.title'),
+      description: t('about.team.member4.description'),
     },
   ];
 
   return (
     <div>
-      <PageTitle pageName="About Us" />
+      <PageTitle pageName={t('about.pageTitle')} />
 
       <div className="our-story">
         <div className="our-story__title">
@@ -51,7 +53,7 @@ function About() {
             alt=""
             className="our-story__wing"
           />
-          <p>OUR STORY</p>
+          <p>{t('about.ourStory.label')}</p>
           <img
             src={wing2}
             alt=""
@@ -60,9 +62,9 @@ function About() {
         </div>
 
         <h3 className="our-story__desc">
-          welcome to <span className="orange">Brew Bliss,</span> your ultimate destination for fresh
-          flavors and delightful sips. We’re passionate about delivering premium food and beverages
-          to satisfy every craving, anytime, anywhere!
+          {t('about.ourStory.descStart')}{' '}
+          <span className="orange">{t('about.ourStory.brandName')}</span>{' '}
+          {t('about.ourStory.descEnd')}
         </h3>
 
         <img
@@ -81,7 +83,7 @@ function About() {
             alt=""
             className="team__wing"
           />
-          <p>Meet Our Team Members</p>
+          <p>{t('about.team.label')}</p>
           <img
             src={wing2}
             alt=""
@@ -89,10 +91,7 @@ function About() {
           />
         </div>
 
-        <p className="team__desc">
-          See why everyone’s raving about our products and service – real stories from happy
-          customers!
-        </p>
+        <p className="team__desc">{t('about.team.desc')}</p>
 
         <div className="team__cards">
           {teamMembers.map((tm8) => (
@@ -105,7 +104,6 @@ function About() {
                 alt=""
                 className="team__cards__card__img"
               />
-
               <div className="team__cards__card__content">
                 <h3 className="team__cards__card__title">{tm8.title}</h3>
                 <p className="team__cards__card__text">{tm8.description}</p>

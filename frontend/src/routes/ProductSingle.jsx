@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import { PageTitle, InstagramCarousel, ImageMagnifier } from '../components';
 import { useLoader } from '../context/LoaderContext';
 import { useParams } from 'react-router-dom';
@@ -22,6 +23,7 @@ function ProductSingle() {
   const { id } = useParams();
   const FreeShipping = 500;
   const [cartStatus, setCartStatus] = useState('');
+  const { t, i18n } = useTranslation();
 
   const navigate = useNavigate();
 
@@ -109,7 +111,10 @@ function ProductSingle() {
               />
             ))}
             ({singleProduct?.reviews.length || 0}{' '}
-            {singleProduct?.reviews.length === 1 ? 'Review' : 'Reviews'})
+            {singleProduct?.reviews.length === 1
+              ? t('productSingle.review')
+              : t('productSingle.reviews')}
+            )
           </p>
 
           <h6 className="product-page__price">
@@ -140,23 +145,27 @@ function ProductSingle() {
           <h5 className="product-page__promo">
             {remaining === 0 ? (
               <>
-                Congratulations! You've got{' '}
-                <span className="product-page__promo-highlight">Free Shipping!</span>
+                {t('productSingle.shipping.congrats')}{' '}
+                <span className="product-page__promo-highlight">
+                  {t('productSingle.shipping.freeShipping')}
+                </span>
               </>
             ) : (
               <>
-                Spend ${remaining.toFixed(2)} More And Get{' '}
-                <span className="product-page__promo-highlight">Free Shipping!</span>
+                {t('productSingle.shipping.spendMore', { amount: remaining.toFixed(2) })}{' '}
+                <span className="product-page__promo-highlight">
+                  {t('productSingle.shipping.freeShipping')}
+                </span>
               </>
             )}
           </h5>
 
-          <p className="product-page__description-label">Description</p>
+          <p className="product-page__description-label">{t('productSingle.descriptionLabel')}</p>
           <p className="product-page__description">{singleProduct?.description}</p>
 
           <div className="product-page__size">
             <h5 className="product-page__size-heading">
-              Bottle Size:{' '}
+              {t('productSingle.bottleSize')}{' '}
               <span className="product-page__size-value">{selectedVariant?.size ?? '—'}</span>
             </h5>
             <div className="product-page__size-options">
@@ -179,21 +188,26 @@ function ProductSingle() {
 
           <div className="product-page__meta">
             <h2 className="product-page__meta-item">
-              Availability:{' '}
+              {t('productSingle.availability.label')}{' '}
               {singleProduct?.available && (
-                <span className="product-page__meta-item--instock">In Stock</span>
+                <span className="product-page__meta-item--instock">
+                  {t('productSingle.availability.inStock')}
+                </span>
               )}
               {!singleProduct?.available && (
-                <span className="product-page__meta-item--outOfStock">Unavailable</span>
+                <span className="product-page__meta-item--outOfStock">
+                  {t('productSingle.availability.unavailable')}
+                </span>
               )}
             </h2>
             <h2 className="product-page__meta-item">
-              Tags: <span className="product-page__tag">{singleProduct?.tags.join(', ')}</span>
+              {t('productSingle.tags')}{' '}
+              <span className="product-page__tag">{singleProduct?.tags.join(', ')}</span>
             </h2>
           </div>
 
           <div className="product-page__quantity">
-            <p className="product-page__quantity-label">Quantity:</p>
+            <p className="product-page__quantity-label">{t('productSingle.quantity')}</p>
             <div className="product-page__quantity-control">
               <button
                 className="product-page__quantity-btn"
@@ -218,17 +232,19 @@ function ProductSingle() {
                 onClick={handleAddToCart}
                 disabled={cartStatus !== ''}
               >
-                {cartStatus === 'loading' && 'Adding...'}
-                {cartStatus === '' && 'Add to Cart'}
+                {cartStatus === 'loading' && t('productSingle.actions.adding')}
+                {cartStatus === '' && t('productSingle.actions.addToCart')}
               </button>
-              <button className="product-page__btn product-page__btn--primary">Buy it now</button>
+              <button className="product-page__btn product-page__btn--primary">
+                {t('productSingle.actions.buyNow')}
+              </button>
             </div>
           )}
 
           {!singleProduct?.available && (
             <div className="product-page__actions">
               <button className="product-page__btn product-page__btn--dark sold-out">
-                Sold Out
+                {t('productSingle.actions.soldOut')}
               </button>
             </div>
           )}
@@ -242,7 +258,7 @@ function ProductSingle() {
                 alt=""
               />
               <p className="product-page__additional-info-text">
-                Estimated Delivery:{' '}
+                {t('productSingle.delivery.label')}{' '}
                 <span className="product-page__additional-info-text--dark">
                   {getDeliveryRange()}
                 </span>
@@ -254,13 +270,13 @@ function ProductSingle() {
                 alt=""
               />
               <p className="product-page__additional-info-text">
-                Return within 90 days of purchase. Taxes are non-refundable.
+                {t('productSingle.delivery.returnPolicy')}
               </p>
             </div>
           </div>
 
           <div className="product-page__share-container">
-            <h2 className="product-page__share-container__text">Share: </h2>
+            <h2 className="product-page__share-container__text">{t('productSingle.share')} </h2>
             <a
               href="https://www.facebook.com/"
               target="blank"

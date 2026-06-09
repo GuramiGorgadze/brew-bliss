@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import { useLoader } from '../context/LoaderContext';
 import { PageTitle, InstagramCarousel } from '../components';
 import * as api from '../api/api';
@@ -8,6 +9,7 @@ function Cart() {
   const [cartItems, setCartItems] = useState([]);
   const [note, setNote] = useState('');
   const { useDataLoader } = useLoader();
+  const { t, i18n } = useTranslation();
   const freeShippingNumber = 500;
 
   useEffect(() => {
@@ -74,22 +76,22 @@ function Cart() {
 
   return (
     <div className="cart-wrapper">
-      <PageTitle pageName="Your cart" />
+      <PageTitle pageName={t('cart.pageTitle')} />
 
       <div className="cart">
         <div className="cart__left">
           <table className="cart__table">
             <tbody>
               <tr className="cart__table-header">
-                <th className="cart__table-th">Product</th>
-                <th className="cart__table-th">Quantity</th>
-                <th className="cart__table-th">Subtotal</th>
-                <th className="cart__table-th">Remove</th>
+                <th className="cart__table-th">{t('cart.table.product')}</th>
+                <th className="cart__table-th">{t('cart.table.quantity')}</th>
+                <th className="cart__table-th">{t('cart.table.subtotal')}</th>
+                <th className="cart__table-th">{t('cart.table.remove')}</th>
               </tr>
 
               {cartItems.length === 0 && (
                 <tr className="cart__table-empty">
-                  <td colSpan={4}>Your cart is empty</td>
+                  <td colSpan={4}>{t('cart.empty')}</td>
                 </tr>
               )}
 
@@ -116,9 +118,11 @@ function Cart() {
                           >
                             {item.productId.title}
                           </p>
-                          <p className="cart-item__size">Bottle Size: {item.variantSize}</p>
+                          <p className="cart-item__size">
+                            {t('cart.item.bottleSize')}: {item.variantSize}
+                          </p>
                           <p className="cart-item__tags">
-                            Beer Variety: {item.productId.tags?.join(', ')}
+                            {t('cart.item.beerVariety')}: {item.productId.tags?.join(', ')}
                           </p>
                           <div className="cart-item__price-row">
                             <p className="cart-item__price">${variant?.price?.toFixed(2)}</p>
@@ -134,7 +138,7 @@ function Cart() {
 
                     <td
                       className="cart__table-td"
-                      data-label="Quantity"
+                      data-label={t('cart.table.quantity')}
                     >
                       <div className="cart-item__quantity-control">
                         <button
@@ -155,14 +159,14 @@ function Cart() {
 
                     <td
                       className="cart__table-td cart__table-td--subtotal"
-                      data-label="Subtotal"
+                      data-label={t('cart.table.subtotal')}
                     >
                       ${getSubtotal(item).toFixed(2)}
                     </td>
 
                     <td
                       className="cart__table-td cart__table-td--remove"
-                      data-label="Remove"
+                      data-label={t('cart.table.remove')}
                     >
                       <button
                         className="cart-item__remove-btn"
@@ -182,12 +186,12 @@ function Cart() {
               className="cart__note-label"
               htmlFor="cart-note"
             >
-              Add Order Note
+              {t('cart.note.label')}
             </label>
             <textarea
               className="cart__note-textarea"
               id="cart-note"
-              placeholder="How can we help you?"
+              placeholder={t('cart.note.placeholder')}
               value={note}
               onChange={(e) => setNote(e.target.value)}
             />
@@ -218,13 +222,17 @@ function Cart() {
               <p className="cart__shipping-progress-label">
                 {remaining === 0 ? (
                   <>
-                    Congratulations! You've got{' '}
-                    <span className="cart__shipping-progress-label--highlight">Free Shipping!</span>
+                    {t('cart.shipping.congrats')}{' '}
+                    <span className="cart__shipping-progress-label--highlight">
+                      {t('cart.shipping.freeShipping')}
+                    </span>
                   </>
                 ) : (
                   <>
-                    Spend ${remaining.toFixed(2)} More For{' '}
-                    <span className="cart__shipping-progress-label--highlight">Free Shipping!</span>
+                    {t('cart.shipping.spendMore', { amount: remaining.toFixed(2) })}{' '}
+                    <span className="cart__shipping-progress-label--highlight">
+                      {t('cart.shipping.freeShipping')}
+                    </span>
                   </>
                 )}
               </p>
@@ -234,7 +242,7 @@ function Cart() {
 
             {totalSaved > 0 && (
               <div className="cart__summary-row">
-                <span className="cart__summary-label">You Save In Total</span>
+                <span className="cart__summary-label">{t('cart.summary.youSave')}</span>
                 <span className="cart__summary-value">${totalSaved.toFixed(2)}</span>
               </div>
             )}
@@ -242,13 +250,13 @@ function Cart() {
             {totalSaved > 0 && <div className="divider"></div>}
 
             <div className="cart__summary-row">
-              <span className="cart__summary-label">Order Totals</span>
+              <span className="cart__summary-label">{t('cart.summary.orderTotal')}</span>
               <span className="cart__summary-value green">${total.toFixed(2)}</span>
             </div>
 
             <div className="divider"></div>
 
-            <p className="cart__comment">Taxes and shipping calculated at checkout</p>
+            <p className="cart__comment">{t('cart.summary.taxNote')}</p>
 
             <div className="cart__terms">
               <input
@@ -256,11 +264,11 @@ function Cart() {
                 className="cart__terms--check"
               />
               <p className="cart__terms--text">
-                I agree with <span className="terms">Terms & Conditions</span>
+                {t('cart.terms.agree')} <span className="terms">{t('cart.terms.link')}</span>
               </p>
             </div>
 
-            <button className="cart__checkout-btn">Checkout</button>
+            <button className="cart__checkout-btn">{t('cart.checkoutBtn')}</button>
           </div>
         </div>
       </div>

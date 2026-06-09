@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import { PageTitle, InstagramCarousel } from '../components';
 import AboutBanner from '../assets/about-banner.webp';
 import wing1 from '../assets/wing1.png';
@@ -11,37 +12,39 @@ import { useLoader } from '../context/LoaderContext';
 
 function Team() {
   const { useFakeLoader } = useLoader();
+  const { t, i18n } = useTranslation();
   useEffect(() => useFakeLoader(), []);
 
   const teamMembers = [
     {
       id: 1,
       imgSrc: Team1,
-      title: 'Emily Johnson',
-      description: 'Founder/CEO',
+      title: t('about.team.member1.title'),
+      description: t('about.team.member1.description'),
     },
     {
       id: 2,
       imgSrc: Team2,
-      title: 'Michael Brown',
-      description: 'Customer Service Manager',
+      title: t('about.team.member2.title'),
+      description: t('about.team.member2.description'),
     },
     {
       id: 3,
       imgSrc: Team3,
-      title: 'Sarah Davis',
-      description: 'Marketing Specialist',
+      title: t('about.team.member3.title'),
+      description: t('about.team.member3.description'),
     },
     {
       id: 4,
       imgSrc: Team4,
-      title: 'Sophia Martinez',
-      description: 'Art Curator',
+      title: t('about.team.member4.title'),
+      description: t('about.team.member4.description'),
     },
   ];
+
   return (
     <div>
-      <PageTitle pageName="Our Team" />
+      <PageTitle pageName={t('team.pageTitle')} />
 
       <div
         className="team"
@@ -53,7 +56,7 @@ function Team() {
             alt=""
             className="team__wing"
           />
-          <p>Meet Our Team Members</p>
+          <p>{t('about.team.label')}</p>
           <img
             src={wing2}
             alt=""
@@ -61,10 +64,7 @@ function Team() {
           />
         </div>
 
-        <p className="team__desc">
-          See why everyone’s raving about our products and service – real stories <br /> from happy
-          customers!
-        </p>
+        <p className="team__desc">{t('about.team.desc')}</p>
 
         <div className="team__cards">
           {teamMembers.map((tm8) => (
@@ -77,7 +77,6 @@ function Team() {
                 alt=""
                 className="team__cards__card__img"
               />
-
               <div className="team__cards__card__content">
                 <h3 className="team__cards__card__title">{tm8.title}</h3>
                 <p className="team__cards__card__text">{tm8.description}</p>

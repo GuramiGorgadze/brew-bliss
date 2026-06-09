@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import { useLoader } from '../context/LoaderContext';
 import { InstagramCarousel } from '../components';
 import wing1 from '../assets/breadcrumicon1.webp';
@@ -9,6 +10,7 @@ import notFoundImg from '../assets/not-found-img.webp';
 
 function NotFound() {
   const navigate = useNavigate();
+  const { t, i18n } = useTranslation();
 
   const { useFakeLoader } = useLoader();
   useEffect(() => useFakeLoader(), []);
@@ -24,7 +26,7 @@ function NotFound() {
             src={wing1}
             alt=""
           />
-          <p>404</p>
+          <p>{t('notFound.code')}</p>
           <img
             src={wing2}
             alt=""
@@ -38,16 +40,13 @@ function NotFound() {
           src={notFoundImg}
           alt=""
         />
-        <h3 className="not-found__heading">Sorry, We Can't Find That Page!</h3>
-        <p className="not-found__text">
-          It seems this page has moved or doesn't exist. Head back to our homepage, or reach out if
-          you need help!
-        </p>
+        <h3 className="not-found__heading">{t('notFound.heading')}</h3>
+        <p className="not-found__text">{t('notFound.text')}</p>
         <button
           onClick={() => navigate('/')}
           className="landing-banner__btn landing-banner__btn--orange not-found__btn"
         >
-          Back To Homepage
+          {t('notFound.btn')}
         </button>
       </div>
 

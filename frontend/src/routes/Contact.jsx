@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { useUserData } from '../context/UserContext.jsx';
 import { PageTitle, InstagramCarousel } from '../components';
 import * as api from '../api/api';
@@ -13,12 +14,14 @@ import wing2 from '../assets/wing2.png';
 function Contact() {
   const { useFakeLoader } = useLoader();
   const { userData } = useUserData();
+  const { t, i18n } = useTranslation();
 
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
   const [message, setMessage] = useState('');
   const [status, setStatus] = useState('normal');
+
   useEffect(() => {
     useFakeLoader();
   }, []);
@@ -32,7 +35,6 @@ function Contact() {
       }
 
       if (userData.email) setEmail(userData.email);
-
       if (userData.address?.phone) setPhone(userData.address.phone);
     }
   }, [userData]);
@@ -52,27 +54,25 @@ function Contact() {
   };
 
   const buttonLabel = {
-    normal: 'Send Message',
-    loading: 'Sending...',
-    success: 'Message Sent!',
-    error: 'Failed. Try Again',
+    normal: t('contact.form.btn.normal'),
+    loading: t('contact.form.btn.loading'),
+    success: t('contact.form.btn.success'),
+    error: t('contact.form.btn.error'),
   }[status];
 
   return (
     <div className="contact">
-      <PageTitle pageName="Contact"></PageTitle>
+      <PageTitle pageName={t('contact.pageTitle')} />
 
       <div className="contact__cards">
         <div className="card">
           <div className="card__image-wrapper">
             <i className="bi bi-telephone"></i>
           </div>
-
-          <h2 className="card__title">Customer Service</h2>
-
+          <h2 className="card__title">{t('contact.cards.customerService.title')}</h2>
           <div className="card__desc">
-            <h6 className="card__desc--heading">+995 557 70 40 22</h6>
-            <p className="card__desc--info">Call us from 8am to 8pm</p>
+            <h6 className="card__desc--heading">{t('contact.cards.customerService.phone')}</h6>
+            <p className="card__desc--info">{t('contact.cards.customerService.hours')}</p>
           </div>
         </div>
 
@@ -80,12 +80,10 @@ function Contact() {
           <div className="card__image-wrapper">
             <i className="bi bi-chat-left"></i>
           </div>
-
-          <h2 className="card__title">Live Chat</h2>
-
+          <h2 className="card__title">{t('contact.cards.liveChat.title')}</h2>
           <div className="card__desc">
-            <h6 className="card__desc--heading">Live Chat Available</h6>
-            <p className="card__desc--info">Daily: 10am to 10pm</p>
+            <h6 className="card__desc--heading">{t('contact.cards.liveChat.heading')}</h6>
+            <p className="card__desc--info">{t('contact.cards.liveChat.hours')}</p>
           </div>
         </div>
 
@@ -93,12 +91,10 @@ function Contact() {
           <div className="card__image-wrapper">
             <i className="bi bi-envelope"></i>
           </div>
-
-          <h2 className="card__title">Write to us</h2>
-
+          <h2 className="card__title">{t('contact.cards.email.title')}</h2>
           <div className="card__desc">
-            <h6 className="card__desc--heading">g.gorgadze111@gmail.com</h6>
-            <p className="card__desc--info">Any Time</p>
+            <h6 className="card__desc--heading">{t('contact.cards.email.address')}</h6>
+            <p className="card__desc--info">{t('contact.cards.email.hours')}</p>
           </div>
         </div>
 
@@ -106,9 +102,7 @@ function Contact() {
           <div className="card__image-wrapper">
             <i className="bi bi-person"></i>
           </div>
-
-          <h2 className="card__title">Follow Us</h2>
-
+          <h2 className="card__title">{t('contact.cards.followUs.title')}</h2>
           <div className="card__desc">
             <div className="footer__socials">
               <a
@@ -172,7 +166,7 @@ function Contact() {
               alt=""
               className="get-in-touch__left--wing"
             />
-            <p>Get In Touch</p>
+            <p>{t('contact.getInTouch.title')}</p>
             <img
               src={wing2}
               alt=""
@@ -181,7 +175,7 @@ function Contact() {
           </div>
 
           <div className="get-in-touch__left--desc">
-            <p>Open Mon-Fri 10 AM-9 PM, Sat 10-6 PM, Closed on Sundays.</p>
+            <p>{t('contact.getInTouch.hours')}</p>
           </div>
 
           <div className="get-in-touch__left--input">
@@ -189,7 +183,7 @@ function Contact() {
             <input
               maxLength={50}
               type="text"
-              placeholder="Your Name"
+              placeholder={t('contact.form.namePlaceholder')}
               value={name}
               onChange={(e) => setName(e.target.value)}
             />
@@ -200,7 +194,7 @@ function Contact() {
             <input
               maxLength={50}
               type="text"
-              placeholder="Email"
+              placeholder={t('contact.form.emailPlaceholder')}
               value={email}
               onChange={(e) => setEmail(e.target.value)}
             />
@@ -211,7 +205,7 @@ function Contact() {
             <input
               maxLength={50}
               type="text"
-              placeholder="Phone"
+              placeholder={t('contact.form.phonePlaceholder')}
               value={phone}
               onChange={(e) => setPhone(e.target.value)}
             />
@@ -219,7 +213,7 @@ function Contact() {
 
           <textarea
             className="get-in-touch__left--input textarea"
-            placeholder="Write your message..."
+            placeholder={t('contact.form.messagePlaceholder')}
             value={message}
             onChange={(e) => setMessage(e.target.value)}
             maxLength={500}

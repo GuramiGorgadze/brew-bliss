@@ -1,50 +1,114 @@
-@use '../abstracts' as *; 
+@use '../abstracts' as *;
 
 .top-bar {
-    background-color: $text-primary;
-    height: calc(50px * var(--app-scale));
+  background-color: $text-primary;
+  height: calc(50px * var(--app-scale));
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: $color-white;
+  font-size: calc(14px * var(--app-scale));
+  padding: 0 calc(115px * var(--app-scale));
+
+  &__contact {
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    color: $color-white;
-    font-size: calc(14px * var(--app-scale));
-    padding: 0 calc(115px * var(--app-scale));
 
-    &__contact {
-        display: flex;
+    img {
+      color: $color-white;
+      margin-right: calc(5px * var(--app-scale));
+    }
+  }
 
-        img {
-            color: $color-white;
-            margin-right: calc(5px * var(--app-scale));
+  &__region {
+    display: flex;
+    align-items: center;
+    gap: calc(20px * var(--app-scale));
+
+    img {
+      height: calc(15px * var(--app-scale));
+      margin-right: calc(5px * var(--app-scale));
+    }
+  }
+
+  &__language-custom {
+    position: relative;
+
+    .dropdown-trigger {
+      display: flex;
+      align-items: center;
+      gap: calc(8px * var(--app-scale));
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      color: inherit;
+      font: inherit;
+      padding: calc(4px * var(--app-scale)) calc(8px * var(--app-scale));
+
+      .arrow {
+        font-size: calc(10px * var(--app-scale));
+        transition: transform 0.3s ease;
+
+        .bi {
+          display: flex;
+          justify-content: center;
+          align-items: center;
         }
-    }
 
-    &__region {
-        display: flex;
-        align-items: center;
-        gap: calc(20px * var(--app-scale));
-
-        img {
-            height: calc(15px * var(--app-scale));
-            margin-right: calc(5px * var(--app-scale));
+        &.open {
+          transform: rotate(180deg);
         }
+      }
     }
 
-    &__language {
-        display: flex;
-        align-items: center;
+    .dropdown-options {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background-color: $color-white;
+      color: $text-primary;
+      border-radius: calc(4px * var(--app-scale));
+      padding: calc(4px * var(--app-scale)) 0;
+      margin: calc(4px * var(--app-scale)) 0 0 0;
+      z-index: 51;
+      min-width: calc(130px * var(--app-scale));
+      box-shadow: calc(10px * var(--app-scale)) calc(10px * var(--app-scale))
+        calc(60px * var(--app-scale)) calc(-29px * var(--app-scale)) rgba(0, 0, 0, 0.45);
+      -webkit-box-shadow: calc(10px * var(--app-scale)) calc(10px * var(--app-scale))
+        calc(60px * var(--app-scale)) calc(-29px * var(--app-scale)) rgba(0, 0, 0, 0.45);
+      -moz-box-shadow: calc(10px * var(--app-scale)) calc(10px * var(--app-scale))
+        calc(60px * var(--app-scale)) calc(-29px * var(--app-scale)) rgba(0, 0, 0, 0.45);
     }
 
-    &__divider {
-        height: calc(15px * var(--app-scale));
-        width: calc(1px * var(--app-scale));
-        background-color: $color-white;
+    .dropdown-option {
+      display: flex;
+      align-items: center;
+      gap: calc(8px * var(--app-scale));
+      padding: calc(8px * var(--app-scale)) calc(12px * var(--app-scale));
+      cursor: pointer;
+      font-size: calc(14px * var(--app-scale));
+      transition: 0.2s ease;
+
+      &.active {
+        font-weight: bold;
+      }
     }
+
+    .flag-img {
+      height: calc(15px * var(--app-scale));
+      margin-right: 0;
+    }
+  }
+
+  &__divider {
+    height: calc(15px * var(--app-scale));
+    width: calc(1px * var(--app-scale));
+    background-color: $color-white;
+  }
 }
 
-
 @media (max-width: 1024px) {
-    .top-bar {
-        display: none;
-    }
+  .top-bar {
+    display: none;
+  }
 }

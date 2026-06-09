@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import clsx from 'clsx';
+import { useTranslation } from 'react-i18next';
 import { useLoader } from '../context/LoaderContext';
 import { useNavigate, Link } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
@@ -12,6 +13,7 @@ import { useUserData } from '../context/UserContext.jsx';
 function Register() {
   const navigate = useNavigate();
   const { login } = useUserData();
+  const { t, i18n } = useTranslation();
 
   const { useFakeLoader } = useLoader();
   useEffect(() => useFakeLoader(), []);
@@ -19,28 +21,31 @@ function Register() {
   const schema = yup.object({
     firstName: yup
       .string()
-      .required('First name is required')
-      .max(30, 'First name must not exceed 30 characters'),
+      .required(t('register.validation.firstNameRequired'))
+      .max(30, t('register.validation.firstNameMax')),
 
     lastName: yup
       .string()
-      .required('Last name is required')
-      .max(30, 'Last name must not exceed 30 characters'),
+      .required(t('register.validation.lastNameRequired'))
+      .max(30, t('register.validation.lastNameMax')),
 
-    email: yup.string().required('Email is required').email('Invalid email address'),
+    email: yup
+      .string()
+      .required(t('register.validation.emailRequired'))
+      .email(t('register.validation.emailInvalid')),
 
     password: yup
       .string()
-      .required('Password is required')
-      .min(8, 'Password must be at least 8 characters')
-      .matches(/[A-Z]/, 'Password must contain an uppercase letter')
-      .matches(/\d/, 'Password must contain a number')
-      .matches(/[!@#$%^&*()?|<>]/, 'Password must contain a special character'),
+      .required(t('register.validation.passwordRequired'))
+      .min(8, t('register.validation.passwordMin'))
+      .matches(/[A-Z]/, t('register.validation.passwordUppercase'))
+      .matches(/\d/, t('register.validation.passwordNumber'))
+      .matches(/[!@#$%^&*()?|<>]/, t('register.validation.passwordSpecial')),
 
     confirmPassword: yup
       .string()
-      .required('Please confirm your password')
-      .oneOf([yup.ref('password')], 'Passwords do not match'),
+      .required(t('register.validation.confirmPasswordRequired'))
+      .oneOf([yup.ref('password')], t('register.validation.confirmPasswordMatch')),
   });
 
   const {
@@ -65,7 +70,7 @@ function Register() {
       navigate('/account');
     } catch (error) {
       setError('root.serverError', {
-        message: error.response?.data?.message || 'Something went wrong',
+        message: error.response?.data?.message || t('register.validation.serverError'),
       });
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
@@ -73,10 +78,10 @@ function Register() {
 
   return (
     <div className="auth-wrapper">
-      <PageTitle pageName="Register"></PageTitle>
+      <PageTitle pageName={t('register.pageTitle')} />
 
       <div className="auth">
-        <h2 className="auth__title">Create an account</h2>
+        <h2 className="auth__title">{t('register.title')}</h2>
         <form
           className="auth__form"
           onSubmit={handleSubmit(onSubmit)}
@@ -86,16 +91,14 @@ function Register() {
               className="auth__form__item__label"
               htmlFor="firstName"
             >
-              First Name <span className="required">*</span>
+              {t('register.form.firstNameLabel')} <span className="required">*</span>
             </label>
             <input
               type="text"
-              placeholder="First Name"
+              placeholder={t('register.form.firstNamePlaceholder')}
               maxLength={30}
               id="firstName"
-              className={clsx('auth__form__item__input', {
-                error: errors.firstName?.message,
-              })}
+              className={clsx('auth__form__item__input', { error: errors.firstName?.message })}
               {...register('firstName')}
             />
             <p className="auth__form__item__error">{errors.firstName?.message}</p>
@@ -106,16 +109,14 @@ function Register() {
               className="auth__form__item__label"
               htmlFor="lastName"
             >
-              Last Name <span className="required">*</span>
+              {t('register.form.lastNameLabel')} <span className="required">*</span>
             </label>
             <input
               type="text"
-              placeholder="Last Name"
+              placeholder={t('register.form.lastNamePlaceholder')}
               maxLength={30}
               id="lastName"
-              className={clsx('auth__form__item__input', {
-                error: errors.lastName?.message,
-              })}
+              className={clsx('auth__form__item__input', { error: errors.lastName?.message })}
               {...register('lastName')}
             />
             <p className="auth__form__item__error">{errors.lastName?.message}</p>
@@ -126,16 +127,14 @@ function Register() {
               className="auth__form__item__label"
               htmlFor="email"
             >
-              Email Address <span className="required">*</span>
+              {t('register.form.emailLabel')} <span className="required">*</span>
             </label>
             <input
               type="text"
-              placeholder="Email Address"
+              placeholder={t('register.form.emailPlaceholder')}
               maxLength={30}
               id="email"
-              className={clsx('auth__form__item__input', {
-                error: errors.email?.message,
-              })}
+              className={clsx('auth__form__item__input', { error: errors.email?.message })}
               {...register('email')}
             />
             <p className="auth__form__item__error">{errors.email?.message}</p>
@@ -146,16 +145,14 @@ function Register() {
               className="auth__form__item__label"
               htmlFor="password"
             >
-              Password <span className="required">*</span>
+              {t('register.form.passwordLabel')} <span className="required">*</span>
             </label>
             <input
               type="password"
-              placeholder="Password"
+              placeholder={t('register.form.passwordPlaceholder')}
               maxLength={30}
               id="password"
-              className={clsx('auth__form__item__input', {
-                error: errors.password?.message,
-              })}
+              className={clsx('auth__form__item__input', { error: errors.password?.message })}
               {...register('password')}
             />
             <p className="auth__form__item__error">{errors.password?.message}</p>
@@ -164,13 +161,13 @@ function Register() {
           <div className="auth__form__item">
             <label
               className="auth__form__item__label"
-              htmlFor="password"
+              htmlFor="confirmPassword"
             >
-              Confirm Password <span className="required">*</span>
+              {t('register.form.confirmPasswordLabel')} <span className="required">*</span>
             </label>
             <input
               type="password"
-              placeholder="Confirm Password"
+              placeholder={t('register.form.confirmPasswordPlaceholder')}
               maxLength={30}
               id="confirmPassword"
               className={clsx('auth__form__item__input', {
@@ -187,7 +184,7 @@ function Register() {
             className="auth__form__submit"
             type="submit"
           >
-            Create New Account
+            {t('register.form.submitBtn')}
           </button>
 
           <Link to="/login">
@@ -195,7 +192,7 @@ function Register() {
               type="button"
               className="auth__form__register"
             >
-              Login
+              {t('register.form.loginBtn')}
             </button>
           </Link>
         </form>

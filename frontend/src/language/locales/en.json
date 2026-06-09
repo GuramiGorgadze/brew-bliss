@@ -1,0 +1,285 @@
+{
+  "about": {
+    "pageTitle": "About Us",
+    "ourStory": {
+      "label": "OUR STORY",
+      "descStart": "welcome to",
+      "brandName": "Brew Bliss,",
+      "descEnd": "your ultimate destination for fresh flavors and delightful sips. We're passionate about delivering premium food and beverages to satisfy every craving, anytime, anywhere!"
+    },
+    "team": {
+      "label": "Meet Our Team Members",
+      "desc": "See why everyone's raving about our products and service – real stories from happy customers!",
+      "member1": {
+        "title": "Emily Johnson",
+        "description": "Founder/CEO"
+      },
+      "member2": {
+        "title": "Michael Brown",
+        "description": "Customer Service Manager"
+      },
+      "member3": {
+        "title": "Sarah Davis",
+        "description": "Marketing Specialist"
+      },
+      "member4": {
+        "title": "Sophia Martinez",
+        "description": "Art Curator"
+      }
+    }
+  },
+  "team": {
+    "pageTitle": "Our Team"
+  },
+  "account": {
+    "title": "ACCOUNT",
+    "welcome": "Welcome",
+    "nav": {
+      "dashboard": "Dashboard",
+      "checkout": "CHECK OUT",
+      "editAddress": "EDIT ADDRESS",
+      "viewWishlist": "VIEW WISHLIST",
+      "logout": "LOGOUT"
+    },
+    "details": {
+      "title": "Account Details:",
+      "name": "Name",
+      "country": "Country",
+      "email": "E-Mail",
+      "phone": "Phone",
+      "city": "City",
+      "zip": "Zip",
+      "address": "Address",
+      "address2": "Address 2"
+    }
+  },
+  "address": {
+    "title": "ADDRESS",
+    "editAddress": "Edit Address",
+    "form": {
+      "firstName": "First Name",
+      "lastName": "Last Name",
+      "address1": "Address N1",
+      "address2": "Address N2",
+      "country": "Country",
+      "city": "City",
+      "zip": "Postal/ZIP Code",
+      "phone": "Phone"
+    },
+    "buttons": {
+      "saving": "Saving...",
+      "editAddress": "Edit Address",
+      "resetAddress": "Reset Address"
+    }
+  },
+  "cart": {
+    "pageTitle": "Your cart",
+    "empty": "Your cart is empty",
+    "table": {
+      "product": "Product",
+      "quantity": "Quantity",
+      "subtotal": "Subtotal",
+      "remove": "Remove"
+    },
+    "item": {
+      "bottleSize": "Bottle Size",
+      "beerVariety": "Beer Variety"
+    },
+    "note": {
+      "label": "Add Order Note",
+      "placeholder": "How can we help you?"
+    },
+    "shipping": {
+      "congrats": "Congratulations! You've got",
+      "freeShipping": "Free Shipping!",
+      "spendMore": "Spend ${{amount}} More For"
+    },
+    "summary": {
+      "youSave": "You Save In Total",
+      "orderTotal": "Order Totals",
+      "taxNote": "Taxes and shipping calculated at checkout"
+    },
+    "terms": {
+      "agree": "I agree with",
+      "link": "Terms & Conditions"
+    },
+    "checkoutBtn": "Checkout"
+  },
+  "contact": {
+    "pageTitle": "Contact",
+    "cards": {
+      "customerService": {
+        "title": "Customer Service",
+        "phone": "+995 557 70 40 22",
+        "hours": "Call us from 8am to 8pm"
+      },
+      "liveChat": {
+        "title": "Live Chat",
+        "heading": "Live Chat Available",
+        "hours": "Daily: 10am to 10pm"
+      },
+      "email": {
+        "title": "Write to us",
+        "address": "g.gorgadze111@gmail.com",
+        "hours": "Any Time"
+      },
+      "followUs": {
+        "title": "Follow Us"
+      }
+    },
+    "getInTouch": {
+      "title": "Get In Touch",
+      "hours": "Open Mon-Fri 10 AM-9 PM, Sat 10-6 PM, Closed on Sundays."
+    },
+    "form": {
+      "namePlaceholder": "Your Name",
+      "emailPlaceholder": "Email",
+      "phonePlaceholder": "Phone",
+      "messagePlaceholder": "Write your message...",
+      "btn": {
+        "normal": "Send Message",
+        "loading": "Sending...",
+        "success": "Message Sent!",
+        "error": "Failed. Try Again"
+      }
+    }
+  },
+  "login": {
+    "pageTitle": "Login",
+    "title": "Log In",
+    "form": {
+      "emailLabel": "Email Address",
+      "emailPlaceholder": "Email Address",
+      "passwordLabel": "Password",
+      "passwordPlaceholder": "Password",
+      "forgotPassword": "Forgot your password ?",
+      "submitBtn": "Login",
+      "createAccount": "Create New Account"
+    },
+    "validation": {
+      "emailRequired": "Email is required",
+      "emailInvalid": "Invalid email address",
+      "passwordRequired": "Password is required",
+      "passwordMin": "Password must be at least 8 characters",
+      "serverError": "Something went wrong"
+    }
+  },
+  "register": {
+    "pageTitle": "Register",
+    "title": "Create an account",
+    "form": {
+      "firstNameLabel": "First Name",
+      "firstNamePlaceholder": "First Name",
+      "lastNameLabel": "Last Name",
+      "lastNamePlaceholder": "Last Name",
+      "emailLabel": "Email Address",
+      "emailPlaceholder": "Email Address",
+      "passwordLabel": "Password",
+      "passwordPlaceholder": "Password",
+      "confirmPasswordLabel": "Confirm Password",
+      "confirmPasswordPlaceholder": "Confirm Password",
+      "submitBtn": "Create New Account",
+      "loginBtn": "Login"
+    },
+    "validation": {
+      "firstNameRequired": "First name is required",
+      "firstNameMax": "First name must not exceed 30 characters",
+      "lastNameRequired": "Last name is required",
+      "lastNameMax": "Last name must not exceed 30 characters",
+      "emailRequired": "Email is required",
+      "emailInvalid": "Invalid email address",
+      "passwordRequired": "Password is required",
+      "passwordMin": "Password must be at least 8 characters",
+      "passwordUppercase": "Password must contain an uppercase letter",
+      "passwordNumber": "Password must contain a number",
+      "passwordSpecial": "Password must contain a special character",
+      "confirmPasswordRequired": "Please confirm your password",
+      "confirmPasswordMatch": "Passwords do not match",
+      "serverError": "Something went wrong"
+    }
+  },
+  "notFound": {
+    "code": "404",
+    "heading": "Sorry, We Can't Find That Page!",
+    "text": "It seems this page has moved or doesn't exist. Head back to our homepage, or reach out if you need help!",
+    "btn": "Back To Homepage"
+  },
+  "products": {
+    "pageTitle": "Products"
+  },
+  "productSingle": {
+    "review": "Review",
+    "reviews": "Reviews",
+    "descriptionLabel": "Description",
+    "bottleSize": "Bottle Size:",
+    "quantity": "Quantity:",
+    "tags": "Tags:",
+    "share": "Share:",
+    "availability": {
+      "label": "Availability:",
+      "inStock": "In Stock",
+      "unavailable": "Unavailable"
+    },
+    "shipping": {
+      "congrats": "Congratulations! You've got",
+      "freeShipping": "Free Shipping!",
+      "spendMore": "Spend ${{amount}} More And Get"
+    },
+    "actions": {
+      "adding": "Adding...",
+      "addToCart": "Add to Cart",
+      "buyNow": "Buy it now",
+      "soldOut": "Sold Out"
+    },
+    "delivery": {
+      "label": "Estimated Delivery:",
+      "returnPolicy": "Return within 90 days of purchase. Taxes are non-refundable."
+    }
+  },
+  "landingBanner": {
+    "newArrival": "NEW ARRIVAL",
+    "title": "Discover Flavors, One Bottle at a Time!",
+    "text": "Explore the rich and diverse world of beer, savoring unique flavors crafted to perfection, one bottle at a time!",
+    "shopSale": "Shop Sale",
+    "collections": "Our Collections"
+  },
+  "PromoGrid": {
+    "shopNow": "Show Now",
+    "shopSale": "Shop Sale",
+    "card1": {
+      "tagline": "New Release",
+      "heading": "Be the First to Taste Perfection!"
+    },
+    "card2": {
+      "tagline": "Holiday Collections",
+      "heading": "Perfect Brews for Perfect Holidays!"
+    },
+    "card3": {
+      "tagline": "Limited Time Offer",
+      "heading": "Hurry! Exclusive Deals Await!"
+    }
+  },
+  "saleBanner": {
+    "limitedTime": "Limited Time only!",
+    "title": "Pour More, Pay Less, Beer at -20% Off!",
+    "shopSale": "Shop Sale"
+  },
+  "storeFeatures": {
+    "shipping": {
+      "title": "Free Shipping",
+      "description": "Free shipping on every item, delivered to your door, elevate your space with beautiful decor, hassle-free!"
+    },
+    "gift": {
+      "title": "Gift Package",
+      "description": "Gifts that leave a lasting impression, beautifully wrapped in style for every occasion!"
+    },
+    "warranty": {
+      "title": "One Year Warranty",
+      "description": "Shop with confidence, our one-year warranty backs every jewelry piece, crafted to last and ensure quality."
+    },
+    "returns": {
+      "title": "Easy Returns",
+      "description": "Stress-free returns for peace of mind, ensuring your satisfaction with every purchase."
+    }
+  }
+}

@@ -1,10 +1,13 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import wing1 from '../../assets/wing1.png';
 import wing2 from '../../assets/wing2.png';
 import landingBeer from '../../assets/landing-beer.webp';
 import heroBanner from '../../assets/Hero_Banner.webp';
 
 function LandingBanner() {
+  const { t, i18n } = useTranslation();
+
   return (
     <div
       className="landing-banner"
@@ -17,7 +20,7 @@ function LandingBanner() {
             alt=""
             className="landing-banner__wing"
           />
-          <p>NEW ARRIVAL</p>
+          <p>{t('landingBanner.newArrival')}</p>
           <img
             src={wing2}
             alt=""
@@ -25,15 +28,16 @@ function LandingBanner() {
           />
         </div>
 
-        <h2 className="landing-banner__title">Discover Flavors, One Bottle at a Time!</h2>
-        <p className="landing-banner__text">
-          Explore the rich and diverse world of beer, savoring unique flavors crafted to perfection,
-          one bottle at a time!
-        </p>
+        <h2 className="landing-banner__title">{t('landingBanner.title')}</h2>
+        <p className="landing-banner__text">{t('landingBanner.text')}</p>
 
         <div className="landing-banner__actions">
-          <button className="landing-banner__btn landing-banner__btn--orange">Shop Sale</button>
-          <button className="landing-banner__btn landing-banner__btn--grey">Our Collections</button>
+          <button className="landing-banner__btn landing-banner__btn--orange">
+            {t('landingBanner.shopSale')}
+          </button>
+          <button className="landing-banner__btn landing-banner__btn--grey">
+            {t('landingBanner.collections')}
+          </button>
         </div>
       </div>
 
@@ -44,7 +48,7 @@ function LandingBanner() {
             alt=""
             className="landing-banner__wing"
           />
-          <p>NEW ARRIVAL</p>
+          <p>{t('landingBanner.newArrival')}</p>
           <img
             src={wing2}
             alt=""

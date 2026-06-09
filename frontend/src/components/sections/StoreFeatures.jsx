@@ -1,38 +1,37 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import ShippingIcon from '../../assets/icons/shipping-icon.svg';
 import GiftIcon from '../../assets/icons/gift-icon.svg';
 import WarrantyIcon from '../../assets/icons/warranty-icon.svg';
 import ReturnIcon from '../../assets/icons/return-icon.svg';
 
 function StoreFeatures() {
+  const { t, i18n } = useTranslation();
+
   const features = [
     {
       id: 1,
       imgSrc: ShippingIcon,
-      title: 'Free Shipping',
-      description:
-        'Free shipping on every item, delivered to your door, elevate your space with beautiful decor, hassle-free!',
+      title: t('storeFeatures.shipping.title'),
+      description: t('storeFeatures.shipping.description'),
     },
     {
       id: 2,
       imgSrc: GiftIcon,
-      title: 'Gift Package',
-      description:
-        'Gifts that leave a lasting impression, beautifully wrapped in style for every occasion!',
+      title: t('storeFeatures.gift.title'),
+      description: t('storeFeatures.gift.description'),
     },
     {
       id: 3,
       imgSrc: WarrantyIcon,
-      title: 'One Year Warranty',
-      description:
-        'Shop with confidence, our one-year warranty backs every jewelry piece, crafted to last and ensure quality.',
+      title: t('storeFeatures.warranty.title'),
+      description: t('storeFeatures.warranty.description'),
     },
     {
       id: 4,
       imgSrc: ReturnIcon,
-      title: 'Easy Returns',
-      description:
-        'Stress-free returns for peace of mind, ensuring your satisfaction with every purchase.',
+      title: t('storeFeatures.returns.title'),
+      description: t('storeFeatures.returns.description'),
     },
   ];
 

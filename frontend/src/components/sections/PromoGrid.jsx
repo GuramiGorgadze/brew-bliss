@@ -1,5 +1,5 @@
 import React from 'react';
-
+import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 
 import wing1 from '../../assets/wing1.png';
@@ -8,85 +8,93 @@ import promoBackground1 from '../../assets/promo-background1.webp';
 import promoBackground2 from '../../assets/promo-background2.webp';
 import promoBackground3 from '../../assets/promo-background3.webp';
 
-function PromoSection() {
+function PromoGrid() {
+  const { t, i18n } = useTranslation();
+
   return (
-    <div className="promo-section">
+    <div className="promo-grid">
       <div
-        className="promo-section__card"
+        className="promo-grid__card"
         style={{ backgroundImage: `url(${promoBackground1})` }}
       >
-        <div className="promo-section__title-container">
+        <div className="promo-grid__title-container">
           <img
             src={wing1}
             alt=""
-            className="promo-section__wing"
+            className="promo-grid__wing"
           />
-          <p className="promo-section__tagline">New Release</p>
+          <p className="promo-grid__tagline">{t('PromoGrid.card1.tagline')}</p>
           <img
             src={wing2}
             alt=""
-            className="promo-section__wing"
+            className="promo-grid__wing"
           />
         </div>
 
-        <h2 className="promo-section__heading">Be the First to Taste Perfection!</h2>
+        <h2 className="promo-grid__heading">{t('PromoGrid.card1.heading')}</h2>
 
         <Link to="/products">
-          <button className="promo-section__button promo-section__button--grey">Show Now</button>
+          <button className="promo-grid__button promo-grid__button--grey">
+            {t('PromoGrid.shopNow')}
+          </button>
         </Link>
       </div>
 
       <div
-        className="promo-section__card"
+        className="promo-grid__card"
         style={{ backgroundImage: `url(${promoBackground2})` }}
       >
-        <div className="promo-section__title-container">
+        <div className="promo-grid__title-container">
           <img
             src={wing1}
             alt=""
-            className="promo-section__wing"
+            className="promo-grid__wing"
           />
-          <p className="promo-section__tagline">Holiday Collections</p>
+          <p className="promo-grid__tagline">{t('PromoGrid.card2.tagline')}</p>
           <img
             src={wing2}
             alt=""
-            className="promo-section__wing"
+            className="promo-grid__wing"
           />
         </div>
 
-        <h2 className="promo-section__heading">Perfect Brews for Perfect Holidays!</h2>
+        <h2 className="promo-grid__heading">{t('PromoGrid.card2.heading')}</h2>
 
         <Link to="/products">
-          <button className="promo-section__button promo-section__button--grey">Show Now</button>
+          <button className="promo-grid__button promo-grid__button--grey">
+            {t('PromoGrid.shopNow')}
+          </button>
         </Link>
       </div>
 
       <div
-        className="promo-section__card"
+        className="promo-grid__card"
         style={{ backgroundImage: `url(${promoBackground3})` }}
       >
-        <div className="promo-section__title-container">
+        <div className="promo-grid__title-container">
           <img
             src={wing1}
             alt=""
-            className="promo-section__wing"
+            className="promo-grid__wing"
           />
-          <p className="promo-section__tagline">Limited Time Offer</p>
+          <p className="promo-grid__tagline">{t('PromoGrid.card3.tagline')}</p>
           <img
             src={wing2}
             alt=""
-            className="promo-section__wing"
+            className="promo-grid__wing"
           />
         </div>
 
-        <h2 className="promo-section__heading">Hurry! Exclusive Deals Await!</h2>
+        <h2 className="promo-grid__heading">{t('PromoGrid.card3.heading')}</h2>
 
         <Link to="/products">
-          <button className="promo-section__button promo-section__button--grey">Shop Sale</button>
+          <button className="promo-grid__button promo-grid__button--grey">
+            {t('PromoGrid.shopSale')}
+          </button>
         </Link>
       </div>
     </div>
   );
 }
 
-export default PromoSection;
+export default PromoGrid;

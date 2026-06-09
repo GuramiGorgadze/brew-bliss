@@ -1,0 +1,285 @@
+{
+  "about": {
+    "pageTitle": "À propos de nous",
+    "ourStory": {
+      "label": "Notre histoire",
+      "descStart": "Bienvenue chez",
+      "brandName": "Brew Bliss,",
+      "descEnd": "votre destination ultime pour des saveurs fraîches et des boissons délicieuses. Nous nous efforçons de vous fournir des aliments et des boissons de première qualité qui sauront satisfaire toutes vos envies !"
+    },
+    "team": {
+      "label": "Rencontrez les membres de notre équipe",
+      "desc": "Découvrez pourquoi tout le monde fait l'éloge de nos produits et de nos services – de vraies histoires de clients heureux !",
+      "member1": {
+        "title": "Emily Johnson",
+        "description": "Fondatrice / Directrice générale"
+      },
+      "member2": {
+        "title": "Michael Brown",
+        "description": "Responsable du service client"
+      },
+      "member3": {
+        "title": "Sarah Davis",
+        "description": "Spécialiste marketing"
+      },
+      "member4": {
+        "title": "Sophia Martinez",
+        "description": "Curatrice d'art"
+      }
+    }
+  },
+  "team": {
+    "pageTitle": "Notre équipe"
+  },
+  "account": {
+    "title": "Compte",
+    "welcome": "Bienvenue",
+    "nav": {
+      "dashboard": "Tableau de bord",
+      "checkout": "Paiement",
+      "editAddress": "Modifier l'adresse",
+      "viewWishlist": "Liste de souhaits",
+      "logout": "Déconnexion"
+    },
+    "details": {
+      "title": "Détails du compte :",
+      "name": "Nom",
+      "country": "Pays",
+      "email": "E-mail",
+      "phone": "Téléphone",
+      "city": "Ville",
+      "zip": "Code postal",
+      "address": "Adresse",
+      "address2": "Adresse 2"
+    }
+  },
+  "address": {
+    "title": "Adresse",
+    "editAddress": "Modifier l'adresse",
+    "form": {
+      "firstName": "Prénom",
+      "lastName": "Nom",
+      "address1": "Adresse N1",
+      "address2": "Adresse N2",
+      "country": "Pays",
+      "city": "Ville",
+      "zip": "Code postal",
+      "phone": "Téléphone"
+    },
+    "buttons": {
+      "saving": "Enregistrement...",
+      "editAddress": "Modifier l'adresse",
+      "resetAddress": "Annuler l'adresse"
+    }
+  },
+  "cart": {
+    "pageTitle": "Votre panier",
+    "empty": "Votre panier est vide",
+    "table": {
+      "product": "Produit",
+      "quantity": "Quantité",
+      "subtotal": "Total",
+      "remove": "Supprimer"
+    },
+    "item": {
+      "bottleSize": "Taille de la bouteille",
+      "beerVariety": "Variété de bière"
+    },
+    "note": {
+      "label": "Ajouter une note à la commande",
+      "placeholder": "Comment pouvons-nous vous aider ?"
+    },
+    "shipping": {
+      "congrats": "Félicitations ! Vous bénéficiez de la",
+      "freeShipping": "livraison gratuite !",
+      "spendMore": "Dépensez encore ${{amount}} et bénéficiez de la"
+    },
+    "summary": {
+      "youSave": "Économie totale",
+      "orderTotal": "Total de la commande",
+      "taxNote": "Les taxes et les frais de livraison sont calculés lors du paiement"
+    },
+    "terms": {
+      "agree": "J'accepte les",
+      "link": "conditions générales"
+    },
+    "checkoutBtn": "Passer à la caisse"
+  },
+  "contact": {
+    "pageTitle": "Contact",
+    "cards": {
+      "customerService": {
+        "title": "Service client",
+        "phone": "+995 557 70 40 22",
+        "hours": "Contactez-nous de 8h00 à 20h00"
+      },
+      "liveChat": {
+        "title": "Chat en direct",
+        "heading": "Le chat en direct est disponible",
+        "hours": "Tous les jours : de 10h00 à 22h00"
+      },
+      "email": {
+        "title": "Érivez-nous",
+        "address": "g.gorgadze111@gmail.com",
+        "hours": "À tout moment"
+      },
+      "followUs": {
+        "title": "Suivez-nous"
+      }
+    },
+    "getInTouch": {
+      "title": "Contactez-nous",
+      "hours": "Ouvert du lundi au vendredi de 10h00 à 21h00, le samedi de 10h00 à 18h00, fermé le dimanche."
+    },
+    "form": {
+      "namePlaceholder": "Votre nom",
+      "emailPlaceholder": "E-mail",
+      "phonePlaceholder": "Téléphone",
+      "messagePlaceholder": "Écrivez votre message...",
+      "btn": {
+        "normal": "Envoyer le message",
+        "loading": "Envoi en cours...",
+        "success": "Message envoyé !",
+        "error": "Erreur. Veuillez réessayer"
+      }
+    }
+  },
+  "login": {
+    "pageTitle": "Connexion",
+    "title": "Connexion",
+    "form": {
+      "emailLabel": "Adresse e-mail",
+      "emailPlaceholder": "Adresse e-mail",
+      "passwordLabel": "Mot de passe",
+      "passwordPlaceholder": "Mot de passe",
+      "forgotPassword": "Mot de passe oublié ?",
+      "submitBtn": "Se connecter",
+      "createAccount": "Créer un nouveau compte"
+    },
+    "validation": {
+      "emailRequired": "L'adresse e-mail est obligatoire",
+      "emailInvalid": "Format d'adresse e-mail invalide",
+      "passwordRequired": "Le mot de passe est obligatoire",
+      "passwordMin": "Le mot de passe doit contenir au moins 8 caractères",
+      "serverError": "Une erreur est survenue"
+    }
+  },
+  "register": {
+    "pageTitle": "Inscription",
+    "title": "Créer un compte",
+    "form": {
+      "firstNameLabel": "Prénom",
+      "firstNamePlaceholder": "Prénom",
+      "lastNameLabel": "Nom",
+      "lastNamePlaceholder": "Nom",
+      "emailLabel": "Adresse e-mail",
+      "emailPlaceholder": "Adresse e-mail",
+      "passwordLabel": "Mot de passe",
+      "passwordPlaceholder": "Mot de passe",
+      "confirmPasswordLabel": "Confirmer le mot de passe",
+      "confirmPasswordPlaceholder": "Confirmer le mot de passe",
+      "submitBtn": "Créer un nouveau compte",
+      "loginBtn": "Se connecter"
+    },
+    "validation": {
+      "firstNameRequired": "Le prénom est obligatoire",
+      "firstNameMax": "Le prénom ne doit pas dépasser 30 caractères",
+      "lastNameRequired": "Le nom est obligatoire",
+      "lastNameMax": "Le nom ne doit pas dépasser 30 caractères",
+      "emailRequired": "L'adresse e-mail est obligatoire",
+      "emailInvalid": "Format d'adresse e-mail invalide",
+      "passwordRequired": "Le mot de passe est obligatoire",
+      "passwordMin": "Le mot de passe doit contenir au moins 8 caractères",
+      "passwordUppercase": "Le mot de passe doit contenir une lettre majuscule",
+      "passwordNumber": "Le mot de passe doit contenir un chiffre",
+      "passwordSpecial": "Le mot de passe doit contenir un caractère spécial",
+      "confirmPasswordRequired": "Veuillez confirmer votre mot de passe",
+      "confirmPasswordMatch": "Les mots de passe ne correspondent pas",
+      "serverError": "Une erreur est survenue"
+    }
+  },
+  "notFound": {
+    "code": "404",
+    "heading": "Désolé, nous n'avons pas trouvé cette page !",
+    "text": "Il semble que cette page ait été déplacée ou n'existe pas. Retournez à la page d'accueil ou contactez-nous pour obtenir de l'aide !",
+    "btn": "Retour à la page d'accueil"
+  },
+  "products": {
+    "pageTitle": "Produits"
+  },
+  "productSingle": {
+    "review": "Avis",
+    "reviews": "Avis",
+    "descriptionLabel": "Description",
+    "bottleSize": "Taille de la bouteille :",
+    "quantity": "Quantité :",
+    "tags": "Étiquettes :",
+    "share": "Partager :",
+    "availability": {
+      "label": "Disponibilité :",
+      "inStock": "En stock",
+      "unavailable": "Indisponible"
+    },
+    "shipping": {
+      "congrats": "Félicitations ! Vous bénéficiez de la",
+      "freeShipping": "livraison gratuite !",
+      "spendMore": "Dépensez encore ${{amount}} et bénéficiez de la"
+    },
+    "actions": {
+      "adding": "Ajout en cours...",
+      "addToCart": "Ajouter au panier",
+      "buyNow": "Acheter maintenant",
+      "soldOut": "Rupture de stock"
+    },
+    "delivery": {
+      "label": "Livraison estimée :",
+      "returnPolicy": "Retournez les articles dans les 90 jours suivant l'achat. Les taxes ne sont pas remboursables."
+    }
+  },
+  "landingBanner": {
+    "newArrival": "NOUVELLE ARRIVÉE",
+    "title": "Découvrez des saveurs, une bouteille à la fois !",
+    "text": "Explorez le monde riche et varié de la bière, en savourant des saveurs uniques élaborées à la perfection, une bouteille à la fois !",
+    "shopSale": "Voir les promotions",
+    "collections": "Nos collections"
+  },
+  "PromoGrid": {
+    "shopNow": "Voir maintenant",
+    "shopSale": "Voir les promotions",
+    "card1": {
+      "tagline": "Nouvelle sortie",
+      "heading": "Soyez le premier à goûter la perfection !"
+    },
+    "card2": {
+      "tagline": "Collections de fêtes",
+      "heading": "Les meilleures bières pour les meilleures fêtes !"
+    },
+    "card3": {
+      "tagline": "Offre à durée limitée",
+      "heading": "Dépêchez-vous ! Des offres exclusives vous attendent !"
+    }
+  },
+  "saleBanner": {
+    "limitedTime": "Offre limitée dans le temps !",
+    "title": "Buvez plus, payez moins, bière à -20% !",
+    "shopSale": "Voir les promotions"
+  },
+  "storeFeatures": {
+    "shipping": {
+      "title": "Livraison gratuite",
+      "description": "Livraison gratuite sur chaque article, livrée à votre porte, améliorez votre espace avec une belle décoration, sans tracas !"
+    },
+    "gift": {
+      "title": "Paquet cadeau",
+      "description": "Des cadeaux qui laissent une impression durable, joliment emballés avec style pour chaque occasion !"
+    },
+    "warranty": {
+      "title": "Garantie d'un an",
+      "description": "Achetez en toute confiance, notre garantie d'un an couvre chaque bijou, conçu pour durer et garantir la qualité."
+    },
+    "returns": {
+      "title": "Retours faciles",
+      "description": "Des retours sans stress pour votre tranquillité d'esprit, garantissant votre satisfaction à chaque achat."
+    }
+  }
+}

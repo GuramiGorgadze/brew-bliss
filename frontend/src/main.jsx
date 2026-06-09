@@ -5,6 +5,7 @@ import { UserProvider } from './context/UserContext.jsx';
 import { LoaderProvider } from './context/LoaderContext.jsx';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import App from './App.jsx';
+import './language/i18n';
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>

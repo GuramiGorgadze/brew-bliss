@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import clsx from 'clsx';
+import { useTranslation } from 'react-i18next';
 import { useLoader } from '../context/LoaderContext';
 import { useNavigate, Link } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
@@ -11,19 +12,21 @@ import { useUserData } from '../context/UserContext.jsx';
 
 function Login() {
   const { login } = useUserData();
-
+  const { t, i18n } = useTranslation();
   const navigate = useNavigate();
 
   const { useFakeLoader } = useLoader();
   useEffect(() => useFakeLoader(), []);
 
   const schema = yup.object({
-    email: yup.string().required('Email is required').email('Invalid email address'),
-
+    email: yup
+      .string()
+      .required(t('login.validation.emailRequired'))
+      .email(t('login.validation.emailInvalid')),
     password: yup
       .string()
-      .required('Password is required')
-      .min(8, 'Password must be at least 8 characters'),
+      .required(t('login.validation.passwordRequired'))
+      .min(8, t('login.validation.passwordMin')),
   });
 
   const {
@@ -42,7 +45,7 @@ function Login() {
       navigate('/account');
     } catch (error) {
       setError('root.serverError', {
-        message: error.response?.data?.message || 'Something went wrong',
+        message: error.response?.data?.message || t('login.validation.serverError'),
       });
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
@@ -50,10 +53,10 @@ function Login() {
 
   return (
     <div className="auth-wrapper">
-      <PageTitle pageName="Login"></PageTitle>
+      <PageTitle pageName={t('login.pageTitle')} />
 
       <div className="auth">
-        <h2 className="auth__title">Log In</h2>
+        <h2 className="auth__title">{t('login.title')}</h2>
         <form
           className="auth__form"
           onSubmit={handleSubmit(onSubmit)}
@@ -63,16 +66,14 @@ function Login() {
               className="auth__form__item__label"
               htmlFor="email"
             >
-              Email Address <span className="required">*</span>
+              {t('login.form.emailLabel')} <span className="required">*</span>
             </label>
             <input
               type="text"
-              placeholder="Email Address"
+              placeholder={t('login.form.emailPlaceholder')}
               maxLength={30}
               id="email"
-              className={clsx('auth__form__item__input', {
-                error: errors.email?.message,
-              })}
+              className={clsx('auth__form__item__input', { error: errors.email?.message })}
               {...register('email')}
             />
             <p className="auth__form__item__error">{errors.email?.message}</p>
@@ -83,22 +84,20 @@ function Login() {
               className="auth__form__item__label"
               htmlFor="password"
             >
-              Password <span className="required">*</span>
+              {t('login.form.passwordLabel')} <span className="required">*</span>
             </label>
             <input
               type="password"
-              placeholder="Password"
+              placeholder={t('login.form.passwordPlaceholder')}
               maxLength={30}
               id="password"
-              className={clsx('auth__form__item__input', {
-                error: errors.password?.message,
-              })}
+              className={clsx('auth__form__item__input', { error: errors.password?.message })}
               {...register('password')}
             />
             <p className="auth__form__item__error">{errors.password?.message}</p>
           </div>
 
-          <p className="auth__form__forgot-password">Forgot your password ?</p>
+          <p className="auth__form__forgot-password">{t('login.form.forgotPassword')}</p>
 
           <p className="auth__error">{errors.root?.serverError?.message}</p>
 
@@ -106,7 +105,7 @@ function Login() {
             className="auth__form__submit"
             type="submit"
           >
-            Login
+            {t('login.form.submitBtn')}
           </button>
 
           <Link to="/register">
@@ -114,7 +113,7 @@ function Login() {
               type="button"
               className="auth__form__register"
             >
-              Create New Account
+              {t('login.form.createAccount')}
             </button>
           </Link>
         </form>

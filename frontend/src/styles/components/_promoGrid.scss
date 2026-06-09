@@ -1,6 +1,6 @@
 @use "../abstracts" as *;
 
-.promo-section {
+.promo-grid {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
@@ -37,6 +37,7 @@
   &__heading {
     font-size: calc(30px * var(--app-scale));
     font-weight: 500;
+    max-width: calc(300px * var(--app-scale));
   }
 
   &__button {
@@ -59,7 +60,7 @@
 }
 
 @media (max-width: 1440px) {
-  .promo-section {
+  .promo-grid {
     &__card {
       height: 360px;
       width: auto;
@@ -72,7 +73,7 @@
 }
 
 @media (max-width: 1024px) {
-  .promo-section {
+  .promo-grid {
     &__card {
       height: 360px;
       width: 100%;
@@ -87,7 +88,7 @@
 }
 
 @media (max-width: 430px) {
-  .promo-section {
+  .promo-grid {
     
     &__card {
       margin: 0 20px;

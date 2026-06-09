@@ -337,6 +337,7 @@ input {
 }
 .top-bar__contact {
   display: flex;
+  align-items: center;
 }
 .top-bar__contact img {
   color: #ffffff;
@@ -351,9 +352,62 @@ input {
   height: calc(15px * var(--app-scale));
   margin-right: calc(5px * var(--app-scale));
 }
-.top-bar__language {
+.top-bar__language-custom {
+  position: relative;
+}
+.top-bar__language-custom .dropdown-trigger {
   display: flex;
   align-items: center;
+  gap: calc(8px * var(--app-scale));
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: inherit;
+  font: inherit;
+  padding: calc(4px * var(--app-scale)) calc(8px * var(--app-scale));
+}
+.top-bar__language-custom .dropdown-trigger .arrow {
+  font-size: calc(10px * var(--app-scale));
+  transition: transform 0.3s ease;
+}
+.top-bar__language-custom .dropdown-trigger .arrow .bi {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.top-bar__language-custom .dropdown-trigger .arrow.open {
+  transform: rotate(180deg);
+}
+.top-bar__language-custom .dropdown-options {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: #ffffff;
+  color: #0E0E0E;
+  border-radius: calc(4px * var(--app-scale));
+  padding: calc(4px * var(--app-scale)) 0;
+  margin: calc(4px * var(--app-scale)) 0 0 0;
+  z-index: 51;
+  min-width: calc(130px * var(--app-scale));
+  box-shadow: calc(10px * var(--app-scale)) calc(10px * var(--app-scale)) calc(60px * var(--app-scale)) calc(-29px * var(--app-scale)) rgba(0, 0, 0, 0.45);
+  -webkit-box-shadow: calc(10px * var(--app-scale)) calc(10px * var(--app-scale)) calc(60px * var(--app-scale)) calc(-29px * var(--app-scale)) rgba(0, 0, 0, 0.45);
+  -moz-box-shadow: calc(10px * var(--app-scale)) calc(10px * var(--app-scale)) calc(60px * var(--app-scale)) calc(-29px * var(--app-scale)) rgba(0, 0, 0, 0.45);
+}
+.top-bar__language-custom .dropdown-option {
+  display: flex;
+  align-items: center;
+  gap: calc(8px * var(--app-scale));
+  padding: calc(8px * var(--app-scale)) calc(12px * var(--app-scale));
+  cursor: pointer;
+  font-size: calc(14px * var(--app-scale));
+  transition: 0.2s ease;
+}
+.top-bar__language-custom .dropdown-option.active {
+  font-weight: bold;
+}
+.top-bar__language-custom .flag-img {
+  height: calc(15px * var(--app-scale));
+  margin-right: 0;
 }
 .top-bar__divider {
   height: calc(15px * var(--app-scale));
@@ -1406,7 +1460,7 @@ input {
     display: flex;
   }
 }
-.promo-section {
+.promo-grid {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
@@ -1414,7 +1468,7 @@ input {
   gap: calc(20px * var(--app-scale));
   margin-top: calc(100px * var(--app-scale));
 }
-.promo-section__card {
+.promo-grid__card {
   display: flex;
   flex-direction: column;
   height: calc(500px * var(--app-scale));
@@ -1425,22 +1479,23 @@ input {
   padding: calc(30px * var(--app-scale)) calc(15px * var(--app-scale));
   box-sizing: border-box;
 }
-.promo-section__title-container {
+.promo-grid__title-container {
   display: flex;
   align-items: center;
 }
-.promo-section__tagline {
+.promo-grid__tagline {
   font-size: calc(14px * var(--app-scale));
 }
-.promo-section__wing {
+.promo-grid__wing {
   height: calc(20px * var(--app-scale));
   width: calc(20px * var(--app-scale));
 }
-.promo-section__heading {
+.promo-grid__heading {
   font-size: calc(30px * var(--app-scale));
   font-weight: 500;
+  max-width: calc(300px * var(--app-scale));
 }
-.promo-section__button {
+.promo-grid__button {
   height: calc(50px * var(--app-scale));
   width: calc(130px * var(--app-scale));
   border-radius: calc(5px * var(--app-scale));
@@ -1451,38 +1506,38 @@ input {
   outline: none;
   color: #0E0E0E;
 }
-.promo-section__button:hover {
+.promo-grid__button:hover {
   cursor: pointer;
   background-color: #FEA90C;
   border: calc(1px * var(--app-scale)) solid #FEA90C;
 }
 
 @media (max-width: 1440px) {
-  .promo-section__card {
+  .promo-grid__card {
     height: 360px;
     width: auto;
   }
-  .promo-section__heading {
+  .promo-grid__heading {
     font-size: 20px;
   }
 }
 @media (max-width: 1024px) {
-  .promo-section__card {
+  .promo-grid__card {
     height: 360px;
     width: 100%;
     margin: 0 40px;
     background-position: 0;
   }
-  .promo-section__heading {
+  .promo-grid__heading {
     font-size: 20px;
   }
 }
 @media (max-width: 430px) {
-  .promo-section__card {
+  .promo-grid__card {
     margin: 0 20px;
   }
 }
-.promo-section2 {
+.sale-banner {
   height: calc(475px * var(--app-scale));
   background-image: url(../../assets/promo-background2.1.webp);
   background-size: cover;
@@ -1493,31 +1548,31 @@ input {
   justify-content: start;
   margin: 50px 0;
 }
-.promo-section2__left {
+.sale-banner__left {
   display: flex;
   flex-direction: column;
 }
-.promo-section2__left__paragraph-wrapper {
+.sale-banner__left__paragraph-wrapper {
   display: flex;
-  justify-content: center;
   align-items: center;
   gap: 10px;
 }
-.promo-section2__left__paragraph-wrapper__paragraph {
+.sale-banner__left__paragraph-wrapper__paragraph {
   text-transform: uppercase;
   font-weight: 400;
   letter-spacing: 2px;
 }
-.promo-section2__left__paragraph-wrapper__line {
+.sale-banner__left__paragraph-wrapper__line {
   height: calc(2px * var(--app-scale));
   width: calc(40px * var(--app-scale));
   background-color: #FEA90C;
 }
-.promo-section2__left__title {
+.sale-banner__left__title {
   font-weight: 500;
   margin: 20px 0;
+  width: 250px;
 }
-.promo-section2__left__btn {
+.sale-banner__left__btn {
   width: calc(150px * var(--app-scale));
   height: calc(50px * var(--app-scale));
   border: none;
@@ -1530,36 +1585,36 @@ input {
   outline: none;
   color: #0E0E0E;
 }
-.promo-section2__left__btn:hover {
+.sale-banner__left__btn:hover {
   background-color: #0F0F0F;
   color: white;
 }
 
 @media (max-width: 1024px) {
-  .promo-section2 {
+  .sale-banner {
     padding: 60px 60px;
     background-position: center;
     height: auto;
     justify-content: center;
   }
-  .promo-section2__left {
+  .sale-banner__left {
     align-items: center;
   }
-  .promo-section2__left__paragraph-wrapper {
+  .sale-banner__left__paragraph-wrapper {
     justify-content: center;
   }
-  .promo-section2__left__title {
+  .sale-banner__left__title {
     text-align: center;
   }
-  .promo-section2__left__btn {
+  .sale-banner__left__btn {
     align-self: center;
   }
 }
 @media (max-width: 430px) {
-  .promo-section2 {
+  .sale-banner {
     padding: 40px 20px;
   }
-  .promo-section2__left__title {
+  .sale-banner__left__title {
     font-size: 24px;
   }
 }
@@ -2981,7 +3036,7 @@ input {
 .contact .get-in-touch__left--btn {
   background-color: #FEA90C;
   border: none;
-  width: 150px;
+  width: 100%;
   padding: 15px 20px;
   border-radius: 5px;
   cursor: pointer;
