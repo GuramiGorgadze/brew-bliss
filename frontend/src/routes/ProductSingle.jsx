@@ -6,6 +6,7 @@ import { useParams } from 'react-router-dom';
 import * as api from '../api/api';
 import ShippingIcon from '../assets/icons/shipping-icon-white.svg';
 import { useNavigate } from 'react-router-dom';
+import { useCurrency } from '../context/CurrencyContext';
 import clsx from 'clsx';
 import DeliveryIcon from '../assets/icons/delivery-icon.svg';
 import ReturnIcon from '../assets/icons/return-icon-single.svg';
@@ -21,9 +22,12 @@ function ProductSingle() {
   const [cartTotal, setCartTotal] = useState(0);
   const { useDataLoader } = useLoader();
   const { id } = useParams();
+
   const FreeShipping = 500;
   const [cartStatus, setCartStatus] = useState('');
   const { t, i18n } = useTranslation();
+
+  const { formatPrice, activeCurrency } = useCurrency();
 
   const navigate = useNavigate();
 
@@ -54,9 +58,15 @@ function ProductSingle() {
     fetchCartTotal();
   }, []);
 
-  const combinedTotal = cartTotal + (selectedVariant?.price ?? 0) * quantity;
-  const remaining = Math.max(0, FreeShipping - combinedTotal);
-  const progress = Math.min(100, (combinedTotal / FreeShipping) * 100);
+  const basePrice = selectedVariant?.price ?? singleProduct?.variants[0]?.price ?? 0;
+  const combinedTotal = cartTotal + basePrice * quantity;
+
+  const dynamicFreeShippingThreshold = FreeShipping * activeCurrency.rate;
+  const remaining = Math.max(0, dynamicFreeShippingThreshold - combinedTotal * activeCurrency.rate);
+  const progress = Math.min(
+    100,
+    ((combinedTotal * activeCurrency.rate) / dynamicFreeShippingThreshold) * 100
+  );
 
   const getDeliveryRange = () => {
     const start = new Date();
@@ -117,9 +127,7 @@ function ProductSingle() {
             )
           </p>
 
-          <h6 className="product-page__price">
-            ${selectedVariant?.price ?? singleProduct?.variants[0].price}
-          </h6>
+          <h6 className="product-page__price">{formatPrice(basePrice)}</h6>
 
           <div className="product-page__shipping">
             <div className="product-page__shipping-track">
@@ -152,7 +160,9 @@ function ProductSingle() {
               </>
             ) : (
               <>
-                {t('productSingle.shipping.spendMore', { amount: remaining.toFixed(2) })}{' '}
+                {t('productSingle.shipping.spendMore', {
+                  amount: formatPrice(remaining / activeCurrency.rate),
+                })}{' '}
                 <span className="product-page__promo-highlight">
                   {t('productSingle.shipping.freeShipping')}
                 </span>

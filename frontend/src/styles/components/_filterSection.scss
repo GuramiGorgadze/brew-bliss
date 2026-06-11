@@ -3,6 +3,7 @@
 .filter-section {
   display: flex;
   flex-direction: column;
+  width: calc(290px * var(--app-scale));
 
   &__search {
     display: flex;

@@ -1,36 +1,110 @@
 {
+  "navbar": {
+    "logoAlt": "Logo de l'entreprise",
+    "home": "ACCUEIL",
+    "product": "PRODUIT",
+    "about": "À PROPOS",
+    "contact": "CONTACT",
+    "pages": "PAGES",
+    "searchIconAlt": "Icône de recherche",
+    "profileIconAlt": "Icône de profil",
+    "cartIconAlt": "Icône du panier"
+  },
+  "drawer": {
+    "close": "Fermer",
+    "account": "Compte",
+    "wishlist": "Liste de souhaits ({{count}})",
+    "aboutUs": "À propos de nous",
+    "contactUs": "Contactez-nous"
+  },
+  "search": {
+    "heading": "QUE RECHERCHEZ-VOUS ?",
+    "placeholder": "Rechercher des produits...",
+    "buttonAlt": "Rechercher"
+  },
+  "topbar": {
+    "phoneIconAlt": "Icône de téléphone",
+    "promoMessage": "Livraison gratuite pour toute commande de 500 $ et plus"
+  },
+  "footer": {
+    "brand": {
+      "logoAlt": "logo",
+      "slogan": "Nous sommes passionnés par l'art de créer l'expérience brassicole parfaite..."
+    },
+    "contact": {
+      "addressLabel": "Adresse",
+      "addressValue": "67ème Avenue, Géorgie",
+      "phoneLabel": "Téléphone",
+      "phoneValue": "(995) 557 70 40 22",
+      "emailLabel": "E-mail",
+      "emailValue": "g.gorgadze111@gmail.com"
+    },
+    "sections": {
+      "websiteLinks": "Liens du site",
+      "ourCompany": "Notre entreprise",
+      "customerService": "Service client"
+    },
+    "links": {
+      "home": "Accueil",
+      "myAccount": "Mon compte",
+      "products": "Produits",
+      "fallbackLink": "Lien",
+      "aboutUs": "À propos de nous",
+      "ourTeam": "Notre équipe",
+      "contactUs": "Contactez-nous",
+      "returns": "Retours",
+      "faq": "FAQ"
+    },
+    "newsletter": {
+      "title": "Inscrivez-vous à la newsletter",
+      "description": "Inscrivez-vous pour recevoir des mises à jour exclusives, les nouveautés et plus encore.",
+      "placeholder": "Votre adresse e-mail...",
+      "button": {
+        "normal": "S'abonner",
+        "loading": "Inscription...",
+        "success": "Inscrit !",
+        "error": "Erreur. Veuillez réessayer"
+      }
+    },
+    "socials": {
+      "followUs": "Suivez-nous",
+      "facebookAlt": "Facebook",
+      "twitterAlt": "Twitter",
+      "instagramAlt": "Instagram",
+      "tiktokAlt": "TikTok"
+    },
+    "bottom": {
+      "copyrightBefore": "Copyright ©",
+      "brandName": "Boutique Brew Bliss",
+      "copyrightAfter": ". Tous droits réservés. Propulsé par",
+      "poweredBy": "UIPARADOX"
+    },
+    "payments": {
+      "amazonAlt": "Amazon Pay",
+      "applePayAlt": "Apple Pay",
+      "mastercardAlt": "Mastercard",
+      "paypalAlt": "PayPal",
+      "visaAlt": "Visa"
+    }
+  },
   "about": {
     "pageTitle": "À propos de nous",
     "ourStory": {
       "label": "Notre histoire",
       "descStart": "Bienvenue chez",
       "brandName": "Brew Bliss,",
-      "descEnd": "votre destination ultime pour des saveurs fraîches et des boissons délicieuses. Nous nous efforçons de vous fournir des aliments et des boissons de première qualité qui sauront satisfaire toutes vos envies !"
+      "descEnd": "votre destination ultime pour des saveurs fraîches et des boissons délicieuses. We're passionate about delivering premium food and beverages to satisfy every craving, anytime, anywhere!"
     },
     "team": {
       "label": "Rencontrez les membres de notre équipe",
       "desc": "Découvrez pourquoi tout le monde fait l'éloge de nos produits et de nos services – de vraies histoires de clients heureux !",
-      "member1": {
-        "title": "Emily Johnson",
-        "description": "Fondatrice / Directrice générale"
-      },
-      "member2": {
-        "title": "Michael Brown",
-        "description": "Responsable du service client"
-      },
-      "member3": {
-        "title": "Sarah Davis",
-        "description": "Spécialiste marketing"
-      },
-      "member4": {
-        "title": "Sophia Martinez",
-        "description": "Curatrice d'art"
-      }
+      "member1": { "title": "Emily Johnson", "description": "Fondatrice / Directrice générale" },
+      "member2": { "title": "Michael Brown", "description": "Responsable du service client" },
+      "member3": { "title": "Sarah Davis", "description": "Spécialiste marketing" },
+      "member4": { "title": "Sophia Martinez", "description": "Curatrice d'art" }
     }
   },
-  "team": {
-    "pageTitle": "Notre équipe"
-  },
+  "team": { "pageTitle": "Notre équipe" },
   "account": {
     "title": "Compte",
     "welcome": "Bienvenue",
@@ -119,13 +193,11 @@
         "hours": "Tous les jours : de 10h00 à 22h00"
       },
       "email": {
-        "title": "Érivez-nous",
+        "title": "Écrivez-nous",
         "address": "g.gorgadze111@gmail.com",
         "hours": "À tout moment"
       },
-      "followUs": {
-        "title": "Suivez-nous"
-      }
+      "followUs": { "title": "Suivez-nous" }
     },
     "getInTouch": {
       "title": "Contactez-nous",
@@ -155,6 +227,15 @@
       "forgotPassword": "Mot de passe oublié ?",
       "submitBtn": "Se connecter",
       "createAccount": "Créer un nouveau compte"
+    },
+    "reset": {
+      "title": "Réinitialiser votre mot de passe",
+      "subtitle": "Nous vous enverrons un e-mail pour réinitialiser votre mot de passe.",
+      "submitBtn": "Envoyer le lien",
+      "cancelBtn": "Annuler",
+      "successTitle": "Vérifiez vos e-mails",
+      "successText": "Nous avons envoyé un lien de réinitialisation. Consultez votre boîte de réception et suivez les instructions.",
+      "backToLogin": "Retour à la connexion"
     },
     "validation": {
       "emailRequired": "L'adresse e-mail est obligatoire",
@@ -198,15 +279,24 @@
       "serverError": "Une erreur est survenue"
     }
   },
+  "resetPassword": {
+    "pageTitle": "Réinitialisation du mot de passe",
+    "title": "Définir un nouveau mot de passe",
+    "form": {
+      "passwordLabel": "Nouveau mot de passe",
+      "passwordPlaceholder": "Entrez un nouveau mot de passe",
+      "confirmPasswordLabel": "Confirmer le mot de passe",
+      "confirmPasswordPlaceholder": "Confirmez le nouveau mot de passe",
+      "submitBtn": "Réinitialiser le mot de passe"
+    }
+  },
   "notFound": {
     "code": "404",
     "heading": "Désolé, nous n'avons pas trouvé cette page !",
     "text": "Il semble que cette page ait été déplacée ou n'existe pas. Retournez à la page d'accueil ou contactez-nous pour obtenir de l'aide !",
     "btn": "Retour à la page d'accueil"
   },
-  "products": {
-    "pageTitle": "Produits"
-  },
+  "products": { "pageTitle": "Produits" },
   "productSingle": {
     "review": "Avis",
     "reviews": "Avis",
@@ -281,5 +371,45 @@
       "title": "Retours faciles",
       "description": "Des retours sans stress pour votre tranquillité d'esprit, garantissant votre satisfaction à chaque achat."
     }
+  },
+  "filterSection": {
+    "searchPlaceholder": "Rechercher ici",
+    "searchAlt": "Rechercher",
+    "productCategories": "Catégories de produits",
+    "availability": "DISPONIBILITÉ",
+    "inStock": "En stock ({{count}})",
+    "outOfStock": "Rupture de stock ({{count}})",
+    "price": "PRIX",
+    "highestPrice": "Le prix le plus élevé est",
+    "priceFrom": "De",
+    "priceTo": "À"
+  },
+  "productCard": {
+    "review": "Avis",
+    "reviews": "Avis",
+    "addToCart": "Ajouter au panier"
+  },
+  "productList": {
+    "filterAndSort": "FILTRER & TRIER",
+    "filterAndSortTitle": "FILTRER ET TRIER",
+    "productsCount": "{{count}} Produits",
+    "productsFiltered": "{{filtered}} sur {{total}} Produits",
+    "filterSearch": "Recherche : \"{{value}}\"",
+    "filterCategory": "Catégorie : {{value}}",
+    "filterInStock": "En stock",
+    "filterOutOfStock": "Rupture de stock",
+    "filterPriceRange": "Gamme de prix",
+    "removeAll": "Tout supprimer",
+    "noProductsFound": "Aucun produit trouvé",
+    "useFewerFilters": "Utilisez moins de filtres ou",
+    "clearAll": "tout effacer"
+  },
+  "toolbar": {
+    "sortBy": "Trier par :",
+    "mostRelevant": "Plus pertinent",
+    "titleAsc": "Alphabétiquement, A–Z",
+    "titleDesc": "Alphabétiquement, Z–A",
+    "priceAsc": "Prix, croissant",
+    "priceDesc": "Prix, décroissant"
   }
 }

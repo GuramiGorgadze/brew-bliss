@@ -53,7 +53,7 @@ const sendResetPasswordMail = async (to, url) => {
                                     </table>
                                     <div style="border-top: 1px solid #e8e0d0; margin: 44px 0 28px 0;"></div>
                                     <p style="color: #b0a090; font-size: 12px; line-height: 1.7; margin: 0; text-align: center;">
-                                        This link will expire in 24 hours. If you need further assistance, contact our support team.
+                                        This link will expire in 15 Minutes. If you need further assistance, contact our support team.
                                     </p>
                                 </td>
                             </tr>
@@ -138,7 +138,6 @@ const sendContactMail = async (to, message) => {
 const sendNewsletterMail = async (to) => {
   const transporter = createTransporter();
 
-  // Confirmation to the subscriber
   await transporter.sendMail({
     from: process.env.MAIL_SENDER_EMAIL,
     to: to,

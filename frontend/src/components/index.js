@@ -9,6 +9,8 @@ export { default as SaleBanner } from './sections/SaleBanner';
 export { default as InstagramCarousel } from './sections/InstagramCarousel';
 export { default as BrandCarousel } from './sections/BrandCarousel';
 export { default as StoreFeatures } from './sections/StoreFeatures';
+export { default as ArrivalsCarousel } from './sections/ArrivalsCarousel';
+export { default as FeaturedCarousel } from './sections/FeaturedCarousel';
 
 export { default as LoadingScreen } from './ui/LoadingScreen';
 export { default as PageTitle } from './ui/PageTitle';

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import { useUserData } from '../context/UserContext';
 import cartIcon from '../assets/icons/cart-icon.svg';
 import profileIcon from '../assets/icons/profile-icon.svg';
@@ -9,6 +10,7 @@ import logo from '../assets/logo.webp';
 import clsx from 'clsx';
 
 function Navbar() {
+  const { t, i18n } = useTranslation();
   const [searchOpen, setSearchOpen] = useState(false);
   const [searchClosing, setSearchClosing] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
@@ -23,7 +25,7 @@ function Navbar() {
   const closeSearch = () => {
     setSearchClosing(true);
     setTimeout(() => {
-      setSearchOpen(false);
+      searchOpen(false);
       setSearchClosing(false);
     }, 300);
   };
@@ -69,7 +71,7 @@ function Navbar() {
           <Link to="/">
             <img
               src={logo}
-              alt="Company Logo"
+              alt={t('navbar.logoAlt')}
               draggable="false"
             />
           </Link>
@@ -78,19 +80,19 @@ function Navbar() {
         <div className="navbar__nav">
           <ul>
             <li className="navbar__nav-item">
-              <Link to="/">HOME</Link>
+              <Link to="/">{t('navbar.home')}</Link>
             </li>
             <li className="navbar__nav-item">
-              <Link to="/products">PRODUCT</Link>
+              <Link to="/products">{t('navbar.product')}</Link>
             </li>
             <li className="navbar__nav-item">
-              <Link to="/about">ABOUT</Link>
+              <Link to="/about">{t('navbar.about')}</Link>
             </li>
             <li className="navbar__nav-item">
-              <Link to="/contact">CONTACT</Link>
+              <Link to="/contact">{t('navbar.contact')}</Link>
             </li>
             <li className="navbar__nav-item">
-              <Link to="/">PAGES</Link>
+              <Link to="/">{t('navbar.pages')}</Link>
             </li>
           </ul>
         </div>
@@ -102,7 +104,7 @@ function Navbar() {
           >
             <img
               src={searchIcon}
-              alt=""
+              alt={t('navbar.searchIconAlt')}
               draggable="false"
             />
           </button>
@@ -115,7 +117,7 @@ function Navbar() {
 
               <img
                 src={profileIcon}
-                alt=""
+                alt={t('navbar.profileIconAlt')}
                 draggable="false"
               />
             </Link>
@@ -128,7 +130,7 @@ function Navbar() {
               {/* {cartCount > 0 && <p className="navbar__cart-badge">{cartCount}</p>} */}
               <img
                 src={cartIcon}
-                alt=""
+                alt={t('navbar.cartIconAlt')}
                 draggable="false"
               />
             </button>
@@ -168,12 +170,12 @@ function Navbar() {
               className="drawer__close"
               onClick={closeMenu}
             >
-              Close <i className="bi bi-x-lg"></i>
+              {t('drawer.close')} <i className="bi bi-x-lg"></i>
             </button>
             <div className="search-overlay__input-wrapper drawer__input">
               <input
                 type="text"
-                placeholder="Search for products ..."
+                placeholder={t('search.placeholder')}
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 onKeyDown={handleKeyDown}
@@ -184,7 +186,7 @@ function Navbar() {
               >
                 <img
                   src={searchIcon}
-                  alt="Search"
+                  alt={t('search.buttonAlt')}
                   draggable="false"
                 />
               </button>
@@ -196,7 +198,7 @@ function Navbar() {
                 to="/login"
               >
                 <div className="drawer__link">
-                  <i className="bi bi-people"></i> Account
+                  <i className="bi bi-people"></i> {t('drawer.account')}
                 </div>
               </Link>
               <div className="drawer__divider"></div>
@@ -204,35 +206,35 @@ function Navbar() {
                 onClick={closeMenu}
                 to="/"
               >
-                <div className="drawer__link">Home</div>
+                <div className="drawer__link">{t('navbar.home')}</div>
               </Link>
               <div className="drawer__divider"></div>
               <Link
                 onClick={closeMenu}
                 to="/products"
               >
-                <div className="drawer__link">Products</div>
+                <div className="drawer__link">{t('navbar.product')}</div>
               </Link>
               <div className="drawer__divider"></div>
               <Link
                 onClick={closeMenu}
                 to="/"
               >
-                <div className="drawer__link">Wishlist (0)</div>
+                <div className="drawer__link">{t('drawer.wishlist', { count: 0 })}</div>
               </Link>
               <div className="drawer__divider"></div>
               <Link
                 onClick={closeMenu}
                 to="/about"
               >
-                <div className="drawer__link">About Us</div>
+                <div className="drawer__link">{t('drawer.aboutUs')}</div>
               </Link>
               <div className="drawer__divider"></div>
               <Link
                 onClick={closeMenu}
                 to="/contact"
               >
-                <div className="drawer__link">Contact Us</div>
+                <div className="drawer__link">{t('drawer.contactUs')}</div>
               </Link>
               <div className="drawer__divider"></div>
             </div>
@@ -252,11 +254,11 @@ function Navbar() {
             >
               ✕
             </button>
-            <h2 className="search-overlay__title">WHAT ARE YOU LOOKING FOR?</h2>
+            <h2 className="search-overlay__title">{t('search.heading')}</h2>
             <div className="search-overlay__input-wrapper">
               <input
                 type="text"
-                placeholder="Search for products ..."
+                placeholder={t('search.placeholder')}
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 onKeyDown={handleKeyDown}
@@ -267,7 +269,7 @@ function Navbar() {
               >
                 <img
                   src={searchIcon}
-                  alt="Search"
+                  alt={t('search.buttonAlt')}
                   draggable="false"
                 />
               </button>

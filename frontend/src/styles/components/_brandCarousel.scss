@@ -1,9 +1,9 @@
 .embla {
   --slide-size: 25%;
   cursor: pointer;
-  max-width: 1125px;
-  margin: 50px auto;
-  padding: 0 100px;
+  width: auto;
+  margin: 100px auto;
+  padding: 0 95px;
 
   &__viewport {
     overflow: hidden;

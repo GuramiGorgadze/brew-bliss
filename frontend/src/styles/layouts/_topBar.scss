@@ -71,13 +71,16 @@
       padding: calc(4px * var(--app-scale)) 0;
       margin: calc(4px * var(--app-scale)) 0 0 0;
       z-index: 51;
-      min-width: calc(130px * var(--app-scale));
       box-shadow: calc(10px * var(--app-scale)) calc(10px * var(--app-scale))
         calc(60px * var(--app-scale)) calc(-29px * var(--app-scale)) rgba(0, 0, 0, 0.45);
       -webkit-box-shadow: calc(10px * var(--app-scale)) calc(10px * var(--app-scale))
         calc(60px * var(--app-scale)) calc(-29px * var(--app-scale)) rgba(0, 0, 0, 0.45);
       -moz-box-shadow: calc(10px * var(--app-scale)) calc(10px * var(--app-scale))
         calc(60px * var(--app-scale)) calc(-29px * var(--app-scale)) rgba(0, 0, 0, 0.45);
+    }
+
+    .language {
+      min-width: calc(130px * var(--app-scale));
     }
 
     .dropdown-option {

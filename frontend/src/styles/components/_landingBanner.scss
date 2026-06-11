@@ -1,4 +1,4 @@
-@use "../abstracts" as *;
+@use '../abstracts' as *;
 
 .landing-banner {
   display: flex;
@@ -39,12 +39,14 @@
     font-size: calc(40px * var(--app-scale));
     letter-spacing: calc(1px * var(--app-scale));
     margin: calc(20px * var(--app-scale)) 0;
+    max-width: calc(500px * var(--app-scale));
   }
 
   &__text {
     color: $text-muted;
     font-size: calc(15px * var(--app-scale));
     line-height: calc(20px * var(--app-scale));
+    max-width: calc(450px * var(--app-scale));
   }
 
   &__actions {
@@ -63,8 +65,8 @@
     color: $text-primary;
 
     &--orange {
-      width: calc(125px * var(--app-scale));
       background-color: $color-accent;
+      padding: 0 20px;
 
       &:hover {
         background-color: $color-accent-hover;
@@ -73,8 +75,8 @@
     }
 
     &--grey {
-      width: calc(160px * var(--app-scale));
       background-color: $bg-muted;
+      padding: 0 25px;
 
       &:hover {
         background-color: $color-accent;

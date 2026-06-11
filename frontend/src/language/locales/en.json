@@ -1,4 +1,92 @@
 {
+  "navbar": {
+    "logoAlt": "Company Logo",
+    "home": "HOME",
+    "product": "PRODUCT",
+    "about": "ABOUT",
+    "contact": "CONTACT",
+    "pages": "PAGES",
+    "searchIconAlt": "Search Icon",
+    "profileIconAlt": "Profile Icon",
+    "cartIconAlt": "Cart Icon"
+  },
+  "drawer": {
+    "close": "Close",
+    "account": "Account",
+    "wishlist": "Wishlist ({{count}})",
+    "aboutUs": "About Us",
+    "contactUs": "Contact Us"
+  },
+  "search": {
+    "heading": "WHAT ARE YOU LOOKING FOR?",
+    "placeholder": "Search for products ...",
+    "buttonAlt": "Search"
+  },
+  "topbar": {
+    "phoneIconAlt": "Phone Icon",
+    "promoMessage": "Free Shipping on Orders of $500+"
+  },
+  "footer": {
+    "brand": {
+      "logoAlt": "logo",
+      "slogan": "We are passionate about crafting the perfect beer experience..."
+    },
+    "contact": {
+      "addressLabel": "Address",
+      "addressValue": "67th Avenue, Georgia",
+      "phoneLabel": "Phone",
+      "phoneValue": "(995) 557 70 40 22",
+      "emailLabel": "Email",
+      "emailValue": "g.gorgadze111@gmail.com"
+    },
+    "sections": {
+      "websiteLinks": "Website Links",
+      "ourCompany": "Our Company",
+      "customerService": "Customer Service"
+    },
+    "links": {
+      "home": "Home",
+      "myAccount": "My Account",
+      "products": "Products",
+      "fallbackLink": "Link",
+      "aboutUs": "About Us",
+      "ourTeam": "Our team",
+      "contactUs": "Contact Us",
+      "returns": "Returns",
+      "faq": "FAQ"
+    },
+    "newsletter": {
+      "title": "Sign Up To Newsletter",
+      "description": "Sign up for exclusive updates, new arrivals and More.",
+      "placeholder": "Your email address...",
+      "button": {
+        "normal": "Subscribe",
+        "loading": "Subscribing...",
+        "success": "Subscribed!",
+        "error": "Failed. Try Again"
+      }
+    },
+    "socials": {
+      "followUs": "Follow Us",
+      "facebookAlt": "Facebook",
+      "twitterAlt": "Twitter",
+      "instagramAlt": "Instagram",
+      "tiktokAlt": "TikTok"
+    },
+    "bottom": {
+      "copyrightBefore": "Copyright ©",
+      "brandName": "brew bliss Store",
+      "copyrightAfter": ". All Rights Reserved. Powered by",
+      "poweredBy": "UIPARADOX"
+    },
+    "payments": {
+      "amazonAlt": "Amazon Pay",
+      "applePayAlt": "Apple Pay",
+      "mastercardAlt": "Mastercard",
+      "paypalAlt": "PayPal",
+      "visaAlt": "Visa"
+    }
+  },
   "about": {
     "pageTitle": "About Us",
     "ourStory": {
@@ -10,27 +98,13 @@
     "team": {
       "label": "Meet Our Team Members",
       "desc": "See why everyone's raving about our products and service – real stories from happy customers!",
-      "member1": {
-        "title": "Emily Johnson",
-        "description": "Founder/CEO"
-      },
-      "member2": {
-        "title": "Michael Brown",
-        "description": "Customer Service Manager"
-      },
-      "member3": {
-        "title": "Sarah Davis",
-        "description": "Marketing Specialist"
-      },
-      "member4": {
-        "title": "Sophia Martinez",
-        "description": "Art Curator"
-      }
+      "member1": { "title": "Emily Johnson", "description": "Founder/CEO" },
+      "member2": { "title": "Michael Brown", "description": "Customer Service Manager" },
+      "member3": { "title": "Sarah Davis", "description": "Marketing Specialist" },
+      "member4": { "title": "Sophia Martinez", "description": "Art Curator" }
     }
   },
-  "team": {
-    "pageTitle": "Our Team"
-  },
+  "team": { "pageTitle": "Our Team" },
   "account": {
     "title": "ACCOUNT",
     "welcome": "Welcome",
@@ -123,9 +197,7 @@
         "address": "g.gorgadze111@gmail.com",
         "hours": "Any Time"
       },
-      "followUs": {
-        "title": "Follow Us"
-      }
+      "followUs": { "title": "Follow Us" }
     },
     "getInTouch": {
       "title": "Get In Touch",
@@ -155,6 +227,15 @@
       "forgotPassword": "Forgot your password ?",
       "submitBtn": "Login",
       "createAccount": "Create New Account"
+    },
+    "reset": {
+      "title": "Reset Your Password",
+      "subtitle": "We'll send you an email to reset your password.",
+      "submitBtn": "Send Reset Link",
+      "cancelBtn": "Cancel",
+      "successTitle": "Check Your Email",
+      "successText": "We've sent a reset link. Check your inbox and follow the instructions.",
+      "backToLogin": "Back to Login"
     },
     "validation": {
       "emailRequired": "Email is required",
@@ -198,15 +279,24 @@
       "serverError": "Something went wrong"
     }
   },
+  "resetPassword": {
+    "pageTitle": "Reset Password",
+    "title": "Set New Password",
+    "form": {
+      "passwordLabel": "New Password",
+      "passwordPlaceholder": "Enter new password",
+      "confirmPasswordLabel": "Confirm Password",
+      "confirmPasswordPlaceholder": "Confirm new password",
+      "submitBtn": "Reset Password"
+    }
+  },
   "notFound": {
     "code": "404",
     "heading": "Sorry, We Can't Find That Page!",
     "text": "It seems this page has moved or doesn't exist. Head back to our homepage, or reach out if you need help!",
     "btn": "Back To Homepage"
   },
-  "products": {
-    "pageTitle": "Products"
-  },
+  "products": { "pageTitle": "Products" },
   "productSingle": {
     "review": "Review",
     "reviews": "Reviews",
@@ -246,18 +336,9 @@
   "PromoGrid": {
     "shopNow": "Show Now",
     "shopSale": "Shop Sale",
-    "card1": {
-      "tagline": "New Release",
-      "heading": "Be the First to Taste Perfection!"
-    },
-    "card2": {
-      "tagline": "Holiday Collections",
-      "heading": "Perfect Brews for Perfect Holidays!"
-    },
-    "card3": {
-      "tagline": "Limited Time Offer",
-      "heading": "Hurry! Exclusive Deals Await!"
-    }
+    "card1": { "tagline": "New Release", "heading": "Be the First to Taste Perfection!" },
+    "card2": { "tagline": "Holiday Collections", "heading": "Perfect Brews for Perfect Holidays!" },
+    "card3": { "tagline": "Limited Time Offer", "heading": "Hurry! Exclusive Deals Await!" }
   },
   "saleBanner": {
     "limitedTime": "Limited Time only!",
@@ -281,5 +362,45 @@
       "title": "Easy Returns",
       "description": "Stress-free returns for peace of mind, ensuring your satisfaction with every purchase."
     }
+  },
+  "filterSection": {
+    "searchPlaceholder": "Search Here",
+    "searchAlt": "Search",
+    "productCategories": "Product Categories",
+    "availability": "AVAILABILITY",
+    "inStock": "In Stock ({{count}})",
+    "outOfStock": "Out of Stock ({{count}})",
+    "price": "PRICE",
+    "highestPrice": "The Highest Price Is",
+    "priceFrom": "From",
+    "priceTo": "To"
+  },
+  "productCard": {
+    "review": "Review",
+    "reviews": "Reviews",
+    "addToCart": "Add To Cart"
+  },
+  "productList": {
+    "filterAndSort": "FILTER & SORT",
+    "filterAndSortTitle": "FILTER AND SORT",
+    "productsCount": "{{count}} Products",
+    "productsFiltered": "{{filtered}} of {{total}} Products",
+    "filterSearch": "Search: \"{{value}}\"",
+    "filterCategory": "Category: {{value}}",
+    "filterInStock": "In Stock",
+    "filterOutOfStock": "Out of Stock",
+    "filterPriceRange": "Price Range",
+    "removeAll": "Remove All",
+    "noProductsFound": "No products found",
+    "useFewerFilters": "Use fewer filters or",
+    "clearAll": "clear all"
+  },
+  "toolbar": {
+    "sortBy": "Sort By:",
+    "mostRelevant": "Most relevant",
+    "titleAsc": "Alphabetically, A–Z",
+    "titleDesc": "Alphabetically, Z–A",
+    "priceAsc": "Price, low to high",
+    "priceDesc": "Price, high to low"
   }
 }

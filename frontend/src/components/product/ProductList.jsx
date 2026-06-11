@@ -4,8 +4,11 @@ import searchIcon from '../../assets/icons/search-icon.svg';
 import useProductFilter from '../../hooks/useProductFilter';
 import deleteIcon from '../../assets/icons/x-icon.svg';
 import clsx from 'clsx';
+import { useTranslation } from 'react-i18next';
 
 function ProductList({ originalProducts = [] }) {
+  const { t, i18n } = useTranslation();
+
   const [view, setView] = useState('grid-wrap');
   const [filterOpen, setFilterOpen] = useState(false);
   const [filterClosing, setFilterClosing] = useState(false);
@@ -43,13 +46,23 @@ function ProductList({ originalProducts = [] }) {
 
   const activeFilters = useMemo(() => {
     const active = [];
-    if (filters.search) active.push({ key: 'search', label: `Search: "${filters.search}"` });
-    if (filters.category) active.push({ key: 'category', label: `Category: ${filters.category}` });
-    if (filters.inStock) active.push({ key: 'inStock', label: 'In Stock' });
-    if (filters.outOfStock) active.push({ key: 'outOfStock', label: 'Out of Stock' });
-    if (filters.minPrice || filters.maxPrice) active.push({ key: 'price', label: 'Price Range' });
+    if (filters.search)
+      active.push({
+        key: 'search',
+        label: t('productList.filterSearch', { value: filters.search }),
+      });
+    if (filters.category)
+      active.push({
+        key: 'category',
+        label: t('productList.filterCategory', { value: filters.category }),
+      });
+    if (filters.inStock) active.push({ key: 'inStock', label: t('productList.filterInStock') });
+    if (filters.outOfStock)
+      active.push({ key: 'outOfStock', label: t('productList.filterOutOfStock') });
+    if (filters.minPrice || filters.maxPrice)
+      active.push({ key: 'price', label: t('productList.filterPriceRange') });
     return active;
-  }, [filters]);
+  }, [filters, t]);
 
   return (
     <div className="product-list">
@@ -65,12 +78,12 @@ function ProductList({ originalProducts = [] }) {
         <div className="filter-section__search mobile-show">
           <input
             type="text"
-            placeholder="Search Here"
+            placeholder={t('filterSection.searchPlaceholder')}
           />
           <button className="filter-section__search-btn">
             <img
               src={searchIcon}
-              alt="Search"
+              alt={t('filterSection.searchAlt')}
               draggable="false"
             />
           </button>
@@ -84,14 +97,19 @@ function ProductList({ originalProducts = [] }) {
         >
           <div className="left">
             <i className="bi bi-funnel"></i>
-            <p>FILTER & SORT</p>
+            <p>{t('productList.filterAndSort')}</p>
           </div>
           <div className="right">
             {originalProducts.length === products.length ? (
-              <span className="toolbar__count">{products.length} Products</span>
+              <span className="toolbar__count">
+                {t('productList.productsCount', { count: products.length })}
+              </span>
             ) : (
               <span className="toolbar__count">
-                {products.length} of {originalProducts.length} Products
+                {t('productList.productsFiltered', {
+                  filtered: products.length,
+                  total: originalProducts.length,
+                })}
               </span>
             )}
           </div>
@@ -138,7 +156,7 @@ function ProductList({ originalProducts = [] }) {
               className="filter-badge"
               onClick={resetFilters}
             >
-              Remove All
+              {t('productList.removeAll')}
               <button
                 type="button"
                 className="clear-single-filter-btn"
@@ -164,13 +182,13 @@ function ProductList({ originalProducts = [] }) {
         {products.length === 0 && (
           <div className="nothing-found-wrapper">
             <h2 className="nothing-found-wrapper__title">
-              No products found <br />
-              Use fewer filters or{' '}
+              {t('productList.noProductsFound')} <br />
+              {t('productList.useFewerFilters')}{' '}
               <span
                 className="clear-all-btn"
                 onClick={resetFilters}
               >
-                clear all
+                {t('productList.clearAll')}
               </span>
             </h2>
           </div>
@@ -189,21 +207,26 @@ function ProductList({ originalProducts = [] }) {
             className="filter-drawer-close"
             onClick={closeFilter}
           >
-            <i class="bi bi-x-lg"></i>
+            <i className="bi bi-x-lg"></i>
           </button>
 
           <div className={clsx('filter-drawer', { 'filter-drawer--closing': filterClosing })}>
             <div className="filter-drawer__title">
-              <h2>FILTER AND SORT</h2>
+              <h2>{t('productList.filterAndSortTitle')}</h2>
             </div>
 
             <div className="filter-drawer__info">
               <div className="filter-drawer__quantity">
                 {originalProducts.length === products.length ? (
-                  <span className="toolbar__count">{products.length} Products</span>
+                  <span className="toolbar__count">
+                    {t('productList.productsCount', { count: products.length })}
+                  </span>
                 ) : (
                   <span className="toolbar__count">
-                    {products.length} of {originalProducts.length} Products
+                    {t('productList.productsFiltered', {
+                      filtered: products.length,
+                      total: originalProducts.length,
+                    })}
                   </span>
                 )}
               </div>

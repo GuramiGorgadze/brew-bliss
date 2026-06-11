@@ -2,19 +2,20 @@
 
 .promo-grid {
   display: flex;
-  flex-wrap: wrap;
   align-items: center;
   justify-content: center;
   gap: calc(20px * var(--app-scale));
   margin-top: calc(100px * var(--app-scale));
+  padding: 0 95px;
 
   &__card {
     display: flex;
     flex-direction: column;
-    height: calc(500px * var(--app-scale));
-    width: calc(360px * var(--app-scale));
+    height: calc(350px * var(--app-scale));
+    width: 100%;
     border-radius: calc(15px * var(--app-scale));
     background-size: cover;
+    background-position: center;
     gap: calc(20px * var(--app-scale));
     padding: calc(30px * var(--app-scale)) calc(15px * var(--app-scale));
     box-sizing: border-box;
@@ -35,18 +36,18 @@
   }
 
   &__heading {
-    font-size: calc(30px * var(--app-scale));
+    font-size: calc(22px * var(--app-scale));
     font-weight: 500;
     max-width: calc(300px * var(--app-scale));
   }
 
   &__button {
     height: calc(50px * var(--app-scale));
-    width: calc(130px * var(--app-scale));
+    padding: 0 20px;
     border-radius: calc(5px * var(--app-scale));
     border: calc(1px * var(--app-scale)) solid $border-default;
     background-color: transparent;
-    font-size: calc(15px * var(--app-scale));
+    font-size: calc(16px * var(--app-scale));
     transition: 0.5s;
     outline: none;
     color: $text-primary;
@@ -59,21 +60,11 @@
   }
 }
 
-@media (max-width: 1440px) {
-  .promo-grid {
-    &__card {
-      height: 360px;
-      width: auto;
-    }
-
-    &__heading {
-      font-size: 20px;
-    }
-  }
-}
-
 @media (max-width: 1024px) {
   .promo-grid {
+    flex-wrap: wrap;
+    padding: 0;
+    
     &__card {
       height: 360px;
       width: 100%;
@@ -83,6 +74,7 @@
 
     &__heading {
       font-size: 20px;
+      max-width: 325px;
     }
   }
 }
@@ -91,7 +83,7 @@
   .promo-grid {
     
     &__card {
-      margin: 0 20px;
+      margin: 0 10px;
     }
   }
 }

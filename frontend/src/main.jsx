@@ -3,6 +3,7 @@ import { createRoot } from 'react-dom/client';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { UserProvider } from './context/UserContext.jsx';
 import { LoaderProvider } from './context/LoaderContext.jsx';
+import { CurrencyProvider } from './context/CurrencyContext.jsx';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import App from './App.jsx';
 import './language/i18n';
@@ -12,7 +13,9 @@ createRoot(document.getElementById('root')).render(
     <Router>
       <UserProvider>
         <LoaderProvider>
-          <App />
+          <CurrencyProvider>
+            <App />
+          </CurrencyProvider>
         </LoaderProvider>
       </UserProvider>
     </Router>

@@ -11,7 +11,9 @@ import {
   getCart,
   updateCartQuantity,
   contact,
-  newsletter
+  newsletter,
+  forgotPasswordUser,
+  resetPasswordUser,
 } from "../controllers/users.js";
 import { authLimiter } from "../middlewares/security.js";
 
@@ -29,5 +31,7 @@ UsersRouter.post("/cart/remove", removeFromCart);
 UsersRouter.put("/cart/update", updateCartQuantity);
 UsersRouter.post("/contact", contact);
 UsersRouter.post("/newsletter", newsletter);
+UsersRouter.post("/forgot", forgotPasswordUser);
+UsersRouter.post("/reset", resetPasswordUser);
 
 export default UsersRouter;

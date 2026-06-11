@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useLoader } from '../context/LoaderContext';
 import { PageTitle, InstagramCarousel } from '../components';
+import { useCurrency } from '../context/CurrencyContext';
+import { useNavigate } from 'react-router-dom';
 import * as api from '../api/api';
 import ShippingIcon from '../assets/icons/shipping-icon-white.svg';
 
@@ -10,6 +12,9 @@ function Cart() {
   const [note, setNote] = useState('');
   const { useDataLoader } = useLoader();
   const { t, i18n } = useTranslation();
+  const { formatPrice, activeCurrency } = useCurrency();
+  const navigate = useNavigate();
+
   const freeShippingNumber = 500;
 
   useEffect(() => {
@@ -71,8 +76,12 @@ function Cart() {
   const originalTotal = cartItems.reduce((sum, item) => sum + getOriginalSubtotal(item), 0);
   const totalSaved = originalTotal - total;
 
-  const remaining = Math.max(0, freeShippingNumber - total);
-  const progress = Math.min(100, (total / freeShippingNumber) * 100);
+  const dynamicFreeShippingThreshold = freeShippingNumber * activeCurrency.rate;
+  const remaining = Math.max(0, dynamicFreeShippingThreshold - total * activeCurrency.rate);
+  const progress = Math.min(
+    100,
+    ((total * activeCurrency.rate) / dynamicFreeShippingThreshold) * 100
+  );
 
   return (
     <div className="cart-wrapper">
@@ -125,10 +134,10 @@ function Cart() {
                             {t('cart.item.beerVariety')}: {item.productId.tags?.join(', ')}
                           </p>
                           <div className="cart-item__price-row">
-                            <p className="cart-item__price">${variant?.price?.toFixed(2)}</p>
+                            <p className="cart-item__price">{formatPrice(variant?.price ?? 0)}</p>
                             {variant?.compare_at_price && (
                               <p className="cart-item__original-price">
-                                ${variant.compare_at_price.toFixed(2)}
+                                {formatPrice(variant.compare_at_price)}
                               </p>
                             )}
                           </div>
@@ -161,7 +170,7 @@ function Cart() {
                       className="cart__table-td cart__table-td--subtotal"
                       data-label={t('cart.table.subtotal')}
                     >
-                      ${getSubtotal(item).toFixed(2)}
+                      {formatPrice(getSubtotal(item))}
                     </td>
 
                     <td
@@ -229,7 +238,9 @@ function Cart() {
                   </>
                 ) : (
                   <>
-                    {t('cart.shipping.spendMore', { amount: remaining.toFixed(2) })}{' '}
+                    {t('cart.shipping.spendMore', {
+                      amount: formatPrice(remaining / activeCurrency.rate),
+                    })}{' '}
                     <span className="cart__shipping-progress-label--highlight">
                       {t('cart.shipping.freeShipping')}
                     </span>
@@ -243,7 +254,7 @@ function Cart() {
             {totalSaved > 0 && (
               <div className="cart__summary-row">
                 <span className="cart__summary-label">{t('cart.summary.youSave')}</span>
-                <span className="cart__summary-value">${totalSaved.toFixed(2)}</span>
+                <span className="cart__summary-value">{formatPrice(totalSaved)}</span>
               </div>
             )}
 
@@ -251,7 +262,7 @@ function Cart() {
 
             <div className="cart__summary-row">
               <span className="cart__summary-label">{t('cart.summary.orderTotal')}</span>
-              <span className="cart__summary-value green">${total.toFixed(2)}</span>
+              <span className="cart__summary-value green">{formatPrice(total)}</span>
             </div>
 
             <div className="divider"></div>

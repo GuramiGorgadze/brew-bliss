@@ -13,7 +13,7 @@ import { useUserData } from '../context/UserContext.jsx';
 function Register() {
   const navigate = useNavigate();
   const { login } = useUserData();
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
 
   const { useFakeLoader } = useLoader();
   useEffect(() => useFakeLoader(), []);

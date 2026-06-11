@@ -1,11 +1,11 @@
 import { useState, useEffect, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useCurrency, currencies } from '../context/CurrencyContext';
 import clsx from 'clsx';
 import phoneIcon from '../assets/icons/phone-icon.svg';
 import flagEN from '../assets/flags/flag-en.png';
 import flagFR from '../assets/flags/flag-fr.png';
 import flagDE from '../assets/flags/flag-de.png';
-// import { useNavigate } from 'react-router-dom';
 
 const languages = [
   { code: 'en', label: 'English', flag: flagEN },
@@ -14,26 +14,25 @@ const languages = [
 ];
 
 function TopBar() {
-  const { i18n } = useTranslation();
-  const [isOpen, setIsOpen] = useState(false);
-  const dropdownRef = useRef(null);
+  const { t, i18n } = useTranslation();
+  const { activeCurrency, changeCurrency } = useCurrency();
 
-  // const navigate = useNavigate();
+  const [isLangOpen, setIsLangOpen] = useState(false);
+  const [isCurrencyOpen, setIsCurrencyOpen] = useState(false);
+
+  const langDropdownRef = useRef(null);
+  const currencyDropdownRef = useRef(null);
 
   const currentLanguage =
     languages.find((lang) => lang.code === i18n.resolvedLanguage) || languages[0];
 
-  const handleLanguageSelect = (code) => {
-    // navigate(0);
-    i18n.changeLanguage(code);
-    localStorage.setItem('lang', code);
-    setIsOpen(false);
-  };
-
   useEffect(() => {
     const handleClickOutside = (event) => {
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
-        setIsOpen(false);
+      if (langDropdownRef.current && !langDropdownRef.current.contains(event.target)) {
+        setIsLangOpen(false);
+      }
+      if (currencyDropdownRef.current && !currencyDropdownRef.current.contains(event.target)) {
+        setIsCurrencyOpen(false);
       }
     };
     document.addEventListener('mousedown', handleClickOutside);
@@ -45,24 +44,24 @@ function TopBar() {
       <div className="top-bar__contact">
         <img
           src={phoneIcon}
-          alt=""
+          alt={t('topbar.phoneIconAlt')}
           draggable="false"
         />
         <p>(995) 557 70 40 22</p>
       </div>
 
       <div className="top-bar__promo">
-        <p>Free Shipping on Orders of $500+</p>
+        <p>{t('topbar.promoMessage')}</p>
       </div>
 
       <div className="top-bar__region">
         <div
           className="top-bar__language-custom"
-          ref={dropdownRef}
+          ref={langDropdownRef}
         >
           <button
             className="dropdown-trigger"
-            onClick={() => setIsOpen(!isOpen)}
+            onClick={() => setIsLangOpen(!isLangOpen)}
             type="button"
           >
             <img
@@ -71,24 +70,28 @@ function TopBar() {
               className="flag-img"
             />
             <span>{currentLanguage.label}</span>
-            <span className={clsx('arrow', { open: isOpen })}>
+            <span className={clsx('arrow', { open: isLangOpen })}>
               <i className="bi bi-chevron-down"></i>
             </span>
           </button>
 
-          {isOpen && (
-            <ul className="dropdown-options">
+          {isLangOpen && (
+            <ul className="dropdown-options language">
               {languages.map((lang) => (
                 <li
                   key={lang.code}
                   className={clsx('dropdown-option', {
                     active: i18n.resolvedLanguage === lang.code,
                   })}
-                  onClick={() => handleLanguageSelect(lang.code)}
+                  onClick={() => {
+                    i18n.changeLanguage(lang.code);
+                    localStorage.setItem('lang', lang.code);
+                    setIsLangOpen(false);
+                  }}
                 >
                   <img
                     src={lang.flag}
-                    alt={`${lang.label} flag`}
+                    alt=""
                     className="flag-img"
                   />
                   <span>{lang.label}</span>
@@ -100,7 +103,38 @@ function TopBar() {
 
         <div className="top-bar__divider"></div>
 
-        <p>United States(USD $)</p>
+        <div
+          className="top-bar__language-custom"
+          ref={currencyDropdownRef}
+        >
+          <button
+            className="dropdown-trigger"
+            onClick={() => setIsCurrencyOpen(!isCurrencyOpen)}
+            type="button"
+          >
+            <span>{activeCurrency.label}</span>
+            <span className={clsx('arrow', { open: isCurrencyOpen })}>
+              <i className="bi bi-chevron-down"></i>
+            </span>
+          </button>
+
+          {isCurrencyOpen && (
+            <ul className="dropdown-options">
+              {currencies.map((curr) => (
+                <li
+                  key={curr.code}
+                  className={clsx('dropdown-option', { active: activeCurrency.code === curr.code })}
+                  onClick={() => {
+                    changeCurrency(curr.code);
+                    setIsCurrencyOpen(false);
+                  }}
+                >
+                  <span>{curr.label}</span>
+                </li>
+              ))}
+            </ul>
+          )}
+        </div>
       </div>
     </div>
   );

@@ -1,8 +1,13 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useCurrency } from '../../context/CurrencyContext';
 import clsx from 'clsx';
+import { useTranslation } from 'react-i18next';
 
 function Product({ product }) {
+  const { t, i18n } = useTranslation();
+  const { formatPrice } = useCurrency();
+
   const image = product.image;
   const variant = product.variants?.[0];
 
@@ -57,20 +62,20 @@ function Product({ product }) {
                   })}
                 />
               ))}
-              ({product.reviews?.length || 0} {product.reviews?.length === 1 ? 'Review' : 'Reviews'}
-              )
+              ({product.reviews?.length || 0}{' '}
+              {product.reviews?.length === 1 ? t('productCard.review') : t('productCard.reviews')})
             </p>
           </div>
 
           <div className="product-card__price">
-            ${price.toFixed(2)}
+            {formatPrice(price)}
             {hasDiscount && (
-              <span className="product-card__old-price">${compareAtPrice.toFixed(2)}</span>
+              <span className="product-card__old-price">{formatPrice(compareAtPrice)}</span>
             )}
           </div>
         </div>
 
-        <button className="product-card__btn">Add To Cart</button>
+        <button className="product-card__btn">{t('productCard.addToCart')}</button>
       </div>
     </div>
   );

@@ -4,12 +4,12 @@
   display: flex;
   justify-content: center;
   gap: 20px;
-  margin: 0 calc(100px * var(--app-scale));
+  margin: 0 calc(95px * var(--app-scale));
   margin-top: calc(100px * var(--app-scale));
 
   .feature-card {
     background-color: $bg-muted;
-    width: calc(265px * var(--app-scale));
+    width: 100%;
     border-radius: calc(10px * var(--app-scale));
     padding: calc(15px * var(--app-scale));
     box-sizing: border-box;
@@ -72,16 +72,6 @@
   }
   100% {
     transform: translateY(0);
-  }
-}
-
-@media (max-width: 1440px) {
-  .store-features {
-    margin: 0;
-    margin-top: 100px;
-    .feature-card {
-      width: 230px;
-    }
   }
 }
 

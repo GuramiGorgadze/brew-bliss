@@ -6,6 +6,8 @@ import {
   SaleBanner,
   InstagramCarousel,
   StoreFeatures,
+  ArrivalsCarousel,
+  FeaturedCarousel,
 } from '../components';
 import { useLoader } from '../context/LoaderContext';
 
@@ -16,7 +18,9 @@ function home() {
   return (
     <>
       <LandingBanner />
+      <FeaturedCarousel />
       <PromoGrid />
+      <ArrivalsCarousel />
       <StoreFeatures />
       <BrandCarousel />
       <SaleBanner />

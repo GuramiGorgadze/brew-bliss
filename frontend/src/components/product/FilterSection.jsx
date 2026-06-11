@@ -4,6 +4,7 @@ import searchIcon from '../../assets/icons/search-icon.svg';
 import promotionBanner from '../../assets/promotion-banner.avif';
 import Slider from 'rc-slider';
 import 'rc-slider/assets/index.css';
+import { useTranslation } from 'react-i18next';
 
 function FilterSection({
   updateFilter,
@@ -13,6 +14,8 @@ function FilterSection({
   categoryCounts,
   isDrawer,
 }) {
+  const { t, i18n } = useTranslation();
+
   const [availabilityOpen, setAvailabilityOpen] = useState(true);
   const [priceOpen, setPriceOpen] = useState(true);
   const [searchQuery, setSearchQuery] = useState(filters.search);
@@ -58,6 +61,7 @@ function FilterSection({
       updateFilter('category', cat);
     }
   };
+
   return (
     <div
       className={clsx('filter-section', {
@@ -71,7 +75,7 @@ function FilterSection({
       >
         <input
           type="text"
-          placeholder="Search Here"
+          placeholder={t('filterSection.searchPlaceholder')}
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
           onKeyDown={handleKeyDown}
@@ -82,7 +86,7 @@ function FilterSection({
         >
           <img
             src={searchIcon}
-            alt="Search"
+            alt={t('filterSection.searchAlt')}
             draggable="false"
           />
         </button>
@@ -93,7 +97,7 @@ function FilterSection({
           'filter-hidden': isDrawer,
         })}
       >
-        <h1>Product Categories</h1>
+        <h1>{t('filterSection.productCategories')}</h1>
         <ul>
           {['stout', 'ipa', 'alcohol', 'citrus', 'lager'].map((cat) => {
             const isActive = filters.category === cat;
@@ -128,7 +132,7 @@ function FilterSection({
             onClick={() => setAvailabilityOpen((prev) => !prev)}
           >
             <span className="filter-section__toggle-icon">{availabilityOpen ? '–' : '+'}</span>
-            <h1>AVAILABILITY</h1>
+            <h1>{t('filterSection.availability')}</h1>
           </div>
         </div>
 
@@ -143,7 +147,7 @@ function FilterSection({
                 />
                 <span className="filter-section__checkmark"></span>
               </label>
-              <p>In Stock ({stockCounts.inStock})</p>
+              <p>{t('filterSection.inStock', { count: stockCounts.inStock })}</p>
             </div>
 
             <div className="filter-section__option">
@@ -155,7 +159,7 @@ function FilterSection({
                 />
                 <span className="filter-section__checkmark"></span>
               </label>
-              <p>Out of Stock ({stockCounts.outOfStock})</p>
+              <p>{t('filterSection.outOfStock', { count: stockCounts.outOfStock })}</p>
             </div>
           </div>
         )}
@@ -169,14 +173,14 @@ function FilterSection({
             onClick={() => setPriceOpen((prev) => !prev)}
           >
             <span className="filter-section__toggle-icon">{priceOpen ? '–' : '+'}</span>
-            <h1>PRICE</h1>
+            <h1>{t('filterSection.price')}</h1>
           </div>
         </div>
 
         {priceOpen && (
           <>
             <p className="filter-section__highest-price">
-              The Highest Price Is <span>$200.00</span>
+              {t('filterSection.highestPrice')} <span>$200.00</span>
             </p>
 
             <div className="filter-section__slider-container">
@@ -219,14 +223,14 @@ function FilterSection({
               <input
                 className="filter-section__price-input"
                 type="number"
-                placeholder="From"
+                placeholder={t('filterSection.priceFrom')}
                 value={filters.minPrice}
                 onChange={(e) => handlePrice('minPrice', e.target.value)}
               />
               <input
                 className="filter-section__price-input"
                 type="number"
-                placeholder="To"
+                placeholder={t('filterSection.priceTo')}
                 value={filters.maxPrice}
                 onChange={(e) => handlePrice('maxPrice', e.target.value)}
               />

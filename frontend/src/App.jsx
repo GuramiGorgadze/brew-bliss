@@ -18,6 +18,7 @@ import {
   Address,
   Team,
   Cart,
+  ResetPassword,
 } from './routes';
 
 // Hooks
@@ -94,6 +95,11 @@ function App() {
           <Route
             path="/login"
             element={<Login />}
+          />
+
+          <Route
+            path="/reset-password/:token"
+            element={<ResetPassword />}
           />
 
           <Route

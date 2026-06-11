@@ -100,8 +100,10 @@
     font-weight: 400;
     cursor: pointer;
     transition: 0.4s ease-in-out;
+  }
 
-    &:hover {
+  &:hover {
+    .product-card__btn {
       background-color: $color-accent;
       color: white;
       border-color: $color-accent;

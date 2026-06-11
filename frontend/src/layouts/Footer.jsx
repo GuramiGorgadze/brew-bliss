@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import Logo from '../assets/logo.webp';
 import Facebook from '../assets/icons/facebook-icon.svg';
 import Twitter from '../assets/icons/twitter-icon.svg';
@@ -14,10 +15,12 @@ import PayPal from '../assets/payments/paypal.svg';
 import Visa from '../assets/payments/visa.svg';
 
 function Footer() {
+  const { t, i18n } = useTranslation();
   const { userData } = useUserData();
   const [email, setEmail] = useState('');
   const [openSection, setOpenSection] = useState(null);
   const [subStatus, setSubStatus] = useState('normal');
+
   useEffect(() => {
     if (userData?.email) {
       setEmail(userData.email);
@@ -42,10 +45,10 @@ function Footer() {
   };
 
   const subLabel = {
-    normal: 'Subscribe',
-    loading: 'Subscribing...',
-    success: 'Subscribed!',
-    error: 'Failed. Try Again',
+    normal: t('footer.newsletter.button.normal'),
+    loading: t('footer.newsletter.button.loading'),
+    success: t('footer.newsletter.button.success'),
+    error: t('footer.newsletter.button.error'),
   }[subStatus];
 
   return (
@@ -55,93 +58,92 @@ function Footer() {
           <img
             className="footer__brand-logo"
             src={Logo}
-            alt="logo"
+            alt={t('footer.brand.logoAlt')}
           />
-          <p className="footer__brand-slogan">
-            We are passionate about crafting the perfect beer experience...
-          </p>
+          <p className="footer__brand-slogan">{t('footer.brand.slogan')}</p>
 
           <div className="footer__contact">
             <p className="footer__contact-info">
-              Address <span className="grey">67th Avenue, Georgia</span>
+              {t('footer.contact.addressLabel')}{' '}
+              <span className="grey">{t('footer.contact.addressValue')}</span>
             </p>
             <p className="footer__contact-info">
-              Phone <span className="grey">(995) 557 70 40 22</span>
+              {t('footer.contact.phoneLabel')}{' '}
+              <span className="grey">{t('footer.contact.phoneValue')}</span>
             </p>
             <p className="footer__contact-info">
-              Email <span className="grey">g.gorgadze111@gmail.com</span>
+              {t('footer.contact.emailLabel')}{' '}
+              <span className="grey">{t('footer.contact.emailValue')}</span>
             </p>
           </div>
         </div>
 
         <div className="footer__links">
-          <h4 className="footer__links-title">Website Links</h4>
+          <h4 className="footer__links-title">{t('footer.sections.websiteLinks')}</h4>
           <Link
             className="footer__links-item"
             to="/"
           >
-            Home
+            {t('footer.links.home')}
           </Link>
           <Link
             className="footer__links-item"
             to="/account"
           >
-            My Account
+            {t('footer.links.myAccount')}
           </Link>
           <Link
             className="footer__links-item"
             to="/products"
           >
-            Products
+            {t('footer.links.products')}
           </Link>
           <Link
             className="footer__links-item"
             to=""
           >
-            Link
+            {t('footer.links.fallbackLink')}
           </Link>
         </div>
 
         <div className="footer__links">
-          <h4 className="footer__links-title">Our Company</h4>
+          <h4 className="footer__links-title">{t('footer.sections.ourCompany')}</h4>
           <Link
             className="footer__links-item"
             to="/about"
           >
-            About Us
+            {t('footer.links.aboutUs')}
           </Link>
           <Link
             className="footer__links-item"
             to="/team"
           >
-            Our team
+            {t('footer.links.ourTeam')}
           </Link>
           <Link
             className="footer__links-item"
             to="/contact"
           >
-            Contact Us
+            {t('footer.links.contactUs')}
           </Link>
           <Link
             className="footer__links-item"
             to=""
           >
-            Link
+            {t('footer.links.fallbackLink')}
           </Link>
         </div>
 
         <div className="footer__newsletter">
-          <h4 className="footer__newsletter-title">Sign Up To Newsletter</h4>
-          <p className="footer__newsletter-desc">
-            Sign up for exclusive updates, new arrivals and More.
-          </p>
+          <h4 className="footer__newsletter-title">{t('footer.newsletter.title')}</h4>
+          <p className="footer__newsletter-desc">{t('footer.newsletter.description')}</p>
           <div className="footer__newsletter-form">
             <div className="footer__newsletter-form--input">
               <i className="bi bi-envelope"></i>
               <input
                 className="footer__newsletter-input"
                 type="text"
-                placeholder="Your email address..."
+                placeholder={t('footer.newsletter.placeholder')}
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
               />
@@ -154,7 +156,7 @@ function Footer() {
               {subLabel}
             </button>
           </div>
-          <h5 className="footer__newsletter-follow">Follow Us</h5>
+          <h5 className="footer__newsletter-follow">{t('footer.socials.followUs')}</h5>
           <div className="footer__socials">
             <a
               className="footer__socials-link"
@@ -165,7 +167,7 @@ function Footer() {
               <img
                 className="footer__socials-icon"
                 src={Facebook}
-                alt="Facebook"
+                alt={t('footer.socials.facebookAlt')}
               />
             </a>
             <a
@@ -177,7 +179,7 @@ function Footer() {
               <img
                 className="footer__socials-icon"
                 src={Twitter}
-                alt="Twitter"
+                alt={t('footer.socials.twitterAlt')}
               />
             </a>
             <a
@@ -189,7 +191,7 @@ function Footer() {
               <img
                 className="footer__socials-icon"
                 src={Instagram}
-                alt="Instagram"
+                alt={t('footer.socials.instagramAlt')}
               />
             </a>
             <a
@@ -201,18 +203,19 @@ function Footer() {
               <img
                 className="footer__socials-icon"
                 src={TikTok}
-                alt="TikTok"
+                alt={t('footer.socials.tiktokAlt')}
               />
             </a>
           </div>
         </div>
 
+        {/* Mobile Accordions */}
         <div className="footer__mobile-accordion">
           <button
             className="footer__mobile-header"
             onClick={() => toggleSection('company')}
           >
-            <h2>Our Company</h2>
+            <h2>{t('footer.sections.ourCompany')}</h2>
             <i
               className={`bi bi-chevron-down footer__mobile-icon ${openSection === 'company' ? 'is-open' : ''}`}
             ></i>
@@ -222,31 +225,31 @@ function Footer() {
               className="footer__links-item"
               to="/about"
             >
-              About Us
+              {t('footer.links.aboutUs')}
             </Link>
             <Link
               className="footer__links-item"
               to="/team"
             >
-              Our Team
+              {t('footer.links.ourTeam')}
             </Link>
             <Link
               className="footer__links-item"
               to="/contact"
             >
-              Contact Us
+              {t('footer.links.contactUs')}
             </Link>
             <Link
               className="footer__links-item"
               to="/"
             >
-              Home
+              {t('footer.links.home')}
             </Link>
             <Link
               className="footer__links-item"
               to="/products"
             >
-              Products
+              {t('footer.links.products')}
             </Link>
           </div>
         </div>
@@ -256,7 +259,7 @@ function Footer() {
             className="footer__mobile-header"
             onClick={() => toggleSection('service')}
           >
-            <h2>Customer Service</h2>
+            <h2>{t('footer.sections.customerService')}</h2>
             <i
               className={`bi bi-chevron-down footer__mobile-icon ${openSection === 'service' ? 'is-open' : ''}`}
             ></i>
@@ -266,25 +269,25 @@ function Footer() {
               className="footer__links-item"
               to="/account"
             >
-              My Account
+              {t('footer.links.myAccount')}
             </Link>
             <Link
               className="footer__links-item"
               to="/contact"
             >
-              Contact Us
+              {t('footer.links.contactUs')}
             </Link>
             <Link
               className="footer__links-item"
               to=""
             >
-              Returns
+              {t('footer.links.returns')}
             </Link>
             <Link
               className="footer__links-item"
               to=""
             >
-              FAQ
+              {t('footer.links.faq')}
             </Link>
           </div>
         </div>
@@ -294,7 +297,7 @@ function Footer() {
             className="footer__mobile-header"
             onClick={() => toggleSection('newsletter')}
           >
-            <h2>Sign Up to Newsletter</h2>
+            <h2>{t('footer.newsletter.title')}</h2>
             <i
               className={`bi bi-chevron-down footer__mobile-icon ${openSection === 'newsletter' ? 'is-open' : ''}`}
             ></i>
@@ -302,16 +305,14 @@ function Footer() {
           <div
             className={`footer__mobile-content ${openSection === 'newsletter' ? 'is-open' : ''}`}
           >
-            <p className="footer__newsletter-desc">
-              Sign up for exclusive updates, new arrivals and more.
-            </p>
+            <p className="footer__newsletter-desc">{t('footer.newsletter.description')}</p>
             <div className="footer__newsletter-form">
               <div className="footer__newsletter-form--input">
                 <i className="bi bi-envelope"></i>
                 <input
                   className="footer__newsletter-input"
                   type="text"
-                  placeholder="Your email address..."
+                  placeholder={t('footer.newsletter.placeholder')}
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                 />
@@ -324,7 +325,7 @@ function Footer() {
                 {subLabel}
               </button>
             </div>
-            <h5 className="footer__newsletter-follow">Follow Us</h5>
+            <h5 className="footer__newsletter-follow">{t('footer.socials.followUs')}</h5>
             <div className="footer__socials">
               <a
                 className="footer__socials-link"
@@ -335,7 +336,7 @@ function Footer() {
                 <img
                   className="footer__socials-icon"
                   src={Facebook}
-                  alt="Facebook"
+                  alt={t('footer.socials.facebookAlt')}
                 />
               </a>
               <a
@@ -347,7 +348,7 @@ function Footer() {
                 <img
                   className="footer__socials-icon"
                   src={Twitter}
-                  alt="Twitter"
+                  alt={t('footer.socials.twitterAlt')}
                 />
               </a>
               <a
@@ -359,7 +360,7 @@ function Footer() {
                 <img
                   className="footer__socials-icon"
                   src={Instagram}
-                  alt="Instagram"
+                  alt={t('footer.socials.instagramAlt')}
                 />
               </a>
               <a
@@ -371,7 +372,7 @@ function Footer() {
                 <img
                   className="footer__socials-icon"
                   src={TikTok}
-                  alt="TikTok"
+                  alt={t('footer.socials.tiktokAlt')}
                 />
               </a>
             </div>
@@ -381,29 +382,31 @@ function Footer() {
 
       <div className="footer__bottom">
         <div className="footer__copyright">
-          Copyright © <span className="orange">brew bliss Store</span>. All Rights Reserved. Powered
-          by <span className="orange">UIPARADOX</span>.
+          {t('footer.bottom.copyrightBefore')}{' '}
+          <span className="orange">{t('footer.bottom.brandName')}</span>
+          {t('footer.bottom.copyrightAfter')}{' '}
+          <span className="orange">{t('footer.bottom.poweredBy')}</span>.
         </div>
         <div className="footer__cards">
           <img
             src={Amazon}
-            alt=""
+            alt={t('footer.payments.amazonAlt')}
           />
           <img
             src={ApplePay}
-            alt=""
+            alt={t('footer.payments.applePayAlt')}
           />
           <img
             src={Mastercard}
-            alt=""
+            alt={t('footer.payments.mastercardAlt')}
           />
           <img
             src={PayPal}
-            alt=""
+            alt={t('footer.payments.paypalAlt')}
           />
           <img
             src={Visa}
-            alt=""
+            alt={t('footer.payments.visaAlt')}
           />
         </div>
       </div>

@@ -7,7 +7,7 @@ export const getProducts = async () => {
     });
     return response.data;
   } catch (err) {
-    alert('Error fetching products:', err);
+    throw new Error(err.response?.data?.message || 'Error fetching products');
   }
 };
 
@@ -18,7 +18,7 @@ export const getProductById = async (id) => {
     });
     return response.data;
   } catch (err) {
-    alert('Error fetching product:', err);
+    throw new Error(err.response?.data?.message || 'Error fetching product');
   }
 };
 
@@ -98,7 +98,7 @@ export const addToCart = async (productId, variantSize, quantity) => {
     );
     return response.data;
   } catch (err) {
-    alert('Error adding to cart:', err);
+    throw new Error(err.response?.data?.err || 'Error adding to cart');
   }
 };
 
@@ -111,7 +111,7 @@ export const removeFromCart = async (productId, variantSize) => {
     );
     return response.data;
   } catch (err) {
-    alert('Error removing from cart:', err);
+    throw new Error(err.response?.data?.err || 'Error removing from cart');
   }
 };
 
@@ -122,7 +122,7 @@ export const getCart = async () => {
     });
     return response.data;
   } catch (err) {
-    alert('Error fetching cart:', err);
+    throw new Error(err.response?.data?.err || 'Error fetching cart');
   }
 };
 
@@ -135,7 +135,7 @@ export const updateCartQuantity = async (productId, variantSize, quantity) => {
     );
     return response.data;
   } catch (err) {
-    alert('Error updating cart quantity:', err);
+    throw new Error(err.response?.data?.err || 'Error updating cart quantity');
   }
 };
 
@@ -160,6 +160,24 @@ export const newsletter = async (email) => {
       headers: { 'Content-Type': 'application/json' },
       withCredentials: true,
     }
+  );
+  return response.data;
+};
+
+export const forgotPassword = async (email) => {
+  const response = await axios.post(
+    'http://localhost:3000/api/users/forgot',
+    { email },
+    { headers: { 'Content-Type': 'application/json' }, withCredentials: true }
+  );
+  return response.data;
+};
+
+export const resetPassword = async (token, password) => {
+  const response = await axios.post(
+    'http://localhost:3000/api/users/reset',
+    { password },
+    { headers: { 'Content-Type': 'application/json', Authorization: token }, withCredentials: true }
   );
   return response.data;
 };

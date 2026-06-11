@@ -1,36 +1,110 @@
 {
+  "navbar": {
+    "logoAlt": "Firmenlogo",
+    "home": "STARTSEITE",
+    "product": "PRODUKT",
+    "about": "ÜBER UNS",
+    "contact": "KONTAKT",
+    "pages": "SEITEN",
+    "searchIconAlt": "Such-Icon",
+    "profileIconAlt": "Profil-Icon",
+    "cartIconAlt": "Warenkorb-Icon"
+  },
+  "drawer": {
+    "close": "Schließen",
+    "account": "Konto",
+    "wishlist": "Wunschliste ({{count}})",
+    "aboutUs": "Über uns",
+    "contactUs": "Kontaktieren Sie uns"
+  },
+  "search": {
+    "heading": "WONACH SUCHEN SIE?",
+    "placeholder": "Produkte suchen...",
+    "buttonAlt": "Suchen"
+  },
+  "topbar": {
+    "phoneIconAlt": "Telefon-Icon",
+    "promoMessage": "Kostenloser Versand ab einem Bestellwert von 500 $"
+  },
+  "footer": {
+    "brand": {
+      "logoAlt": "Logo",
+      "slogan": "Unsere Leidenschaft ist es, das perfekte Brauerlebnis zu kreieren..."
+    },
+    "contact": {
+      "addressLabel": "Adresse",
+      "addressValue": "67. Avenue, Georgia",
+      "phoneLabel": "Telefon",
+      "phoneValue": "(995) 557 70 40 22",
+      "emailLabel": "E-Mail",
+      "emailValue": "g.gorgadze111@gmail.com"
+    },
+    "sections": {
+      "websiteLinks": "Website-Links",
+      "ourCompany": "Unser Unternehmen",
+      "customerService": "Kundenservice"
+    },
+    "links": {
+      "home": "Startseite",
+      "myAccount": "Mein Konto",
+      "products": "Produkte",
+      "fallbackLink": "Link",
+      "aboutUs": "Über uns",
+      "ourTeam": "Unser Team",
+      "contactUs": "Kontaktieren Sie uns",
+      "returns": "Rückgaben",
+      "faq": "FAQ"
+    },
+    "newsletter": {
+      "title": "Für den Newsletter anmelden",
+      "description": "Melden Sie sich an, um exklusive Updates, Neuankömmlinge und mehr zu erhalten.",
+      "placeholder": "Ihre E-Mail-Adresse...",
+      "button": {
+        "normal": "Abonnieren",
+        "loading": "Anmeldung...",
+        "success": "Abonniert!",
+        "error": "Fehler. Bitte versuchen Sie es erneut"
+      }
+    },
+    "socials": {
+      "followUs": "Folgen Sie uns",
+      "facebookAlt": "Facebook",
+      "twitterAlt": "Twitter",
+      "instagramAlt": "Instagram",
+      "tiktokAlt": "TikTok"
+    },
+    "bottom": {
+      "copyrightBefore": "Copyright ©",
+      "brandName": "Brew Bliss Shop",
+      "copyrightAfter": ". Alle Rechte vorbehalten. Präsentiert von",
+      "poweredBy": "UIPARADOX"
+    },
+    "payments": {
+      "amazonAlt": "Amazon Pay",
+      "applePayAlt": "Apple Pay",
+      "mastercardAlt": "Mastercard",
+      "paypalAlt": "PayPal",
+      "visaAlt": "Visa"
+    }
+  },
   "about": {
     "pageTitle": "Über uns",
     "ourStory": {
       "label": "UNSERE GESCHICHTE",
       "descStart": "Willkommen bei",
       "brandName": "Brew Bliss,",
-      "descEnd": "Ihrem ultimativen Ziel für frische Aromen und köstliche Getränke. Wir leidenschaftlich daran, Premium-Speisen und Getränke zu liefern, die jeden Hunger stillen – jederzeit und überall!"
+      "descEnd": "Ihrem ultimativen Ziel für frische Aromen und köstliche Getränke. Wir arbeiten leidenschaftlich daran, Premium-Speisen und Getränke zu liefern, die jeden Hunger stillen – jederzeit und überall!"
     },
     "team": {
       "label": "Lernen Sie unser Team kennen",
       "desc": "Erfahren Sie, warum alle unsere Produkte und unseren Service loben – echte Geschichten von zufriedenen Kunden!",
-      "member1": {
-        "title": "Emily Johnson",
-        "description": "Gründerin/CEO"
-      },
-      "member2": {
-        "title": "Michael Brown",
-        "description": "Kundendienstleiter"
-      },
-      "member3": {
-        "title": "Sarah Davis",
-        "description": "Marketingspezialistin"
-      },
-      "member4": {
-        "title": "Sophia Martinez",
-        "description": "Kunstkuratorin"
-      }
+      "member1": { "title": "Emily Johnson", "description": "Gründerin/CEO" },
+      "member2": { "title": "Michael Brown", "description": "Kundendienstleiter" },
+      "member3": { "title": "Sarah Davis", "description": "Marketingspezialistin" },
+      "member4": { "title": "Sophia Martinez", "description": "Kunstkuratorin" }
     }
   },
-  "team": {
-    "pageTitle": "Unser Team"
-  },
+  "team": { "pageTitle": "Unser Team" },
   "account": {
     "title": "KONTO",
     "welcome": "Willkommen",
@@ -123,9 +197,7 @@
         "address": "g.gorgadze111@gmail.com",
         "hours": "Jederzeit"
       },
-      "followUs": {
-        "title": "Folgen Sie uns"
-      }
+      "followUs": { "title": "Folgen Sie uns" }
     },
     "getInTouch": {
       "title": "Kontakt aufnehmen",
@@ -155,6 +227,15 @@
       "forgotPassword": "Passwort vergessen?",
       "submitBtn": "Anmelden",
       "createAccount": "Neues Konto erstellen"
+    },
+    "reset": {
+      "title": "Passwort zurücksetzen",
+      "subtitle": "Wir senden Ihnen eine E-Mail zum Zurücksetzen Ihres Passworts.",
+      "submitBtn": "Link senden",
+      "cancelBtn": "Abbrechen",
+      "successTitle": "E-Mail überprüfen",
+      "successText": "Wir haben einen Reset-Link gesendet. Prüfen Sie Ihren Posteingang und folgen Sie den Anweisungen.",
+      "backToLogin": "Zurück zur Anmeldung"
     },
     "validation": {
       "emailRequired": "E-Mail ist erforderlich",
@@ -198,15 +279,24 @@
       "serverError": "Etwas ist schiefgelaufen"
     }
   },
+  "resetPassword": {
+    "pageTitle": "Passwort zurücksetzen",
+    "title": "Neues Passwort festlegen",
+    "form": {
+      "passwordLabel": "Neues Passwort",
+      "passwordPlaceholder": "Neues Passwort eingeben",
+      "confirmPasswordLabel": "Passwort bestätigen",
+      "confirmPasswordPlaceholder": "Neues Passwort bestätigen",
+      "submitBtn": "Passwort zurücksetzen"
+    }
+  },
   "notFound": {
     "code": "404",
     "heading": "Entschuldigung, diese Seite wurde nicht gefunden!",
     "text": "Es scheint, dass diese Seite verschoben wurde oder nicht existiert. Gehen Sie zurück zur Startseite oder kontaktieren Sie uns, wenn Sie Hilfe benötigen!",
     "btn": "Zurück zur Startseite"
   },
-  "products": {
-    "pageTitle": "Produkte"
-  },
+  "products": { "pageTitle": "Produkte" },
   "productSingle": {
     "review": "Bewertung",
     "reviews": "Bewertungen",
@@ -281,5 +371,45 @@
       "title": "Einfache Rückgabe",
       "description": "Stressfreie Rückgaben für Ihre Sicherheit, damit Sie mit jedem Kauf zufrieden sind."
     }
+  },
+  "filterSection": {
+    "searchPlaceholder": "Hier suchen",
+    "searchAlt": "Suchen",
+    "productCategories": "Produktkategorien",
+    "availability": "VERFÜGBARKEIT",
+    "inStock": "Auf Lager ({{count}})",
+    "outOfStock": "Nicht auf Lager ({{count}})",
+    "price": "PREIS",
+    "highestPrice": "Der höchste Preis beträgt",
+    "priceFrom": "Von",
+    "priceTo": "Bis"
+  },
+  "productCard": {
+    "review": "Bewertung",
+    "reviews": "Bewertungen",
+    "addToCart": "In den Warenkorb"
+  },
+  "productList": {
+    "filterAndSort": "FILTER & SORTIEREN",
+    "filterAndSortTitle": "FILTER UND SORTIEREN",
+    "productsCount": "{{count}} Produkte",
+    "productsFiltered": "{{filtered}} von {{total}} Produkten",
+    "filterSearch": "Suche: \"{{value}}\"",
+    "filterCategory": "Kategorie: {{value}}",
+    "filterInStock": "Auf Lager",
+    "filterOutOfStock": "Nicht auf Lager",
+    "filterPriceRange": "Preisbereich",
+    "removeAll": "Alle entfernen",
+    "noProductsFound": "Keine Produkte gefunden",
+    "useFewerFilters": "Weniger Filter verwenden oder",
+    "clearAll": "alle löschen"
+  },
+  "toolbar": {
+    "sortBy": "Sortieren nach:",
+    "mostRelevant": "Relevanteste",
+    "titleAsc": "Alphabetisch, A–Z",
+    "titleDesc": "Alphabetisch, Z–A",
+    "priceAsc": "Preis, aufsteigend",
+    "priceDesc": "Preis, absteigend"
   }
 }

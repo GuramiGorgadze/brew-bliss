@@ -40,7 +40,8 @@
     }
 
     &__btn {
-      width: calc(150px * var(--app-scale));
+      width: auto;
+      padding: 0 30px;
       height: calc(50px * var(--app-scale));
       border: none;
       border-radius: calc(5px * var(--app-scale));

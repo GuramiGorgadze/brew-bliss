@@ -1,4 +1,4 @@
-@use "../abstracts" as *;
+@use '../abstracts' as *;
 
 .auth-wrapper {
   display: flex;
@@ -114,6 +114,12 @@
           color: $color-white;
         }
       }
+    }
+
+    &__reset-text {
+      font-size: 15px;
+      margin: 15px 0;
+      color: $border-default;
     }
   }
 }
