@@ -23,7 +23,7 @@ function Cart() {
       if (data?.data) {
         setCartItems(data.data.map((item) => ({ ...item, quantity: item.quantity })));
       } else if (data?.err) {
-        alert(data.err);
+        console(data.err);
       }
     };
     fetchCart();
@@ -59,7 +59,7 @@ function Cart() {
     try {
       await api.updateCartQuantity(productId.toString(), variantSize, newQuantity);
     } catch (err) {
-      alert('Full error:', err.response?.status, err.response?.data);
+      console('Full error:', err.response?.status, err.response?.data);
     }
   };
 

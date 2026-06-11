@@ -10,6 +10,8 @@
   padding: 0 calc(100px * var(--app-scale));
   box-sizing: border-box;
   margin-top: 50px;
+  margin-bottom: calc(100px * var(--app-scale));
+
 
   .product-list-right {
     display: flex;
@@ -243,5 +245,49 @@
 
   .mobile-show {
     display: flex;
+  }
+}
+
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: calc(10px * var(--app-scale));
+  margin-top: calc(40px * var(--app-scale));
+
+  &__btn {
+    min-width: calc(42px * var(--app-scale));
+    height: calc(42px * var(--app-scale));
+    padding: 0 calc(8px * var(--app-scale));
+    border: none;
+    border-radius: calc(5px * var(--app-scale));
+    background: $bg-muted;
+    color: $text-primary;
+    font-size: calc(14px * var(--app-scale));
+    cursor: pointer;
+    transition: 0.5s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+
+    &:hover {
+      background-color: $color-accent;
+      border-color: $color-accent;
+      color: $text-primary;
+    }
+
+    &--active {
+      background-color: $color-accent;
+      border-color: $color-accent;
+      color: $text-primary;
+    }
+  }
+
+  &__ellipsis {
+    color: $text-primary;
+    font-size: calc(14px * var(--app-scale));
+    padding: 0 calc(4px * var(--app-scale));
+    user-select: none;
   }
 }

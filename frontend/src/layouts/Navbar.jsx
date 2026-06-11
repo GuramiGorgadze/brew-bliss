@@ -92,7 +92,7 @@ function Navbar() {
               <Link to="/contact">{t('navbar.contact')}</Link>
             </li>
             <li className="navbar__nav-item">
-              <Link to="/">{t('navbar.pages')}</Link>
+              <Link to="/team">{t('navbar.team')}</Link>
             </li>
           </ul>
         </div>

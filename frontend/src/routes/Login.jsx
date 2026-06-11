@@ -44,7 +44,7 @@ function Login() {
     register,
     handleSubmit,
     setError,
-    formState: { errors },
+    formState: { errors, isSubmitting },
   } = useForm({
     resolver: yupResolver(loginSchema),
   });
@@ -53,7 +53,7 @@ function Login() {
     register: registerReset,
     handleSubmit: handleResetSubmit,
     setError: setResetError,
-    formState: { errors: resetErrors },
+    formState: { errors: resetErrors, isSubmitting: isResetSubmitting },
   } = useForm({
     resolver: yupResolver(resetSchema),
   });
@@ -142,8 +142,9 @@ function Login() {
             <button
               className="auth__form__submit"
               type="submit"
+              disabled={isSubmitting}
             >
-              {t('login.form.submitBtn')}
+              {isSubmitting ? t('login.form.submittingBtn') : t('login.form.submitBtn')}
             </button>
 
             <Link to="/register">
@@ -204,8 +205,9 @@ function Login() {
             <button
               className="auth__form__submit"
               type="submit"
+              disabled={isResetSubmitting}
             >
-              {t('login.reset.submitBtn')}
+              {isResetSubmitting ? t('login.reset.submittingBtn') : t('login.reset.submitBtn')}
             </button>
 
             <button

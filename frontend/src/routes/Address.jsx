@@ -31,7 +31,7 @@ function Address() {
       const data = await updateAddress(formData);
       login(data.data);
     } catch (error) {
-      alert(error);
+      console.log(error);
     }
   };
 

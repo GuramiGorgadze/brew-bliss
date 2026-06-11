@@ -54,6 +54,13 @@ const CartItemSchema = new mongoose.Schema(
   { _id: false },
 );
 
+const wishlistItemSchema = new mongoose.Schema(
+  {
+    productId: { type: Number, ref: "Product", required: true },
+  },
+  { _id: false },
+);
+
 const UsersSchema = new mongoose.Schema(
   {
     firstName: {
@@ -85,6 +92,7 @@ const UsersSchema = new mongoose.Schema(
       default: () => ({}),
     },
     cart: { type: [CartItemSchema], default: [] },
+    wishlist: { type: [wishlistItemSchema], default: [] },
   },
   { timestamps: true },
 );

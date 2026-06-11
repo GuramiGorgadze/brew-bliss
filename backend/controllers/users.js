@@ -238,6 +238,63 @@ export const updateCartQuantity = async (req, res) => {
   }
 };
 
+export const addToWishlist = async (req, res) => {
+  try {
+    const token = req.cookies.token;
+    const decoded = jwt.verify(token, process.env.JWT_SECRET_KEY);
+    const { productId } = req.body;
+
+    const user = await Users.findById(decoded.id);
+
+    const alreadyInWishlist = user.wishlist.some(
+      (item) => item.productId === productId,
+    );
+
+    if (!alreadyInWishlist) {
+      user.wishlist.push({ productId });
+      await user.save();
+    }
+
+    return res.status(200).json({ data: user.wishlist });
+  } catch (err) {
+    return res.status(500).json({ err: "Something went wrong" });
+  }
+};
+
+export const removeFromWishlist = async (req, res) => {
+  try {
+    const token = req.cookies.token;
+    const decoded = jwt.verify(token, process.env.JWT_SECRET_KEY);
+    const { productId } = req.body;
+
+    const user = await Users.findByIdAndUpdate(
+      decoded.id,
+      { $pull: { wishlist: { productId } } },
+      { new: true },
+    ).select("-password");
+
+    return res.status(200).json({ data: user.wishlist });
+  } catch (err) {
+    return res.status(500).json({ err: "Something went wrong" });
+  }
+};
+
+export const getWishlist = async (req, res) => {
+  try {
+    const token = req.cookies.token;
+    const decoded = jwt.verify(token, process.env.JWT_SECRET_KEY);
+
+    const user = await Users.findById(decoded.id).populate({
+      path: "wishlist.productId",
+      model: "Product",
+    });
+
+    return res.status(200).json({ data: user.wishlist });
+  } catch (err) {
+    return res.status(500).json({ err: "Something went wrong" });
+  }
+};
+
 export const contact = async (req, res) => {
   try {
     const { email, message } = req.body;

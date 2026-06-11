@@ -19,9 +19,9 @@ import {
   Team,
   Cart,
   ResetPassword,
+  Wishlist,
 } from './routes';
 
-// Hooks
 import useDocumentTitle from './hooks/useDocumentTitle';
 import useScrollTop from './hooks/useScrollTop';
 import useAppScale from './hooks/useAppScale';
@@ -46,7 +46,7 @@ function App() {
         const res = await api.getUser(tokenRes.data);
         if (res.data) login(res.data);
       } catch (error) {
-        alert('Failed to log in', error);
+        console.log('Failed to log in', error);
       } finally {
         setIsAuthLoading(false);
       }
@@ -116,6 +116,15 @@ function App() {
             element={
               <ProtectedRoute>
                 <Cart />
+              </ProtectedRoute>
+            }
+          />
+
+          <Route
+            path="/wishlist"
+            element={
+              <ProtectedRoute>
+                <Wishlist />
               </ProtectedRoute>
             }
           />

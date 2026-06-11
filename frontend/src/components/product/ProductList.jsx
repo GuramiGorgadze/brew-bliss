@@ -1,17 +1,22 @@
-import React, { useState, useMemo } from 'react';
+import React, { useMemo } from 'react';
 import { Product, Toolbar, FilterSection } from '..';
 import searchIcon from '../../assets/icons/search-icon.svg';
 import useProductFilter from '../../hooks/useProductFilter';
 import deleteIcon from '../../assets/icons/x-icon.svg';
 import clsx from 'clsx';
 import { useTranslation } from 'react-i18next';
+import { useSearchParams } from 'react-router-dom';
 
 function ProductList({ originalProducts = [] }) {
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
+  const [searchParams, setSearchParams] = useSearchParams();
 
-  const [view, setView] = useState('grid-wrap');
-  const [filterOpen, setFilterOpen] = useState(false);
-  const [filterClosing, setFilterClosing] = useState(false);
+  const [view, setView] = React.useState('grid-wrap');
+  const [filterOpen, setFilterOpen] = React.useState(false);
+  const [filterClosing, setFilterClosing] = React.useState(false);
+
+  const currentPage = Number(searchParams.get('page')) || 1;
+  const productsPerPage = 6;
 
   const { products, filters, updateFilter, updateFilters, resetFilters } =
     useProductFilter(originalProducts);
@@ -23,6 +28,33 @@ function ProductList({ originalProducts = [] }) {
       setFilterClosing(false);
     }, 300);
   };
+
+  const setPage = (page) => {
+    setSearchParams({ ...Object.fromEntries(searchParams), page });
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const handleUpdateFilter = (key, value) => {
+    setPage(1);
+    updateFilter(key, value);
+  };
+
+  const handleUpdateFilters = (values) => {
+    setPage(1);
+    updateFilters(values);
+  };
+
+  const handleResetFilters = () => {
+    setPage(1);
+    resetFilters();
+  };
+
+  const totalPages = Math.ceil(products.length / productsPerPage);
+
+  const paginatedProducts = useMemo(() => {
+    const start = (currentPage - 1) * productsPerPage;
+    return products.slice(start, start + productsPerPage);
+  }, [products, currentPage]);
 
   const filterStats = useMemo(() => {
     let inStock = 0;
@@ -64,12 +96,20 @@ function ProductList({ originalProducts = [] }) {
     return active;
   }, [filters, t]);
 
+  const getPageNumbers = () => {
+    if (totalPages <= 5) return Array.from({ length: totalPages }, (_, i) => i + 1);
+    if (currentPage <= 3) return [1, 2, 3, 4, '...', totalPages];
+    if (currentPage >= totalPages - 2)
+      return [1, '...', totalPages - 3, totalPages - 2, totalPages - 1, totalPages];
+    return [1, '...', currentPage - 1, currentPage, currentPage + 1, '...', totalPages];
+  };
+
   return (
     <div className="product-list">
       <div className="product-list-left">
         <FilterSection
-          updateFilter={updateFilter}
-          updateFilters={updateFilters}
+          updateFilter={handleUpdateFilter}
+          updateFilters={handleUpdateFilters}
           filters={filters}
           stockCounts={filterStats.stockCounts}
           categoryCounts={filterStats.categoryCounts}
@@ -120,7 +160,7 @@ function ProductList({ originalProducts = [] }) {
           originalProducts={originalProducts}
           view={view}
           onViewChange={setView}
-          onSortChange={(sort) => updateFilter('sort', sort)}
+          onSortChange={(sort) => handleUpdateFilter('sort', sort)}
         />
 
         <div className="active-filters-badges">
@@ -130,9 +170,9 @@ function ProductList({ originalProducts = [] }) {
               className="filter-badge"
               onClick={() => {
                 if (filter.key === 'price') {
-                  updateFilters({ minPrice: '', maxPrice: '' });
+                  handleUpdateFilters({ minPrice: '', maxPrice: '' });
                 } else {
-                  updateFilter(
+                  handleUpdateFilter(
                     filter.key,
                     filter.key === 'search' || filter.key === 'category' ? '' : false
                   );
@@ -154,7 +194,7 @@ function ProductList({ originalProducts = [] }) {
           {activeFilters.length > 0 && (
             <div
               className="filter-badge"
-              onClick={resetFilters}
+              onClick={handleResetFilters}
             >
               {t('productList.removeAll')}
               <button
@@ -171,7 +211,7 @@ function ProductList({ originalProducts = [] }) {
         </div>
 
         <div className={`product-cards-wrapper product-cards-wrapper--${view}`}>
-          {products.map((product) => (
+          {paginatedProducts.map((product) => (
             <Product
               key={product._id}
               product={product}
@@ -186,11 +226,54 @@ function ProductList({ originalProducts = [] }) {
               {t('productList.useFewerFilters')}{' '}
               <span
                 className="clear-all-btn"
-                onClick={resetFilters}
+                onClick={handleResetFilters}
               >
                 {t('productList.clearAll')}
               </span>
             </h2>
+          </div>
+        )}
+
+        {totalPages > 1 && (
+          <div className="pagination">
+            {currentPage > 1 && (
+              <button
+                className="pagination__btn pagination__btn--prev"
+                onClick={() => setPage(currentPage - 1)}
+              >
+                <i className="bi bi-chevron-double-left" />
+              </button>
+            )}
+
+            {getPageNumbers().map((page, i) =>
+              page === '...' ? (
+                <span
+                  key={`ellipsis-${i}`}
+                  className="pagination__ellipsis"
+                >
+                  …
+                </span>
+              ) : (
+                <button
+                  key={page}
+                  className={clsx('pagination__btn', {
+                    'pagination__btn--active': page === currentPage,
+                  })}
+                  onClick={() => setPage(page)}
+                >
+                  {page}
+                </button>
+              )
+            )}
+
+            {currentPage < totalPages && (
+              <button
+                className="pagination__btn pagination__btn--next"
+                onClick={() => setPage(currentPage + 1)}
+              >
+                <i className="bi bi-chevron-double-right" />
+              </button>
+            )}
           </div>
         )}
       </div>
@@ -232,8 +315,8 @@ function ProductList({ originalProducts = [] }) {
               </div>
 
               <FilterSection
-                updateFilter={updateFilter}
-                updateFilters={updateFilters}
+                updateFilter={handleUpdateFilter}
+                updateFilters={handleUpdateFilters}
                 filters={filters}
                 stockCounts={filterStats.stockCounts}
                 categoryCounts={filterStats.categoryCounts}

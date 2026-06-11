@@ -59,6 +59,9 @@ export const getToken = async () => {
     });
     return response.data;
   } catch (error) {
+    if (error.response?.status === 401) {
+      return null;
+    }
     const message = error.response?.data?.err || 'Something went wrong';
     throw new Error(message);
   }
@@ -123,6 +126,43 @@ export const getCart = async () => {
     return response.data;
   } catch (err) {
     throw new Error(err.response?.data?.err || 'Error fetching cart');
+  }
+};
+
+export const addToWishlist = async (productId) => {
+  try {
+    const response = await axios.post(
+      'http://localhost:3000/api/users/wishlist/add',
+      { productId },
+      { withCredentials: true }
+    );
+    return response.data;
+  } catch (err) {
+    throw new Error(err.response?.data?.err || 'Error adding to Wishlist');
+  }
+};
+
+export const removeFromWishlist = async (productId) => {
+  try {
+    const response = await axios.post(
+      'http://localhost:3000/api/users/wishlist/remove',
+      { productId },
+      { withCredentials: true }
+    );
+    return response.data;
+  } catch (err) {
+    throw new Error(err.response?.data?.err || 'Error removing from wishlist');
+  }
+};
+
+export const getWishlist = async () => {
+  try {
+    const response = await axios.get('http://localhost:3000/api/users/wishlist', {
+      withCredentials: true,
+    });
+    return response.data;
+  } catch (err) {
+    throw new Error(err.response?.data?.err || 'Error fetching wishlist');
   }
 };
 

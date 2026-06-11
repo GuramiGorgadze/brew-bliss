@@ -1,27 +1,44 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useCurrency } from '../../context/CurrencyContext';
+import { useWishlist } from '../../context/WishlistContext';
 import clsx from 'clsx';
 import { useTranslation } from 'react-i18next';
+import * as api from '../../api/api';
+import QuickAddModal from './QuickAddModal';
 
-function Product({ product }) {
-  const { t, i18n } = useTranslation();
+function Product({ product, onWishlistChange }) {
+  const { t } = useTranslation();
   const { formatPrice } = useCurrency();
+  const navigate = useNavigate();
+  const [showModal, setShowModal] = useState(false);
+
+  const { wishlistedIds, add, remove } = useWishlist();
+  const wishlisted = wishlistedIds.has(product._id);
+
+  const handleWishlistToggle = async () => {
+    try {
+      if (wishlisted) {
+        await api.removeFromWishlist(product._id);
+        remove(product._id);
+        onWishlistChange?.(product._id);
+      } else {
+        await api.addToWishlist(product._id);
+        add(product._id);
+      }
+    } catch (err) {
+      console.error(err.message);
+    }
+  };
 
   const image = product.image;
   const variant = product.variants?.[0];
-
   const price = Number(variant?.price || 0);
-
   const compareAtPrice = Number(variant?.compare_at_price);
-
   const hasDiscount = compareAtPrice && compareAtPrice > price;
-
   const discountPercent = hasDiscount
     ? Math.round(((compareAtPrice - price) / compareAtPrice) * 100)
     : 0;
-
-  const navigate = useNavigate();
 
   return (
     <div className="product-card">
@@ -33,7 +50,13 @@ function Product({ product }) {
             onClick={() => navigate(`/products/${product._id}`)}
           />
         )}
-
+        <i
+          onClick={handleWishlistToggle}
+          className={clsx('bi wishlist', {
+            'bi-check-lg': wishlisted,
+            'bi-heart': !wishlisted,
+          })}
+        />
         {discountPercent > 0 && <span className="product-card__discount">-{discountPercent}%</span>}
       </div>
 
@@ -45,9 +68,7 @@ function Product({ product }) {
           >
             {product.title}
           </h3>
-
           <p className="product-card__size">{variant?.size}</p>
-
           <div className="product-card__stars">
             <p className="product-page__reviews">
               {Array.from({ length: 5 }, (_, i) => (
@@ -66,7 +87,6 @@ function Product({ product }) {
               {product.reviews?.length === 1 ? t('productCard.review') : t('productCard.reviews')})
             </p>
           </div>
-
           <div className="product-card__price">
             {formatPrice(price)}
             {hasDiscount && (
@@ -74,9 +94,20 @@ function Product({ product }) {
             )}
           </div>
         </div>
-
-        <button className="product-card__btn">{t('productCard.addToCart')}</button>
+        <button
+          className="product-card__btn"
+          onClick={() => setShowModal(true)}
+        >
+          {t('productCard.addToCart')}
+        </button>
       </div>
+
+      {showModal && (
+        <QuickAddModal
+          product={product}
+          onClose={() => setShowModal(false)}
+        />
+      )}
     </div>
   );
 }

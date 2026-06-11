@@ -5,7 +5,7 @@
     "product": "PRODUCT",
     "about": "ABOUT",
     "contact": "CONTACT",
-    "pages": "PAGES",
+    "team": "TEAM",
     "searchIconAlt": "Search Icon",
     "profileIconAlt": "Profile Icon",
     "cartIconAlt": "Cart Icon"
@@ -226,6 +226,7 @@
       "passwordPlaceholder": "Password",
       "forgotPassword": "Forgot your password ?",
       "submitBtn": "Login",
+      "submittingBtn": "Logging in...",
       "createAccount": "Create New Account"
     },
     "reset": {
@@ -235,7 +236,8 @@
       "cancelBtn": "Cancel",
       "successTitle": "Check Your Email",
       "successText": "We've sent a reset link. Check your inbox and follow the instructions.",
-      "backToLogin": "Back to Login"
+      "backToLogin": "Back to Login",
+      "submittingBtn": "Sending..."
     },
     "validation": {
       "emailRequired": "Email is required",
@@ -260,7 +262,8 @@
       "confirmPasswordLabel": "Confirm Password",
       "confirmPasswordPlaceholder": "Confirm Password",
       "submitBtn": "Create New Account",
-      "loginBtn": "Login"
+      "loginBtn": "Login",
+      "submittingBtn": "Creating account..."
     },
     "validation": {
       "firstNameRequired": "First name is required",
@@ -378,7 +381,8 @@
   "productCard": {
     "review": "Review",
     "reviews": "Reviews",
-    "addToCart": "Add To Cart"
+    "addToCart": "Add To Cart",
+    "quickAdd": "Quick Add"
   },
   "productList": {
     "filterAndSort": "FILTER & SORT",

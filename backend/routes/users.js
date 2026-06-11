@@ -14,6 +14,9 @@ import {
   newsletter,
   forgotPasswordUser,
   resetPasswordUser,
+  getWishlist,
+  addToWishlist,
+  removeFromWishlist
 } from "../controllers/users.js";
 import { authLimiter } from "../middlewares/security.js";
 
@@ -29,6 +32,9 @@ UsersRouter.get("/cart", getCart);
 UsersRouter.post("/cart/add", addToCart);
 UsersRouter.post("/cart/remove", removeFromCart);
 UsersRouter.put("/cart/update", updateCartQuantity);
+UsersRouter.get("/wishlist", getWishlist);
+UsersRouter.post("/wishlist/add", addToWishlist);
+UsersRouter.post("/wishlist/remove", removeFromWishlist);
 UsersRouter.post("/contact", contact);
 UsersRouter.post("/newsletter", newsletter);
 UsersRouter.post("/forgot", forgotPasswordUser);

@@ -5,7 +5,7 @@
     "product": "PRODUIT",
     "about": "À PROPOS",
     "contact": "CONTACT",
-    "pages": "PAGES",
+    "team": "ÉQUIPE",
     "searchIconAlt": "Icône de recherche",
     "profileIconAlt": "Icône de profil",
     "cartIconAlt": "Icône du panier"
@@ -226,7 +226,8 @@
       "passwordPlaceholder": "Mot de passe",
       "forgotPassword": "Mot de passe oublié ?",
       "submitBtn": "Se connecter",
-      "createAccount": "Créer un nouveau compte"
+      "createAccount": "Créer un nouveau compte",
+      "submittingBtn": "Connexion en cours..."
     },
     "reset": {
       "title": "Réinitialiser votre mot de passe",
@@ -235,7 +236,8 @@
       "cancelBtn": "Annuler",
       "successTitle": "Vérifiez vos e-mails",
       "successText": "Nous avons envoyé un lien de réinitialisation. Consultez votre boîte de réception et suivez les instructions.",
-      "backToLogin": "Retour à la connexion"
+      "backToLogin": "Retour à la connexion",
+      "submittingBtn": "Envoi en cours..."
     },
     "validation": {
       "emailRequired": "L'adresse e-mail est obligatoire",
@@ -260,7 +262,8 @@
       "confirmPasswordLabel": "Confirmer le mot de passe",
       "confirmPasswordPlaceholder": "Confirmer le mot de passe",
       "submitBtn": "Créer un nouveau compte",
-      "loginBtn": "Se connecter"
+      "loginBtn": "Se connecter",
+      "submittingBtn": "Création du compte..."
     },
     "validation": {
       "firstNameRequired": "Le prénom est obligatoire",
@@ -387,7 +390,8 @@
   "productCard": {
     "review": "Avis",
     "reviews": "Avis",
-    "addToCart": "Ajouter au panier"
+    "addToCart": "Ajouter au panier",
+    "quickAdd": "Ajout rapide"
   },
   "productList": {
     "filterAndSort": "FILTRER & TRIER",

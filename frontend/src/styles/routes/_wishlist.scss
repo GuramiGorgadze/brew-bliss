@@ -1,0 +1,72 @@
+@use '../abstracts' as *;
+
+.wishlist-wrapper {
+  .wishlist {
+    display: flex;
+    flex-direction: column;
+    padding: 50px 100px;
+
+    &--title {
+      font-size: 30px;
+      text-align: center;
+      color: text-primary;
+    }
+
+    &--desc {
+      font-size: 16px;
+      color: $text-desc;
+      margin-bottom: 30px;
+      text-align: center;
+    }
+
+    &--products {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+      justify-content: center;
+
+      .product-card {
+        width: 270px;
+      }
+
+      .wishlist {
+        padding: 4px;
+      }
+    }
+
+    &__empty {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      margin: 100px 0;
+
+      p {
+        font-size: 16px;
+        color: $text-primary;
+      }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .wishlist-wrapper {
+    .wishlist {
+      padding: 50px 20px;
+
+      &--title {
+        text-align: center;
+      }
+
+      &--desc {
+        text-align: center;
+      }
+
+      &--products {
+        justify-content: center;
+        align-items: center;
+      }
+    }
+  }
+}

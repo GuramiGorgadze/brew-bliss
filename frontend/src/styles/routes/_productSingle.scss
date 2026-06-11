@@ -13,12 +13,41 @@
     align-items: flex-start;
     margin-bottom: 50px;
     padding: 0 30px;
-    
   }
 
   &__gallery {
     position: sticky;
     top: calc(80px * var(--app-scale));
+
+    .wishlist {
+      font-size: 22px;
+      padding: 8px;
+      background-color: $bg-body;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 3px;
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      opacity: 0.5;
+      transition: 0.3s ease;
+      cursor: pointer;
+
+      &:hover {
+        color: $color-accent;
+      }
+    }
+
+    .bi-check-lg {
+      color: $color-accent;
+    }
+
+    &:hover {
+      .wishlist {
+        opacity: 1;
+      }
+    }
   }
 
   &__details {

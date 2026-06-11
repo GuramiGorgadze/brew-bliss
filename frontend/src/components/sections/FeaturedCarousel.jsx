@@ -40,7 +40,7 @@ function FeaturedCarousel() {
       if (data?.data) {
         setProducts(data.data);
       } else if (data.err) {
-        alert(data.err);
+        console.log(data.err);
       }
     };
     fetchProductsData();

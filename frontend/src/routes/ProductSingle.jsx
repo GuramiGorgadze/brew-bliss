@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { PageTitle, InstagramCarousel, ImageMagnifier } from '../components';
 import { useLoader } from '../context/LoaderContext';
+import { useWishlist } from '../context/WishlistContext';
 import { useParams } from 'react-router-dom';
 import * as api from '../api/api';
 import ShippingIcon from '../assets/icons/shipping-icon-white.svg';
@@ -22,6 +23,9 @@ function ProductSingle() {
   const [cartTotal, setCartTotal] = useState(0);
   const { useDataLoader } = useLoader();
   const { id } = useParams();
+
+  const { wishlistedIds, add, remove } = useWishlist();
+  const wishlisted = singleProduct ? wishlistedIds.has(singleProduct._id) : false;
 
   const FreeShipping = 500;
   const [cartStatus, setCartStatus] = useState('');
@@ -58,14 +62,29 @@ function ProductSingle() {
     fetchCartTotal();
   }, []);
 
+  const handleWishlistToggle = async () => {
+    if (!singleProduct) return;
+    try {
+      if (wishlisted) {
+        await api.removeFromWishlist(singleProduct._id);
+        remove(singleProduct._id);
+      } else {
+        await api.addToWishlist(singleProduct._id);
+        add(singleProduct._id);
+      }
+    } catch (err) {
+      console.error('Wishlist error:', err.message);
+    }
+  };
+
   const basePrice = selectedVariant?.price ?? singleProduct?.variants[0]?.price ?? 0;
   const combinedTotal = cartTotal + basePrice * quantity;
 
-  const dynamicFreeShippingThreshold = FreeShipping * activeCurrency.rate;
-  const remaining = Math.max(0, dynamicFreeShippingThreshold - combinedTotal * activeCurrency.rate);
+  const dynamicFreeShipping = FreeShipping * activeCurrency.rate;
+  const remaining = Math.max(0, dynamicFreeShipping - combinedTotal * activeCurrency.rate);
   const progress = Math.min(
     100,
-    ((combinedTotal * activeCurrency.rate) / dynamicFreeShippingThreshold) * 100
+    ((combinedTotal * activeCurrency.rate) / dynamicFreeShipping) * 100
   );
 
   const getDeliveryRange = () => {
@@ -85,7 +104,7 @@ function ProductSingle() {
       navigate(0);
     } catch (err) {
       setCartStatus('');
-      alert('Failed to add to cart:', err);
+      console.log('Failed to add to cart:', err);
     }
   };
 
@@ -101,6 +120,14 @@ function ProductSingle() {
               zoom={3}
             />
           )}
+
+          <i
+            onClick={handleWishlistToggle}
+            className={clsx('bi wishlist', {
+              'bi-check-lg': wishlisted,
+              'bi-heart': !wishlisted,
+            })}
+          />
         </div>
 
         <div className="product-page__details">

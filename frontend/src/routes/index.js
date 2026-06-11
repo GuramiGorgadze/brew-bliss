@@ -11,3 +11,4 @@ export { default as Address } from './Address';
 export { default as Team } from './Team';
 export { default as Cart } from './Cart';
 export { default as ResetPassword } from './ResetPassword';
+export { default as Wishlist } from './Wishlist';

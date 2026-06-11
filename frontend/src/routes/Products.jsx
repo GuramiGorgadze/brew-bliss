@@ -16,7 +16,7 @@ function Products() {
       if (data?.data) {
         setOriginalProducts(data.data);
       } else if (data.err) {
-        alert(data.err);
+        console.log(data.err);
       }
     };
 

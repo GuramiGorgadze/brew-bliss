@@ -22,6 +22,7 @@
 @use 'components/imageMagnifier';
 @use 'components/arrivalsCarousel';
 @use 'components/featuredCarousel';
+@use 'components/quickAddModal';
 
 @use 'routes/notFound';
 @use 'routes/auth';
@@ -31,3 +32,4 @@
 @use 'routes/address';
 @use 'routes/contact';
 @use 'routes/cart';
+@use 'routes/wishlist';

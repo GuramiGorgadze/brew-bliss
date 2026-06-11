@@ -5,7 +5,7 @@
     "product": "PRODUKT",
     "about": "ÜBER UNS",
     "contact": "KONTAKT",
-    "pages": "SEITEN",
+    "team": "TEAM",
     "searchIconAlt": "Such-Icon",
     "profileIconAlt": "Profil-Icon",
     "cartIconAlt": "Warenkorb-Icon"
@@ -226,7 +226,8 @@
       "passwordPlaceholder": "Passwort",
       "forgotPassword": "Passwort vergessen?",
       "submitBtn": "Anmelden",
-      "createAccount": "Neues Konto erstellen"
+      "createAccount": "Neues Konto erstellen",
+      "submittingBtn": "Anmeldung läuft..."
     },
     "reset": {
       "title": "Passwort zurücksetzen",
@@ -235,7 +236,8 @@
       "cancelBtn": "Abbrechen",
       "successTitle": "E-Mail überprüfen",
       "successText": "Wir haben einen Reset-Link gesendet. Prüfen Sie Ihren Posteingang und folgen Sie den Anweisungen.",
-      "backToLogin": "Zurück zur Anmeldung"
+      "backToLogin": "Zurück zur Anmeldung",
+      "submittingBtn": "Wird gesendet..."
     },
     "validation": {
       "emailRequired": "E-Mail ist erforderlich",
@@ -260,7 +262,8 @@
       "confirmPasswordLabel": "Passwort bestätigen",
       "confirmPasswordPlaceholder": "Passwort bestätigen",
       "submitBtn": "Neues Konto erstellen",
-      "loginBtn": "Anmelden"
+      "loginBtn": "Anmelden",
+      "submittingBtn": "Konto wird erstellt..."
     },
     "validation": {
       "firstNameRequired": "Vorname ist erforderlich",
@@ -387,7 +390,8 @@
   "productCard": {
     "review": "Bewertung",
     "reviews": "Bewertungen",
-    "addToCart": "In den Warenkorb"
+    "addToCart": "In den Warenkorb",
+    "quickAdd": "Schnell hinzufügen"
   },
   "productList": {
     "filterAndSort": "FILTER & SORTIEREN",

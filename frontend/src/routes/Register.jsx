@@ -52,7 +52,7 @@ function Register() {
     register,
     handleSubmit,
     setError,
-    formState: { errors },
+    formState: { errors, isSubmitting },
   } = useForm({
     resolver: yupResolver(schema),
   });
@@ -183,8 +183,9 @@ function Register() {
           <button
             className="auth__form__submit"
             type="submit"
+            disabled={isSubmitting}
           >
-            {t('register.form.submitBtn')}
+            {isSubmitting ? t('register.form.submittingBtn') : t('register.form.submitBtn')}
           </button>
 
           <Link to="/login">
