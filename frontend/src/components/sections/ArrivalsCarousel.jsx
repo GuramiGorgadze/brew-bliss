@@ -3,6 +3,7 @@ import useEmblaCarousel from 'embla-carousel-react';
 import Autoplay from 'embla-carousel-autoplay';
 import arrivalsBeers from '../../assets/arrivals-beers.webp';
 import { useLoader } from '../../context/LoaderContext';
+import { useTranslation } from 'react-i18next';
 import wing1 from '../../assets/wing1.png';
 import wing2 from '../../assets/wing2.png';
 import { Product } from '../../components';
@@ -11,6 +12,7 @@ import * as api from '../../api/api';
 function ArrivalsCarousel() {
   const [products, setProducts] = useState([]);
   const { useDataLoader } = useLoader();
+  const { t } = useTranslation();
 
   const autoplay = Autoplay({ delay: 5000, stopOnInteraction: false });
 
@@ -60,7 +62,7 @@ function ArrivalsCarousel() {
             alt=""
             className="wing"
           />
-          <p>New arrivals</p>
+          <p>{t('arrivalsCarousel.title')}</p>
           <img
             src={wing2}
             alt=""
@@ -68,9 +70,7 @@ function ArrivalsCarousel() {
           />
         </div>
 
-        <p className="arrivals-carousel__right--text">
-          Fresh additions, just for you – explore now!
-        </p>
+        <p className="arrivals-carousel__right--text">{t('arrivalsCarousel.text')}</p>
 
         <div className="arrivals-carousel__right--carousel">
           <button

@@ -7,14 +7,20 @@ import { useTranslation } from 'react-i18next';
 import * as api from '../../api/api';
 import clsx from 'clsx';
 import ShippingIcon from '../../assets/icons/shipping-icon-white.svg';
+import toast from 'react-hot-toast';
 
 function QuickAddModal({ product, onClose }) {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  const lang = i18n.language;
   const { formatPrice, activeCurrency } = useCurrency();
+  const [isAdding, setIsAdding] = useState(false);
   const navigate = useNavigate();
+  const [isWishlisting, setIsWishlisting] = useState(false);
 
   const { wishlistedIds, add, remove } = useWishlist();
   const wishlisted = product ? wishlistedIds.has(product._id) : false;
+
+  const localize = (field, lang) => field?.[lang] ?? field?.en ?? '';
 
   const FreeShipping = 500;
 
@@ -55,17 +61,24 @@ function QuickAddModal({ product, onClose }) {
   }, [onClose]);
 
   const handleWishlistToggle = async () => {
-    if (!product) return;
+    if (!product || isWishlisting) return;
+    setIsWishlisting(true);
+    const toastId = toast.loading(t('productCard.wishlistLoading'));
     try {
       if (wishlisted) {
         await api.removeFromWishlist(product._id);
         remove(product._id);
+        toast(t('productCard.removedFromWishlist'), { id: toastId });
       } else {
         await api.addToWishlist(product._id);
         add(product._id);
+        toast.success(t('productCard.addedToWishlist'), { id: toastId });
       }
     } catch (err) {
       console.error('Wishlist error:', err.message);
+      toast.error(t('productCard.wishlistError'), { id: toastId });
+    } finally {
+      setIsWishlisting(false);
     }
   };
 
@@ -83,21 +96,30 @@ function QuickAddModal({ product, onClose }) {
     const end = new Date();
     start.setDate(start.getDate() + 3);
     end.setDate(end.getDate() + 7);
-    const fmt = (d) => d.toLocaleDateString('en-US', { month: 'short', day: '2-digit' });
+    const fmt = (date) =>
+      date.toLocaleDateString(i18n.language, { month: 'short', day: '2-digit' });
     return `${fmt(start)} - ${fmt(end)}`;
   };
 
   const handleAddToCart = async () => {
+    if (isAdding) return;
+    setIsAdding(true);
+    const toastId = toast.loading(t('productSingle.actions.adding'));
     try {
-      setCartStatus('loading');
       await api.addToCart(product._id, selectedVariant.size, quantity);
-      setCartStatus('');
-      navigate(0);
+      toast.success(t('productSingle.actions.addedToCart'), { id: toastId });
     } catch (err) {
-      setCartStatus('');
       console.error('Failed to add to cart:', err);
+      toast.error(t('productSingle.actions.addToCartError'), {
+        id: toastId,
+      });
+    } finally {
+      setIsAdding(false);
     }
   };
+
+  const title = localize(product?.title, lang);
+  const tags = product?.tags?.[lang] ?? product?.tags?.en ?? [];
 
   return ReactDOM.createPortal(
     <div
@@ -122,7 +144,7 @@ function QuickAddModal({ product, onClose }) {
             {product.image && (
               <img
                 src={product.image}
-                alt={product.title}
+                alt={title}
                 className="quick-add-modal__image"
                 onClick={() => navigate(`/products/${product._id}`)}
               />
@@ -133,7 +155,9 @@ function QuickAddModal({ product, onClose }) {
               className={clsx('bi wishlist', {
                 'bi-check-lg': wishlisted,
                 'bi-heart': !wishlisted,
+                disabled: isWishlisting,
               })}
+              style={{ pointerEvents: isWishlisting ? 'none' : 'auto' }}
             />
           </div>
 
@@ -142,7 +166,7 @@ function QuickAddModal({ product, onClose }) {
               className="quick-add-modal__product-title"
               onClick={() => navigate(`/products/${product._id}`)}
             >
-              {product.title}
+              {title}
             </h2>
 
             <p className="product-page__reviews">
@@ -226,6 +250,28 @@ function QuickAddModal({ product, onClose }) {
               </div>
             </div>
 
+            <div className="product-page__divider"></div>
+
+            <div className="product-page__meta">
+              <h2 className="product-page__meta-item">
+                {t('productSingle.availability.label')}{' '}
+                {product?.available && (
+                  <span className="product-page__meta-item--instock">
+                    {t('productSingle.availability.inStock')}
+                  </span>
+                )}
+                {!product?.available && (
+                  <span className="product-page__meta-item--outOfStock">
+                    {t('productSingle.availability.unavailable')}
+                  </span>
+                )}
+              </h2>
+              <h2 className="product-page__meta-item">
+                {t('productSingle.tags')}{' '}
+                <span className="product-page__tag">{tags.join(', ')}</span>
+              </h2>
+            </div>
+
             <div className="product-page__quantity">
               <p className="product-page__quantity-label">{t('productSingle.quantity')}</p>
               <div className="product-page__quantity-control">
@@ -245,21 +291,23 @@ function QuickAddModal({ product, onClose }) {
               </div>
             </div>
 
-            <p className="product-page__additional-info-text">
-              {t('productSingle.delivery.label')}{' '}
-              <span className="product-page__additional-info-text--dark">{getDeliveryRange()}</span>
-            </p>
+            <div className="product-page__additional-info-item">
+              <p className="product-page__additional-info-text">
+                {t('productSingle.delivery.label')}{' '}
+                <span className="product-page__additional-info-text--dark">
+                  {getDeliveryRange()}
+                </span>
+              </p>
+            </div>
 
             {product.available ? (
               <div className="product-page__actions">
                 <button
                   className="product-page__btn product-page__btn--dark"
                   onClick={handleAddToCart}
-                  disabled={cartStatus !== ''}
+                  disabled={isAdding}
                 >
-                  {cartStatus === 'loading'
-                    ? t('productSingle.actions.adding')
-                    : t('productSingle.actions.addToCart')}
+                  {t('productSingle.actions.addToCart')}
                 </button>
                 <button className="product-page__btn product-page__btn--primary">
                   {t('productSingle.actions.buyNow')}

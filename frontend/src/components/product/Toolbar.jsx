@@ -5,7 +5,7 @@ import GridList from '../../assets/icons/grid-list.svg?react';
 import { useTranslation } from 'react-i18next';
 
 function Toolbar({ count, view, onViewChange, onSortChange, originalProducts }) {
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
 
   return (
     <div className="toolbar">

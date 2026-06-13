@@ -11,20 +11,22 @@
     "cartIconAlt": "Icône du panier"
   },
   "drawer": {
+    "home": "Accueil",
+    "shop": "Boutique",
     "close": "Fermer",
     "account": "Compte",
-    "wishlist": "Liste de souhaits ({{count}})",
+    "wishlist": "Liste d'envies ({{count}})",
     "aboutUs": "À propos de nous",
     "contactUs": "Contactez-nous"
   },
   "search": {
     "heading": "QUE RECHERCHEZ-VOUS ?",
-    "placeholder": "Rechercher des produits...",
+    "placeholder": "Rechercher des produits ...",
     "buttonAlt": "Rechercher"
   },
   "topbar": {
     "phoneIconAlt": "Icône de téléphone",
-    "promoMessage": "Livraison gratuite pour toute commande de 500 $ et plus"
+    "promoMessage": "Livraison gratuite dès 500 $ d'achat"
   },
   "footer": {
     "brand": {
@@ -57,13 +59,13 @@
     },
     "newsletter": {
       "title": "Inscrivez-vous à la newsletter",
-      "description": "Inscrivez-vous pour recevoir des mises à jour exclusives, les nouveautés et plus encore.",
+      "description": "Inscrivez-vous pour recevoir des mises à jour exclusives, des nouveautés et plus encore.",
       "placeholder": "Votre adresse e-mail...",
       "button": {
         "normal": "S'abonner",
         "loading": "Inscription...",
-        "success": "Inscrit !",
-        "error": "Erreur. Veuillez réessayer"
+        "success": "Abonné !",
+        "error": "Échec. Réessayez"
       }
     },
     "socials": {
@@ -75,7 +77,7 @@
     },
     "bottom": {
       "copyrightBefore": "Copyright ©",
-      "brandName": "Boutique Brew Bliss",
+      "brandName": "brew bliss Store",
       "copyrightAfter": ". Tous droits réservés. Propulsé par",
       "poweredBy": "UIPARADOX"
     },
@@ -90,30 +92,30 @@
   "about": {
     "pageTitle": "À propos de nous",
     "ourStory": {
-      "label": "Notre histoire",
+      "label": "NOTRE HISTOIRE",
       "descStart": "Bienvenue chez",
       "brandName": "Brew Bliss,",
-      "descEnd": "votre destination ultime pour des saveurs fraîches et des boissons délicieuses. We're passionate about delivering premium food and beverages to satisfy every craving, anytime, anywhere!"
+      "descEnd": "votre destination ultime pour des saveurs fraîches et des gorgées délicieuses. Nous sommes passionnés par la livraison de boissons et de produits alimentaires de première qualité pour satisfaire toutes vos envies, n'importe où et n'importe quand !"
     },
     "team": {
       "label": "Rencontrez les membres de notre équipe",
-      "desc": "Découvrez pourquoi tout le monde fait l'éloge de nos produits et de nos services – de vraies histoires de clients heureux !",
-      "member1": { "title": "Emily Johnson", "description": "Fondatrice / Directrice générale" },
+      "desc": "Découvrez pourquoi tout le monde adore nos produits et services – de vraies histoires de clients heureux !",
+      "member1": { "title": "Emily Johnson", "description": "Fondatrice / PDG" },
       "member2": { "title": "Michael Brown", "description": "Responsable du service client" },
       "member3": { "title": "Sarah Davis", "description": "Spécialiste marketing" },
-      "member4": { "title": "Sophia Martinez", "description": "Curatrice d'art" }
+      "member4": { "title": "Sophia Martinez", "description": "Conservatrice d'art" }
     }
   },
   "team": { "pageTitle": "Notre équipe" },
   "account": {
-    "title": "Compte",
+    "title": "COMPTE",
     "welcome": "Bienvenue",
     "nav": {
       "dashboard": "Tableau de bord",
-      "checkout": "Paiement",
-      "editAddress": "Modifier l'adresse",
-      "viewWishlist": "Liste de souhaits",
-      "logout": "Déconnexion"
+      "checkout": "PASSER LA COMMANDE",
+      "editAddress": "MODIFIER L'ADRESSE",
+      "viewWishlist": "VOIR LA LISTE D'ENVIES",
+      "logout": "SE DÉCONNECTER"
     },
     "details": {
       "title": "Détails du compte :",
@@ -128,13 +130,13 @@
     }
   },
   "address": {
-    "title": "Adresse",
+    "title": "ADRESSE",
     "editAddress": "Modifier l'adresse",
     "form": {
       "firstName": "Prénom",
       "lastName": "Nom",
-      "address1": "Adresse N1",
-      "address2": "Adresse N2",
+      "address1": "Adresse N°1",
+      "address2": "Adresse N°2",
       "country": "Pays",
       "city": "Ville",
       "zip": "Code postal",
@@ -143,7 +145,7 @@
     "buttons": {
       "saving": "Enregistrement...",
       "editAddress": "Modifier l'adresse",
-      "resetAddress": "Annuler l'adresse"
+      "resetAddress": "Réinitialiser l'adresse"
     }
   },
   "cart": {
@@ -152,8 +154,8 @@
     "table": {
       "product": "Produit",
       "quantity": "Quantité",
-      "subtotal": "Total",
-      "remove": "Supprimer"
+      "subtotal": "Sous-total",
+      "remove": "Retirer"
     },
     "item": {
       "bottleSize": "Taille de la bouteille",
@@ -165,19 +167,22 @@
     },
     "shipping": {
       "congrats": "Félicitations ! Vous bénéficiez de la",
-      "freeShipping": "livraison gratuite !",
-      "spendMore": "Dépensez encore ${{amount}} et bénéficiez de la"
+      "freeShipping": "Livraison gratuite !",
+      "spendMore": "Dépensez {{amount}} de plus pour"
     },
     "summary": {
-      "youSave": "Économie totale",
+      "youSave": "Vous économisez au total",
       "orderTotal": "Total de la commande",
-      "taxNote": "Les taxes et les frais de livraison sont calculés lors du paiement"
+      "taxNote": "Taxes et frais de port calculés lors du paiement"
     },
     "terms": {
       "agree": "J'accepte les",
-      "link": "conditions générales"
+      "link": "Conditions Générales de Vente"
     },
-    "checkoutBtn": "Passer à la caisse"
+    "checkoutBtn": "Passer à la caisse",
+    "removingFromCart": "Suppression...",
+    "removedFromCart": "Retiré du panier",
+    "removeError": "Impossible de retirer l'article"
   },
   "contact": {
     "pageTitle": "Contact",
@@ -185,12 +190,12 @@
       "customerService": {
         "title": "Service client",
         "phone": "+995 557 70 40 22",
-        "hours": "Contactez-nous de 8h00 à 20h00"
+        "hours": "Appelez-nous de 8h à 20h"
       },
       "liveChat": {
         "title": "Chat en direct",
-        "heading": "Le chat en direct est disponible",
-        "hours": "Tous les jours : de 10h00 à 22h00"
+        "heading": "Chat en direct disponible",
+        "hours": "Tous les jours : 10h à 22h"
       },
       "email": {
         "title": "Écrivez-nous",
@@ -201,7 +206,7 @@
     },
     "getInTouch": {
       "title": "Contactez-nous",
-      "hours": "Ouvert du lundi au vendredi de 10h00 à 21h00, le samedi de 10h00 à 18h00, fermé le dimanche."
+      "hours": "Ouvert du lun au ven de 10h à 21h, le sam de 10h à 18h, fermé le dimanche."
     },
     "form": {
       "namePlaceholder": "Votre nom",
@@ -210,15 +215,15 @@
       "messagePlaceholder": "Écrivez votre message...",
       "btn": {
         "normal": "Envoyer le message",
-        "loading": "Envoi en cours...",
+        "loading": "Envoi...",
         "success": "Message envoyé !",
-        "error": "Erreur. Veuillez réessayer"
+        "error": "Échec. Réessayez"
       }
     }
   },
   "login": {
     "pageTitle": "Connexion",
-    "title": "Connexion",
+    "title": "Se connecter",
     "form": {
       "emailLabel": "Adresse e-mail",
       "emailPlaceholder": "Adresse e-mail",
@@ -226,29 +231,30 @@
       "passwordPlaceholder": "Mot de passe",
       "forgotPassword": "Mot de passe oublié ?",
       "submitBtn": "Se connecter",
+      "submittingBtn": "Connexion...",
       "createAccount": "Créer un nouveau compte",
-      "submittingBtn": "Connexion en cours..."
+      "continueWithGoogle": "Continuer avec Google"
     },
     "reset": {
       "title": "Réinitialiser votre mot de passe",
       "subtitle": "Nous vous enverrons un e-mail pour réinitialiser votre mot de passe.",
-      "submitBtn": "Envoyer le lien",
+      "submitBtn": "Envoyer le lien de réinitialisation",
       "cancelBtn": "Annuler",
       "successTitle": "Vérifiez vos e-mails",
-      "successText": "Nous avons envoyé un lien de réinitialisation. Consultez votre boîte de réception et suivez les instructions.",
+      "successText": "Nous avons envoyé un lien de réinitialisation. Vérifiez votre boîte de réception et suivez les instructions.",
       "backToLogin": "Retour à la connexion",
-      "submittingBtn": "Envoi en cours..."
+      "submittingBtn": "Envoi..."
     },
     "validation": {
-      "emailRequired": "L'adresse e-mail est obligatoire",
-      "emailInvalid": "Format d'adresse e-mail invalide",
-      "passwordRequired": "Le mot de passe est obligatoire",
+      "emailRequired": "L'e-mail est requis",
+      "emailInvalid": "Adresse e-mail invalide",
+      "passwordRequired": "Le mot de passe est requis",
       "passwordMin": "Le mot de passe doit contenir au moins 8 caractères",
       "serverError": "Une erreur est survenue"
     }
   },
   "register": {
-    "pageTitle": "Inscription",
+    "pageTitle": "S'inscrire",
     "title": "Créer un compte",
     "form": {
       "firstNameLabel": "Prénom",
@@ -266,13 +272,13 @@
       "submittingBtn": "Création du compte..."
     },
     "validation": {
-      "firstNameRequired": "Le prénom est obligatoire",
+      "firstNameRequired": "Le prénom est requis",
       "firstNameMax": "Le prénom ne doit pas dépasser 30 caractères",
-      "lastNameRequired": "Le nom est obligatoire",
+      "lastNameRequired": "Le nom est requis",
       "lastNameMax": "Le nom ne doit pas dépasser 30 caractères",
-      "emailRequired": "L'adresse e-mail est obligatoire",
-      "emailInvalid": "Format d'adresse e-mail invalide",
-      "passwordRequired": "Le mot de passe est obligatoire",
+      "emailRequired": "L'e-mail est requis",
+      "emailInvalid": "Adresse e-mail invalide",
+      "passwordRequired": "Le mot de passe est requis",
       "passwordMin": "Le mot de passe doit contenir au moins 8 caractères",
       "passwordUppercase": "Le mot de passe doit contenir une lettre majuscule",
       "passwordNumber": "Le mot de passe doit contenir un chiffre",
@@ -283,11 +289,11 @@
     }
   },
   "resetPassword": {
-    "pageTitle": "Réinitialisation du mot de passe",
+    "pageTitle": "Réinitialiser le mot de passe",
     "title": "Définir un nouveau mot de passe",
     "form": {
       "passwordLabel": "Nouveau mot de passe",
-      "passwordPlaceholder": "Entrez un nouveau mot de passe",
+      "passwordPlaceholder": "Entrez le nouveau mot de passe",
       "confirmPasswordLabel": "Confirmer le mot de passe",
       "confirmPasswordPlaceholder": "Confirmez le nouveau mot de passe",
       "submitBtn": "Réinitialiser le mot de passe"
@@ -295,8 +301,8 @@
   },
   "notFound": {
     "code": "404",
-    "heading": "Désolé, nous n'avons pas trouvé cette page !",
-    "text": "Il semble que cette page ait été déplacée ou n'existe pas. Retournez à la page d'accueil ou contactez-nous pour obtenir de l'aide !",
+    "heading": "Désolé, nous ne trouvons pas cette page !",
+    "text": "Il semble que cette page ait été déplacée ou n'existe pas. Retournez à notre page d'accueil ou contactez-nous si vous avez besoin d'aide !",
     "btn": "Retour à la page d'accueil"
   },
   "products": { "pageTitle": "Produits" },
@@ -315,56 +321,55 @@
     },
     "shipping": {
       "congrats": "Félicitations ! Vous bénéficiez de la",
-      "freeShipping": "livraison gratuite !",
-      "spendMore": "Dépensez encore ${{amount}} et bénéficiez de la"
+      "freeShipping": "Livraison gratuite !",
+      "spendMore": "Dépensez {{amount}} de plus et obtenez"
     },
     "actions": {
-      "adding": "Ajout en cours...",
+      "adding": "Ajout...",
       "addToCart": "Ajouter au panier",
       "buyNow": "Acheter maintenant",
-      "soldOut": "Rupture de stock"
+      "soldOut": "Épuisé",
+      "addedToCart": "Ajouté au panier !",
+      "addToCartError": "Échec de l'ajout au panier"
     },
     "delivery": {
       "label": "Livraison estimée :",
-      "returnPolicy": "Retournez les articles dans les 90 jours suivant l'achat. Les taxes ne sont pas remboursables."
+      "returnPolicy": "Retour possible dans les 90 jours suivant l'achat. Les taxes ne sont pas remboursables."
     }
   },
   "landingBanner": {
-    "newArrival": "NOUVELLE ARRIVÉE",
-    "title": "Découvrez des saveurs, une bouteille à la fois !",
-    "text": "Explorez le monde riche et varié de la bière, en savourant des saveurs uniques élaborées à la perfection, une bouteille à la fois !",
-    "shopSale": "Voir les promotions",
+    "newArrival": "NOUVEAUTÉ",
+    "title": "Découvrez les saveurs, une bouteille à la fois !",
+    "text": "Explorez le monde riche et diversifié de la bière, en savourant des saveurs uniques brassées à la perfection, une bouteille à la fois !",
+    "shopSale": "Acheter les soldes",
     "collections": "Nos collections"
   },
   "PromoGrid": {
-    "shopNow": "Voir maintenant",
-    "shopSale": "Voir les promotions",
-    "card1": {
-      "tagline": "Nouvelle sortie",
-      "heading": "Soyez le premier à goûter la perfection !"
-    },
+    "shopNow": "Acheter maintenant",
+    "shopSale": "Acheter les soldes",
+    "card1": { "tagline": "Nouveauté", "heading": "Soyez le premier à goûter à la perfection !" },
     "card2": {
       "tagline": "Collections de fêtes",
-      "heading": "Les meilleures bières pour les meilleures fêtes !"
+      "heading": "Des bières parfaites pour des vacances parfaites !"
     },
     "card3": {
       "tagline": "Offre à durée limitée",
-      "heading": "Dépêchez-vous ! Des offres exclusives vous attendent !"
+      "heading": "Faites vite ! Des offres exclusives vous attendent !"
     }
   },
   "saleBanner": {
-    "limitedTime": "Offre limitée dans le temps !",
-    "title": "Buvez plus, payez moins, bière à -20% !",
-    "shopSale": "Voir les promotions"
+    "limitedTime": "Durée limitée seulement !",
+    "title": "Versez plus, payez moins, la bière à -20% !",
+    "shopSale": "Acheter les soldes"
   },
   "storeFeatures": {
     "shipping": {
       "title": "Livraison gratuite",
-      "description": "Livraison gratuite sur chaque article, livrée à votre porte, améliorez votre espace avec une belle décoration, sans tracas !"
+      "description": "Livraison gratuite sur tous les articles, livrés à votre porte. Sublimez votre espace avec une belle décoration, sans tracas !"
     },
     "gift": {
-      "title": "Paquet cadeau",
-      "description": "Des cadeaux qui laissent une impression durable, joliment emballés avec style pour chaque occasion !"
+      "title": "Emballage cadeau",
+      "description": "Des cadeaux qui laissent une impression durable, magnifiquement emballés avec style pour chaque occasion !"
     },
     "warranty": {
       "title": "Garantie d'un an",
@@ -372,7 +377,7 @@
     },
     "returns": {
       "title": "Retours faciles",
-      "description": "Des retours sans stress pour votre tranquillité d'esprit, garantissant votre satisfaction à chaque achat."
+      "description": "Des retours sans stress pour votre tranquillité d'esprit, assurant votre satisfaction à chaque achat."
     }
   },
   "filterSection": {
@@ -391,7 +396,11 @@
     "review": "Avis",
     "reviews": "Avis",
     "addToCart": "Ajouter au panier",
-    "quickAdd": "Ajout rapide"
+    "quickAdd": "Achat rapide",
+    "addedToWishlist": "Ajouté à la liste d'envies",
+    "removedFromWishlist": "Retiré de la liste d'envies",
+    "wishlistError": "Une erreur est survenue",
+    "wishlistLoading": "Mise à jour de la liste d'envies..."
   },
   "productList": {
     "filterAndSort": "FILTRER & TRIER",
@@ -402,7 +411,7 @@
     "filterCategory": "Catégorie : {{value}}",
     "filterInStock": "En stock",
     "filterOutOfStock": "Rupture de stock",
-    "filterPriceRange": "Gamme de prix",
+    "filterPriceRange": "Fourchette de prix",
     "removeAll": "Tout supprimer",
     "noProductsFound": "Aucun produit trouvé",
     "useFewerFilters": "Utilisez moins de filtres ou",
@@ -410,10 +419,19 @@
   },
   "toolbar": {
     "sortBy": "Trier par :",
-    "mostRelevant": "Plus pertinent",
-    "titleAsc": "Alphabétiquement, A–Z",
-    "titleDesc": "Alphabétiquement, Z–A",
-    "priceAsc": "Prix, croissant",
-    "priceDesc": "Prix, décroissant"
+    "mostRelevant": "Le plus pertinent",
+    "titleAsc": "Alphabétique, A–Z",
+    "titleDesc": "Alphabétique, Z–A",
+    "priceAsc": "Prix, du moins cher au plus cher",
+    "priceDesc": "Prix, du plus cher au moins cher"
+  },
+  "featuredCarousel": {
+    "title": "Produits Vedettes",
+    "text": "Une sélection de nos meilleures bières et de vos coups de cœur, choisis spécialement pour vous.",
+    "showAll": "Tout afficher"
+  },
+  "arrivalsCarousel": {
+    "title": "Nouvelles Arrivées",
+    "text": "De nouvelles nouveautés, rien que pour vous – explorez maintenant !"
   }
 }

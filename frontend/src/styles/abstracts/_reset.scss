@@ -1,11 +1,11 @@
-@use 'variables' as *; 
+@use 'variables' as *;
 
 * {
-    margin: 0;
-    padding: 0;
-    font-family: 'Nunito Sans', sans-serif;
-    outline: none;
-    text-transform: capitalize;
+  margin: 0;
+  padding: 0;
+  font-family: 'Nunito Sans', sans-serif;
+  outline: none;
+  text-transform: capitalize;
 }
 
 body {
@@ -27,4 +27,9 @@ input {
 ::-webkit-scrollbar-thumb {
   background: $color-link;
   border-radius: calc(5px * var(--app-scale));
+}
+
+.custom-toast {
+  border: $color-accent solid 1px !important;
+  color: $color-accent !important;
 }

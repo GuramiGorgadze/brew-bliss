@@ -82,10 +82,15 @@ const UsersSchema = new mongoose.Schema(
       trim: true,
       lowercase: true,
     },
+    googleId: {
+      type: String,
+      default: null,
+    },
     password: {
       type: String,
-      required: true,
+      required: false, 
       minLength: 8,
+      default: null, 
     },
     address: {
       type: AddressSchema,

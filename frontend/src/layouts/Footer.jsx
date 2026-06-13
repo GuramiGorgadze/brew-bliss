@@ -92,6 +92,24 @@ function Footer() {
           >
             {t('footer.links.myAccount')}
           </Link>
+
+          <Link
+            className="footer__links-item"
+            to="/cart"
+          >
+            {t('footer.links.cart')}
+          </Link>
+
+          <Link
+            className="footer__links-item"
+            to="/wishlist"
+          >
+            {t('footer.links.wishlist')}
+          </Link>
+        </div>
+
+        <div className="footer__links">
+          <h4 className="footer__links-title">{t('footer.sections.ourCompany')}</h4>
           <Link
             className="footer__links-item"
             to="/products"
@@ -100,25 +118,9 @@ function Footer() {
           </Link>
           <Link
             className="footer__links-item"
-            to=""
-          >
-            {t('footer.links.fallbackLink')}
-          </Link>
-        </div>
-
-        <div className="footer__links">
-          <h4 className="footer__links-title">{t('footer.sections.ourCompany')}</h4>
-          <Link
-            className="footer__links-item"
             to="/about"
           >
             {t('footer.links.aboutUs')}
-          </Link>
-          <Link
-            className="footer__links-item"
-            to="/team"
-          >
-            {t('footer.links.ourTeam')}
           </Link>
           <Link
             className="footer__links-item"
@@ -128,9 +130,9 @@ function Footer() {
           </Link>
           <Link
             className="footer__links-item"
-            to=""
+            to="/team"
           >
-            {t('footer.links.fallbackLink')}
+            {t('footer.links.ourTeam')}
           </Link>
         </div>
 

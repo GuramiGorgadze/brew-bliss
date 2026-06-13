@@ -26,6 +26,7 @@ import useDocumentTitle from './hooks/useDocumentTitle';
 import useScrollTop from './hooks/useScrollTop';
 import useAppScale from './hooks/useAppScale';
 import { useUserData } from './context/UserContext.jsx';
+import { Toaster } from 'react-hot-toast';
 
 function App() {
   useDocumentTitle();
@@ -56,6 +57,20 @@ function App() {
 
   return (
     <>
+      <Toaster
+        position="bottom-center"
+        containerStyle={{
+          bottom: '60px',
+        }}
+        toastOptions={{
+          duration: 3000,
+          className: 'custom-toast',
+
+          iconTheme: {
+            primary: '#FEA90C',
+          },
+        }}
+      />
       <TopBar />
       <Navbar />
       <Main>

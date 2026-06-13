@@ -44,6 +44,10 @@
       &__desc {
         text-align: center;
 
+        .email {
+          text-transform: none;
+        }
+
         &--heading {
           font-size: 13px;
           font-weight: 400;

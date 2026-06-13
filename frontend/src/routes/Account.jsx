@@ -9,14 +9,14 @@ import { Link } from 'react-router-dom';
 
 function Account() {
   const { logout, userData } = useUserData();
-  const [cartCount, setCartCount] = useState(0);
+  const [wishlistCount, setWishlist] = useState(0);
   const { useDataLoader } = useLoader();
   const { t, i18n } = useTranslation();
 
   useEffect(() => {
     const fetchData = async () => {
-      const data = await useDataLoader(api.getCart);
-      if (data?.data) setCartCount(data.data.length);
+      const data = await useDataLoader(api.getWishlist);
+      if (data?.data) setWishlist(data.data.length);
     };
 
     fetchData();
@@ -51,10 +51,10 @@ function Account() {
                 {t('account.nav.editAddress')}
               </button>
             </Link>
-            <Link to="/cart">
+            <Link to="/wishlist">
               <button className="account__nav-btn">
                 <i className="bi bi-heart"></i>
-                {t('account.nav.viewWishlist')} ({cartCount})
+                {t('account.nav.viewWishlist')} ({wishlistCount})
               </button>
             </Link>
             <button

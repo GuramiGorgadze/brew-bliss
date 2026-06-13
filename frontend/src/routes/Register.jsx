@@ -6,7 +6,7 @@ import { useNavigate, Link } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { registerUser } from '../api/api';
+import { registerUser, googleAuth } from '../api/api';
 import { PageTitle } from '../components';
 import { useUserData } from '../context/UserContext.jsx';
 
@@ -196,6 +196,18 @@ function Register() {
               {t('register.form.loginBtn')}
             </button>
           </Link>
+
+          <button
+            type="button"
+            className="auth__form__google"
+            onClick={googleAuth}
+          >
+            <img
+              src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg"
+              alt="Google"
+            />
+            {t('login.form.continueWithGoogle')}
+          </button>
         </form>
       </div>
       <div />

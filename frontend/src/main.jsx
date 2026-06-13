@@ -5,6 +5,7 @@ import { UserProvider } from './context/UserContext.jsx';
 import { LoaderProvider } from './context/LoaderContext.jsx';
 import { WishlistProvider } from './context/WishlistContext.jsx';
 import { CurrencyProvider } from './context/CurrencyContext.jsx';
+import { CartProvider } from './context/CartContext.jsx';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import App from './App.jsx';
 import './language/i18n';
@@ -15,9 +16,11 @@ createRoot(document.getElementById('root')).render(
       <UserProvider>
         <LoaderProvider>
           <WishlistProvider>
-            <CurrencyProvider>
-              <App />
-            </CurrencyProvider>
+            <CartProvider>
+              <CurrencyProvider>
+                <App />
+              </CurrencyProvider>
+            </CartProvider>
           </WishlistProvider>
         </LoaderProvider>
       </UserProvider>

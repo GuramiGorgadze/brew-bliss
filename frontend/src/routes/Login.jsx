@@ -6,7 +6,7 @@ import { useNavigate, Link } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { loginUser, forgotPassword } from '../api/api';
+import { loginUser, forgotPassword, googleAuth } from '../api/api';
 import { PageTitle } from '../components';
 import { useUserData } from '../context/UserContext.jsx';
 
@@ -80,6 +80,7 @@ function Login() {
       setResetError('root.serverError', {
         message: error.response?.data?.message || t('login.validation.serverError'),
       });
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     }
   };
 
@@ -155,6 +156,17 @@ function Login() {
                 {t('login.form.createAccount')}
               </button>
             </Link>
+            <button
+              type="button"
+              className="auth__form__google"
+              onClick={googleAuth}
+            >
+              <img
+                src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg"
+                alt="Google"
+              />
+              {t('login.form.continueWithGoogle')}
+            </button>
           </form>
         </div>
       ) : resetSent ? (

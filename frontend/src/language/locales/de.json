@@ -11,6 +11,8 @@
     "cartIconAlt": "Warenkorb-Icon"
   },
   "drawer": {
+    "home": "Startseite",
+    "shop": "Shop",
     "close": "Schließen",
     "account": "Konto",
     "wishlist": "Wunschliste ({{count}})",
@@ -19,21 +21,21 @@
   },
   "search": {
     "heading": "WONACH SUCHEN SIE?",
-    "placeholder": "Produkte suchen...",
+    "placeholder": "Nach Produkten suchen ...",
     "buttonAlt": "Suchen"
   },
   "topbar": {
     "phoneIconAlt": "Telefon-Icon",
-    "promoMessage": "Kostenloser Versand ab einem Bestellwert von 500 $"
+    "promoMessage": "Kostenloser Versand ab einem Bestellwert von 500 €"
   },
   "footer": {
     "brand": {
       "logoAlt": "Logo",
-      "slogan": "Unsere Leidenschaft ist es, das perfekte Brauerlebnis zu kreieren..."
+      "slogan": "Wir sind leidenschaftlich bestrebt, das perfekte Biererlebnis zu kreieren..."
     },
     "contact": {
       "addressLabel": "Adresse",
-      "addressValue": "67. Avenue, Georgia",
+      "addressValue": "67. Avenue, Georgien",
       "phoneLabel": "Telefon",
       "phoneValue": "(995) 557 70 40 22",
       "emailLabel": "E-Mail",
@@ -52,18 +54,18 @@
       "aboutUs": "Über uns",
       "ourTeam": "Unser Team",
       "contactUs": "Kontaktieren Sie uns",
-      "returns": "Rückgaben",
+      "returns": "Rücksendungen",
       "faq": "FAQ"
     },
     "newsletter": {
-      "title": "Für den Newsletter anmelden",
-      "description": "Melden Sie sich an, um exklusive Updates, Neuankömmlinge und mehr zu erhalten.",
+      "title": "Abonnieren Sie unseren Newsletter",
+      "description": "Melden Sie sich an, um exklusive Updates, Neuheiten und mehr zu erhalten.",
       "placeholder": "Ihre E-Mail-Adresse...",
       "button": {
         "normal": "Abonnieren",
-        "loading": "Anmeldung...",
+        "loading": "Abonnieren...",
         "success": "Abonniert!",
-        "error": "Fehler. Bitte versuchen Sie es erneut"
+        "error": "Fehlgeschlagen. Erneut versuchen"
       }
     },
     "socials": {
@@ -75,8 +77,8 @@
     },
     "bottom": {
       "copyrightBefore": "Copyright ©",
-      "brandName": "Brew Bliss Shop",
-      "copyrightAfter": ". Alle Rechte vorbehalten. Präsentiert von",
+      "brandName": "brew bliss Store",
+      "copyrightAfter": ". Alle Rechte vorbehalten. Unterstützt durch",
       "poweredBy": "UIPARADOX"
     },
     "payments": {
@@ -93,14 +95,14 @@
       "label": "UNSERE GESCHICHTE",
       "descStart": "Willkommen bei",
       "brandName": "Brew Bliss,",
-      "descEnd": "Ihrem ultimativen Ziel für frische Aromen und köstliche Getränke. Wir arbeiten leidenschaftlich daran, Premium-Speisen und Getränke zu liefern, die jeden Hunger stillen – jederzeit und überall!"
+      "descEnd": "Ihrem ultimativen Ziel für frische Aromen und genussvolle Schlucke. Wir brennen darauf, erstklassige Speisen und Getränke zu liefern, um jeden Wunsch zu erfüllen – jederzeit und überall!"
     },
     "team": {
-      "label": "Lernen Sie unser Team kennen",
-      "desc": "Erfahren Sie, warum alle unsere Produkte und unseren Service loben – echte Geschichten von zufriedenen Kunden!",
+      "label": "Lernen Sie unsere Teammitglieder kennen",
+      "desc": "Sehen Sie selbst, warum alle von unseren Produkten und unserem Service begeistert sind – echte Geschichten von zufriedenen Kunden!",
       "member1": { "title": "Emily Johnson", "description": "Gründerin/CEO" },
-      "member2": { "title": "Michael Brown", "description": "Kundendienstleiter" },
-      "member3": { "title": "Sarah Davis", "description": "Marketingspezialistin" },
+      "member2": { "title": "Michael Brown", "description": "Kundenservice-Manager" },
+      "member3": { "title": "Sarah Davis", "description": "Marketing-Spezialistin" },
       "member4": { "title": "Sophia Martinez", "description": "Kunstkuratorin" }
     }
   },
@@ -112,7 +114,7 @@
       "dashboard": "Dashboard",
       "checkout": "ZUR KASSE",
       "editAddress": "ADRESSE BEARBEITEN",
-      "viewWishlist": "WUNSCHLISTE ANSEHEN",
+      "viewWishlist": "WUNSCHLISTE ANZEIGEN",
       "logout": "ABMELDEN"
     },
     "details": {
@@ -122,7 +124,7 @@
       "email": "E-Mail",
       "phone": "Telefon",
       "city": "Stadt",
-      "zip": "PLZ",
+      "zip": "Postleitzahl",
       "address": "Adresse",
       "address2": "Adresse 2"
     }
@@ -133,8 +135,8 @@
     "form": {
       "firstName": "Vorname",
       "lastName": "Nachname",
-      "address1": "Adresse N1",
-      "address2": "Adresse N2",
+      "address1": "Adresse Nr. 1",
+      "address2": "Adresse Nr. 2",
       "country": "Land",
       "city": "Stadt",
       "zip": "Postleitzahl",
@@ -160,37 +162,40 @@
       "beerVariety": "Biersorte"
     },
     "note": {
-      "label": "Bestellnotiz hinzufügen",
+      "label": "Bestellhinweis hinzufügen",
       "placeholder": "Wie können wir Ihnen helfen?"
     },
     "shipping": {
       "congrats": "Herzlichen Glückwunsch! Sie erhalten",
-      "freeShipping": "Kostenlosen Versand!",
-      "spendMore": "Geben Sie noch ${{amount}} mehr aus für"
+      "freeShipping": "kostenlosen Versand!",
+      "spendMore": "Geben Sie noch {{amount}} mehr aus für"
     },
     "summary": {
       "youSave": "Sie sparen insgesamt",
-      "orderTotal": "Bestellsumme",
+      "orderTotal": "Gesamtsumme",
       "taxNote": "Steuern und Versandkosten werden an der Kasse berechnet"
     },
     "terms": {
       "agree": "Ich stimme den",
-      "link": "AGB zu"
+      "link": "Allgemeinen Geschäftsbedingungen zu"
     },
-    "checkoutBtn": "Zur Kasse"
+    "checkoutBtn": "Zur Kasse",
+    "removingFromCart": "Wird entfernt...",
+    "removedFromCart": "Aus dem Warenkorb entfernt",
+    "removeError": "Artikel konnte nicht entfernt werden"
   },
   "contact": {
     "pageTitle": "Kontakt",
     "cards": {
       "customerService": {
-        "title": "Kundendienst",
+        "title": "Kundenservice",
         "phone": "+995 557 70 40 22",
-        "hours": "Rufen Sie uns von 8 bis 20 Uhr an"
+        "hours": "Rufen Sie uns von 08:00 bis 20:00 Uhr an"
       },
       "liveChat": {
         "title": "Live-Chat",
         "heading": "Live-Chat verfügbar",
-        "hours": "Täglich: 10 bis 22 Uhr"
+        "hours": "Täglich: 10:00 bis 22:00 Uhr"
       },
       "email": {
         "title": "Schreiben Sie uns",
@@ -200,8 +205,8 @@
       "followUs": { "title": "Folgen Sie uns" }
     },
     "getInTouch": {
-      "title": "Kontakt aufnehmen",
-      "hours": "Geöffnet Mo-Fr 10-21 Uhr, Sa 10-18 Uhr, Sonntags geschlossen."
+      "title": "Kontaktieren Sie uns",
+      "hours": "Geöffnet Mo-Fr 10:00-21:00 Uhr, Sa 10:00-18:00 Uhr, sonntags geschlossen."
     },
     "form": {
       "namePlaceholder": "Ihr Name",
@@ -217,26 +222,27 @@
     }
   },
   "login": {
-    "pageTitle": "Anmelden",
-    "title": "Anmelden",
+    "pageTitle": "Login",
+    "title": "Einloggen",
     "form": {
       "emailLabel": "E-Mail-Adresse",
       "emailPlaceholder": "E-Mail-Adresse",
       "passwordLabel": "Passwort",
       "passwordPlaceholder": "Passwort",
       "forgotPassword": "Passwort vergessen?",
-      "submitBtn": "Anmelden",
+      "submitBtn": "Einloggen",
+      "submittingBtn": "Wird eingeloggt...",
       "createAccount": "Neues Konto erstellen",
-      "submittingBtn": "Anmeldung läuft..."
+      "continueWithGoogle": "Mit Google fortfahren"
     },
     "reset": {
       "title": "Passwort zurücksetzen",
-      "subtitle": "Wir senden Ihnen eine E-Mail zum Zurücksetzen Ihres Passworts.",
-      "submitBtn": "Link senden",
+      "subtitle": "Wir senden Ihnen eine E-Mail, um Ihr Passwort zurückzusetzen.",
+      "submitBtn": "Zurücksetzungs-Link senden",
       "cancelBtn": "Abbrechen",
-      "successTitle": "E-Mail überprüfen",
-      "successText": "Wir haben einen Reset-Link gesendet. Prüfen Sie Ihren Posteingang und folgen Sie den Anweisungen.",
-      "backToLogin": "Zurück zur Anmeldung",
+      "successTitle": "Prüfen Sie Ihre E-Mails",
+      "successText": "Wir haben einen Link zum Zurücksetzen gesendet. Bitte prüfen Sie Ihren Posteingang und folgen Sie den Anweisungen.",
+      "backToLogin": "Zurück zum Login",
       "submittingBtn": "Wird gesendet..."
     },
     "validation": {
@@ -262,7 +268,7 @@
       "confirmPasswordLabel": "Passwort bestätigen",
       "confirmPasswordPlaceholder": "Passwort bestätigen",
       "submitBtn": "Neues Konto erstellen",
-      "loginBtn": "Anmelden",
+      "loginBtn": "Einloggen",
       "submittingBtn": "Konto wird erstellt..."
     },
     "validation": {
@@ -278,7 +284,7 @@
       "passwordNumber": "Das Passwort muss eine Zahl enthalten",
       "passwordSpecial": "Das Passwort muss ein Sonderzeichen enthalten",
       "confirmPasswordRequired": "Bitte bestätigen Sie Ihr Passwort",
-      "confirmPasswordMatch": "Passwörter stimmen nicht überein",
+      "confirmPasswordMatch": "Die Passwörter stimmen nicht überein",
       "serverError": "Etwas ist schiefgelaufen"
     }
   },
@@ -295,8 +301,8 @@
   },
   "notFound": {
     "code": "404",
-    "heading": "Entschuldigung, diese Seite wurde nicht gefunden!",
-    "text": "Es scheint, dass diese Seite verschoben wurde oder nicht existiert. Gehen Sie zurück zur Startseite oder kontaktieren Sie uns, wenn Sie Hilfe benötigen!",
+    "heading": "Hoppla! Diese Seite wurde nicht gefunden!",
+    "text": "Es scheint, als ob diese Seite verschoben wurde oder nicht existiert. Gehen Sie zurück zur Startseite oder kontaktieren Sie uns, wenn Sie Hilfe benötigen!",
     "btn": "Zurück zur Startseite"
   },
   "products": { "pageTitle": "Produkte" },
@@ -315,64 +321,66 @@
     },
     "shipping": {
       "congrats": "Herzlichen Glückwunsch! Sie erhalten",
-      "freeShipping": "Kostenlosen Versand!",
-      "spendMore": "Geben Sie noch ${{amount}} mehr aus und erhalten Sie"
+      "freeShipping": "kostenlosen Versand!",
+      "spendMore": "Geben Sie noch {{amount}} mehr aus und erhalten Sie"
     },
     "actions": {
       "adding": "Wird hinzugefügt...",
       "addToCart": "In den Warenkorb",
       "buyNow": "Jetzt kaufen",
-      "soldOut": "Ausverkauft"
+      "soldOut": "Ausverkauft",
+      "addedToCart": "In den Warenkorb gelegt!",
+      "addToCartError": "Fehler beim Hinzufügen zum Warenkorb"
     },
     "delivery": {
       "label": "Voraussichtliche Lieferung:",
-      "returnPolicy": "Rückgabe innerhalb von 90 Tagen nach dem Kauf. Steuern werden nicht erstattet."
+      "returnPolicy": "Rückgabe innerhalb von 90 Tagen nach Kauf möglich. Steuern sind nicht erstattungsfähig."
     }
   },
   "landingBanner": {
-    "newArrival": "NEUANKÖMMLING",
-    "title": "Entdecken Sie Aromen, eine Flasche nach der anderen!",
-    "text": "Erkunden Sie die reiche und vielfältige Welt des Bieres und genießen Sie einzigartige Aromen, die zur Perfektion gebraut wurden – eine Flasche nach der anderen!",
-    "shopSale": "Angebote ansehen",
+    "newArrival": "NEUEINGANG",
+    "title": "Entdecken Sie Aromen – Flasche für Flasche!",
+    "text": "Erkunden Sie die reiche und vielfältige Welt des Bieres und genießen Sie einzigartige, perfekt kreierte Aromen, Flasche für Flasche!",
+    "shopSale": "Sale shoppen",
     "collections": "Unsere Kollektionen"
   },
   "PromoGrid": {
-    "shopNow": "Jetzt ansehen",
-    "shopSale": "Angebote ansehen",
+    "shopNow": "Jetzt shoppen",
+    "shopSale": "Sale shoppen",
     "card1": {
-      "tagline": "Neue Veröffentlichung",
-      "heading": "Seien Sie der Erste, der Perfektion kostet!"
+      "tagline": "Neuerscheinung",
+      "heading": "Seien Sie der Erste, der Perfektion schmeckt!"
     },
     "card2": {
-      "tagline": "Feiertagskollektionen",
+      "tagline": "Feiertags-Kollektionen",
       "heading": "Perfekte Biere für perfekte Feiertage!"
     },
     "card3": {
-      "tagline": "Zeitlich begrenztes Angebot",
-      "heading": "Beeilen Sie sich! Exklusive Angebote warten!"
+      "tagline": "Befristetes Angebot",
+      "heading": "Beeilung! Exklusive Angebote warten auf Sie!"
     }
   },
   "saleBanner": {
-    "limitedTime": "Nur für begrenzte Zeit!",
-    "title": "Mehr trinken, weniger zahlen, Bier mit -20% Rabatt!",
-    "shopSale": "Angebote ansehen"
+    "limitedTime": "Nur für kurze Zeit!",
+    "title": "Mehr einschenken, weniger bezahlen – Bier mit -20% Rabatt!",
+    "shopSale": "Sale shoppen"
   },
   "storeFeatures": {
     "shipping": {
       "title": "Kostenloser Versand",
-      "description": "Kostenloser Versand für jeden Artikel, direkt an Ihre Tür geliefert – verschönern Sie Ihren Raum mit schöner Dekoration, ganz ohne Aufwand!"
+      "description": "Kostenloser Versand für jeden Artikel direkt an Ihre Haustür. Werten Sie Ihr Zuhause stressfrei mit wunderschöner Deko auf!"
     },
     "gift": {
-      "title": "Geschenkpaket",
-      "description": "Geschenke, die einen bleibenden Eindruck hinterlassen, stilvoll verpackt für jeden Anlass!"
+      "title": "Geschenkverpackung",
+      "description": "Geschenke, die einen bleibenden Eindruck hinterlassen, wunderschön und stilvoll verpackt für jeden Anlass!"
     },
     "warranty": {
       "title": "Ein Jahr Garantie",
-      "description": "Kaufen Sie mit Vertrauen – unsere einjährige Garantie gilt für jedes Schmuckstück, das auf Langlebigkeit und Qualität ausgelegt ist."
+      "description": "Kaufen Sie mit Vertrauen: Unsere einjährige Garantie gilt für jedes Schmuckstück, das für Langlebigkeit und Qualität gefertigt wurde."
     },
     "returns": {
       "title": "Einfache Rückgabe",
-      "description": "Stressfreie Rückgaben für Ihre Sicherheit, damit Sie mit jedem Kauf zufrieden sind."
+      "description": "Sorgenfreie Rückgabe für absolute Zufriedenheit bei jedem einzelnen Einkauf."
     }
   },
   "filterSection": {
@@ -383,7 +391,7 @@
     "inStock": "Auf Lager ({{count}})",
     "outOfStock": "Nicht auf Lager ({{count}})",
     "price": "PREIS",
-    "highestPrice": "Der höchste Preis beträgt",
+    "highestPrice": "Der höchste Preis ist",
     "priceFrom": "Von",
     "priceTo": "Bis"
   },
@@ -391,29 +399,42 @@
     "review": "Bewertung",
     "reviews": "Bewertungen",
     "addToCart": "In den Warenkorb",
-    "quickAdd": "Schnell hinzufügen"
+    "quickAdd": "Schnellkauf",
+    "addedToWishlist": "Auf die Wunschliste gesetzt",
+    "removedFromWishlist": "Von der Wunschliste entfernt",
+    "wishlistError": "Etwas ist schiefgelaufen",
+    "wishlistLoading": "Wunschliste wird aktualisiert..."
   },
   "productList": {
-    "filterAndSort": "FILTER & SORTIEREN",
-    "filterAndSortTitle": "FILTER UND SORTIEREN",
+    "filterAndSort": "FILTERN & SORTIEREN",
+    "filterAndSortTitle": "FILTERN UND SORTIEREN",
     "productsCount": "{{count}} Produkte",
     "productsFiltered": "{{filtered}} von {{total}} Produkten",
     "filterSearch": "Suche: \"{{value}}\"",
     "filterCategory": "Kategorie: {{value}}",
     "filterInStock": "Auf Lager",
     "filterOutOfStock": "Nicht auf Lager",
-    "filterPriceRange": "Preisbereich",
+    "filterPriceRange": "Preisspanne",
     "removeAll": "Alle entfernen",
     "noProductsFound": "Keine Produkte gefunden",
-    "useFewerFilters": "Weniger Filter verwenden oder",
-    "clearAll": "alle löschen"
+    "useFewerFilters": "Nutzen Sie weniger Filter oder",
+    "clearAll": "alles zurücksetzen"
   },
   "toolbar": {
     "sortBy": "Sortieren nach:",
     "mostRelevant": "Relevanteste",
     "titleAsc": "Alphabetisch, A–Z",
     "titleDesc": "Alphabetisch, Z–A",
-    "priceAsc": "Preis, aufsteigend",
-    "priceDesc": "Preis, absteigend"
+    "priceAsc": "Preis, niedrig nach hoch",
+    "priceDesc": "Preis, hoch nach niedrig"
+  },
+  "featuredCarousel": {
+    "title": "Besondere Produkte",
+    "text": "Handverlesene Favoriten und erstklassige Braukunst, speziell für Sie ausgewählt.",
+    "showAll": "Alle anzeigen"
+  },
+  "arrivalsCarousel": {
+    "title": "Neuerscheinungen",
+    "text": "Frische Neuzugänge, nur für Sie – jetzt entdecken!"
   }
 }

@@ -1,13 +1,23 @@
-import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import React, { useState, useRef } from 'react';
+import { Link, NavLink, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useUserData } from '../context/UserContext';
+import { useCurrency, currencies } from '../context/CurrencyContext';
+import { useCart } from '../context/CartContext';
 import cartIcon from '../assets/icons/cart-icon.svg';
 import profileIcon from '../assets/icons/profile-icon.svg';
 import searchIcon from '../assets/icons/search-icon.svg';
-// import * as api from '../api/api';
 import logo from '../assets/logo.webp';
 import clsx from 'clsx';
+import flagEN from '../assets/flags/flag-en.png';
+import flagFR from '../assets/flags/flag-fr.png';
+import flagDE from '../assets/flags/flag-de.png';
+
+const languages = [
+  { code: 'en', label: 'English', flag: flagEN },
+  { code: 'fr', label: 'français', flag: flagFR },
+  { code: 'de', label: 'Deutsch', flag: flagDE },
+];
 
 function Navbar() {
   const { t, i18n } = useTranslation();
@@ -16,7 +26,17 @@ function Navbar() {
   const [searchQuery, setSearchQuery] = useState('');
   const [menuOpen, setMenuOpen] = useState(false);
   const [menuClosing, setMenuClosing] = useState(false);
-  // const [cartCount, setCartCount] = useState(0);
+  const { activeCurrency, changeCurrency } = useCurrency();
+  const { cartCount } = useCart();
+
+  const [isLangOpen, setIsLangOpen] = useState(false);
+  const [isCurrencyOpen, setIsCurrencyOpen] = useState(false);
+
+  const langDropdownRef = useRef(null);
+  const currencyDropdownRef = useRef(null);
+
+  const currentLanguage =
+    languages.find((lang) => lang.code === i18n.resolvedLanguage) || languages[0];
 
   const { loggedIn } = useUserData();
 
@@ -25,7 +45,7 @@ function Navbar() {
   const closeSearch = () => {
     setSearchClosing(true);
     setTimeout(() => {
-      searchOpen(false);
+      setSearchOpen(false);
       setSearchClosing(false);
     }, 300);
   };
@@ -45,12 +65,6 @@ function Navbar() {
     closeSearch();
     closeMenu();
   };
-
-  // useEffect(() => {
-  //   api.getCart().then((data) => {
-  //     if (data?.data) setCartCount(data.data.length);
-  //   });
-  // }, []);
 
   const handleKeyDown = (e) => {
     if (e.key === 'Enter') handleSearchSubmit();
@@ -80,19 +94,19 @@ function Navbar() {
         <div className="navbar__nav">
           <ul>
             <li className="navbar__nav-item">
-              <Link to="/">{t('navbar.home')}</Link>
+              <NavLink to="/">{t('navbar.home')}</NavLink>
             </li>
             <li className="navbar__nav-item">
-              <Link to="/products">{t('navbar.product')}</Link>
+              <NavLink to="/products">{t('navbar.product')}</NavLink>
             </li>
             <li className="navbar__nav-item">
-              <Link to="/about">{t('navbar.about')}</Link>
+              <NavLink to="/about">{t('navbar.about')}</NavLink>
             </li>
             <li className="navbar__nav-item">
-              <Link to="/contact">{t('navbar.contact')}</Link>
+              <NavLink to="/contact">{t('navbar.contact')}</NavLink>
             </li>
             <li className="navbar__nav-item">
-              <Link to="/team">{t('navbar.team')}</Link>
+              <NavLink to="/team">{t('navbar.team')}</NavLink>
             </li>
           </ul>
         </div>
@@ -114,7 +128,6 @@ function Navbar() {
               className="navbar__profile-link"
             >
               {loggedIn && <i className="bi bi-check-lg navbar__user-check"></i>}
-
               <img
                 src={profileIcon}
                 alt={t('navbar.profileIconAlt')}
@@ -127,7 +140,7 @@ function Navbar() {
             className="navbar__profile-link"
           >
             <button>
-              {/* {cartCount > 0 && <p className="navbar__cart-badge">{cartCount}</p>} */}
+              {cartCount > 0 && <p className="navbar__cart-badge">{cartCount}</p>}
               <img
                 src={cartIcon}
                 alt={t('navbar.cartIconAlt')}
@@ -144,7 +157,7 @@ function Navbar() {
           <Link to="/products">
             <i className="bi bi-shop"></i>
           </Link>
-          <Link to="/">
+          <Link to="/cart">
             <i className="bi bi-cart3"></i>
           </Link>
           <Link
@@ -153,7 +166,7 @@ function Navbar() {
           >
             <i className="bi bi-search"></i>
           </Link>
-          <Link to="/">
+          <Link to="/wishlist">
             <i className="bi bi-heart"></i>
           </Link>
         </div>
@@ -198,7 +211,9 @@ function Navbar() {
                 to="/login"
               >
                 <div className="drawer__link">
-                  <i className="bi bi-people"></i> {t('drawer.account')}
+                  <div>
+                    <i className="bi bi-people"></i> {t('drawer.account')}
+                  </div>
                 </div>
               </Link>
               <div className="drawer__divider"></div>
@@ -206,14 +221,14 @@ function Navbar() {
                 onClick={closeMenu}
                 to="/"
               >
-                <div className="drawer__link">{t('navbar.home')}</div>
+                <div className="drawer__link">{t('drawer.home')}</div>
               </Link>
               <div className="drawer__divider"></div>
               <Link
                 onClick={closeMenu}
                 to="/products"
               >
-                <div className="drawer__link">{t('navbar.product')}</div>
+                <div className="drawer__link">{t('drawer.shop')}</div>
               </Link>
               <div className="drawer__divider"></div>
               <Link
@@ -236,6 +251,90 @@ function Navbar() {
               >
                 <div className="drawer__link">{t('drawer.contactUs')}</div>
               </Link>
+              <div className="drawer__divider"></div>
+
+              <div className="drawer__link">
+                <div
+                  className="top-bar__language-custom"
+                  ref={langDropdownRef}
+                >
+                  <button
+                    className="dropdown-trigger"
+                    onClick={() => setIsLangOpen(!isLangOpen)}
+                    type="button"
+                  >
+                    <img
+                      src={currentLanguage.flag}
+                      alt=""
+                      className="flag-img"
+                    />
+                    <span>{currentLanguage.label}</span>
+                    <span className={clsx('arrow', { open: isLangOpen })}>
+                      <i className="bi bi-chevron-down"></i>
+                    </span>
+                  </button>
+
+                  {isLangOpen && (
+                    <ul className="dropdown-options language">
+                      {languages.map((lang) => (
+                        <li
+                          key={lang.code}
+                          className={clsx('dropdown-option', {
+                            active: i18n.resolvedLanguage === lang.code,
+                          })}
+                          onClick={() => {
+                            i18n.changeLanguage(lang.code);
+                            localStorage.setItem('lang', lang.code);
+                            setIsLangOpen(false);
+                          }}
+                        >
+                          <img
+                            src={lang.flag}
+                            alt=""
+                            className="flag-img"
+                          />
+                          <span>{lang.label}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+                </div>
+
+                <div
+                  className="top-bar__language-custom"
+                  ref={currencyDropdownRef}
+                >
+                  <button
+                    className="dropdown-trigger"
+                    onClick={() => setIsCurrencyOpen(!isCurrencyOpen)}
+                    type="button"
+                  >
+                    <span>{activeCurrency.label}</span>
+                    <span className={clsx('arrow', { open: isCurrencyOpen })}>
+                      <i className="bi bi-chevron-down"></i>
+                    </span>
+                  </button>
+
+                  {isCurrencyOpen && (
+                    <ul className="dropdown-options">
+                      {currencies.map((curr) => (
+                        <li
+                          key={curr.code}
+                          className={clsx('dropdown-option', {
+                            active: activeCurrency.code === curr.code,
+                          })}
+                          onClick={() => {
+                            changeCurrency(curr.code);
+                            setIsCurrencyOpen(false);
+                          }}
+                        >
+                          <span>{curr.label}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+                </div>
+              </div>
               <div className="drawer__divider"></div>
             </div>
           </div>

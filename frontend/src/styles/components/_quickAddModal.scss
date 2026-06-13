@@ -31,6 +31,10 @@
     z-index: 1000;
     padding: 20px;
     animation: overlay-fade-in 0.5s ease;
+    cursor:
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 32 32'%3E%3Cline x1='4' y1='4' x2='28' y2='28' stroke='white' stroke-width='2' stroke-linecap='round'/%3E%3Cline x1='28' y1='4' x2='4' y2='28' stroke='white' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E")
+        16 16,
+      pointer;
   }
 
   & {
@@ -40,6 +44,7 @@
     max-width: calc(800px * var(--app-scale));
     overflow-y: auto;
     animation: modal-slide-up 0.3s ease;
+    cursor: default;
   }
 
   &__header {
@@ -189,6 +194,10 @@
     &:hover {
       color: $color-accent;
     }
+  }
+
+  .sold-out {
+    width: 100%;
   }
 }
 

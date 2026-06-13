@@ -8,18 +8,21 @@ import { useTranslation } from 'react-i18next';
 import { useSearchParams } from 'react-router-dom';
 
 function ProductList({ originalProducts = [] }) {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const [searchParams, setSearchParams] = useSearchParams();
 
   const [view, setView] = React.useState('grid-wrap');
   const [filterOpen, setFilterOpen] = React.useState(false);
   const [filterClosing, setFilterClosing] = React.useState(false);
 
-  const currentPage = Number(searchParams.get('page')) || 1;
   const productsPerPage = 6;
 
   const { products, filters, updateFilter, updateFilters, resetFilters } =
     useProductFilter(originalProducts);
+
+  const totalPages = Math.ceil(products.length / productsPerPage);
+  const rawPage = Number(searchParams.get('page')) || 1;
+  const currentPage = rawPage > totalPages && totalPages > 0 ? 1 : rawPage;
 
   const closeFilter = () => {
     setFilterClosing(true);
@@ -49,8 +52,6 @@ function ProductList({ originalProducts = [] }) {
     resetFilters();
   };
 
-  const totalPages = Math.ceil(products.length / productsPerPage);
-
   const paginatedProducts = useMemo(() => {
     const start = (currentPage - 1) * productsPerPage;
     return products.slice(start, start + productsPerPage);
@@ -67,14 +68,17 @@ function ProductList({ originalProducts = [] }) {
       } else {
         outOfStock++;
       }
-      p.tags?.forEach((tag) => {
+
+      const tags = Array.isArray(p.tags) ? p.tags : (p.tags?.[i18n.language] ?? p.tags?.en ?? []);
+
+      tags.forEach((tag) => {
         const normalizedTag = tag.toLowerCase();
         if (normalizedTag in categoryCounts) categoryCounts[normalizedTag]++;
       });
     });
 
     return { stockCounts: { inStock, outOfStock }, categoryCounts };
-  }, [originalProducts]);
+  }, [originalProducts, i18n.language]);
 
   const activeFilters = useMemo(() => {
     const active = [];

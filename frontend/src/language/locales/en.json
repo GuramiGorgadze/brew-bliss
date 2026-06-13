@@ -11,6 +11,8 @@
     "cartIconAlt": "Cart Icon"
   },
   "drawer": {
+    "home": "Home",
+    "shop": "Shop",
     "close": "Close",
     "account": "Account",
     "wishlist": "Wishlist ({{count}})",
@@ -166,7 +168,7 @@
     "shipping": {
       "congrats": "Congratulations! You've got",
       "freeShipping": "Free Shipping!",
-      "spendMore": "Spend ${{amount}} More For"
+      "spendMore": "Spend {{amount}} More For"
     },
     "summary": {
       "youSave": "You Save In Total",
@@ -177,7 +179,10 @@
       "agree": "I agree with",
       "link": "Terms & Conditions"
     },
-    "checkoutBtn": "Checkout"
+    "checkoutBtn": "Checkout",
+    "removingFromCart": "Removing...",
+    "removedFromCart": "Removed from cart",
+    "removeError": "Failed to remove item"
   },
   "contact": {
     "pageTitle": "Contact",
@@ -227,7 +232,8 @@
       "forgotPassword": "Forgot your password ?",
       "submitBtn": "Login",
       "submittingBtn": "Logging in...",
-      "createAccount": "Create New Account"
+      "createAccount": "Create New Account",
+      "continueWithGoogle": "Continue with Google"
     },
     "reset": {
       "title": "Reset Your Password",
@@ -316,13 +322,15 @@
     "shipping": {
       "congrats": "Congratulations! You've got",
       "freeShipping": "Free Shipping!",
-      "spendMore": "Spend ${{amount}} More And Get"
+      "spendMore": "Spend {{amount}} More And Get"
     },
     "actions": {
       "adding": "Adding...",
       "addToCart": "Add to Cart",
       "buyNow": "Buy it now",
-      "soldOut": "Sold Out"
+      "soldOut": "Sold Out",
+      "addedToCart": "Added to cart!",
+      "addToCartError": "Failed to add to cart"
     },
     "delivery": {
       "label": "Estimated Delivery:",
@@ -382,7 +390,11 @@
     "review": "Review",
     "reviews": "Reviews",
     "addToCart": "Add To Cart",
-    "quickAdd": "Quick Add"
+    "quickAdd": "Quick Add",
+    "addedToWishlist": "Added to wishlist",
+    "removedFromWishlist": "Removed from wishlist",
+    "wishlistError": "Something went wrong",
+    "wishlistLoading": "Updating wishlist..."
   },
   "productList": {
     "filterAndSort": "FILTER & SORT",
@@ -406,5 +418,14 @@
     "titleDesc": "Alphabetically, Z–A",
     "priceAsc": "Price, low to high",
     "priceDesc": "Price, high to low"
+  },
+  "featuredCarousel": {
+    "title": "Featured Products",
+    "text": "Handpicked favorites and top-tier brews, chosen just for you.",
+    "showAll": "Show all"
+  },
+  "arrivalsCarousel": {
+    "title": "New Arrivals",
+    "text": "Fresh additions, just for you – explore now!"
   }
 }

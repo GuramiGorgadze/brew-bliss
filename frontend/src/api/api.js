@@ -221,3 +221,7 @@ export const resetPassword = async (token, password) => {
   );
   return response.data;
 };
+
+export const googleAuth = () => {
+  window.location.href = 'http://localhost:3000/api/users/auth/google';
+};

@@ -16,7 +16,6 @@ export const registerUser = async (req, res) => {
     }
 
     const existingUser = await Users.findOne({ email });
-
     if (existingUser) {
       return res
         .status(400)
@@ -46,11 +45,10 @@ export const registerUser = async (req, res) => {
     });
 
     const newUserData = returnAllExceptPassword(newUser);
-
-    res.status(200).json({ data: newUserData });
+    return res.status(200).json({ data: newUserData });
   } catch (error) {
-    console.log(error);
-    res.status(500).json({ message: "Server error" });
+    console.error(error);
+    return res.status(500).json({ message: "Server error" });
   }
 };
 
@@ -58,10 +56,15 @@ export const loginUser = async (req, res) => {
   try {
     const { email, password } = req.body;
 
-    const user = await Users.findOne({ email: email });
-
+    const user = await Users.findOne({ email });
     if (!user) {
       return res.status(400).json({ message: "Incorrect email or password" });
+    }
+
+    if (!user.password) {
+      return res.status(400).json({
+        message: "Continue with Google to sign in for this email",
+      });
     }
 
     const isPasswordValid = await bcrypt.compare(
@@ -103,7 +106,7 @@ export const getToken = (req, res) => {
     const token = req.cookies.token;
     if (!token) return res.status(401).json({ err: "Not authenticated" });
 
-    jwt.verify(token, process.env.JWT_SECRET_KEY, (err, user) => {
+    jwt.verify(token, process.env.JWT_SECRET_KEY, (err) => {
       if (err)
         return res
           .status(400)
@@ -118,15 +121,11 @@ export const getToken = (req, res) => {
 export const getUser = async (req, res) => {
   try {
     const token = req.header("Authorization");
-
     const decoded = jwt.verify(token, process.env.JWT_SECRET_KEY);
-    const userId = decoded.id;
-
-    const userData = await Users.findById(userId).select("-password");
-
+    const userData = await Users.findById(decoded.id).select("-password");
     return res.status(200).json({ data: userData });
   } catch (err) {
-    console.log(err);
+    console.error(err);
     return res.status(500).json({ err: "Something went wrong" });
   }
 };
@@ -156,7 +155,6 @@ export const addToCart = async (req, res) => {
     const { productId, variantSize, quantity } = req.body;
 
     const user = await Users.findById(decoded.id);
-
     const existingItem = user.cart.find(
       (item) =>
         item.productId === productId && item.variantSize === variantSize,
@@ -217,20 +215,16 @@ export const updateCartQuantity = async (req, res) => {
     const { productId, variantSize, quantity } = req.body;
 
     const user = await Users.findById(decoded.id);
-
     const item = user.cart.find(
       (item) =>
         item.productId.toString() === productId &&
         item.variantSize === variantSize,
     );
 
-    if (!item) {
-      return res.status(404).json({ err: "Cart item not found" });
-    }
+    if (!item) return res.status(404).json({ err: "Cart item not found" });
 
     item.quantity = Math.max(1, quantity);
     await user.save();
-
     return res.status(200).json({ data: user.cart });
   } catch (err) {
     console.error(err);
@@ -245,7 +239,6 @@ export const addToWishlist = async (req, res) => {
     const { productId } = req.body;
 
     const user = await Users.findById(decoded.id);
-
     const alreadyInWishlist = user.wishlist.some(
       (item) => item.productId === productId,
     );
@@ -323,9 +316,18 @@ export const forgotPasswordUser = async (req, res) => {
   try {
     const { email } = req.body;
 
-    let user = await Users.findOne({ email: email });
+    const user = await Users.findOne({ email });
     if (!user) {
       return res.status(400).json({ err: "No account found with that email" });
+    }
+
+    if (!user.password) {
+      return res
+        .status(400)
+        .json({
+          message:
+            "Continue with Google to sign in for this email",
+        });
     }
 
     const access_token = jwt.sign(
@@ -336,7 +338,6 @@ export const forgotPasswordUser = async (req, res) => {
     const url = `http://localhost:5173/reset-password/${access_token}`;
 
     await sendResetPasswordMail(email, url);
-
     return res.status(200).json({ data: "Reset link sent to your email" });
   } catch (err) {
     console.error("forgotPasswordUser error:", err);
@@ -350,7 +351,6 @@ export const resetPasswordUser = async (req, res) => {
     const token = req.header("Authorization");
 
     const decoded = jwt.verify(token, process.env.JWT_RESET_PASS_SECRET_KEY);
-    const userId = decoded.id;
 
     const hashedPassword = await bcrypt.hash(
       password + process.env.BCRYPT_PEPPER,
@@ -358,10 +358,8 @@ export const resetPasswordUser = async (req, res) => {
     );
 
     await Users.findOneAndUpdate(
-      { _id: userId },
-      {
-        password: hashedPassword,
-      },
+      { _id: decoded.id },
+      { password: hashedPassword },
     );
 
     return res.status(200).json({ data: "Password updated successfully" });
@@ -370,7 +368,6 @@ export const resetPasswordUser = async (req, res) => {
   }
 };
 
-//helper functions
 const returnAllExceptPassword = (user) => {
   const { password, ...safeUser } = user._doc || user;
   return safeUser;

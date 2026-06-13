@@ -1,8 +1,8 @@
 import { useEffect, useState, useCallback } from 'react';
 import useEmblaCarousel from 'embla-carousel-react';
 import Autoplay from 'embla-carousel-autoplay';
-import arrivalsBeers from '../../assets/arrivals-beers.webp';
 import { useLoader } from '../../context/LoaderContext';
+import { useTranslation } from 'react-i18next';
 import wing1 from '../../assets/wing1.png';
 import wing2 from '../../assets/wing2.png';
 import { Product } from '../../components';
@@ -12,7 +12,7 @@ import { useNavigate } from 'react-router-dom';
 function FeaturedCarousel() {
   const [products, setProducts] = useState([]);
   const { useDataLoader } = useLoader();
-
+  const { t } = useTranslation();
   const navigate = useNavigate();
 
   const autoplay = Autoplay({ delay: 5000, stopOnInteraction: false });
@@ -54,7 +54,7 @@ function FeaturedCarousel() {
           alt=""
           className="wing"
         />
-        <p>Featured Products</p>
+        <p>{t('featuredCarousel.title')}</p>
         <img
           src={wing2}
           alt=""
@@ -62,10 +62,7 @@ function FeaturedCarousel() {
         />
       </div>
 
-      <p className="featured-carousel__text">
-        Describe what your customers will receive when subscribing to your newsletter. what your
-        customers
-      </p>
+      <p className="featured-carousel__text">{t('featuredCarousel.text')}</p>
 
       <div className="featured-carousel__wrapper">
         <button
@@ -105,7 +102,7 @@ function FeaturedCarousel() {
         className="featured-carousel__show-all"
         onClick={() => navigate('/products')}
       >
-        Show all
+        {t('featuredCarousel.showAll')}
       </button>
     </div>
   );

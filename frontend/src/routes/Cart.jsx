@@ -4,16 +4,33 @@ import { useLoader } from '../context/LoaderContext';
 import { PageTitle, InstagramCarousel } from '../components';
 import { useCurrency } from '../context/CurrencyContext';
 import { useNavigate } from 'react-router-dom';
+import { useCart } from '../context/CartContext';
 import * as api from '../api/api';
 import ShippingIcon from '../assets/icons/shipping-icon-white.svg';
+import toast from 'react-hot-toast';
+
+const localize = (field, lang) => {
+  if (!field) return '';
+  if (typeof field === 'string') return field;
+  return field[lang] ?? field.en ?? '';
+};
+
+const localizeTags = (tags, lang) => {
+  if (!tags) return [];
+  if (Array.isArray(tags)) return tags;
+  return tags[lang] ?? tags.en ?? [];
+};
 
 function Cart() {
   const [cartItems, setCartItems] = useState([]);
   const [note, setNote] = useState('');
   const { useDataLoader } = useLoader();
   const { t, i18n } = useTranslation();
+  const lang = i18n.language;
   const { formatPrice, activeCurrency } = useCurrency();
   const navigate = useNavigate();
+  const { setCartCount } = useCart();
+  const [removingId, setRemovingId] = useState(null);
 
   const freeShippingNumber = 500;
 
@@ -22,24 +39,39 @@ function Cart() {
       const data = await useDataLoader(api.getCart);
       if (data?.data) {
         setCartItems(data.data.map((item) => ({ ...item, quantity: item.quantity })));
+        setCartCount(data.data.length);
       } else if (data?.err) {
-        console(data.err);
+        console.log(data.err);
       }
     };
     fetchCart();
   }, []);
 
   const handleRemove = async (productId, variantSize) => {
-    await api.removeFromCart(productId.toString(), variantSize);
-    setCartItems((prev) =>
-      prev.filter(
-        (item) =>
-          !(
-            item.productId._id.toString() === productId.toString() &&
-            item.variantSize === variantSize
-          )
-      )
-    );
+    if (removingId) return;
+    const key = `${productId}-${variantSize}`;
+    setRemovingId(key);
+    const toastId = toast.loading(t('cart.removingFromCart'));
+    try {
+      await api.removeFromCart(productId.toString(), variantSize);
+      setCartItems((prev) => {
+        const updated = prev.filter(
+          (item) =>
+            !(
+              item.productId._id.toString() === productId.toString() &&
+              item.variantSize === variantSize
+            )
+        );
+        setCartCount(updated.length);
+        return updated;
+      });
+      toast(t('cart.removedFromCart'), { id: toastId });
+    } catch (err) {
+      console.error('Failed to remove from cart:', err);
+      toast.error(t('cart.removeError'), { id: toastId });
+    } finally {
+      setRemovingId(null);
+    }
   };
 
   const handleQuantityChange = async (productId, variantSize, change) => {
@@ -59,7 +91,7 @@ function Cart() {
     try {
       await api.updateCartQuantity(productId.toString(), variantSize, newQuantity);
     } catch (err) {
-      console('Full error:', err.response?.status, err.response?.data);
+      console.log('Full error:', err.response?.status, err.response?.data);
     }
   };
 
@@ -107,6 +139,9 @@ function Cart() {
               {cartItems.map((item) => {
                 const variant = getVariant(item);
                 const productId = item.productId._id.toString();
+                const title = localize(item.productId.title, lang);
+                const tags = localizeTags(item.productId.tags, lang);
+
                 return (
                   <tr
                     className="cart__table-row"
@@ -117,7 +152,7 @@ function Cart() {
                         <img
                           className="cart-item__img"
                           src={item.productId.image}
-                          alt={item.productId.title}
+                          alt={title}
                           onClick={() => navigate(`/products/${productId}`)}
                         />
                         <div className="cart-item__info">
@@ -125,13 +160,13 @@ function Cart() {
                             className="cart-item__name"
                             onClick={() => navigate(`/products/${productId}`)}
                           >
-                            {item.productId.title}
+                            {title}
                           </p>
                           <p className="cart-item__size">
                             {t('cart.item.bottleSize')}: {item.variantSize}
                           </p>
                           <p className="cart-item__tags">
-                            {t('cart.item.beerVariety')}: {item.productId.tags?.join(', ')}
+                            {t('cart.item.beerVariety')}: {tags.join(', ')}
                           </p>
                           <div className="cart-item__price-row">
                             <p className="cart-item__price">{formatPrice(variant?.price ?? 0)}</p>
@@ -180,6 +215,7 @@ function Cart() {
                       <button
                         className="cart-item__remove-btn"
                         onClick={() => handleRemove(productId, item.variantSize)}
+                        disabled={removingId === `${productId}-${item.variantSize}`}
                       >
                         <i className="bi bi-trash" />
                       </button>

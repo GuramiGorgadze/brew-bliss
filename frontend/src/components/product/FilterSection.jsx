@@ -14,7 +14,7 @@ function FilterSection({
   categoryCounts,
   isDrawer,
 }) {
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
 
   const [availabilityOpen, setAvailabilityOpen] = useState(true);
   const [priceOpen, setPriceOpen] = useState(true);

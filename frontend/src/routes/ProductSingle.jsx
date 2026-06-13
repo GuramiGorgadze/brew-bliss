@@ -15,14 +15,19 @@ import Facebook from '../assets/icons/facebook-icon.svg';
 import Twitter from '../assets/icons/twitter-icon.svg';
 import Instagram from '../assets/icons/instagram-icon.svg';
 import TikTok from '../assets/icons/tiktok-icon.svg';
+import toast from 'react-hot-toast';
 
 function ProductSingle() {
   const [singleProduct, setSingleProduct] = useState(null);
   const [selectedVariant, setSelectedVariant] = useState(null);
   const [quantity, setQuantity] = useState(1);
+  const [isAdding, setIsAdding] = useState(false);
   const [cartTotal, setCartTotal] = useState(0);
   const { useDataLoader } = useLoader();
   const { id } = useParams();
+  const [isWishlisting, setIsWishlisting] = useState(false);
+
+  const localize = (field, lang) => field?.[lang] ?? field?.en ?? '';
 
   const { wishlistedIds, add, remove } = useWishlist();
   const wishlisted = singleProduct ? wishlistedIds.has(singleProduct._id) : false;
@@ -30,9 +35,9 @@ function ProductSingle() {
   const FreeShipping = 500;
   const [cartStatus, setCartStatus] = useState('');
   const { t, i18n } = useTranslation();
+  const lang = i18n.language;
 
   const { formatPrice, activeCurrency } = useCurrency();
-
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -63,17 +68,24 @@ function ProductSingle() {
   }, []);
 
   const handleWishlistToggle = async () => {
-    if (!singleProduct) return;
+    if (!singleProduct || isWishlisting) return;
+    setIsWishlisting(true);
+    const toastId = toast.loading(t('productCard.wishlistLoading'));
     try {
       if (wishlisted) {
         await api.removeFromWishlist(singleProduct._id);
         remove(singleProduct._id);
+        toast(t('productCard.removedFromWishlist'), { id: toastId });
       } else {
         await api.addToWishlist(singleProduct._id);
         add(singleProduct._id);
+        toast.success(t('productCard.addedToWishlist'), { id: toastId });
       }
     } catch (err) {
       console.error('Wishlist error:', err.message);
+      toast.error(t('productCard.wishlistError'), { id: toastId });
+    } finally {
+      setIsWishlisting(false);
     }
   };
 
@@ -92,31 +104,41 @@ function ProductSingle() {
     const end = new Date();
     start.setDate(start.getDate() + 3);
     end.setDate(end.getDate() + 7);
-    const fmt = (date) => date.toLocaleDateString('en-US', { month: 'short', day: '2-digit' });
+    const fmt = (date) =>
+      date.toLocaleDateString(i18n.language, { month: 'short', day: '2-digit' });
     return `${fmt(start)} - ${fmt(end)}`;
   };
 
   const handleAddToCart = async () => {
+    if (isAdding) return;
+    setIsAdding(true);
+    const toastId = toast.loading(t('productSingle.actions.adding'));
     try {
-      setCartStatus('loading');
       await api.addToCart(singleProduct._id, selectedVariant.size, quantity);
-      setCartStatus('');
-      navigate(0);
+      toast.success(t('productSingle.actions.addedToCart'), { id: toastId });
     } catch (err) {
-      setCartStatus('');
-      console.log('Failed to add to cart:', err);
+      console.error('Failed to add to cart:', err);
+      toast.error(t('productSingle.actions.addToCartError'), {
+        id: toastId,
+      });
+    } finally {
+      setIsAdding(false);
     }
   };
 
+  const title = localize(singleProduct?.title, lang);
+  const description = localize(singleProduct?.description, lang);
+  const tags = singleProduct?.tags?.[lang] ?? singleProduct?.tags?.en ?? [];
+
   return (
     <div className="product-page">
-      <PageTitle pageName={singleProduct?.title} />
+      <PageTitle pageName={title} />
       <div className="product-page__inner">
         <div className="product-page__gallery">
           {singleProduct?.image && (
             <ImageMagnifier
               src={singleProduct.image}
-              alt={singleProduct.title}
+              alt={title}
               zoom={3}
             />
           )}
@@ -126,12 +148,14 @@ function ProductSingle() {
             className={clsx('bi wishlist', {
               'bi-check-lg': wishlisted,
               'bi-heart': !wishlisted,
+              disabled: isWishlisting,
             })}
+            style={{ pointerEvents: isWishlisting ? 'none' : 'auto' }}
           />
         </div>
 
         <div className="product-page__details">
-          <h1 className="product-page__title">{singleProduct?.title}</h1>
+          <h1 className="product-page__title">{title}</h1>
 
           <p className="product-page__reviews">
             {Array.from({ length: 5 }, (_, i) => (
@@ -198,7 +222,7 @@ function ProductSingle() {
           </h5>
 
           <p className="product-page__description-label">{t('productSingle.descriptionLabel')}</p>
-          <p className="product-page__description">{singleProduct?.description}</p>
+          <p className="product-page__description">{description}</p>
 
           <div className="product-page__size">
             <h5 className="product-page__size-heading">
@@ -238,8 +262,7 @@ function ProductSingle() {
               )}
             </h2>
             <h2 className="product-page__meta-item">
-              {t('productSingle.tags')}{' '}
-              <span className="product-page__tag">{singleProduct?.tags.join(', ')}</span>
+              {t('productSingle.tags')} <span className="product-page__tag">{tags.join(', ')}</span>
             </h2>
           </div>
 
@@ -267,10 +290,9 @@ function ProductSingle() {
               <button
                 className="product-page__btn product-page__btn--dark"
                 onClick={handleAddToCart}
-                disabled={cartStatus !== ''}
+                disabled={isAdding}
               >
-                {cartStatus === 'loading' && t('productSingle.actions.adding')}
-                {cartStatus === '' && t('productSingle.actions.addToCart')}
+                {t('productSingle.actions.addToCart')}
               </button>
               <button className="product-page__btn product-page__btn--primary">
                 {t('productSingle.actions.buyNow')}

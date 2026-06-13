@@ -1,8 +1,11 @@
 import { useMemo } from 'react';
 import { useSearchParams } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 function useProductFilter(products = []) {
   const [searchParams, setSearchParams] = useSearchParams();
+  const { i18n } = useTranslation();
+  const lang = i18n.language;
 
   const filters = useMemo(() => {
     return {
@@ -23,7 +26,6 @@ function useProductFilter(products = []) {
   const updateFilter = (key, value) => {
     setSearchParams((prevParams) => {
       const nextParams = new URLSearchParams(prevParams);
-
       if (value === '' || value === false || value === null || value === undefined) {
         nextParams.delete(key);
       } else {
@@ -47,15 +49,29 @@ function useProductFilter(products = []) {
     });
   };
 
+  const getTitle = (p) => {
+    if (!p.title) return '';
+    if (typeof p.title === 'string') return p.title;
+    return p.title[lang] ?? p.title.en ?? '';
+  };
+
+  const getTags = (p) => {
+    if (!p.tags) return [];
+    if (Array.isArray(p.tags)) return p.tags;
+    return p.tags[lang] ?? p.tags.en ?? [];
+  };
+
   const filtered = useMemo(() => {
     let result = [...products];
 
     if (filters.search) {
-      result = result.filter((p) => p.title?.toLowerCase().includes(filters.search.toLowerCase()));
+      result = result.filter((p) =>
+        getTitle(p).toLowerCase().includes(filters.search.toLowerCase())
+      );
     }
 
     if (filters.category) {
-      result = result.filter((p) => p.tags?.includes(filters.category.toLowerCase()));
+      result = result.filter((p) => getTags(p).includes(filters.category.toLowerCase()));
     }
 
     const isFilteringInStock = filters.inStock && !filters.outOfStock;
@@ -81,9 +97,9 @@ function useProductFilter(products = []) {
         const priceB = Number(b.variants?.[0]?.price);
         switch (filters.sort) {
           case 'title-asc':
-            return a.title.localeCompare(b.title);
+            return getTitle(a).localeCompare(getTitle(b), lang);
           case 'title-desc':
-            return b.title.localeCompare(a.title);
+            return getTitle(b).localeCompare(getTitle(a), lang);
           case 'price-asc':
             return priceA - priceB;
           case 'price-desc':
@@ -95,7 +111,7 @@ function useProductFilter(products = []) {
     }
 
     return result;
-  }, [products, filters]);
+  }, [products, filters, lang]);
 
   return { products: filtered, filters, updateFilter, updateFilters, resetFilters };
 }

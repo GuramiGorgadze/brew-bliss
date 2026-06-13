@@ -93,7 +93,7 @@ function Contact() {
           </div>
           <h2 className="card__title">{t('contact.cards.email.title')}</h2>
           <div className="card__desc">
-            <h6 className="card__desc--heading">{t('contact.cards.email.address')}</h6>
+            <h6 className="card__desc--heading email">{t('contact.cards.email.address')}</h6>
             <p className="card__desc--info">{t('contact.cards.email.hours')}</p>
           </div>
         </div>
