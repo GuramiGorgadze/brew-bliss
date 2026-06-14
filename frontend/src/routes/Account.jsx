@@ -75,7 +75,7 @@ function Account() {
               <tr className="account__table-row">
                 <th className="account__table-header">{t('account.details.name')}</th>
                 <td className="account__table-data">
-                  {userData?.address?.firstName} {userData?.address?.lastName}
+                  {userData?.firstName} {userData?.lastName}
                 </td>
               </tr>
               <tr className="account__table-row">
@@ -97,6 +97,12 @@ function Account() {
               <tr className="account__table-row">
                 <th className="account__table-header">{t('account.details.zip')}</th>
                 <td className="account__table-data">{userData?.address?.zip}</td>
+              </tr>
+              <tr className="account__table-row">
+                <th className="account__table-header">{t('account.details.addressName')}</th>
+                <td className="account__table-data">
+                  {userData?.address?.firstName} {userData?.address?.lastName}
+                </td>
               </tr>
               <tr className="account__table-row">
                 <th className="account__table-header">{t('account.details.address')}</th>

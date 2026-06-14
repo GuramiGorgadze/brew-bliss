@@ -9,7 +9,7 @@ import { Product } from '../../components';
 import * as api from '../../api/api';
 import { useNavigate } from 'react-router-dom';
 
-function FeaturedCarousel() {
+function FeaturedCarousel({ isOnHome }) {
   const [products, setProducts] = useState([]);
   const { useDataLoader } = useLoader();
   const { t } = useTranslation();
@@ -98,12 +98,14 @@ function FeaturedCarousel() {
         </button>
       </div>
 
-      <button
-        className="featured-carousel__show-all"
-        onClick={() => navigate('/products')}
-      >
-        {t('featuredCarousel.showAll')}
-      </button>
+      {isOnHome && (
+        <button
+          className="featured-carousel__show-all"
+          onClick={() => navigate('/products')}
+        >
+          {t('featuredCarousel.showAll')}
+        </button>
+      )}
     </div>
   );
 }

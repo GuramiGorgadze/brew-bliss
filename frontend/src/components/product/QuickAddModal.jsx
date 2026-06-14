@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import ReactDOM from 'react-dom';
 import { useNavigate } from 'react-router-dom';
 import { useWishlist } from '../../context/WishlistContext';
+import { useCart } from '../../context/CartContext';
 import { useCurrency } from '../../context/CurrencyContext';
 import { useTranslation } from 'react-i18next';
 import * as api from '../../api/api';
@@ -16,6 +17,8 @@ function QuickAddModal({ product, onClose }) {
   const [isAdding, setIsAdding] = useState(false);
   const navigate = useNavigate();
   const [isWishlisting, setIsWishlisting] = useState(false);
+
+  const { refreshCart } = useCart();
 
   const { wishlistedIds, add, remove } = useWishlist();
   const wishlisted = product ? wishlistedIds.has(product._id) : false;
@@ -107,6 +110,7 @@ function QuickAddModal({ product, onClose }) {
     const toastId = toast.loading(t('productSingle.actions.adding'));
     try {
       await api.addToCart(product._id, selectedVariant.size, quantity);
+      await refreshCart();
       toast.success(t('productSingle.actions.addedToCart'), { id: toastId });
     } catch (err) {
       console.error('Failed to add to cart:', err);

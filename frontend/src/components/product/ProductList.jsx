@@ -33,23 +33,33 @@ function ProductList({ originalProducts = [] }) {
   };
 
   const setPage = (page) => {
-    setSearchParams({ ...Object.fromEntries(searchParams), page });
+    setSearchParams((prevParams) => {
+      const nextParams = new URLSearchParams(prevParams);
+      nextParams.set('page', String(page));
+      return nextParams;
+    });
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   const handleUpdateFilter = (key, value) => {
-    setPage(1);
     updateFilter(key, value);
+    if (currentPage !== 1) {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
   };
 
   const handleUpdateFilters = (values) => {
-    setPage(1);
     updateFilters(values);
+    if (currentPage !== 1) {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
   };
 
   const handleResetFilters = () => {
-    setPage(1);
     resetFilters();
+    if (currentPage !== 1) {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
   };
 
   const paginatedProducts = useMemo(() => {

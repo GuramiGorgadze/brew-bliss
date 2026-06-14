@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
-import { useTranslation } from 'react-i18next';
-import { PageTitle, InstagramCarousel, ImageMagnifier } from '../components';
+import React, { useState, useEffect, useRef } from 'react';
+import { useTranslation, Trans } from 'react-i18next';
+import { PageTitle, InstagramCarousel, ImageMagnifier, FeaturedCarousel } from '../components';
 import { useLoader } from '../context/LoaderContext';
 import { useWishlist } from '../context/WishlistContext';
 import { useParams } from 'react-router-dom';
@@ -26,6 +26,26 @@ function ProductSingle() {
   const { useDataLoader } = useLoader();
   const { id } = useParams();
   const [isWishlisting, setIsWishlisting] = useState(false);
+  const [showDocOptions, setShowDocOptions] = useState(false);
+  const docPopoverRef = useRef(null);
+
+  useEffect(() => {
+    if (!showDocOptions) return;
+    const handleClickOutside = (e) => {
+      if (docPopoverRef.current && !docPopoverRef.current.contains(e.target)) {
+        setShowDocOptions(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, [showDocOptions]);
+  const [isDocVisible, setIsDocVisible] = useState(false);
+
+  const [showReviewForm, setShowReviewForm] = useState(false);
+
+  const [newReview, setNewReview] = useState({ rating: 0, comment: '' });
+  const [hoverRating, setHoverRating] = useState(0);
+  const [isSubmittingReview, setIsSubmittingReview] = useState(false);
 
   const localize = (field, lang) => field?.[lang] ?? field?.en ?? '';
 
@@ -36,6 +56,51 @@ function ProductSingle() {
   const [cartStatus, setCartStatus] = useState('');
   const { t, i18n } = useTranslation();
   const lang = i18n.language;
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrolled = window.scrollY;
+      const nearBottom =
+        window.innerHeight + scrolled >= document.documentElement.scrollHeight - 100;
+      setIsDocVisible(scrolled > 500 && !nearBottom);
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const handleSubmitReview = async () => {
+    if (isSubmittingReview) return;
+    if (!newReview.rating || !newReview.comment.trim()) {
+      toast.error(t('productSingle.reviewForm.validationError'));
+      return;
+    }
+    setIsSubmittingReview(true);
+    const toastId = toast.loading(t('productSingle.reviewForm.submitting'));
+    try {
+      const data = await useDataLoader(() =>
+        api.addReview(singleProduct._id, {
+          rating: newReview.rating,
+          comment: newReview.comment.trim(),
+        })
+      );
+      if (data?.data) {
+        setSingleProduct((prev) => ({
+          ...prev,
+          reviews: [...prev.reviews, data.data],
+        }));
+        setNewReview({ rating: 0, comment: '' });
+        toast.success(t('productSingle.reviewForm.success'), { id: toastId });
+      } else if (data?.err) {
+        throw new Error(data.err);
+      }
+    } catch (err) {
+      console.error('Failed to submit review:', err);
+      toast.error(t('productSingle.reviewForm.error'), { id: toastId });
+    } finally {
+      setIsSubmittingReview(false);
+    }
+  };
 
   const { formatPrice, activeCurrency } = useCurrency();
   const navigate = useNavigate();
@@ -107,6 +172,14 @@ function ProductSingle() {
     const fmt = (date) =>
       date.toLocaleDateString(i18n.language, { month: 'short', day: '2-digit' });
     return `${fmt(start)} - ${fmt(end)}`;
+  };
+
+  const formatReviewDate = (dateString) => {
+    return new Date(dateString).toLocaleDateString(i18n.language, {
+      year: 'numeric',
+      month: 'short',
+      day: '2-digit',
+    });
   };
 
   const handleAddToCart = async () => {
@@ -379,6 +452,192 @@ function ProductSingle() {
           </div>
         </div>
       </div>
+
+      <div className={clsx('product-page__doc', { 'product-page__doc--visible': isDocVisible })}>
+        <div className="left">
+          <img
+            src={singleProduct?.image}
+            alt=""
+          />
+          <div className="left__info">
+            <p>{title}</p>
+            <div className="price">{formatPrice(basePrice)}</div>
+          </div>
+        </div>
+
+        <div className="right">
+          <div
+            className="doc-popover-wrapper"
+            ref={docPopoverRef}
+          >
+            {showDocOptions && (
+              <div className="doc-popover">
+                <div className="product-page__size">
+                  <h5 className="product-page__size-heading">
+                    {t('productSingle.bottleSize')}{' '}
+                    <span className="product-page__size-value">{selectedVariant?.size ?? '—'}</span>
+                  </h5>
+                  <div className="product-page__size-options">
+                    {singleProduct?.variants.map((variant) => (
+                      <button
+                        key={variant.size}
+                        className={clsx('product-page__size-btn', {
+                          'product-page__size-btn--active': selectedVariant?.size === variant.size,
+                          'product-page__size-btn--disabled': !variant.available,
+                        })}
+                        onClick={() => variant.available && setSelectedVariant(variant)}
+                      >
+                        {variant.size}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            )}
+            <i
+              className="bi bi-sliders2"
+              onClick={() => setShowDocOptions((prev) => !prev)}
+            />
+          </div>
+
+          <div className="product-page__quantity-control doc-control">
+            <button
+              className="product-page__quantity-btn"
+              onClick={() => setQuantity((q) => Math.max(1, q - 1))}
+            >
+              −
+            </button>
+            <span className="product-page__quantity-value">{quantity}</span>
+            <button
+              className="product-page__quantity-btn"
+              onClick={() => setQuantity((q) => q + 1)}
+            >
+              +
+            </button>
+          </div>
+
+          {singleProduct?.available && (
+            <div>
+              <button
+                className="product-page__btn product-page__btn--primary"
+                onClick={handleAddToCart}
+                disabled={isAdding}
+              >
+                {t('productSingle.actions.addToCart')}
+              </button>
+            </div>
+          )}
+        </div>
+      </div>
+
+      <div className="product-page__user-reviews">
+        <h2 className="title">Reviews:</h2>
+
+        <button
+          className="review-form__toggle"
+          onClick={() => setShowReviewForm((prev) => !prev)}
+        >
+          {t('productSingle.reviewForm.writeReview')}
+          <i className={clsx('bi bi-chevron-down', showReviewForm ? 'rotate' : '')} />
+        </button>
+
+        <div className={clsx('review-form', { 'review-form--open': showReviewForm })}>
+          <div className="review-form__inner">
+            <div className="review-form__stars">
+              {Array.from({ length: 5 }, (_, i) => {
+                const starValue = i + 1;
+                const filled = (hoverRating || newReview.rating) >= starValue;
+                return (
+                  <i
+                    key={i}
+                    className={clsx('bi', filled ? 'bi-star-fill' : 'bi-star', 'review-form__star')}
+                    onClick={() => setNewReview((prev) => ({ ...prev, rating: starValue }))}
+                    onMouseEnter={() => setHoverRating(starValue)}
+                    onMouseLeave={() => setHoverRating(0)}
+                  />
+                );
+              })}
+            </div>
+
+            <textarea
+              className="review-form__textarea"
+              placeholder={t('productSingle.reviewForm.placeholder')}
+              value={newReview.comment}
+              onChange={(e) => setNewReview((prev) => ({ ...prev, comment: e.target.value }))}
+            />
+
+            <div className="review-form__info">
+              <Trans
+                i18nKey="productSingle.reviewForm.dataInfo"
+                components={{
+                  terms: (
+                    <span
+                      className="hover"
+                      onClick={() => {}}
+                    />
+                  ),
+                  privacy: (
+                    <span
+                      className="hover"
+                      onClick={() => {}}
+                    />
+                  ),
+                  content: (
+                    <span
+                      className="hover"
+                      onClick={() => {}}
+                    />
+                  ),
+                }}
+              />
+            </div>
+
+            <button
+              className="review-form__btn"
+              onClick={handleSubmitReview}
+              disabled={isSubmittingReview}
+            >
+              {t('productSingle.reviewForm.submit')}
+            </button>
+          </div>
+        </div>
+
+        <div className="product-page__divider"></div>
+
+        {singleProduct?.reviews.map((review) => (
+          <div
+            className="review"
+            key={review._id ?? review.reviewer}
+          >
+            <p className="review__rating">
+              <div className="review__rating--stars">
+                {Array.from({ length: 5 }, (_, i) => (
+                  <i
+                    key={i}
+                    className={clsx('bi', {
+                      'bi-star-fill': i < Math.floor(review?.rating),
+                      'bi-star-half': i === Math.floor(review?.rating) && review?.rating % 1 >= 0.5,
+                      'bi-star':
+                        i >= Math.floor(review?.rating) &&
+                        !(i === Math.floor(review?.rating) && review?.rating % 1 >= 0.5),
+                    })}
+                  />
+                ))}
+              </div>
+              <p className="review__rating--date">{formatReviewDate(review.createdAt)}</p>
+            </p>
+
+            <div className="review__user">
+              <i className="bi bi-person review__user--icon"></i>
+              <h6 className="review__user--name">{review.reviewer}</h6>
+            </div>
+
+            <p className="review__comment">{review.comment}</p>
+            <div className="product-page__divider"></div>
+          </div>
+        ))}
+      </div>
+      <FeaturedCarousel isOnHome={false} />
       <InstagramCarousel />
     </div>
   );

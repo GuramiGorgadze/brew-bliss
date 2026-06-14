@@ -10,17 +10,18 @@ import Instagram from '../assets/icons/instagram-icon.svg';
 import TikTok from '../assets/icons/tiktok-icon.svg';
 import wing1 from '../assets/wing1.png';
 import wing2 from '../assets/wing2.png';
+import toast from 'react-hot-toast';
 
 function Contact() {
   const { useFakeLoader } = useLoader();
   const { userData } = useUserData();
   const { t, i18n } = useTranslation();
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
   const [message, setMessage] = useState('');
-  const [status, setStatus] = useState('normal');
 
   useEffect(() => {
     useFakeLoader();
@@ -40,25 +41,23 @@ function Contact() {
   }, [userData]);
 
   const handleSubmit = async () => {
-    if (!message.trim()) return;
-    setStatus('loading');
+    if (isSubmitting) return;
+    if (!message.trim()) {
+      toast.error(t('contact.form.toast.validationError'));
+      return;
+    }
+    setIsSubmitting(true);
+    const toastId = toast.loading(t('contact.form.toast.loading'), { duration: 5000 });
     try {
       await api.contact({ email, message });
-      setStatus('success');
+      toast.success(t('contact.form.toast.success'), { id: toastId });
       setMessage('');
-      setTimeout(() => setStatus('normal'), 4000);
     } catch (err) {
-      setStatus('error');
-      setTimeout(() => setStatus('normal'), 4000);
+      toast.error(t('contact.form.toast.error'), { id: toastId });
+    } finally {
+      setIsSubmitting(false);
     }
   };
-
-  const buttonLabel = {
-    normal: t('contact.form.btn.normal'),
-    loading: t('contact.form.btn.loading'),
-    success: t('contact.form.btn.success'),
-    error: t('contact.form.btn.error'),
-  }[status];
 
   return (
     <div className="contact">
@@ -220,29 +219,11 @@ function Contact() {
           />
 
           <button
-            className={`get-in-touch__left--btn ${status}`}
+            className="get-in-touch__left--btn"
             onClick={handleSubmit}
-            disabled={status === 'loading' || status === 'success'}
+            disabled={isSubmitting}
           >
-            {status === 'loading' && (
-              <i
-                className="bi bi-arrow-repeat"
-                style={{ marginRight: '8px' }}
-              ></i>
-            )}
-            {status === 'success' && (
-              <i
-                className="bi bi-check-lg"
-                style={{ marginRight: '8px' }}
-              ></i>
-            )}
-            {status === 'error' && (
-              <i
-                className="bi bi-x-lg"
-                style={{ marginRight: '8px' }}
-              ></i>
-            )}
-            {buttonLabel}
+            {t('contact.form.btn')}
           </button>
         </div>
 

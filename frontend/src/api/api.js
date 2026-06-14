@@ -225,3 +225,19 @@ export const resetPassword = async (token, password) => {
 export const googleAuth = () => {
   window.location.href = 'http://localhost:3000/api/users/auth/google';
 };
+
+export const addReview = async (productId, reviewData) => {
+  try {
+    const response = await axios.post(
+      `http://localhost:3000/api/products/${productId}/reviews`,
+      reviewData,
+      {
+        headers: { 'Content-Type': 'application/json' },
+        withCredentials: true,
+      }
+    );
+    return response.data;
+  } catch (err) {
+    throw new Error(err.response?.data?.err || 'Error submitting review');
+  }
+};

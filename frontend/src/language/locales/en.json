@@ -61,11 +61,12 @@
       "title": "Sign Up To Newsletter",
       "description": "Sign up for exclusive updates, new arrivals and More.",
       "placeholder": "Your email address...",
-      "button": {
-        "normal": "Subscribe",
+      "button": "Subscribe",
+      "toast": {
         "loading": "Subscribing...",
-        "success": "Subscribed!",
-        "error": "Failed. Try Again"
+        "success": "Subscribed successfully!",
+        "error": "Subscription failed. Please try again.",
+        "validationError": "Please enter an email address"
       }
     },
     "socials": {
@@ -125,6 +126,7 @@
       "phone": "Phone",
       "city": "City",
       "zip": "Zip",
+      "addressName": "address Name",
       "address": "Address",
       "address2": "Address 2"
     }
@@ -146,6 +148,10 @@
       "saving": "Saving...",
       "editAddress": "Edit Address",
       "resetAddress": "Reset Address"
+    },
+    "toasts": {
+      "success": "Address updated successfully",
+      "error": "Failed to update address"
     }
   },
   "cart": {
@@ -213,11 +219,12 @@
       "emailPlaceholder": "Email",
       "phonePlaceholder": "Phone",
       "messagePlaceholder": "Write your message...",
-      "btn": {
-        "normal": "Send Message",
-        "loading": "Sending...",
-        "success": "Message Sent!",
-        "error": "Failed. Try Again"
+      "btn": "Send Message",
+      "toast": {
+        "loading": "Sending message...",
+        "success": "Message sent successfully!",
+        "error": "Failed to send message. Please try again.",
+        "validationError": "Please enter a message"
       }
     }
   },
@@ -335,6 +342,16 @@
     "delivery": {
       "label": "Estimated Delivery:",
       "returnPolicy": "Return within 90 days of purchase. Taxes are non-refundable."
+    },
+    "reviewForm": {
+      "writeReview": "Write a Review",
+      "placeholder": "Share your thoughts about this product...",
+      "submit": "Submit Review",
+      "submitting": "Submitting your review...",
+      "success": "Review submitted successfully",
+      "error": "Failed to submit review",
+      "validationError": "Please add a rating and a comment",
+      "dataInfo": "How we use your data: We'll only contact you about the review you left, and only if necessary. By submitting your review, you agree to Judge.me's <terms>Terms of Service</terms>, <privacy>Privacy Policy</privacy> and <content>Content Policy</content>"
     }
   },
   "landingBanner": {

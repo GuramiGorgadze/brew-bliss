@@ -61,11 +61,12 @@
       "title": "Inscrivez-vous à la newsletter",
       "description": "Inscrivez-vous pour recevoir des mises à jour exclusives, des nouveautés et plus encore.",
       "placeholder": "Votre adresse e-mail...",
-      "button": {
-        "normal": "S'abonner",
-        "loading": "Inscription...",
-        "success": "Abonné !",
-        "error": "Échec. Réessayez"
+      "button": "S'abonner",
+      "toast": {
+        "loading": "Abonnement en cours...",
+        "success": "Abonnement réussi !",
+        "error": "Échec de l'abonnement. Veuillez réessayer.",
+        "validationError": "Veuillez saisir une adresse e-mail"
       }
     },
     "socials": {
@@ -125,6 +126,7 @@
       "phone": "Téléphone",
       "city": "Ville",
       "zip": "Code postal",
+      "addressName": "adresse Nom",
       "address": "Adresse",
       "address2": "Adresse 2"
     }
@@ -146,6 +148,10 @@
       "saving": "Enregistrement...",
       "editAddress": "Modifier l'adresse",
       "resetAddress": "Réinitialiser l'adresse"
+    },
+    "toasts": {
+      "success": "Adresse mise à jour avec succès",
+      "error": "Échec de la mise à jour de l'adresse"
     }
   },
   "cart": {
@@ -213,11 +219,12 @@
       "emailPlaceholder": "E-mail",
       "phonePlaceholder": "Téléphone",
       "messagePlaceholder": "Écrivez votre message...",
-      "btn": {
-        "normal": "Envoyer le message",
-        "loading": "Envoi...",
-        "success": "Message envoyé !",
-        "error": "Échec. Réessayez"
+      "btn": "Envoyer le message",
+      "toast": {
+        "loading": "Envoi du message...",
+        "success": "Message envoyé avec succès !",
+        "error": "Échec de l'envoi du message. Veuillez réessayer.",
+        "validationError": "Veuillez saisir un message"
       }
     }
   },
@@ -335,6 +342,16 @@
     "delivery": {
       "label": "Livraison estimée :",
       "returnPolicy": "Retour possible dans les 90 jours suivant l'achat. Les taxes ne sont pas remboursables."
+    },
+    "reviewForm": {
+      "writeReview": "Écrire un avis",
+      "placeholder": "Partagez votre avis sur ce produit...",
+      "submit": "Soumettre l'avis",
+      "submitting": "Envoi de votre avis...",
+      "success": "Avis envoyé avec succès",
+      "error": "Échec de l'envoi de l'avis",
+      "validationError": "Veuillez ajouter une note et un commentaire",
+      "dataInfo": "Comment nous utilisons vos données : Nous ne vous contacterons qu'à propos de l'avis que vous avez laissé, et seulement si nécessaire. En soumettant votre avis, vous acceptez les <terms>Conditions d'utilisation</terms>, la <privacy>Politique de confidentialité</privacy> et la <content>Politique de contenu</content> de Judge.me"
     }
   },
   "landingBanner": {

@@ -61,11 +61,12 @@
       "title": "Abonnieren Sie unseren Newsletter",
       "description": "Melden Sie sich an, um exklusive Updates, Neuheiten und mehr zu erhalten.",
       "placeholder": "Ihre E-Mail-Adresse...",
-      "button": {
-        "normal": "Abonnieren",
-        "loading": "Abonnieren...",
-        "success": "Abonniert!",
-        "error": "Fehlgeschlagen. Erneut versuchen"
+      "button": "Abonnieren",
+      "toast": {
+        "loading": "Wird abonniert...",
+        "success": "Erfolgreich abonniert!",
+        "error": "Abonnement fehlgeschlagen. Bitte versuchen Sie es erneut.",
+        "validationError": "Bitte geben Sie eine E-Mail-Adresse ein"
       }
     },
     "socials": {
@@ -125,6 +126,7 @@
       "phone": "Telefon",
       "city": "Stadt",
       "zip": "Postleitzahl",
+      "addressName": "Adresse Name",
       "address": "Adresse",
       "address2": "Adresse 2"
     }
@@ -146,6 +148,10 @@
       "saving": "Wird gespeichert...",
       "editAddress": "Adresse bearbeiten",
       "resetAddress": "Adresse zurücksetzen"
+    },
+    "toasts": {
+      "success": "Adresse erfolgreich aktualisiert",
+      "error": "Adresse konnte nicht aktualisiert werden"
     }
   },
   "cart": {
@@ -213,11 +219,12 @@
       "emailPlaceholder": "E-Mail",
       "phonePlaceholder": "Telefon",
       "messagePlaceholder": "Schreiben Sie Ihre Nachricht...",
-      "btn": {
-        "normal": "Nachricht senden",
-        "loading": "Wird gesendet...",
-        "success": "Nachricht gesendet!",
-        "error": "Fehlgeschlagen. Erneut versuchen"
+      "btn": "Nachricht senden",
+      "toast": {
+        "loading": "Nachricht wird gesendet...",
+        "success": "Nachricht erfolgreich gesendet!",
+        "error": "Nachricht konnte nicht gesendet werden. Bitte versuchen Sie es erneut.",
+        "validationError": "Bitte geben Sie eine Nachricht ein"
       }
     }
   },
@@ -335,6 +342,16 @@
     "delivery": {
       "label": "Voraussichtliche Lieferung:",
       "returnPolicy": "Rückgabe innerhalb von 90 Tagen nach Kauf möglich. Steuern sind nicht erstattungsfähig."
+    },
+    "reviewForm": {
+      "writeReview": "Bewertung schreiben",
+      "placeholder": "Teilen Sie Ihre Meinung zu diesem Produkt...",
+      "submit": "Bewertung abschicken",
+      "submitting": "Bewertung wird gesendet...",
+      "success": "Bewertung erfolgreich gesendet",
+      "error": "Bewertung konnte nicht gesendet werden",
+      "validationError": "Bitte fügen Sie eine Bewertung und einen Kommentar hinzu",
+      "dataInfo": "Wie wir Ihre Daten verwenden: Wir kontaktieren Sie nur bezüglich der von Ihnen abgegebenen Bewertung, und nur falls nötig. Mit dem Absenden Ihrer Bewertung stimmen Sie den <terms>Nutzungsbedingungen</terms>, der <privacy>Datenschutzrichtlinie</privacy> und der <content>Inhaltsrichtlinie</content> von Judge.me zu"
     }
   },
   "landingBanner": {

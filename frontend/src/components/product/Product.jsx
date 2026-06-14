@@ -100,7 +100,7 @@ function Product({ product }) {
                 />
               ))}
               ({product.reviews?.length || 0}{' '}
-              {product.reviews?.length === 1 ? t('productCard.review') : t('productCard.reviews')}
+              {product.reviews?.length === 1 ? t('productCard.review') : t('productCard.reviews')})
             </p>
           </div>
           <div className="product-card__price">

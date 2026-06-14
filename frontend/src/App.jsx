@@ -20,6 +20,7 @@ import {
   Cart,
   ResetPassword,
   Wishlist,
+  Checkout,
 } from './routes';
 
 import useDocumentTitle from './hooks/useDocumentTitle';
@@ -140,6 +141,15 @@ function App() {
             element={
               <ProtectedRoute>
                 <Wishlist />
+              </ProtectedRoute>
+            }
+          />
+
+          <Route
+            path="/checkout"
+            element={
+              <ProtectedRoute>
+                <Checkout />
               </ProtectedRoute>
             }
           />

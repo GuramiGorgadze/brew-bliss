@@ -20,7 +20,12 @@ function useProductFilter(products = []) {
   }, [searchParams]);
 
   const resetFilters = () => {
-    setSearchParams({});
+    setSearchParams((prevParams) => {
+      const nextParams = new URLSearchParams();
+      const sort = prevParams.get('sort');
+      if (sort) nextParams.set('sort', sort);
+      return nextParams;
+    });
   };
 
   const updateFilter = (key, value) => {
@@ -30,6 +35,9 @@ function useProductFilter(products = []) {
         nextParams.delete(key);
       } else {
         nextParams.set(key, String(value));
+      }
+      if (key !== 'page') {
+        nextParams.set('page', '1');
       }
       return nextParams;
     });
@@ -45,6 +53,7 @@ function useProductFilter(products = []) {
           nextParams.set(key, String(value));
         }
       });
+      nextParams.set('page', '1');
       return nextParams;
     });
   };

@@ -6,6 +6,7 @@ import { useForm } from 'react-hook-form';
 import { updateAddress } from '../api/api';
 import { Link } from 'react-router-dom';
 import { useLoader } from '../context/LoaderContext';
+import toast from 'react-hot-toast';
 
 function Address() {
   const { userData, login } = useUserData();
@@ -27,11 +28,14 @@ function Address() {
   }, [userData]);
 
   const onSubmit = async (formData) => {
+    const toastId = toast.loading(t('address.buttons.saving'));
     try {
       const data = await updateAddress(formData);
       login(data.data);
+      toast.success(t('address.toasts.success'), { id: toastId });
     } catch (error) {
       console.log(error);
+      toast.error(t('address.toasts.error'), { id: toastId });
     }
   };
 
@@ -189,8 +193,7 @@ function Address() {
             form="address-form"
             disabled={isSubmitting}
           >
-            <i className="bi bi-pencil"></i>{' '}
-            {isSubmitting ? t('address.buttons.saving') : t('address.buttons.editAddress')}
+            <i className="bi bi-pencil"></i> {t('address.buttons.editAddress')}
           </button>
           <button
             className="address__btn address__btn--reset"

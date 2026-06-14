@@ -5,6 +5,8 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  width: 100%;
+  box-sizing: border-box;
 
   &__inner {
     display: flex;
@@ -12,7 +14,9 @@
     margin-top: calc(100px * var(--app-scale));
     align-items: flex-start;
     margin-bottom: 50px;
-    padding: 0 30px;
+    padding: 0 100px;
+    width: 100%;
+    box-sizing: border-box;
   }
 
   &__gallery {
@@ -51,7 +55,6 @@
   }
 
   &__details {
-    max-width: calc(520px * var(--app-scale));
     flex: 1;
   }
 
@@ -369,12 +372,339 @@
       height: calc(17px * var(--app-scale));
     }
   }
+
+  &__doc {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0;
+    align-items: center;
+    background-color: $color-white;
+    z-index: 30;
+    box-shadow: calc(10px * var(--app-scale)) calc(10px * var(--app-scale))
+      calc(60px * var(--app-scale)) calc(-29px * var(--app-scale)) rgba(0, 0, 0, 0.45);
+    -webkit-box-shadow: calc(10px * var(--app-scale)) calc(10px * var(--app-scale))
+      calc(60px * var(--app-scale)) calc(-29px * var(--app-scale)) rgba(0, 0, 0, 0.45);
+    -moz-box-shadow: calc(10px * var(--app-scale)) calc(10px * var(--app-scale))
+      calc(60px * var(--app-scale)) calc(-29px * var(--app-scale)) rgba(0, 0, 0, 0.45);
+
+    // Hidden by default — slides up into view on scroll
+    transform: translateY(100%);
+    opacity: 0;
+    transition:
+      transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+      opacity 0.35s ease;
+
+    &--visible {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    .left {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-left: 20px;
+      gap: 8px;
+      img {
+        height: 60px;
+        border: 1px solid $border-default;
+        border-radius: 3px;
+        padding: 2px;
+      }
+
+      &__info {
+        p {
+          color: $text-primary;
+        }
+
+        .price {
+          color: $text-price-sale;
+        }
+      }
+    }
+
+    .right {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-right: 20px;
+      gap: 20px;
+
+      .bi {
+        cursor: pointer;
+        font-size: 20px;
+      }
+
+      .doc-control {
+        width: 100px;
+      }
+
+      button {
+        width: 250px;
+      }
+    }
+
+    .doc-popover-wrapper {
+      position: relative;
+
+      .bi {
+        cursor: pointer;
+        font-size: 20px;
+      }
+    }
+
+    // Keyframe: slides up from slightly below and fades in
+    @keyframes popoverIn {
+      from {
+        opacity: 0;
+        transform: translateX(-50%) translateY(8px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+      }
+    }
+
+    .doc-popover {
+      position: absolute;
+      bottom: calc(100% + 25px);
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: $color-white;
+      border-radius: 8px;
+      padding: 20px;
+      z-index: 40;
+      box-shadow: calc(10px * var(--app-scale)) calc(10px * var(--app-scale))
+        calc(60px * var(--app-scale)) calc(-29px * var(--app-scale)) rgba(0, 0, 0, 0.45);
+      -webkit-box-shadow: calc(10px * var(--app-scale)) calc(10px * var(--app-scale))
+        calc(60px * var(--app-scale)) calc(-29px * var(--app-scale)) rgba(0, 0, 0, 0.45);
+      -moz-box-shadow: calc(10px * var(--app-scale)) calc(10px * var(--app-scale))
+        calc(60px * var(--app-scale)) calc(-29px * var(--app-scale)) rgba(0, 0, 0, 0.45);
+
+      // Animation applied here
+      animation: popoverIn 0.22s cubic-bezier(0.22, 1, 0.36, 1) both;
+
+      .product-page__size-options {
+        flex-wrap: wrap;
+      }
+    }
+  }
+
+  &__user-reviews {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin: 50px 0;
+    padding: 0 100px;
+    box-sizing: border-box;
+    gap: 20px;
+
+    .review-form {
+      display: grid;
+      grid-template-rows: 0fr;
+      overflow: hidden;
+      transition: 0.5s ease;
+
+      &--open {
+        grid-template-rows: 1fr;
+      }
+
+      &__inner {
+        min-height: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 20px;
+      }
+
+      &__toggle {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+        background: transparent;
+        border: none;
+        border-bottom: 1px solid $border-checkbox;
+        padding: 15px 0;
+        font-size: 22px;
+        color: $text-primary;
+        cursor: pointer;
+
+        .bi {
+          transition: transform 0.3s ease;
+          font-size: 18px;
+        }
+
+        .rotate {
+          transform: rotate(180deg);
+        }
+      }
+      &__label {
+        font-size: 22px;
+      }
+
+      &__stars {
+        color: $border-dark;
+        display: flex;
+        gap: 5px;
+
+        .bi {
+          transition: 0.5s ease;
+          font-size: 30px;
+        }
+
+        .bi:hover {
+          color: $color-star-hover;
+        }
+      }
+
+      &__textarea {
+        width: 50%;
+        min-height: 100px;
+        max-height: 200px;
+        resize: vertical;
+        border: 1px solid $border-subtle;
+        padding: 10px;
+        box-sizing: border-box;
+        text-transform: none;
+      }
+
+      &__info {
+        width: 50%;
+        text-align: center;
+        color: $text-subtle;
+
+        .hover {
+          color: $text-primary;
+          transition: 0.5s ease;
+
+          &:hover {
+            color: $color-accent;
+            cursor: pointer;
+          }
+        }
+      }
+
+      &__btn {
+        padding: 10px 20px;
+        font-size: 14px;
+        font-weight: 800;
+        background-color: $color-accent;
+        color: $color-white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: 0.5s ease;
+        margin-bottom: 50px;
+
+        &:hover {
+          background-color: $color-accent-hover;
+        }
+      }
+    }
+
+    .title {
+      font-size: 20px;
+      font-weight: 400;
+      margin-bottom: 40px;
+    }
+
+    .review {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+
+      &__rating {
+        color: $border-dark;
+        display: flex;
+        gap: 2px;
+        font-size: 18px;
+        justify-content: space-between;
+        align-items: center;
+
+        &--stars {
+          display: flex;
+          gap: 2px;
+        }
+
+        &--date {
+          font-size: 14px;
+          color: $text-subtle;
+        }
+      }
+
+      &__user {
+        display: flex;
+        gap: 5px;
+
+        &--icon {
+          background-color: $bg-user;
+          color: $color-accent;
+          font-size: 30px;
+          border-radius: 3px;
+          height: 40px;
+          width: 40px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          font-weight: 900;
+        }
+
+        &--name {
+          font-size: 16px;
+          font-weight: 400;
+          color: $text-primary;
+        }
+      }
+
+      &__comment {
+        color: $text-comment;
+      }
+    }
+  }
+
+  .featured-carousel {
+    width: 100%;
+    box-sizing: border-box;
+  }
 }
 
-@media (max-width: 1024px) {
+@media (max-width: 1200px) {
   .product-page {
     &__gallery {
       width: 50%;
+    }
+
+    &__user-reviews {
+      .review-form {
+        &__textarea {
+          width: 90%;
+        }
+
+        &__info {
+          width: 90%;
+        }
+      }
+    }
+
+    &__inner {
+      padding: 0 30px;
+    }
+
+    &__user-reviews {
+      padding: 0 30px;
+    }
+  }
+}
+
+@media (max-width:1024px) {
+  .product-page {
+    &__doc {
+      display: none;
     }
   }
 }
@@ -383,6 +713,18 @@
   .product-page {
     &__inner {
       flex-direction: column;
+    }
+
+    &__user-reviews {
+      .review-form {
+        &__textarea {
+          width: 100%;
+        }
+
+        &__info {
+          width: 100%;
+        }
+      }
     }
 
     &__gallery {

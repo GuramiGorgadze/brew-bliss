@@ -315,7 +315,18 @@ function Cart() {
               </p>
             </div>
 
-            <button className="cart__checkout-btn">{t('cart.checkoutBtn')}</button>
+            <button
+              onClick={() =>
+                navigate('/checkout', {
+                  state: {
+                    note,
+                  },
+                })
+              }
+              className="cart__checkout-btn"
+            >
+              {t('cart.checkoutBtn')}
+            </button>
           </div>
         </div>
       </div>

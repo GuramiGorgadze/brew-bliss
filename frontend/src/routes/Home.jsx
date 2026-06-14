@@ -18,7 +18,7 @@ function home() {
   return (
     <>
       <LandingBanner />
-      <FeaturedCarousel />
+      <FeaturedCarousel isOnHome={true} />
       <PromoGrid />
       <ArrivalsCarousel />
       <StoreFeatures />

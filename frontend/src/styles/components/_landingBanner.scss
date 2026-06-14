@@ -9,6 +9,7 @@
   padding: 20px calc(100px * var(--app-scale));
   color: $text-on-dark;
   padding-top: calc(50px * var(--app-scale));
+  background-attachment: fixed;
 
   &__left {
     display: flex;

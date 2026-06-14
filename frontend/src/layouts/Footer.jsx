@@ -13,13 +13,14 @@ import ApplePay from '../assets/payments/apple-pay.svg';
 import Mastercard from '../assets/payments/mastercard.svg';
 import PayPal from '../assets/payments/paypal.svg';
 import Visa from '../assets/payments/visa.svg';
+import toast from 'react-hot-toast';
 
 function Footer() {
   const { t, i18n } = useTranslation();
   const { userData } = useUserData();
   const [email, setEmail] = useState('');
   const [openSection, setOpenSection] = useState(null);
-  const [subStatus, setSubStatus] = useState('normal');
+  const [isSubscribing, setIsSubscribing] = useState(false);
 
   useEffect(() => {
     if (userData?.email) {
@@ -32,24 +33,22 @@ function Footer() {
   };
 
   const handleSubscribe = async () => {
-    if (!email.trim()) return;
-    setSubStatus('loading');
+    if (isSubscribing) return;
+    if (!email.trim()) {
+      toast.error(t('footer.newsletter.toast.validationError'));
+      return;
+    }
+    setIsSubscribing(true);
+    const toastId = toast.loading(t('footer.newsletter.toast.loading'), { duration: 8000 });
     try {
       await api.newsletter(email);
-      setSubStatus('success');
-      setTimeout(() => setSubStatus('normal'), 4000);
+      toast.success(t('footer.newsletter.toast.success'), { id: toastId });
     } catch {
-      setSubStatus('error');
-      setTimeout(() => setSubStatus('normal'), 4000);
+      toast.error(t('footer.newsletter.toast.error'), { id: toastId });
+    } finally {
+      setIsSubscribing(false);
     }
   };
-
-  const subLabel = {
-    normal: t('footer.newsletter.button.normal'),
-    loading: t('footer.newsletter.button.loading'),
-    success: t('footer.newsletter.button.success'),
-    error: t('footer.newsletter.button.error'),
-  }[subStatus];
 
   return (
     <footer className="footer">
@@ -153,9 +152,9 @@ function Footer() {
             <button
               className="footer__newsletter-btn"
               onClick={handleSubscribe}
-              disabled={subStatus === 'loading' || subStatus === 'success'}
+              disabled={isSubscribing}
             >
-              {subLabel}
+              {t('footer.newsletter.button')}
             </button>
           </div>
           <h5 className="footer__newsletter-follow">{t('footer.socials.followUs')}</h5>
@@ -211,7 +210,6 @@ function Footer() {
           </div>
         </div>
 
-        {/* Mobile Accordions */}
         <div className="footer__mobile-accordion">
           <button
             className="footer__mobile-header"
@@ -322,9 +320,9 @@ function Footer() {
               <button
                 className="footer__newsletter-btn"
                 onClick={handleSubscribe}
-                disabled={subStatus === 'loading' || subStatus === 'success'}
+                disabled={isSubscribing}
               >
-                {subLabel}
+                {t('footer.newsletter.button')}
               </button>
             </div>
             <h5 className="footer__newsletter-follow">{t('footer.socials.followUs')}</h5>

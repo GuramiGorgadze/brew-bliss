@@ -63,7 +63,7 @@ export const loginUser = async (req, res) => {
 
     if (!user.password) {
       return res.status(400).json({
-        message: "Continue with Google to sign in for this email",
+        message: "Continue with Google to sign in with this email",
       });
     }
 
@@ -326,7 +326,7 @@ export const forgotPasswordUser = async (req, res) => {
         .status(400)
         .json({
           message:
-            "Continue with Google to sign in for this email",
+            "Continue with Google to sign in with this email",
         });
     }
 
