@@ -1,5 +1,6 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
+import { Link } from 'react-router-dom';
 import wing1 from '../../assets/wing1.png';
 import wing2 from '../../assets/wing2.png';
 import landingBeer from '../../assets/landing-beer.webp';
@@ -32,12 +33,16 @@ function LandingBanner() {
         <p className="landing-banner__text">{t('landingBanner.text')}</p>
 
         <div className="landing-banner__actions">
-          <button className="landing-banner__btn landing-banner__btn--orange">
-            {t('landingBanner.shopSale')}
-          </button>
-          <button className="landing-banner__btn landing-banner__btn--grey">
-            {t('landingBanner.collections')}
-          </button>
+          <Link to="./products">
+            <button className="landing-banner__btn landing-banner__btn--orange">
+              {t('landingBanner.shopSale')}
+            </button>
+          </Link>
+          <Link to="./products">
+            <button className="landing-banner__btn landing-banner__btn--grey">
+              {t('landingBanner.collections')}
+            </button>
+          </Link>
         </div>
       </div>
 

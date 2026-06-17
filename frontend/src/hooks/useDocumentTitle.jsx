@@ -39,6 +39,9 @@ const useDocumentTitle = () => {
       case '/wishlist':
         document.title = 'Wishlist - Brew Bliss';
         break;
+      case '/checkout':
+        document.title = 'Checkout - Brew Bliss';
+        break;
       case '/account/address':
         document.title = 'Account Address - Brew Bliss';
         break;

@@ -31,6 +31,7 @@ function Cart() {
   const navigate = useNavigate();
   const { setCartCount } = useCart();
   const [removingId, setRemovingId] = useState(null);
+  const [termsAccepted, setTermsAccepted] = useState(false);
 
   const freeShippingNumber = 500;
 
@@ -309,6 +310,8 @@ function Cart() {
               <input
                 type="checkbox"
                 className="cart__terms--check"
+                checked={termsAccepted}
+                onChange={(e) => setTermsAccepted(e.target.checked)}
               />
               <p className="cart__terms--text">
                 {t('cart.terms.agree')} <span className="terms">{t('cart.terms.link')}</span>
@@ -324,6 +327,7 @@ function Cart() {
                 })
               }
               className="cart__checkout-btn"
+              disabled={!termsAccepted || cartItems.length === 0}
             >
               {t('cart.checkoutBtn')}
             </button>

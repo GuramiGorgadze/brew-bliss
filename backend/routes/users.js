@@ -19,6 +19,8 @@ import {
   getWishlist,
   addToWishlist,
   removeFromWishlist,
+  placeOrder,
+  getOrders
 } from "../controllers/users.js";
 import { authLimiter } from "../middlewares/security.js";
 
@@ -41,6 +43,8 @@ UsersRouter.post("/contact", contact);
 UsersRouter.post("/newsletter", newsletter);
 UsersRouter.post("/forgot", forgotPasswordUser);
 UsersRouter.post("/reset", resetPasswordUser);
+UsersRouter.post('/order', placeOrder);
+UsersRouter.get('/orders', getOrders);
 
 UsersRouter.get(
   "/auth/google",

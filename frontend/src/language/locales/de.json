@@ -10,6 +10,12 @@
     "profileIconAlt": "Profil-Icon",
     "cartIconAlt": "Warenkorb-Icon"
   },
+  "orderSuccess": {
+    "title": "Bestellung aufgegeben",
+    "heading": "Vielen Dank für Ihre Bestellung!",
+    "text": "Ihre Bestellung wurde erfolgreich aufgegeben. Wir werden uns in Kürze mit Ihnen in Verbindung setzen.",
+    "btn": "Weiter einkaufen"
+  },
   "drawer": {
     "home": "Startseite",
     "shop": "Shop",
@@ -55,7 +61,9 @@
       "ourTeam": "Unser Team",
       "contactUs": "Kontaktieren Sie uns",
       "returns": "Rücksendungen",
-      "faq": "FAQ"
+      "faq": "FAQ",
+      "cart": "Warenkorb",
+      "wishlist": "Wunschliste"
     },
     "newsletter": {
       "title": "Abonnieren Sie unseren Newsletter",
@@ -112,11 +120,12 @@
     "title": "KONTO",
     "welcome": "Willkommen",
     "nav": {
-      "dashboard": "Dashboard",
+      "dashboard": "DASHBOARD",
       "checkout": "ZUR KASSE",
       "editAddress": "ADRESSE BEARBEITEN",
       "viewWishlist": "WUNSCHLISTE ANZEIGEN",
-      "logout": "ABMELDEN"
+      "logout": "ABMELDEN",
+      "orders": "MES COMMANDES"
     },
     "details": {
       "title": "Kontodetails:",
@@ -129,6 +138,15 @@
       "addressName": "Adresse Name",
       "address": "Adresse",
       "address2": "Adresse 2"
+    },
+    "orders": {
+      "title": "Meine Bestellungen",
+      "empty": "Sie haben noch keine Bestellungen aufgegeben.",
+      "order": "Bestellung",
+      "total": "Gesamt",
+      "status": "Status",
+      "date": "Datum",
+      "items": "Artikel"
     }
   },
   "address": {
@@ -295,6 +313,32 @@
       "serverError": "Etwas ist schiefgelaufen"
     }
   },
+  "auth": {
+    "loginToWishlist": "Anmelden, um zur Wunschliste hinzuzufügen",
+    "loginToAddToCart": "Anmelden, um zum Warenkorb hinzuzufügen",
+    "loginToReview": "Anmelden, um eine Bewertung zu schreiben"
+  },
+  "checkout": {
+    "validation": {
+      "emailRequired": "E-Mail ist erforderlich",
+      "emailInvalid": "Ungültige E-Mail-Adresse",
+      "countryRequired": "Land ist erforderlich",
+      "lastNameRequired": "Nachname ist erforderlich",
+      "lastNameMax": "Nachname darf 30 Zeichen nicht überschreiten",
+      "firstNameMax": "Vorname darf 30 Zeichen nicht überschreiten",
+      "addressRequired": "Adresse ist erforderlich",
+      "cityRequired": "Stadt ist erforderlich",
+      "cardNumberRequired": "Kartennummer ist erforderlich",
+      "cardNumberInvalid": "Kartennummer muss 16 Ziffern haben",
+      "expirationDateRequired": "Ablaufdatum ist erforderlich",
+      "expirationDateInvalid": "Format MM/JJ verwenden",
+      "securityCodeRequired": "Sicherheitscode ist erforderlich",
+      "securityCodeInvalid": "Sicherheitscode muss 3 oder 4 Ziffern haben",
+      "nameOnCardRequired": "Name auf der Karte ist erforderlich"
+    },
+    "payBtn": "Jetzt bezahlen",
+    "processingBtn": "Wird verarbeitet..."
+  },
   "resetPassword": {
     "pageTitle": "Passwort zurücksetzen",
     "title": "Neues Passwort festlegen",
@@ -334,7 +378,7 @@
     "actions": {
       "adding": "Wird hinzugefügt...",
       "addToCart": "In den Warenkorb",
-      "buyNow": "Jetzt kaufen",
+      "checkoutNow": "Jetzt bestellen",
       "soldOut": "Ausverkauft",
       "addedToCart": "In den Warenkorb gelegt!",
       "addToCartError": "Fehler beim Hinzufügen zum Warenkorb"

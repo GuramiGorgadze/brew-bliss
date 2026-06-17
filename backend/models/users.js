@@ -45,6 +45,32 @@ const AddressSchema = new mongoose.Schema({
   },
 });
 
+const OrderItemSchema = new mongoose.Schema(
+  {
+    productId: { type: Number, ref: "Product", required: true },
+    title: { type: Object, default: {} },
+    variantSize: { type: String, required: true },
+    quantity: { type: Number, required: true, min: 1 },
+    price: { type: Number, required: true },
+  },
+  { _id: false },
+);
+
+const OrderSchema = new mongoose.Schema(
+  {
+    items: { type: [OrderItemSchema], required: true },
+    total: { type: Number, required: true },
+    note: { type: String, default: "" },
+    shippingAddress: { type: AddressSchema, required: true },
+    status: {
+      type: String,
+      enum: ["pending", "processing", "shipped", "delivered", "cancelled"],
+      default: "pending",
+    },
+  },
+  { timestamps: true },
+);
+
 const CartItemSchema = new mongoose.Schema(
   {
     productId: { type: Number, ref: "Product", required: true },
@@ -88,9 +114,9 @@ const UsersSchema = new mongoose.Schema(
     },
     password: {
       type: String,
-      required: false, 
+      required: false,
       minLength: 8,
-      default: null, 
+      default: null,
     },
     address: {
       type: AddressSchema,
@@ -98,6 +124,7 @@ const UsersSchema = new mongoose.Schema(
     },
     cart: { type: [CartItemSchema], default: [] },
     wishlist: { type: [wishlistItemSchema], default: [] },
+    orders: { type: [OrderSchema], default: [] },
   },
   { timestamps: true },
 );

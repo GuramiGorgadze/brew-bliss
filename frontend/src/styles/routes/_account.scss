@@ -1,4 +1,4 @@
-@use "../abstracts" as *;
+@use '../abstracts' as *;
 
 .account {
   display: flex;
@@ -156,6 +156,148 @@
   &__table-row:last-child &__table-data:last-child {
     border-bottom-right-radius: calc(10px * var(--app-scale));
   }
+
+  &__orders {
+    display: flex;
+    flex-direction: column;
+    gap: calc(16px * var(--app-scale));
+    margin-top: calc(20px * var(--app-scale));
+  }
+
+  &__orders-empty {
+    color: $text-desc;
+    font-size: calc(14px * var(--app-scale));
+    margin-top: calc(20px * var(--app-scale));
+  }
+
+  &__order {
+    background-color: $color-white;
+    border-radius: calc(10px * var(--app-scale));
+    border: 1px solid #dddddd;
+    overflow: hidden;
+  }
+
+  &__order-header {
+    display: flex;
+    align-items: center;
+    gap: calc(12px * var(--app-scale));
+    padding: calc(12px * var(--app-scale)) calc(16px * var(--app-scale));
+    background-color: $bg-navbar;
+    border-bottom: 1px solid #dddddd;
+  }
+
+  &__order-number {
+    font-weight: 700;
+    font-size: calc(14px * var(--app-scale));
+    color: $text-primary;
+  }
+
+  &__order-date {
+    font-size: calc(13px * var(--app-scale));
+    color: $text-desc;
+    margin-left: auto;
+  }
+
+  &__order-status {
+    font-size: calc(11px * var(--app-scale));
+    font-weight: 600;
+    padding: calc(3px * var(--app-scale)) calc(10px * var(--app-scale));
+    border-radius: calc(20px * var(--app-scale));
+    text-transform: capitalize;
+
+    &--pending {
+      background-color: #fff3cd;
+      color: #856404;
+    }
+    &--processing {
+      background-color: #cce5ff;
+      color: #004085;
+    }
+    &--shipped {
+      background-color: #d4edda;
+      color: #155724;
+    }
+    &--delivered {
+      background-color: #d4edda;
+      color: #155724;
+    }
+    &--cancelled {
+      background-color: #f8d7da;
+      color: #721c24;
+    }
+  }
+
+  &__order-items {
+    display: flex;
+    flex-direction: column;
+    padding: calc(12px * var(--app-scale)) calc(16px * var(--app-scale));
+    gap: calc(8px * var(--app-scale));
+  }
+
+  &__order-item {
+    display: flex;
+    justify-content: space-between;
+    font-size: calc(13px * var(--app-scale));
+    color: $text-primary;
+  }
+
+  &__order-item-price {
+    color: $text-desc;
+  }
+
+  &__order-footer {
+    display: flex;
+    justify-content: flex-end;
+    padding: calc(10px * var(--app-scale)) calc(16px * var(--app-scale));
+    border-top: 1px solid #dddddd;
+  }
+
+  &__order-total {
+    font-weight: 700;
+    font-size: calc(14px * var(--app-scale));
+    color: $text-primary;
+  }
+
+  &__pagination {
+    display: flex;
+    gap: calc(8px * var(--app-scale));
+    margin-top: calc(24px * var(--app-scale));
+    justify-content: center;
+    align-items: center;
+  }
+
+  &__pagination-btn {
+    width: calc(36px * var(--app-scale));
+    height: calc(36px * var(--app-scale));
+    border: 1px solid $text-primary;
+    border-radius: calc(6px * var(--app-scale));
+    background: $color-white;
+    font-size: calc(13px * var(--app-scale));
+    cursor: pointer;
+    transition: 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &:hover:not(:disabled) {
+      background-color: $text-primary;
+      color: $color-white;
+    }
+
+    &:disabled {
+      display: none;
+    }
+
+    &--arrow {
+      font-size: calc(12px * var(--app-scale));
+    }
+
+    &.active {
+      background-color: $text-primary;
+      color: $color-white;
+      cursor: default;
+    }
+  }
 }
 
 @media (max-width: 1024px) {
@@ -191,6 +333,7 @@
     &__body {
       padding: 20px 20px;
     }
+
     &__details-title {
       font-size: 18px;
     }
@@ -201,6 +344,25 @@
 
     &__table-data {
       font-size: 14px;
+    }
+
+    &__order-header {
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    &__order-number {
+      font-size: 13px;
+    }
+
+    &__order-date {
+      font-size: 12px;
+    }
+
+    &__pagination-btn {
+      width: 32px;
+      height: 32px;
+      font-size: 12px;
     }
   }
 }

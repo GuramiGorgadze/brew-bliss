@@ -12,7 +12,12 @@
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
-    gap: 32px;
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+    }
 
     &--btn {
       background-color: $color-checkout-active;
@@ -99,9 +104,7 @@
           display: flex;
           flex-direction: column;
           gap: 5px;
-          width: 150px;
-
-          &--title {
+          width: 100% &--title {
             font-size: 16px;
             color: $text-primary;
           }
@@ -109,6 +112,7 @@
           &--desc {
             color: $text-desc;
             font-size: 12px;
+            width: 170px;
           }
         }
       }
@@ -212,12 +216,20 @@
     &:focus {
       border: $color-checkout-active 2px solid;
     }
+
+    &.error {
+      border-color: $text-checkout-error;
+
+      &:focus {
+        border: $text-checkout-error 2px solid;
+      }
+    }
   }
 
   &__label {
     position: absolute;
     left: 14px;
-    top: 50%;
+    top: 26px;
     transform: translateY(-50%);
     font-size: 14px;
     color: $text-desc;
@@ -235,7 +247,7 @@
   &__icon {
     position: absolute;
     right: 0px;
-    top: 50%;
+    top: 26px;
     transform: translateY(-50%) translateX(-20px);
     color: $text-desc;
     font-size: 16px;
@@ -245,6 +257,84 @@
       pointer-events: all;
       cursor: pointer;
       color: #4f6ef7;
+    }
+  }
+
+  &__error {
+    height: 15px;
+    font-size: 13px;
+    color: $text-checkout-error;
+    margin: 5px 0;
+  }
+}
+
+@media (max-width: 1024px) {
+  .checkout {
+    display: flex;
+    flex-direction: column;
+
+    &__right {
+      .wrapper {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+      }
+
+      &--product {
+        margin-left: 0;
+      }
+
+      &--row {
+        margin-left: 0;
+      }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .checkout {
+    &__left {
+      padding: 80px 20px;
+    }
+
+    &__right {
+      &--product {
+        width: 90%;
+      }
+
+      &--row {
+        width: 90%;
+      }
+    }
+  }
+}
+
+@media (max-width: 425px) {
+  .checkout {
+    &__left {
+      padding: 80px 10px;
+    }
+
+    &__right {
+      &--product {
+        width: 93%;
+      }
+
+      &--row {
+        width: 93%;
+      }
+    }
+  }
+
+  .float-field {
+    &__error {
+      height: 10px;
+      font-size: 10px;
+    }
+
+    &__label {
+      font-size: 10px;
     }
   }
 }

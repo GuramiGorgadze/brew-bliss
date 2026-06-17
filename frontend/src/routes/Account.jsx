@@ -4,22 +4,53 @@ import { useLoader } from '../context/LoaderContext';
 import { useUserData } from '../context/UserContext.jsx';
 import { InstagramCarousel } from '../components';
 import * as api from '../api/api';
+import { Link, useSearchParams } from 'react-router-dom';
+import { useCurrency } from '../context/CurrencyContext';
 
-import { Link } from 'react-router-dom';
+const ORDERS_PER_PAGE = 2;
 
 function Account() {
   const { logout, userData } = useUserData();
   const [wishlistCount, setWishlist] = useState(0);
+  const [orders, setOrders] = useState([]);
   const { useDataLoader } = useLoader();
   const { t, i18n } = useTranslation();
+  const { formatPrice } = useCurrency();
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  const activeTab = searchParams.get('tab') || 'dashboard';
+
+  const totalPages = Math.ceil(orders.length / ORDERS_PER_PAGE);
+  const rawPage = parseInt(searchParams.get('page') || '1', 10);
+  const currentPage = totalPages > 0 && rawPage > totalPages ? 1 : rawPage;
+  const paginatedOrders = orders.slice(
+    (currentPage - 1) * ORDERS_PER_PAGE,
+    currentPage * ORDERS_PER_PAGE
+  );
+
+  const setTab = (tab) => {
+    setSearchParams({ tab });
+  };
+
+  const setPage = (page) => {
+    setSearchParams({ tab: 'orders', page });
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
 
   useEffect(() => {
-    const fetchData = async () => {
+    const fetchWishlist = async () => {
       const data = await useDataLoader(api.getWishlist);
       if (data?.data) setWishlist(data.data.length);
     };
+    fetchWishlist();
+  }, []);
 
-    fetchData();
+  useEffect(() => {
+    const fetchOrders = async () => {
+      const data = await useDataLoader(api.getOrders);
+      if (data?.data) setOrders(data.data);
+    };
+    fetchOrders();
   }, []);
 
   return (
@@ -37,13 +68,19 @@ function Account() {
           </p>
 
           <div className="account__nav-links">
-            <button className="account__nav-btn active">
+            <button
+              className={`account__nav-btn ${activeTab === 'dashboard' ? 'active' : ''}`}
+              onClick={() => setTab('dashboard')}
+            >
               <i className="bi bi-list-ul"></i>
               {t('account.nav.dashboard')}
             </button>
-            <button className="account__nav-btn">
+            <button
+              className={`account__nav-btn ${activeTab === 'orders' ? 'active' : ''}`}
+              onClick={() => setTab('orders')}
+            >
               <i className="bi bi-bag-check"></i>
-              {t('account.nav.checkout')}
+              {t('account.nav.orders')}
             </button>
             <Link to="/account/address">
               <button className="account__nav-btn">
@@ -68,52 +105,141 @@ function Account() {
         </div>
 
         <div className="account__details">
-          <h4 className="account__details-title">{t('account.details.title')}</h4>
+          {activeTab === 'dashboard' && (
+            <>
+              <h4 className="account__details-title">{t('account.details.title')}</h4>
+              <table className="account__table">
+                <tbody>
+                  <tr className="account__table-row">
+                    <th className="account__table-header">{t('account.details.name')}</th>
+                    <td className="account__table-data">
+                      {userData?.firstName} {userData?.lastName}
+                    </td>
+                  </tr>
+                  <tr className="account__table-row">
+                    <th className="account__table-header">{t('account.details.country')}</th>
+                    <td className="account__table-data">{userData?.address?.country}</td>
+                  </tr>
+                  <tr className="account__table-row">
+                    <th className="account__table-header">{t('account.details.email')}</th>
+                    <td className="account__table-data">{userData?.email}</td>
+                  </tr>
+                  <tr className="account__table-row">
+                    <th className="account__table-header">{t('account.details.phone')}</th>
+                    <td className="account__table-data">{userData?.address?.phone}</td>
+                  </tr>
+                  <tr className="account__table-row">
+                    <th className="account__table-header">{t('account.details.city')}</th>
+                    <td className="account__table-data">{userData?.address?.city}</td>
+                  </tr>
+                  <tr className="account__table-row">
+                    <th className="account__table-header">{t('account.details.zip')}</th>
+                    <td className="account__table-data">{userData?.address?.zip}</td>
+                  </tr>
+                  <tr className="account__table-row">
+                    <th className="account__table-header">{t('account.details.addressName')}</th>
+                    <td className="account__table-data">
+                      {userData?.address?.firstName} {userData?.address?.lastName}
+                    </td>
+                  </tr>
+                  <tr className="account__table-row">
+                    <th className="account__table-header">{t('account.details.address')}</th>
+                    <td className="account__table-data">{userData?.address?.address}</td>
+                  </tr>
+                  <tr className="account__table-row">
+                    <th className="account__table-header">{t('account.details.address2')}</th>
+                    <td className="account__table-data">{userData?.address?.address2}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </>
+          )}
 
-          <table className="account__table">
-            <tbody>
-              <tr className="account__table-row">
-                <th className="account__table-header">{t('account.details.name')}</th>
-                <td className="account__table-data">
-                  {userData?.firstName} {userData?.lastName}
-                </td>
-              </tr>
-              <tr className="account__table-row">
-                <th className="account__table-header">{t('account.details.country')}</th>
-                <td className="account__table-data">{userData?.address?.country}</td>
-              </tr>
-              <tr className="account__table-row">
-                <th className="account__table-header">{t('account.details.email')}</th>
-                <td className="account__table-data">{userData?.email}</td>
-              </tr>
-              <tr className="account__table-row">
-                <th className="account__table-header">{t('account.details.phone')}</th>
-                <td className="account__table-data">{userData?.address?.phone}</td>
-              </tr>
-              <tr className="account__table-row">
-                <th className="account__table-header">{t('account.details.city')}</th>
-                <td className="account__table-data">{userData?.address?.city}</td>
-              </tr>
-              <tr className="account__table-row">
-                <th className="account__table-header">{t('account.details.zip')}</th>
-                <td className="account__table-data">{userData?.address?.zip}</td>
-              </tr>
-              <tr className="account__table-row">
-                <th className="account__table-header">{t('account.details.addressName')}</th>
-                <td className="account__table-data">
-                  {userData?.address?.firstName} {userData?.address?.lastName}
-                </td>
-              </tr>
-              <tr className="account__table-row">
-                <th className="account__table-header">{t('account.details.address')}</th>
-                <td className="account__table-data">{userData?.address?.address}</td>
-              </tr>
-              <tr className="account__table-row">
-                <th className="account__table-header">{t('account.details.address2')}</th>
-                <td className="account__table-data">{userData?.address?.address2}</td>
-              </tr>
-            </tbody>
-          </table>
+          {activeTab === 'orders' && (
+            <>
+              <h4 className="account__details-title">{t('account.orders.title')}</h4>
+              {orders.length === 0 ? (
+                <p className="account__orders-empty">{t('account.orders.empty')}</p>
+              ) : (
+                <>
+                  <div className="account__orders">
+                    {paginatedOrders.map((order, index) => (
+                      <div
+                        key={order._id}
+                        className="account__order"
+                      >
+                        <div className="account__order-header">
+                          <span className="account__order-number">
+                            {t('account.orders.order')} #
+                            {orders.length - ((currentPage - 1) * ORDERS_PER_PAGE + index)}
+                          </span>
+                          <span className="account__order-date">
+                            {new Date(order.createdAt).toLocaleDateString()}
+                          </span>
+                          <span
+                            className={`account__order-status account__order-status--${order.status}`}
+                          >
+                            {order.status}
+                          </span>
+                        </div>
+                        <div className="account__order-items">
+                          {order.items.map((item, i) => (
+                            <div
+                              key={i}
+                              className="account__order-item"
+                            >
+                              <span className="account__order-item-name">
+                                {item.title?.[i18n.language] ?? item.title?.en} – {item.variantSize}{' '}
+                                × {item.quantity}
+                              </span>
+                              <span className="account__order-item-price">
+                                {formatPrice(item.price * item.quantity)}
+                              </span>
+                            </div>
+                          ))}
+                        </div>
+                        <div className="account__order-footer">
+                          <span className="account__order-total">
+                            {t('account.orders.total')}: {formatPrice(order.total)}
+                          </span>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+
+                  {totalPages > 1 && (
+                    <div className="account__pagination">
+                      <button
+                        className="account__pagination-btn account__pagination-btn--arrow"
+                        disabled={currentPage === 1}
+                        onClick={() => setPage(currentPage - 1)}
+                      >
+                        <i className="bi bi-chevron-left" />
+                      </button>
+
+                      {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
+                        <button
+                          key={page}
+                          className={`account__pagination-btn ${currentPage === page ? 'active' : ''}`}
+                          onClick={() => setPage(page)}
+                        >
+                          {page}
+                        </button>
+                      ))}
+
+                      <button
+                        className="account__pagination-btn account__pagination-btn--arrow"
+                        disabled={currentPage === totalPages}
+                        onClick={() => setPage(currentPage + 1)}
+                      >
+                        <i className="bi bi-chevron-right" />
+                      </button>
+                    </div>
+                  )}
+                </>
+              )}
+            </>
+          )}
         </div>
       </div>
 

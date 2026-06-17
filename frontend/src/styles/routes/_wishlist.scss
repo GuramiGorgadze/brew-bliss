@@ -20,13 +20,13 @@
     }
 
     &--products {
-      display: flex;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
       gap: 20px;
-      flex-wrap: wrap;
-      justify-content: center;
+      width: 100%;
 
       .product-card {
-        width: 270px;
+        width: 100%;
       }
 
       .wishlist {

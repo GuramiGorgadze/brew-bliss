@@ -311,6 +311,11 @@
             background-color: $color-accent-hover;
             color: $color-white;
           }
+
+          &:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+          }
         }
       }
     }

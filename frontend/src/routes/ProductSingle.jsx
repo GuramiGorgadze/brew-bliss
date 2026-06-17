@@ -5,6 +5,7 @@ import { useLoader } from '../context/LoaderContext';
 import { useWishlist } from '../context/WishlistContext';
 import { useParams } from 'react-router-dom';
 import * as api from '../api/api';
+import { useCart } from '../context/CartContext';
 import ShippingIcon from '../assets/icons/shipping-icon-white.svg';
 import { useNavigate } from 'react-router-dom';
 import { useCurrency } from '../context/CurrencyContext';
@@ -16,6 +17,7 @@ import Twitter from '../assets/icons/twitter-icon.svg';
 import Instagram from '../assets/icons/instagram-icon.svg';
 import TikTok from '../assets/icons/tiktok-icon.svg';
 import toast from 'react-hot-toast';
+import { useUserData } from '../context/UserContext.jsx';
 
 function ProductSingle() {
   const [singleProduct, setSingleProduct] = useState(null);
@@ -28,6 +30,9 @@ function ProductSingle() {
   const [isWishlisting, setIsWishlisting] = useState(false);
   const [showDocOptions, setShowDocOptions] = useState(false);
   const docPopoverRef = useRef(null);
+  const { loggedIn } = useUserData();
+
+  const { refreshCart } = useCart();
 
   useEffect(() => {
     if (!showDocOptions) return;
@@ -71,6 +76,14 @@ function ProductSingle() {
 
   const handleSubmitReview = async () => {
     if (isSubmittingReview) return;
+
+    if (!loggedIn) {
+      toast.error(t('auth.loginToReview'), {
+        icon: <i className="bi bi-exclamation-circle-fill" />,
+      });
+      return;
+    }
+
     if (!newReview.rating || !newReview.comment.trim()) {
       toast.error(t('productSingle.reviewForm.validationError'));
       return;
@@ -134,6 +147,14 @@ function ProductSingle() {
 
   const handleWishlistToggle = async () => {
     if (!singleProduct || isWishlisting) return;
+
+    if (!loggedIn) {
+      toast.error(t('auth.loginToWishlist'), {
+        icon: <i className="bi bi-exclamation-circle-fill" />,
+      });
+      return;
+    }
+
     setIsWishlisting(true);
     const toastId = toast.loading(t('productCard.wishlistLoading'));
     try {
@@ -184,16 +205,45 @@ function ProductSingle() {
 
   const handleAddToCart = async () => {
     if (isAdding) return;
+
+    if (!loggedIn) {
+      toast.error(t('auth.loginToAddToCart'), {
+        icon: <i className="bi bi-exclamation-circle-fill" />,
+      });
+      return;
+    }
+
     setIsAdding(true);
     const toastId = toast.loading(t('productSingle.actions.adding'));
     try {
       await api.addToCart(singleProduct._id, selectedVariant.size, quantity);
+      await refreshCart();
       toast.success(t('productSingle.actions.addedToCart'), { id: toastId });
     } catch (err) {
       console.error('Failed to add to cart:', err);
-      toast.error(t('productSingle.actions.addToCartError'), {
-        id: toastId,
+      toast.error(t('productSingle.actions.addToCartError'), { id: toastId });
+    } finally {
+      setIsAdding(false);
+    }
+  };
+
+  const handleCheckoutNow = async () => {
+    if (isAdding) return;
+    if (!loggedIn) {
+      toast.error(t('auth.loginToAddToCart'), {
+        icon: <i className="bi bi-exclamation-circle-fill" />,
       });
+      return;
+    }
+    setIsAdding(true);
+    const toastId = toast.loading(t('productSingle.actions.adding'));
+    try {
+      await api.addToCart(singleProduct._id, selectedVariant.size, quantity);
+      await refreshCart();
+      toast.success(t('productSingle.actions.addedToCart'), { id: toastId });
+      navigate('/checkout');
+    } catch (err) {
+      toast.error(t('productSingle.actions.addToCartError'), { id: toastId });
     } finally {
       setIsAdding(false);
     }
@@ -367,8 +417,12 @@ function ProductSingle() {
               >
                 {t('productSingle.actions.addToCart')}
               </button>
-              <button className="product-page__btn product-page__btn--primary">
-                {t('productSingle.actions.buyNow')}
+              <button
+                className="product-page__btn product-page__btn--primary"
+                onClick={handleCheckoutNow}
+                disabled={isAdding}
+              >
+                {t('productSingle.actions.checkoutNow')}
               </button>
             </div>
           )}

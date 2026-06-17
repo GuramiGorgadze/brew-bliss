@@ -59,7 +59,7 @@
 
   &__actions {
     display: flex;
-    gap: calc(25px * var(--app-scale));
+    gap: calc(20px * var(--app-scale));
 
     button {
       background-color: transparent;

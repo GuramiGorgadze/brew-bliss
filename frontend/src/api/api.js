@@ -241,3 +241,25 @@ export const addReview = async (productId, reviewData) => {
     throw new Error(err.response?.data?.err || 'Error submitting review');
   }
 };
+
+export const placeOrder = async (payload) => {
+  try {
+    const response = await axios.post('http://localhost:3000/api/users/order', payload, {
+      withCredentials: true,
+    });
+    return response.data;
+  } catch (err) {
+    throw new Error(err.response?.data?.err || 'Error placing order');
+  }
+};
+
+export const getOrders = async () => {
+  try {
+    const response = await axios.get('http://localhost:3000/api/users/orders', {
+      withCredentials: true,
+    });
+    return response.data;
+  } catch (err) {
+    throw new Error(err.response?.data?.err || 'Error fetching orders');
+  }
+};

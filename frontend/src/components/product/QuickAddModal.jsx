@@ -122,6 +122,23 @@ function QuickAddModal({ product, onClose }) {
     }
   };
 
+  const handleCheckoutNow = async () => {
+    if (isAdding) return;
+    setIsAdding(true);
+    const toastId = toast.loading(t('productSingle.actions.adding'));
+    try {
+      await api.addToCart(product._id, selectedVariant.size, quantity);
+      await refreshCart();
+      toast.success(t('productSingle.actions.addedToCart'), { id: toastId });
+      onClose();
+      navigate('/checkout');
+    } catch (err) {
+      toast.error(t('productSingle.actions.addToCartError'), { id: toastId });
+    } finally {
+      setIsAdding(false);
+    }
+  };
+
   const title = localize(product?.title, lang);
   const tags = product?.tags?.[lang] ?? product?.tags?.en ?? [];
 
@@ -313,8 +330,12 @@ function QuickAddModal({ product, onClose }) {
                 >
                   {t('productSingle.actions.addToCart')}
                 </button>
-                <button className="product-page__btn product-page__btn--primary">
-                  {t('productSingle.actions.buyNow')}
+                <button
+                  className="product-page__btn product-page__btn--primary"
+                  onClick={handleCheckoutNow}
+                  disabled={isAdding}
+                >
+                  {t('productSingle.actions.checkoutNow')}
                 </button>
               </div>
             ) : (

@@ -4,8 +4,10 @@ import { useTranslation } from 'react-i18next';
 import { useUserData } from '../context/UserContext';
 import { useCurrency, currencies } from '../context/CurrencyContext';
 import { useCart } from '../context/CartContext';
+import { useWishlist } from '../context/WishlistContext';
 import cartIcon from '../assets/icons/cart-icon.svg';
 import profileIcon from '../assets/icons/profile-icon.svg';
+import wishlistIcon from '../assets/icons/wishlist-icon.svg';
 import searchIcon from '../assets/icons/search-icon.svg';
 import logo from '../assets/logo.webp';
 import clsx from 'clsx';
@@ -28,6 +30,7 @@ function Navbar() {
   const [menuClosing, setMenuClosing] = useState(false);
   const { activeCurrency, changeCurrency } = useCurrency();
   const { cartCount } = useCart();
+  const { wishlistCount } = useWishlist();
 
   const [isLangOpen, setIsLangOpen] = useState(false);
   const [isCurrencyOpen, setIsCurrencyOpen] = useState(false);
@@ -131,6 +134,18 @@ function Navbar() {
               <img
                 src={profileIcon}
                 alt={t('navbar.profileIconAlt')}
+                draggable="false"
+              />
+            </Link>
+          </button>
+          <button className="navbar__mobile-hidden">
+            <Link
+              to="/wishlist"
+              className="navbar__wishlist-link"
+            >
+              {wishlistCount > 0 && <p className="navbar__cart-badge">{wishlistCount}</p>}
+              <img
+                src={wishlistIcon}
                 draggable="false"
               />
             </Link>

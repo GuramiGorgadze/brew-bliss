@@ -10,6 +10,12 @@
     "profileIconAlt": "Profile Icon",
     "cartIconAlt": "Cart Icon"
   },
+  "orderSuccess": {
+    "title": "Order Placed",
+    "heading": "Thank you for your order!",
+    "text": "Your order has been successfully placed. We'll be in touch soon.",
+    "btn": "Continue Shopping"
+  },
   "drawer": {
     "home": "Home",
     "shop": "Shop",
@@ -55,7 +61,9 @@
       "ourTeam": "Our team",
       "contactUs": "Contact Us",
       "returns": "Returns",
-      "faq": "FAQ"
+      "faq": "FAQ",
+      "cart": "Cart",
+      "wishlist": "Wishlist"
     },
     "newsletter": {
       "title": "Sign Up To Newsletter",
@@ -112,11 +120,12 @@
     "title": "ACCOUNT",
     "welcome": "Welcome",
     "nav": {
-      "dashboard": "Dashboard",
+      "dashboard": "DASHBOARD",
       "checkout": "CHECK OUT",
       "editAddress": "EDIT ADDRESS",
       "viewWishlist": "VIEW WISHLIST",
-      "logout": "LOGOUT"
+      "logout": "LOGOUT",
+      "orders": "MY ORDERS"
     },
     "details": {
       "title": "Account Details:",
@@ -129,6 +138,15 @@
       "addressName": "address Name",
       "address": "Address",
       "address2": "Address 2"
+    },
+    "orders": {
+      "title": "My Orders",
+      "empty": "You haven't placed any orders yet.",
+      "order": "Order",
+      "total": "Total",
+      "status": "Status",
+      "date": "Date",
+      "items": "Items"
     }
   },
   "address": {
@@ -295,6 +313,32 @@
       "serverError": "Something went wrong"
     }
   },
+  "auth": {
+    "loginToWishlist": "Log in to save to wishlist",
+    "loginToAddToCart": "Log in to add to cart",
+    "loginToReview": "Log in to leave a review"
+  },
+  "checkout": {
+    "validation": {
+      "emailRequired": "Email is required",
+      "emailInvalid": "Invalid email address",
+      "countryRequired": "Country is required",
+      "lastNameRequired": "Last name is required",
+      "lastNameMax": "Last name must not exceed 30 characters",
+      "firstNameMax": "First name must not exceed 30 characters",
+      "addressRequired": "Address is required",
+      "cityRequired": "City is required",
+      "cardNumberRequired": "Card number is required",
+      "cardNumberInvalid": "Card number must be 16 digits",
+      "expirationDateRequired": "Expiration date is required",
+      "expirationDateInvalid": "Use MM/YY format",
+      "securityCodeRequired": "Security code is required",
+      "securityCodeInvalid": "Security code must be 3 or 4 digits",
+      "nameOnCardRequired": "Name on card is required"
+    },
+    "payBtn": "Pay Now",
+    "processingBtn": "Processing..."
+  },
   "resetPassword": {
     "pageTitle": "Reset Password",
     "title": "Set New Password",
@@ -334,7 +378,7 @@
     "actions": {
       "adding": "Adding...",
       "addToCart": "Add to Cart",
-      "buyNow": "Buy it now",
+      "checkoutNow": "Check Out now",
       "soldOut": "Sold Out",
       "addedToCart": "Added to cart!",
       "addToCartError": "Failed to add to cart"

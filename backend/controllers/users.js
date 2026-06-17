@@ -322,12 +322,9 @@ export const forgotPasswordUser = async (req, res) => {
     }
 
     if (!user.password) {
-      return res
-        .status(400)
-        .json({
-          message:
-            "Continue with Google to sign in with this email",
-        });
+      return res.status(400).json({
+        message: "Continue with Google to sign in with this email",
+      });
     }
 
     const access_token = jwt.sign(
@@ -363,6 +360,73 @@ export const resetPasswordUser = async (req, res) => {
     );
 
     return res.status(200).json({ data: "Password updated successfully" });
+  } catch (err) {
+    return res.status(500).json({ err: "Something went wrong" });
+  }
+};
+
+export const placeOrder = async (req, res) => {
+  try {
+    const token = req.cookies.token;
+    const decoded = jwt.verify(token, process.env.JWT_SECRET_KEY);
+    const {
+      note,
+      shippingAddress,
+      cardNumber,
+      expirationDate,
+      securityCode,
+      nameOnCard,
+    } = req.body;
+
+    const user = await Users.findById(decoded.id).populate({
+      path: "cart.productId",
+      model: "Product",
+      select: "title variants",
+    });
+
+    if (!user.cart.length) {
+      return res.status(400).json({ err: "Cart is empty" });
+    }
+
+    if (!cardNumber || !expirationDate || !securityCode || !nameOnCard) {
+      return res.status(400).json({ err: "Missing payment details" });
+    }
+
+    const items = user.cart.map((item) => {
+      const variant = item.productId.variants.find(
+        (v) => v.size === item.variantSize,
+      );
+      return {
+        productId: item.productId._id,
+        title: item.productId.title,
+        variantSize: item.variantSize,
+        quantity: item.quantity,
+        price: variant?.price ?? 0,
+      };
+    });
+
+    const total = items.reduce(
+      (sum, item) => sum + item.price * item.quantity,
+      0,
+    );
+
+    user.orders.push({ items, total, note, shippingAddress });
+    user.cart = [];
+    await user.save();
+
+    return res.status(200).json({ data: "Order placed successfully" });
+  } catch (err) {
+    console.error(err);
+    return res.status(500).json({ err: "Something went wrong" });
+  }
+};
+
+export const getOrders = async (req, res) => {
+  try {
+    const token = req.cookies.token;
+    const decoded = jwt.verify(token, process.env.JWT_SECRET_KEY);
+    const user = await Users.findById(decoded.id).select("orders");
+    return res.status(200).json({ data: user.orders.reverse() });
   } catch (err) {
     return res.status(500).json({ err: "Something went wrong" });
   }

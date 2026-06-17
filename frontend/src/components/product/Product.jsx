@@ -7,6 +7,7 @@ import { useTranslation } from 'react-i18next';
 import * as api from '../../api/api';
 import QuickAddModal from './QuickAddModal';
 import toast from 'react-hot-toast';
+import { useUserData } from '../../context/UserContext.jsx';
 
 function Product({ product }) {
   const { t, i18n } = useTranslation();
@@ -15,6 +16,7 @@ function Product({ product }) {
   const navigate = useNavigate();
   const [showModal, setShowModal] = useState(false);
   const [isWishlisting, setIsWishlisting] = useState(false);
+  const { loggedIn } = useUserData();
 
   const localize = (field, lang) => field?.[lang] ?? field?.en ?? '';
 
@@ -23,6 +25,14 @@ function Product({ product }) {
 
   const handleWishlistToggle = async () => {
     if (!product || isWishlisting) return;
+
+    if (!loggedIn) {
+      toast.error(t('auth.loginToWishlist'), {
+        icon: <i className="bi bi-exclamation-circle-fill" />,
+      });
+      return;
+    }
+
     setIsWishlisting(true);
     const toastId = toast.loading(t('productCard.wishlistLoading'));
     try {
@@ -41,6 +51,16 @@ function Product({ product }) {
     } finally {
       setIsWishlisting(false);
     }
+  };
+
+  const handleAddToCart = () => {
+    if (!loggedIn) {
+      toast.error(t('auth.loginToAddToCart'), {
+        icon: <i className="bi bi-exclamation-circle-fill" />,
+      });
+      return;
+    }
+    setShowModal(true);
   };
 
   const title = localize(product.title, lang);
@@ -112,7 +132,7 @@ function Product({ product }) {
         </div>
         <button
           className="product-card__btn"
-          onClick={() => setShowModal(true)}
+          onClick={handleAddToCart}
         >
           {t('productCard.addToCart')}
         </button>

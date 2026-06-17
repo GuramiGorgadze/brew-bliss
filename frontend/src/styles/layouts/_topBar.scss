@@ -65,6 +65,8 @@
       position: absolute;
       top: 100%;
       left: 0;
+      width: 110%;
+      transform: translateX(-10%);
       background-color: $color-white;
       color: $text-primary;
       border-radius: calc(4px * var(--app-scale));

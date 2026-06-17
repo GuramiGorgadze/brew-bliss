@@ -33,3 +33,7 @@ input {
   border: $color-accent solid 1px !important;
   color: $color-accent !important;
 }
+
+img {
+  -webkit-user-drag: none;
+}

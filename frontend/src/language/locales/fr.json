@@ -10,6 +10,17 @@
     "profileIconAlt": "Icône de profil",
     "cartIconAlt": "Icône du panier"
   },
+  "orderSuccess": {
+    "title": "Commande passée",
+    "heading": "Merci pour votre commande !",
+    "text": "Votre commande a été passée avec succès. Nous vous contacterons bientôt.",
+    "btn": "Continuer vos achats"
+  },
+  "auth": {
+    "loginToWishlist": "Connectez-vous pour ajouter à la liste d'envies",
+    "loginToAddToCart": "Connectez-vous pour ajouter au panier",
+    "loginToReview": "Connectez-vous pour laisser un avis"
+  },
   "drawer": {
     "home": "Accueil",
     "shop": "Boutique",
@@ -55,7 +66,9 @@
       "ourTeam": "Notre équipe",
       "contactUs": "Contactez-nous",
       "returns": "Retours",
-      "faq": "FAQ"
+      "faq": "FAQ",
+      "cart": "Chariot",
+      "wishlist": "Liste de souhaits"
     },
     "newsletter": {
       "title": "Inscrivez-vous à la newsletter",
@@ -112,11 +125,12 @@
     "title": "COMPTE",
     "welcome": "Bienvenue",
     "nav": {
-      "dashboard": "Tableau de bord",
+      "dashboard": "TABLEAU DE BOARD",
       "checkout": "PASSER LA COMMANDE",
       "editAddress": "MODIFIER L'ADRESSE",
       "viewWishlist": "VOIR LA LISTE D'ENVIES",
-      "logout": "SE DÉCONNECTER"
+      "logout": "SE DÉCONNECTER",
+      "orders": "MEINE BESTELLUNGEN"
     },
     "details": {
       "title": "Détails du compte :",
@@ -129,6 +143,15 @@
       "addressName": "adresse Nom",
       "address": "Adresse",
       "address2": "Adresse 2"
+    },
+    "orders": {
+      "title": "Mes commandes",
+      "empty": "Vous n'avez pas encore passé de commande.",
+      "order": "Commande",
+      "total": "Total",
+      "status": "Statut",
+      "date": "Date",
+      "items": "Articles"
     }
   },
   "address": {
@@ -295,6 +318,27 @@
       "serverError": "Une erreur est survenue"
     }
   },
+  "checkout": {
+    "validation": {
+      "emailRequired": "L'e-mail est requis",
+      "emailInvalid": "Adresse e-mail invalide",
+      "countryRequired": "Le pays est requis",
+      "lastNameRequired": "Le nom est requis",
+      "lastNameMax": "Le nom ne doit pas dépasser 30 caractères",
+      "firstNameMax": "Le prénom ne doit pas dépasser 30 caractères",
+      "addressRequired": "L'adresse est requise",
+      "cityRequired": "La ville est requise",
+      "cardNumberRequired": "Le numéro de carte est requis",
+      "cardNumberInvalid": "Le numéro de carte doit comporter 16 chiffres",
+      "expirationDateRequired": "La date d'expiration est requise",
+      "expirationDateInvalid": "Utilisez le format MM/AA",
+      "securityCodeRequired": "Le code de sécurité est requis",
+      "securityCodeInvalid": "Le code de sécurité doit comporter 3 ou 4 chiffres",
+      "nameOnCardRequired": "Le nom sur la carte est requis"
+    },
+    "payBtn": "Payer maintenant",
+    "processingBtn": "Traitement..."
+  },
   "resetPassword": {
     "pageTitle": "Réinitialiser le mot de passe",
     "title": "Définir un nouveau mot de passe",
@@ -334,7 +378,7 @@
     "actions": {
       "adding": "Ajout...",
       "addToCart": "Ajouter au panier",
-      "buyNow": "Acheter maintenant",
+      "checkoutNow": "Commander maintenant",
       "soldOut": "Épuisé",
       "addedToCart": "Ajouté au panier !",
       "addToCartError": "Échec de l'ajout au panier"

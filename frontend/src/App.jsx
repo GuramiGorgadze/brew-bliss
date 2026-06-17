@@ -21,6 +21,7 @@ import {
   ResetPassword,
   Wishlist,
   Checkout,
+  OrderSuccess,
 } from './routes';
 
 import useDocumentTitle from './hooks/useDocumentTitle';
@@ -150,6 +151,15 @@ function App() {
             element={
               <ProtectedRoute>
                 <Checkout />
+              </ProtectedRoute>
+            }
+          />
+
+          <Route
+            path="/order-success"
+            element={
+              <ProtectedRoute>
+                <OrderSuccess />
               </ProtectedRoute>
             }
           />
