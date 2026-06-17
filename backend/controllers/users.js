@@ -294,7 +294,8 @@ export const contact = async (req, res) => {
     await sendContactMail(email, message);
     return res.status(200).json({ data: "Message sent successfully" });
   } catch (err) {
-    return res.status(500).json({ err: "Something went wrong" });
+    console.error("CONTACT ERROR FULL:", err);
+    return res.status(500).json({ err: err.message });
   }
 };
 
