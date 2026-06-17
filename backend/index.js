@@ -18,15 +18,20 @@ const app = express();
 
 const PORT = process.env.PORT || 3000;
 
+app.set("trust proxy", 1);
+
 app.use(helmetMiddleware);
 app.use(corsMiddleware);
 app.use(compressionMiddleware);
 app.use(express.json());
 app.use(cookieParser());
+
+app.use("/api", apiLimiter);
+
 app.use(passport.initialize());
 
-app.use("/api/users/login", authLimiter);
-app.use("/api/users/register", authLimiter);
+app.use("/api/products", ProductsRouter);
+app.use("/api/users", UsersRouter);
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
