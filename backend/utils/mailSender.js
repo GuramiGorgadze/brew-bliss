@@ -1,22 +1,22 @@
 import nodemailer from "nodemailer";
 
-const transporter = nodemailer.createTransport({
-  host: process.env.SMTP_HOST,
-  port: process.env.SMTP_PORT,
-  secure: true,
-  auth: {
-    user: process.env.SMTP_USER,
-    pass: process.env.SMTP_PASS,
-  },
-});
+const createTransporter = () =>
+  nodemailer.createTransport({
+    service: "gmail",
+    auth: {
+      user: process.env.MAIL_SENDER_EMAIL,
+      pass: process.env.MAIL_SENDER_PASS,
+    },
+  });
 
-export const sendResetPasswordMail = async (to, url) => {
-  try {
-    await transporter.sendMail({
-      from: `"${process.env.MAIL_FROM_NAME}" <${process.env.MAIL_SENDER_EMAIL}>`,
-      to: to,
-      subject: "[Brew Bliss] Password Reset",
-      html: `
+const sendResetPasswordMail = async (to, url) => {
+  const transporter = createTransporter();
+
+  await transporter.sendMail({
+    from: process.env.MAIL_SENDER_EMAIL,
+    to: to,
+    subject: "[Brew Bliss] Password Reset",
+    html: `
         <div style="margin: 0; padding: 0; background-color: #F5F0E8; font-family: Georgia, 'Times New Roman', serif;">
             <table width="100%" cellpadding="0" cellspacing="0" style="background-color: #F5F0E8; padding: 50px 20px;">
                 <tr>
@@ -38,8 +38,12 @@ export const sendResetPasswordMail = async (to, url) => {
                             <tr>
                                 <td style="background-color: #FFFFFF; border: 1px solid #e8e0d0; padding: 50px 48px;">
                                     <p style="color: #9a8a6a; font-size: 13px; letter-spacing: 2px; text-transform: uppercase; margin: 0 0 28px 0;">A request was made</p>
-                                    <p style="color: #0F0F0F; font-size: 17px; line-height: 1.8; margin: 0 0 16px 0;">Someone has requested a password reset for your Brew Bliss account.</p>
-                                    <p style="color: #6a5f52; font-size: 15px; line-height: 1.8; margin: 0 0 40px 0;">If this wasn't you, simply ignore this email — your password will remain unchanged.</p>
+                                    <p style="color: #0F0F0F; font-size: 17px; line-height: 1.8; margin: 0 0 16px 0;">
+                                        Someone has requested a password reset for your Brew Bliss account.
+                                    </p>
+                                    <p style="color: #6a5f52; font-size: 15px; line-height: 1.8; margin: 0 0 40px 0;">
+                                        If this wasn't you, simply ignore this email — your password will remain unchanged.
+                                    </p>
                                     <table cellpadding="0" cellspacing="0" style="margin: 0 auto;">
                                         <tr>
                                             <td align="center" style="background-color: #FEA90C;">
@@ -48,7 +52,9 @@ export const sendResetPasswordMail = async (to, url) => {
                                         </tr>
                                     </table>
                                     <div style="border-top: 1px solid #e8e0d0; margin: 44px 0 28px 0;"></div>
-                                    <p style="color: #b0a090; font-size: 12px; line-height: 1.7; margin: 0; text-align: center;">This link will expire in 15 Minutes. If you need further assistance, contact our support team.</p>
+                                    <p style="color: #b0a090; font-size: 12px; line-height: 1.7; margin: 0; text-align: center;">
+                                        This link will expire in 15 Minutes. If you need further assistance, contact our support team.
+                                    </p>
                                 </td>
                             </tr>
                             <tr>
@@ -63,20 +69,18 @@ export const sendResetPasswordMail = async (to, url) => {
             </table>
         </div>
         `,
-    });
-  } catch (err) {
-    console.error("Email error:", err);
-  }
+  });
 };
 
-export const sendContactMail = async (to, message) => {
-  try {
-    await transporter.sendMail({
-      from: `"${process.env.MAIL_FROM_NAME}" <${process.env.MAIL_SENDER_EMAIL}>`,
-      to: process.env.MAIL_SENDER_EMAIL,
-      replyTo: to,
-      subject: "[Brew Bliss] Contact Form",
-      html: `
+const sendContactMail = async (to, message) => {
+  const transporter = createTransporter();
+
+  await transporter.sendMail({
+    from: process.env.MAIL_SENDER_EMAIL,
+    to: process.env.MAIL_SENDER_EMAIL,
+    replyTo: to,
+    subject: "[Brew Bliss] Contact Form",
+    html: `
         <div style="margin: 0; padding: 0; background-color: #F5F0E8; font-family: Georgia, 'Times New Roman', serif;">
             <table width="100%" cellpadding="0" cellspacing="0" style="background-color: #F5F0E8; padding: 50px 20px;">
                 <tr>
@@ -111,7 +115,9 @@ export const sendContactMail = async (to, message) => {
                                         <p style="color: #0F0F0F; font-size: 15px; line-height: 1.9; margin: 0;">${message}</p>
                                     </div>
                                     <div style="border-top: 1px solid #e8e0d0; margin: 44px 0 28px 0;"></div>
-                                    <p style="color: #b0a090; font-size: 12px; line-height: 1.7; margin: 0; text-align: center;">Reply directly to this email to respond to the sender.</p>
+                                    <p style="color: #b0a090; font-size: 12px; line-height: 1.7; margin: 0; text-align: center;">
+                                        Reply directly to this email to respond to the sender.
+                                    </p>
                                 </td>
                             </tr>
                             <tr>
@@ -126,19 +132,17 @@ export const sendContactMail = async (to, message) => {
             </table>
         </div>
         `,
-    });
-  } catch (err) {
-    console.error("Email error:", err);
-  }
+  });
 };
 
-export const sendNewsletterMail = async (to) => {
-  try {
-    await transporter.sendMail({
-      from: `"${process.env.MAIL_FROM_NAME}" <${process.env.MAIL_SENDER_EMAIL}>`,
-      to: to,
-      subject: "[Brew Bliss] You're subscribed!",
-      html: `
+const sendNewsletterMail = async (to) => {
+  const transporter = createTransporter();
+
+  await transporter.sendMail({
+    from: process.env.MAIL_SENDER_EMAIL,
+    to: to,
+    subject: "[Brew Bliss] You're subscribed!",
+    html: `
         <div style="margin: 0; padding: 0; background-color: #F5F0E8; font-family: Georgia, 'Times New Roman', serif;">
             <table width="100%" cellpadding="0" cellspacing="0" style="background-color: #F5F0E8; padding: 50px 20px;">
                 <tr>
@@ -160,17 +164,23 @@ export const sendNewsletterMail = async (to) => {
                             <tr>
                                 <td style="background-color: #FFFFFF; border: 1px solid #e8e0d0; padding: 50px 48px;">
                                     <p style="color: #9a8a6a; font-size: 13px; letter-spacing: 2px; text-transform: uppercase; margin: 0 0 28px 0;">Welcome aboard</p>
-                                    <p style="color: #0F0F0F; font-size: 17px; line-height: 1.8; margin: 0 0 16px 0;">Thank you for subscribing to the Brew Bliss newsletter.</p>
-                                    <p style="color: #6a5f52; font-size: 15px; line-height: 1.8; margin: 0 0 40px 0;">You'll be the first to hear about exclusive updates, new arrivals, and special offers.</p>
+                                    <p style="color: #0F0F0F; font-size: 17px; line-height: 1.8; margin: 0 0 16px 0;">
+                                        Thank you for subscribing to the Brew Bliss newsletter.
+                                    </p>
+                                    <p style="color: #6a5f52; font-size: 15px; line-height: 1.8; margin: 0 0 40px 0;">
+                                        You'll be the first to hear about exclusive updates, new arrivals, and special offers.
+                                    </p>
                                     <table cellpadding="0" cellspacing="0" style="margin: 0 auto;">
                                         <tr>
                                             <td align="center" style="background-color: #FEA90C;">
-                                                <a href="${process.env.CLIENT_URL}/products" style="display: inline-block; padding: 14px 40px; color: #0F0F0F; text-decoration: none; font-size: 12px; letter-spacing: 3px; text-transform: uppercase; font-family: Georgia, serif; font-weight: bold;">Shop Now</a>
+                                                <a href="#products" style="display: inline-block; padding: 14px 40px; color: #0F0F0F; text-decoration: none; font-size: 12px; letter-spacing: 3px; text-transform: uppercase; font-family: Georgia, serif; font-weight: bold;">Shop Now</a>
                                             </td>
                                         </tr>
                                     </table>
                                     <div style="border-top: 1px solid #e8e0d0; margin: 44px 0 28px 0;"></div>
-                                    <p style="color: #b0a090; font-size: 12px; line-height: 1.7; margin: 0; text-align: center;">If you didn't subscribe, you can safely ignore this email.</p>
+                                    <p style="color: #b0a090; font-size: 12px; line-height: 1.7; margin: 0; text-align: center;">
+                                        If you didn't subscribe, you can safely ignore this email.
+                                    </p>
                                 </td>
                             </tr>
                             <tr>
@@ -185,18 +195,18 @@ export const sendNewsletterMail = async (to) => {
             </table>
         </div>
         `,
-    });
-    await transporter.sendMail({
-      from: `"${process.env.MAIL_FROM_NAME}" <${process.env.MAIL_SENDER_EMAIL}>`,
-      to: process.env.MAIL_SENDER_EMAIL,
-      subject: "[Brew Bliss] New Newsletter Subscriber",
-      html: `
+  });
+
+  await transporter.sendMail({
+    from: process.env.MAIL_SENDER_EMAIL,
+    to: process.env.MAIL_SENDER_EMAIL,
+    subject: "[Brew Bliss] New Newsletter Subscriber",
+    html: `
         <div style="font-family: Georgia, serif; padding: 40px; background-color: #F5F0E8;">
             <p style="font-size: 16px; color: #0F0F0F;">New subscriber: <a href="mailto:${to}" style="color: #FEA90C;">${to}</a></p>
         </div>
         `,
-    });
-  } catch (err) {
-    console.error("Email error:", err);
-  }
+  });
 };
+
+export { sendResetPasswordMail, sendContactMail, sendNewsletterMail };
