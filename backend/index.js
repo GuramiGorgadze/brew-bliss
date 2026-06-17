@@ -14,6 +14,8 @@ import { compressionMiddleware } from "./middlewares/compression.js";
 
 const app = express();
 
+const PORT = process.env.PORT || 3000;
+
 app.use(helmetMiddleware);
 app.use(corsMiddleware);
 app.use(compressionMiddleware);
@@ -25,7 +27,7 @@ app.use(passport.initialize());
 app.use("/api/products", ProductsRouter);
 app.use("/api/users", UsersRouter);
 
-app.listen(3000, () => {
+app.listen(PORT, () => {
   console.log("server has started");
   connectDB(process.env.CONNECTION_STRING);
 });
