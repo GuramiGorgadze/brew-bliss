@@ -6,9 +6,15 @@ export const helmetMiddleware = helmet({
   contentSecurityPolicy: {
     directives: {
       defaultSrc: ["'self'"],
-      imgSrc: ["'self'", "data:", "https://cdn.shopify.com"],
+      imgSrc: [
+        "'self'",
+        "data:",
+        "https://cdn.shopify.com",
+        "https://www.gstatic.com",
+      ],
       scriptSrc: ["'self'"],
       styleSrc: ["'self'", "'unsafe-inline'"],
+      frameSrc: ["'self'", "https://www.google.com"],
     },
   },
 });
