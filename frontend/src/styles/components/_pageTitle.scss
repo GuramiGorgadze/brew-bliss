@@ -18,7 +18,11 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    
+
+    * {
+      color: $color-white;
+    }
+
     p {
       font-size: calc(38px * var(--app-scale));
       color: $color-white;

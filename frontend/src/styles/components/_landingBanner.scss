@@ -27,6 +27,7 @@
     p {
       font-size: calc(14px * var(--app-scale));
       margin: 0 calc(5px * var(--app-scale));
+      color: $color-white;
     }
 
     img {
@@ -41,6 +42,10 @@
     letter-spacing: calc(1px * var(--app-scale));
     margin: calc(20px * var(--app-scale)) 0;
     max-width: calc(500px * var(--app-scale));
+
+    * {
+      color: $color-white;
+    }
   }
 
   &__text {

@@ -248,9 +248,9 @@ function Navbar() {
               <div className="drawer__divider"></div>
               <Link
                 onClick={closeMenu}
-                to="/"
+                to="/wishlist"
               >
-                <div className="drawer__link">{t('drawer.wishlist', { count: 0 })}</div>
+                <div className="drawer__link">{t('drawer.wishlist', { count: wishlistCount })}</div>
               </Link>
               <div className="drawer__divider"></div>
               <Link

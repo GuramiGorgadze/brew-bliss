@@ -39,6 +39,10 @@
 
             &--remove {
               padding-left: calc(35px * var(--app-scale));
+
+              * {
+                color: $color-white;
+              }
             }
           }
 
