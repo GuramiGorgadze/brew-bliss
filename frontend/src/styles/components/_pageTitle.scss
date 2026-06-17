@@ -18,12 +18,14 @@
     display: flex;
     justify-content: center;
     align-items: center;
-
+    
     p {
       font-size: calc(38px * var(--app-scale));
       color: $color-white;
       margin: calc(5px * var(--app-scale));
       text-align: center;
+      display: flex;
+      justify-content: center;
     }
   }
 }
