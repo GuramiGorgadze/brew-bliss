@@ -11,6 +11,8 @@ import {
   apiLimiter,
 } from "./middlewares/security.js";
 import { compressionMiddleware } from "./middlewares/compression.js";
+import path from "path";
+import { fileURLToPath } from "url";
 
 const app = express();
 
@@ -26,6 +28,15 @@ app.use(passport.initialize());
 
 app.use("/api/products", ProductsRouter);
 app.use("/api/users", UsersRouter);
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+app.use(express.static(path.join(__dirname, "../frontend/dist")));
+
+app.get("/{*any}", (req, res) => {
+  res.sendFile(path.join(__dirname, "../frontend/dist/index.html"));
+});
 
 app.listen(PORT, () => {
   console.log("server has started");
