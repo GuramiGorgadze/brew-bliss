@@ -18,6 +18,8 @@ import Instagram from '../assets/icons/instagram-icon.svg';
 import TikTok from '../assets/icons/tiktok-icon.svg';
 import toast from 'react-hot-toast';
 import { useUserData } from '../context/UserContext.jsx';
+import BlurText from '../components/sections/reactBits/BlurText';
+import ShinyText from '../components/sections/reactBits/ShinyText';
 
 function ProductSingle() {
   const [singleProduct, setSingleProduct] = useState(null);
@@ -31,7 +33,7 @@ function ProductSingle() {
   const [showDocOptions, setShowDocOptions] = useState(false);
   const docPopoverRef = useRef(null);
   const { loggedIn } = useUserData();
-
+  const [ready, setReady] = useState(false);
   const { refreshCart } = useCart();
 
   useEffect(() => {
@@ -124,6 +126,7 @@ function ProductSingle() {
       if (data?.data) {
         setSingleProduct(data.data);
         setSelectedVariant(data.data.variants.find((v) => v.available) ?? data.data.variants[0]);
+        setReady(true);
       } else if (data?.err) {
         setError(data.err);
       }
@@ -253,9 +256,16 @@ function ProductSingle() {
   const description = localize(singleProduct?.description, lang);
   const tags = singleProduct?.tags?.[lang] ?? singleProduct?.tags?.en ?? [];
 
+  if (!ready || !singleProduct) {
+    return null;
+  }
+
   return (
     <div className="product-page">
-      <PageTitle pageName={title} />
+      <PageTitle
+        pageName={title}
+        ready={ready}
+      />
       <div className="product-page__inner">
         <div className="product-page__gallery">
           {singleProduct?.image && (
@@ -278,7 +288,16 @@ function ProductSingle() {
         </div>
 
         <div className="product-page__details">
-          <h1 className="product-page__title">{title}</h1>
+          <h1 className="product-page__title">
+            {' '}
+            <BlurText
+              text={title}
+              delay={100}
+              animateBy="words"
+              direction="top"
+              className="text-2xl mb-8"
+            />
+          </h1>
 
           <p className="product-page__reviews">
             {Array.from({ length: 5 }, (_, i) => (
@@ -329,7 +348,18 @@ function ProductSingle() {
               <>
                 {t('productSingle.shipping.congrats')}{' '}
                 <span className="product-page__promo-highlight">
-                  {t('productSingle.shipping.freeShipping')}
+                  <ShinyText
+                    text={t('productSingle.shipping.freeShipping')}
+                    speed={2}
+                    delay={0}
+                    color="#fea90c"
+                    shineColor="#ffffff"
+                    spread={100}
+                    direction="left"
+                    yoyo={true}
+                    pauseOnHover={false}
+                    disabled={false}
+                  />{' '}
                 </span>
               </>
             ) : (
@@ -338,13 +368,38 @@ function ProductSingle() {
                   amount: formatPrice(remaining / activeCurrency.rate),
                 })}{' '}
                 <span className="product-page__promo-highlight">
-                  {t('productSingle.shipping.freeShipping')}
+                  <ShinyText
+                    text={t('productSingle.shipping.freeShipping')}
+                    speed={2}
+                    delay={0}
+                    color="#fea90c"
+                    shineColor="#ffffff"
+                    spread={100}
+                    direction="left"
+                    yoyo={true}
+                    pauseOnHover={false}
+                    disabled={false}
+                  />{' '}
                 </span>
               </>
             )}
           </h5>
 
-          <p className="product-page__description-label">{t('productSingle.descriptionLabel')}</p>
+          <p className="product-page__description-label">
+            {' '}
+            <ShinyText
+              text={t('productSingle.descriptionLabel')}
+              speed={2}
+              delay={0}
+              color="#696969"
+              shineColor="#ffffff"
+              spread={100}
+              direction="left"
+              yoyo={true}
+              pauseOnHover={false}
+              disabled={false}
+            />
+          </p>
           <p className="product-page__description">{description}</p>
 
           <div className="product-page__size">
@@ -444,7 +499,18 @@ function ProductSingle() {
                 alt=""
               />
               <p className="product-page__additional-info-text">
-                {t('productSingle.delivery.label')}{' '}
+                <ShinyText
+                  text={t('productSingle.delivery.label')}
+                  speed={2}
+                  delay={0}
+                  color="#696969"
+                  shineColor="#ffffff"
+                  spread={100}
+                  direction="left"
+                  yoyo={true}
+                  pauseOnHover={false}
+                  disabled={false}
+                />{' '}
                 <span className="product-page__additional-info-text--dark">
                   {getDeliveryRange()}
                 </span>
@@ -456,7 +522,18 @@ function ProductSingle() {
                 alt=""
               />
               <p className="product-page__additional-info-text">
-                {t('productSingle.delivery.returnPolicy')}
+                <ShinyText
+                  text={t('productSingle.delivery.returnPolicy')}
+                  speed={2}
+                  delay={0}
+                  color="#696969"
+                  shineColor="#ffffff"
+                  spread={100}
+                  direction="left"
+                  yoyo={true}
+                  pauseOnHover={false}
+                  disabled={false}
+                />
               </p>
             </div>
           </div>

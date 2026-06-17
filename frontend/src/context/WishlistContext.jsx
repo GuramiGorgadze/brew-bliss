@@ -31,11 +31,13 @@ export function WishlistProvider({ children }) {
       return s;
     });
 
+  const reset = () => setWishlistedIds(new Set());
+
   const wishlistCount = wishlistedIds.size;
 
   return (
     <WishlistContext.Provider
-      value={{ wishlistedIds, wishlistCount, add, remove, refreshWishlist }}
+      value={{ wishlistedIds, wishlistCount, add, remove, refreshWishlist, reset }}
     >
       {children}
     </WishlistContext.Provider>

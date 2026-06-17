@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { PageTitle, StoreFeatures, BrandCarousel, InstagramCarousel } from '../components';
 import AboutBanner from '../assets/about-banner.webp';
@@ -9,11 +9,18 @@ import Team2 from '../assets/team/team02.png';
 import Team3 from '../assets/team/team03.png';
 import Team4 from '../assets/team/team04.png';
 import { useLoader } from '../context/LoaderContext';
+import BlurText from '../components/sections/reactBits/BlurText';
+import ShinyText from '../components/sections/reactBits/ShinyText';
 
 function About() {
   const { useFakeLoader } = useLoader();
   const { t, i18n } = useTranslation();
-  useEffect(() => useFakeLoader(), []);
+  const [ready, setReady] = useState(false);
+
+  useEffect(() => {
+    useFakeLoader();
+    setReady(true);
+  }, []);
 
   const teamMembers = [
     {
@@ -44,7 +51,10 @@ function About() {
 
   return (
     <div>
-      <PageTitle pageName={t('about.pageTitle')} />
+      <PageTitle
+        pageName={t('about.pageTitle')}
+        ready={ready}
+      />
 
       <div className="our-story">
         <div className="our-story__title">
@@ -53,7 +63,16 @@ function About() {
             alt=""
             className="our-story__wing"
           />
-          <p>{t('about.ourStory.label')}</p>
+          <p>
+            {' '}
+            <BlurText
+              text={t('about.ourStory.label')}
+              delay={100}
+              animateBy="words"
+              direction="top"
+              className="text-2xl mb-8"
+            />
+          </p>
           <img
             src={wing2}
             alt=""
@@ -62,8 +81,23 @@ function About() {
         </div>
 
         <h3 className="our-story__desc">
-          {t('about.ourStory.descStart')}{' '}
-          <span className="orange">{t('about.ourStory.brandName')}</span>{' '}
+          {' '}
+          {t('about.ourStory.descStart')}
+          <span className="orange">
+            {' '}
+            <ShinyText
+              text={t('about.ourStory.brandName')}
+              speed={2}
+              delay={0}
+              color="#fea90c"
+              shineColor="#ffffff"
+              spread={100}
+              direction="left"
+              yoyo={true}
+              pauseOnHover={false}
+              disabled={false}
+            />
+          </span>{' '}
           {t('about.ourStory.descEnd')}
         </h3>
 
@@ -83,7 +117,16 @@ function About() {
             alt=""
             className="team__wing"
           />
-          <p>{t('about.team.label')}</p>
+          <p>
+            {' '}
+            <BlurText
+              text={t('about.team.label')}
+              delay={100}
+              animateBy="words"
+              direction="top"
+              className="text-2xl mb-8"
+            />
+          </p>
           <img
             src={wing2}
             alt=""
@@ -91,7 +134,21 @@ function About() {
           />
         </div>
 
-        <p className="team__desc">{t('about.team.desc')}</p>
+        <p className="team__desc">
+          {' '}
+          <ShinyText
+            text={t('about.team.desc')}
+            speed={2}
+            delay={0}
+            color="#696969"
+            shineColor="#ffffff"
+            spread={120}
+            direction="left"
+            yoyo={true}
+            pauseOnHover={false}
+            disabled={false}
+          />
+        </p>
 
         <div className="team__cards">
           {teamMembers.map((tm8) => (
@@ -105,8 +162,31 @@ function About() {
                 className="team__cards__card__img"
               />
               <div className="team__cards__card__content">
-                <h3 className="team__cards__card__title">{tm8.title}</h3>
-                <p className="team__cards__card__text">{tm8.description}</p>
+                <h3 className="team__cards__card__title">
+                  {' '}
+                  <BlurText
+                    text={tm8.title}
+                    delay={100}
+                    animateBy="words"
+                    direction="top"
+                    className="text-2xl mb-8"
+                  />
+                </h3>
+                <p className="team__cards__card__text">
+                  {' '}
+                  <ShinyText
+                    text={tm8.description}
+                    speed={2}
+                    delay={0}
+                    color="#696969"
+                    shineColor="#ffffff"
+                    spread={120}
+                    direction="left"
+                    yoyo={true}
+                    pauseOnHover={false}
+                    disabled={false}
+                  />
+                </p>
               </div>
             </div>
           ))}

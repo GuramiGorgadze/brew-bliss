@@ -6,6 +6,8 @@ import phoneIcon from '../assets/icons/phone-icon.svg';
 import flagEN from '../assets/flags/flag-en.png';
 import flagFR from '../assets/flags/flag-fr.png';
 import flagDE from '../assets/flags/flag-de.png';
+import ShinyText from '../components/sections/reactBits/ShinyText';
+import BlurText from '../components/sections/reactBits/BlurText';
 
 const languages = [
   { code: 'en', label: 'English', flag: flagEN },
@@ -51,7 +53,21 @@ function TopBar() {
       </div>
 
       <div className="top-bar__promo">
-        <p>{t('topbar.promoMessage')}</p>
+        <p>
+          {' '}
+          <ShinyText
+            text={t('topbar.promoMessage')}
+            speed={2}
+            delay={0}
+            color="#ffffff"
+            shineColor="#9b9b9b"
+            spread={100}
+            direction="left"
+            yoyo={true}
+            pauseOnHover={false}
+            disabled={false}
+          />
+        </p>
       </div>
 
       <div className="top-bar__region">

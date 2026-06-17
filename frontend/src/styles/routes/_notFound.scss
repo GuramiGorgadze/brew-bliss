@@ -20,7 +20,7 @@
     background-color: $bg-navbar;
     flex-direction: column;
     padding: calc(50px * var(--app-scale)) 0;
-    border-radius: 5px;
+    border-radius: calc(5px * var(--app-scale));
     justify-content: center;
     align-items: center;
     margin: calc(50px * var(--app-scale)) 0;

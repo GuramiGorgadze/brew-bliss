@@ -15,8 +15,10 @@ export function CartProvider({ children }) {
     refreshCart();
   }, [refreshCart]);
 
+  const reset = () => setCartCount(0);
+
   return (
-    <CartContext.Provider value={{ cartCount, setCartCount, refreshCart }}>
+    <CartContext.Provider value={{ cartCount, setCartCount, refreshCart, reset }}>
       {children}
     </CartContext.Provider>
   );

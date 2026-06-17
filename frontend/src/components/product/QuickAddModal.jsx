@@ -9,6 +9,8 @@ import * as api from '../../api/api';
 import clsx from 'clsx';
 import ShippingIcon from '../../assets/icons/shipping-icon-white.svg';
 import toast from 'react-hot-toast';
+import BlurText from '../sections/reactBits/BlurText';
+import ShinyText from '../sections/reactBits/ShinyText';
 
 function QuickAddModal({ product, onClose }) {
   const { t, i18n } = useTranslation();
@@ -183,11 +185,18 @@ function QuickAddModal({ product, onClose }) {
           </div>
 
           <div className="quick-add-modal__details">
+            {/* BlurText on title — same as ProductSingle's <h1> */}
             <h2
               className="quick-add-modal__product-title"
               onClick={() => navigate(`/products/${product._id}`)}
             >
-              {title}
+              <BlurText
+                text={title}
+                delay={100}
+                animateBy="words"
+                direction="top"
+                className="text-2xl mb-8"
+              />
             </h2>
 
             <p className="product-page__reviews">
@@ -230,12 +239,24 @@ function QuickAddModal({ product, onClose }) {
               </div>
             </div>
 
+            {/* ShinyText on free shipping — same as ProductSingle */}
             <h5 className="product-page__promo">
               {remaining === 0 ? (
                 <>
                   {t('productSingle.shipping.congrats')}{' '}
                   <span className="product-page__promo-highlight">
-                    {t('productSingle.shipping.freeShipping')}
+                    <ShinyText
+                      text={t('productSingle.shipping.freeShipping')}
+                      speed={2}
+                      delay={0}
+                      color="#fea90c"
+                      shineColor="#ffffff"
+                      spread={100}
+                      direction="left"
+                      yoyo={true}
+                      pauseOnHover={false}
+                      disabled={false}
+                    />{' '}
                   </span>
                 </>
               ) : (
@@ -244,7 +265,18 @@ function QuickAddModal({ product, onClose }) {
                     amount: formatPrice(remaining / activeCurrency.rate),
                   })}{' '}
                   <span className="product-page__promo-highlight">
-                    {t('productSingle.shipping.freeShipping')}
+                    <ShinyText
+                      text={t('productSingle.shipping.freeShipping')}
+                      speed={2}
+                      delay={0}
+                      color="#fea90c"
+                      shineColor="#ffffff"
+                      spread={100}
+                      direction="left"
+                      yoyo={true}
+                      pauseOnHover={false}
+                      disabled={false}
+                    />{' '}
                   </span>
                 </>
               )}
@@ -312,9 +344,21 @@ function QuickAddModal({ product, onClose }) {
               </div>
             </div>
 
+            {/* ShinyText on delivery label — same as ProductSingle */}
             <div className="product-page__additional-info-item">
               <p className="product-page__additional-info-text">
-                {t('productSingle.delivery.label')}{' '}
+                <ShinyText
+                  text={t('productSingle.delivery.label')}
+                  speed={2}
+                  delay={0}
+                  color="#696969"
+                  shineColor="#ffffff"
+                  spread={100}
+                  direction="left"
+                  yoyo={true}
+                  pauseOnHover={false}
+                  disabled={false}
+                />{' '}
                 <span className="product-page__additional-info-text--dark">
                   {getDeliveryRange()}
                 </span>

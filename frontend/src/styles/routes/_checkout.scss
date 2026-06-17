@@ -7,8 +7,8 @@
 
   &__left {
     background-color: $color-white;
-    border-right: $border-checkout 1px solid;
-    padding: 80px;
+    border-right: $border-checkout calc(1px * var(--app-scale)) solid;
+    padding: calc(80px * var(--app-scale));
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
@@ -16,17 +16,17 @@
     form {
       display: flex;
       flex-direction: column;
-      gap: 32px;
+      gap: calc(32px * var(--app-scale));
     }
 
     &--btn {
       background-color: $color-checkout-active;
       border: none;
-      padding: 16px;
+      padding: calc(16px * var(--app-scale));
       width: 100%;
       color: $color-white;
-      border-radius: 10px;
-      font-size: 16px;
+      border-radius: calc(10px * var(--app-scale));
+      font-size: calc(16px * var(--app-scale));
       font-weight: 900;
       transition: 0.5s ease;
       cursor: pointer;
@@ -42,14 +42,14 @@
     width: 100%;
     display: flex;
     flex-direction: column;
-    padding-top: 50px;
-    gap: 5px;
+    padding-top: calc(50px * var(--app-scale));
+    gap: calc(5px * var(--app-scale));
     position: relative;
 
     .wrapper {
       position: sticky;
-      top: 100px;
-      margin-bottom: 50px;
+      top: calc(100px * var(--app-scale));
+      margin-bottom: calc(50px * var(--app-scale));
     }
 
     &--product {
@@ -57,19 +57,19 @@
       justify-content: space-between;
       align-items: center;
       width: 70%;
-      margin-left: 50px;
-      margin-bottom: 15px;
+      margin-left: calc(50px * var(--app-scale));
+      margin-bottom: calc(15px * var(--app-scale));
 
       .left {
         display: flex;
         align-items: center;
-        gap: 10px;
+        gap: calc(10px * var(--app-scale));
 
         &__img-wrapper {
-          height: 60px;
-          width: 60px;
-          border: $color-white 3px solid;
-          border-radius: 10px;
+          height: calc(60px * var(--app-scale));
+          width: calc(60px * var(--app-scale));
+          border: $color-white calc(3px * var(--app-scale)) solid;
+          border-radius: calc(10px * var(--app-scale));
           display: flex;
           justify-content: center;
           align-items: center;
@@ -91,34 +91,36 @@
           display: flex;
           justify-content: center;
           align-items: center;
-          width: 16px;
-          height: 16px;
-          border-radius: 5px;
+          width: calc(16px * var(--app-scale));
+          height: calc(16px * var(--app-scale));
+          border-radius: calc(5px * var(--app-scale));
           position: absolute;
-          top: -5px;
-          right: -5px;
-          font-size: 13px;
+          top: calc(-5px * var(--app-scale));
+          right: calc(-5px * var(--app-scale));
+          font-size: calc(13px * var(--app-scale));
         }
 
         &__info {
           display: flex;
           flex-direction: column;
-          gap: 5px;
-          width: 100% &--title {
-            font-size: 16px;
+          gap: calc(5px * var(--app-scale));
+          width: 100%;
+
+          &--title {
+            font-size: calc(16px * var(--app-scale));
             color: $text-primary;
           }
 
           &--desc {
             color: $text-desc;
-            font-size: 12px;
-            width: 170px;
+            font-size: calc(12px * var(--app-scale));
+            width: calc(170px * var(--app-scale));
           }
         }
       }
 
       .right-price {
-        font-size: 16px;
+        font-size: calc(16px * var(--app-scale));
         color: $text-primary;
         font-weight: 400;
       }
@@ -128,23 +130,52 @@
       display: flex;
       justify-content: space-between;
       width: 70%;
-      margin-left: 50px;
-      margin-top: 10px;
+      margin-left: calc(50px * var(--app-scale));
+      margin-top: calc(10px * var(--app-scale));
 
       p {
-        font-size: 14px;
+        font-size: calc(14px * var(--app-scale));
       }
 
       h6 {
         font-weight: 900;
-        font-size: 18px;
-        margin-top: 10px;
+        font-size: calc(18px * var(--app-scale));
+        margin-top: calc(10px * var(--app-scale));
 
         span {
-          font-size: 12px;
+          font-size: calc(12px * var(--app-scale));
           color: $text-desc;
-          margin-right: 5px;
+          margin-right: calc(5px * var(--app-scale));
         }
+      }
+    }
+
+    &--note {
+      display: flex;
+      flex-direction: column;
+      gap: calc(4px * var(--app-scale));
+      width: 70%;
+      margin-left: calc(50px * var(--app-scale));
+      margin-top: calc(10px * var(--app-scale));
+      padding: calc(10px * var(--app-scale)) calc(12px * var(--app-scale));
+      background-color: rgba(0, 0, 0, 0.04);
+      border-radius: calc(6px * var(--app-scale));
+      border-left: calc(3px * var(--app-scale)) solid $border-checkout;
+      box-sizing: border-box;
+
+      p:first-child {
+        font-size: calc(11px * var(--app-scale));
+        color: $text-desc;
+        text-transform: uppercase;
+        letter-spacing: calc(0.5px * var(--app-scale));
+      }
+
+      p:last-child {
+        font-size: calc(13px * var(--app-scale));
+        color: $text-primary;
+        font-style: italic;
+        overflow-wrap: break-word;
+        word-break: break-word;
       }
     }
   }
@@ -153,10 +184,10 @@
 .contact {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: calc(12px * var(--app-scale));
 
   &__title {
-    font-size: 18px;
+    font-size: calc(18px * var(--app-scale));
     font-weight: 600;
     color: $text-primary;
   }
@@ -165,10 +196,10 @@
 .delivery {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: calc(12px * var(--app-scale));
 
   &__title {
-    font-size: 18px;
+    font-size: calc(18px * var(--app-scale));
     font-weight: 600;
     color: $text-primary;
   }
@@ -176,17 +207,17 @@
   &__row {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 15px;
+    gap: calc(15px * var(--app-scale));
   }
 }
 
 .payment {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: calc(12px * var(--app-scale));
 
   &__title {
-    font-size: 18px;
+    font-size: calc(18px * var(--app-scale));
     font-weight: 600;
     color: $text-primary;
   }
@@ -194,7 +225,7 @@
   &__row {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 15px;
+    gap: calc(15px * var(--app-scale));
   }
 }
 
@@ -203,10 +234,11 @@
 
   &__input {
     width: 100%;
-    padding: 22px 14px 8px;
-    border: 1px solid $border-checkout;
-    border-radius: 6px;
-    font-size: 14px;
+    padding: calc(22px * var(--app-scale)) calc(14px * var(--app-scale))
+      calc(8px * var(--app-scale));
+    border: calc(1px * var(--app-scale)) solid $border-checkout;
+    border-radius: calc(6px * var(--app-scale));
+    font-size: calc(14px * var(--app-scale));
     color: $text-primary;
     background: $color-white;
     transition: 0.2s;
@@ -214,24 +246,24 @@
     box-sizing: border-box;
 
     &:focus {
-      border: $color-checkout-active 2px solid;
+      border: $color-checkout-active calc(2px * var(--app-scale)) solid;
     }
 
     &.error {
       border-color: $text-checkout-error;
 
       &:focus {
-        border: $text-checkout-error 2px solid;
+        border: $text-checkout-error calc(2px * var(--app-scale)) solid;
       }
     }
   }
 
   &__label {
     position: absolute;
-    left: 14px;
-    top: 26px;
+    left: calc(14px * var(--app-scale));
+    top: calc(26px * var(--app-scale));
     transform: translateY(-50%);
-    font-size: 14px;
+    font-size: calc(14px * var(--app-scale));
     color: $text-desc;
     pointer-events: none;
     transition: 0.2s;
@@ -239,18 +271,18 @@
 
   &__input:focus + &__label,
   &__input:not(:placeholder-shown) + &__label {
-    top: 10px;
+    top: calc(10px * var(--app-scale));
     transform: none;
-    font-size: 11px;
+    font-size: calc(11px * var(--app-scale));
   }
 
   &__icon {
     position: absolute;
-    right: 0px;
-    top: 26px;
-    transform: translateY(-50%) translateX(-20px);
+    right: 0;
+    top: calc(26px * var(--app-scale));
+    transform: translateY(-50%) translateX(calc(-20px * var(--app-scale)));
     color: $text-desc;
-    font-size: 16px;
+    font-size: calc(16px * var(--app-scale));
     pointer-events: none;
 
     &--action {
@@ -261,10 +293,10 @@
   }
 
   &__error {
-    height: 15px;
-    font-size: 13px;
+    height: calc(15px * var(--app-scale));
+    font-size: calc(13px * var(--app-scale));
     color: $text-checkout-error;
-    margin: 5px 0;
+    margin: calc(5px * var(--app-scale)) 0;
   }
 }
 
@@ -273,7 +305,7 @@
     display: flex;
     flex-direction: column;
 
-    &__right {
+    __right {
       .wrapper {
         display: flex;
         justify-content: center;
@@ -288,22 +320,30 @@
       &--row {
         margin-left: 0;
       }
+
+      &--note {
+        margin-left: 0;
+      }
     }
   }
 }
 
 @media (max-width: 768px) {
   .checkout {
-    &__left {
+    __left {
       padding: 80px 20px;
     }
 
-    &__right {
+    __right {
       &--product {
         width: 90%;
       }
 
       &--row {
+        width: 90%;
+      }
+
+      &--note {
         width: 90%;
       }
     }
@@ -312,11 +352,11 @@
 
 @media (max-width: 425px) {
   .checkout {
-    &__left {
+    __left {
       padding: 80px 10px;
     }
 
-    &__right {
+    __right {
       &--product {
         width: 93%;
       }
@@ -324,16 +364,20 @@
       &--row {
         width: 93%;
       }
+
+      &--note {
+        width: 93%;
+      }
     }
   }
 
   .float-field {
-    &__error {
+    __error {
       height: 10px;
       font-size: 10px;
     }
 
-    &__label {
+    __label {
       font-size: 10px;
     }
   }

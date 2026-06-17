@@ -4,6 +4,8 @@ import ShippingIcon from '../../assets/icons/shipping-icon.svg';
 import GiftIcon from '../../assets/icons/gift-icon.svg';
 import WarrantyIcon from '../../assets/icons/warranty-icon.svg';
 import ReturnIcon from '../../assets/icons/return-icon.svg';
+import BlurText from './reactBits/BlurText';
+import ShinyText from './reactBits/ShinyText';
 
 function StoreFeatures() {
   const { t, i18n } = useTranslation();
@@ -50,8 +52,29 @@ function StoreFeatures() {
             />
           </div>
           <div className="feature-card__content">
-            <h3 className="feature-card__title">{feature.title}</h3>
-            <p className="feature-card__text">{feature.description}</p>
+            <h3 className="feature-card__title">
+              <BlurText
+                text={feature.title}
+                delay={100}
+                animateBy="words"
+                direction="top"
+                className="text-2xl mb-8"
+              />
+            </h3>
+            <p className="feature-card__text">
+              <ShinyText
+                text={feature.description}
+                speed={2}
+                delay={0}
+                color="#45474f"
+                shineColor="#ffffff"
+                spread={120}
+                direction="left"
+                yoyo={true}
+                pauseOnHover={false}
+                disabled={false}
+              />
+            </p>
           </div>
         </div>
       ))}

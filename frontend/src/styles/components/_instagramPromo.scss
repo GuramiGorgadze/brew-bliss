@@ -1,4 +1,4 @@
-@use "../abstracts" as *;
+@use '../abstracts' as *;
 
 .instagram-promo {
   display: flex;
@@ -15,9 +15,9 @@
 
     img {
       width: 100%;
-      max-width: 500px;
+      max-width: calc(500px * var(--app-scale));
       height: auto;
-      margin: 5px 10px;
+      margin: calc(5px * var(--app-scale)) calc(10px * var(--app-scale));
     }
 
     &__overlay {
@@ -84,7 +84,6 @@
     }
   }
 }
-
 
 @media (max-width: 430px) {
   .instagram-promo {

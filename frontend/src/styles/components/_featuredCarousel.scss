@@ -4,37 +4,37 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 50px;
-  gap: 10px;
+  padding: calc(50px * var(--app-scale));
+  gap: calc(10px * var(--app-scale));
 
   &__title {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 5px;
+    gap: calc(5px * var(--app-scale));
 
     .wing {
-      width: 20px;
-      height: 20px;
+      width: calc(20px * var(--app-scale));
+      height: calc(20px * var(--app-scale));
     }
 
     p {
-      font-size: 30px;
+      font-size: calc(30px * var(--app-scale));
     }
   }
 
   &__text {
     color: $text-subtle;
-    font-size: 15px;
-    margin-bottom: 15px;
-    width: 500px;
+    font-size: calc(15px * var(--app-scale));
+    margin-bottom: calc(15px * var(--app-scale));
+    width: calc(500px * var(--app-scale));
     text-align: center;
   }
 
   &__wrapper {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: calc(10px * var(--app-scale));
     width: 100%;
 
     &:hover {
@@ -49,15 +49,15 @@
     overflow: hidden;
     width: 100%;
     min-width: 0;
-    padding-right: 4px;
+    padding-right: calc(4px * var(--app-scale));
 
     &--container {
       display: flex;
-      gap: 15px;
+      gap: calc(15px * var(--app-scale));
     }
 
     &--slide {
-      flex: 0 0 calc(25% - 12px);
+      flex: 0 0 calc(25% - calc(12px * var(--app-scale)));
       min-width: 0;
     }
   }
@@ -65,11 +65,11 @@
   &__btn {
     flex-shrink: 0;
     display: flex;
-    width: 36px;
-    height: 36px;
+    width: calc(36px * var(--app-scale));
+    height: calc(36px * var(--app-scale));
     align-items: center;
     justify-content: center;
-    padding: 10px;
+    padding: calc(10px * var(--app-scale));
     border-radius: 50%;
     border: none;
     background-color: $color-accent;
@@ -79,7 +79,7 @@
     pointer-events: none;
 
     .bi {
-      font-size: 20px;
+      font-size: calc(20px * var(--app-scale));
       color: $color-white;
       font-weight: 900;
     }
@@ -90,13 +90,13 @@
     }
 
     &--prev {
-      transform: translateX(25px);
+      transform: translateX(calc(25px * var(--app-scale)));
       scale: 1.2;
       z-index: 30;
     }
 
     &--next {
-      transform: translateX(-25px);
+      transform: translateX(calc(-25px * var(--app-scale)));
       scale: 1.2;
       z-index: 30;
     }
@@ -110,10 +110,10 @@
     background-color: $color-accent;
     color: $text-primary;
     border: none;
-    padding: 15px 35px;
-    border-radius: 5px;
-    font-size: 15px;
-    margin-top: 40px;
+    padding: calc(15px * var(--app-scale)) calc(35px * var(--app-scale));
+    border-radius: calc(5px * var(--app-scale));
+    font-size: calc(15px * var(--app-scale));
+    margin-top: calc(40px * var(--app-scale));
     transition: 0.5s ease;
     cursor: pointer;
 
@@ -143,7 +143,7 @@
     }
 
     &__wrapper {
-      gap: 0; 
+      gap: 0;
     }
 
     &__embla {

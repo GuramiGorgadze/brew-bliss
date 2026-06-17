@@ -28,6 +28,8 @@ import useDocumentTitle from './hooks/useDocumentTitle';
 import useScrollTop from './hooks/useScrollTop';
 import useAppScale from './hooks/useAppScale';
 import { useUserData } from './context/UserContext.jsx';
+import { useWishlist } from './context/WishlistContext.jsx';
+import { useCart } from './context/CartContext.jsx';
 import { Toaster } from 'react-hot-toast';
 
 function App() {
@@ -35,7 +37,9 @@ function App() {
   useScrollTop();
   useAppScale();
 
-  const { login, setIsAuthLoading } = useUserData();
+  const { login, setIsAuthLoading, loggedIn } = useUserData();
+  const { reset: resetWishlist } = useWishlist();
+  const { reset: resetCart } = useCart();
 
   useEffect(() => {
     const getUserInfo = async () => {
@@ -57,6 +61,13 @@ function App() {
     getUserInfo();
   }, []);
 
+  useEffect(() => {
+    if (!loggedIn) {
+      resetWishlist();
+      resetCart();
+    }
+  }, [loggedIn]);
+
   return (
     <>
       <Toaster
@@ -67,7 +78,6 @@ function App() {
         toastOptions={{
           duration: 3000,
           className: 'custom-toast',
-
           iconTheme: {
             primary: '#FEA90C',
           },
@@ -82,7 +92,6 @@ function App() {
             path="/"
             element={<Home />}
           />
-
           <Route
             path="/products"
             element={<Products />}
@@ -91,7 +100,6 @@ function App() {
             path="/products/:id"
             element={<ProductSingle />}
           />
-
           <Route
             path="/about"
             element={<About />}
@@ -104,7 +112,6 @@ function App() {
             path="/team"
             element={<Team />}
           />
-
           <Route
             path="/register"
             element={<Register />}
@@ -113,12 +120,10 @@ function App() {
             path="/login"
             element={<Login />}
           />
-
           <Route
             path="/reset-password/:token"
             element={<ResetPassword />}
           />
-
           <Route
             path="/account"
             element={
@@ -127,7 +132,6 @@ function App() {
               </ProtectedRoute>
             }
           />
-
           <Route
             path="/cart"
             element={
@@ -136,7 +140,6 @@ function App() {
               </ProtectedRoute>
             }
           />
-
           <Route
             path="/wishlist"
             element={
@@ -145,7 +148,6 @@ function App() {
               </ProtectedRoute>
             }
           />
-
           <Route
             path="/checkout"
             element={
@@ -154,7 +156,6 @@ function App() {
               </ProtectedRoute>
             }
           />
-
           <Route
             path="/order-success"
             element={
@@ -163,7 +164,6 @@ function App() {
               </ProtectedRoute>
             }
           />
-
           <Route
             path="/account/address"
             element={
@@ -172,7 +172,6 @@ function App() {
               </ProtectedRoute>
             }
           />
-
           <Route
             path="*"
             element={<NotFound />}

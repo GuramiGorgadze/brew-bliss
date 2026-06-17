@@ -6,6 +6,8 @@ import { InstagramCarousel } from '../components';
 import * as api from '../api/api';
 import { Link, useSearchParams } from 'react-router-dom';
 import { useCurrency } from '../context/CurrencyContext';
+import BlurText from '../components/sections/reactBits/BlurText';
+import ShinyText from '../components/sections/reactBits/ShinyText';
 
 const ORDERS_PER_PAGE = 2;
 
@@ -17,6 +19,7 @@ function Account() {
   const { t, i18n } = useTranslation();
   const { formatPrice } = useCurrency();
   const [searchParams, setSearchParams] = useSearchParams();
+  const [ready, setReady] = useState(false);
 
   const activeTab = searchParams.get('tab') || 'dashboard';
 
@@ -37,9 +40,18 @@ function Account() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
+  const getPageNumbers = () => {
+    if (totalPages <= 5) return Array.from({ length: totalPages }, (_, i) => i + 1);
+    if (currentPage <= 3) return [1, 2, 3, 4, '...', totalPages];
+    if (currentPage >= totalPages - 2)
+      return [1, '...', totalPages - 3, totalPages - 2, totalPages - 1, totalPages];
+    return [1, '...', currentPage - 1, currentPage, currentPage + 1, '...', totalPages];
+  };
+
   useEffect(() => {
     const fetchWishlist = async () => {
       const data = await useDataLoader(api.getWishlist);
+      setReady(true);
       if (data?.data) setWishlist(data.data.length);
     };
     fetchWishlist();
@@ -48,6 +60,7 @@ function Account() {
   useEffect(() => {
     const fetchOrders = async () => {
       const data = await useDataLoader(api.getOrders);
+      setReady(true);
       if (data?.data) setOrders(data.data);
     };
     fetchOrders();
@@ -56,15 +69,40 @@ function Account() {
   return (
     <div className="account">
       <div className="account__header">
-        <h2 className="account__title">{t('account.title')}</h2>
+        <h2 className="account__title">
+          {' '}
+          {ready && (
+            <BlurText
+              text={t('account.title')}
+              delay={100}
+              animateBy="words"
+              direction="top"
+              className="text-2xl mb-8"
+            />
+          )}
+        </h2>
         <div className="account__divider"></div>
       </div>
 
       <div className="account__body">
         <div className="account__nav">
           <p className="account__nav-welcome">
-            <span className="orange">{t('account.welcome')}</span> {userData?.firstName}{' '}
-            {userData?.lastName}
+            <span className="orange">
+              {' '}
+              <ShinyText
+                text={t('account.welcome')}
+                speed={2}
+                delay={0}
+                color="#fea90c"
+                shineColor="#ffffff"
+                spread={100}
+                direction="left"
+                yoyo={true}
+                pauseOnHover={false}
+                disabled={false}
+              />
+            </span>{' '}
+            {userData?.firstName} {userData?.lastName}
           </p>
 
           <div className="account__nav-links">
@@ -199,6 +237,11 @@ function Account() {
                           ))}
                         </div>
                         <div className="account__order-footer">
+                          {order.note && (
+                            <span className="account__order-note">
+                              {t('account.orders.note')}: {order.note}
+                            </span>
+                          )}
                           <span className="account__order-total">
                             {t('account.orders.total')}: {formatPrice(order.total)}
                           </span>
@@ -217,15 +260,24 @@ function Account() {
                         <i className="bi bi-chevron-left" />
                       </button>
 
-                      {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
-                        <button
-                          key={page}
-                          className={`account__pagination-btn ${currentPage === page ? 'active' : ''}`}
-                          onClick={() => setPage(page)}
-                        >
-                          {page}
-                        </button>
-                      ))}
+                      {getPageNumbers().map((page, i) =>
+                        page === '...' ? (
+                          <span
+                            key={`ellipsis-${i}`}
+                            className="account__pagination-ellipsis"
+                          >
+                            …
+                          </span>
+                        ) : (
+                          <button
+                            key={page}
+                            className={`account__pagination-btn ${currentPage === page ? 'active' : ''}`}
+                            onClick={() => setPage(page)}
+                          >
+                            {page}
+                          </button>
+                        )
+                      )}
 
                       <button
                         className="account__pagination-btn account__pagination-btn--arrow"

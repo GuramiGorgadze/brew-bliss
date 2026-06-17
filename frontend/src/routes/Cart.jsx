@@ -8,6 +8,8 @@ import { useCart } from '../context/CartContext';
 import * as api from '../api/api';
 import ShippingIcon from '../assets/icons/shipping-icon-white.svg';
 import toast from 'react-hot-toast';
+import BlurText from '../components/sections/reactBits/BlurText';
+import ShinyText from '../components/sections/reactBits/ShinyText';
 
 const localize = (field, lang) => {
   if (!field) return '';
@@ -32,6 +34,7 @@ function Cart() {
   const { setCartCount } = useCart();
   const [removingId, setRemovingId] = useState(null);
   const [termsAccepted, setTermsAccepted] = useState(false);
+  const [ready, setReady] = useState(false);
 
   const freeShippingNumber = 500;
 
@@ -41,6 +44,7 @@ function Cart() {
       if (data?.data) {
         setCartItems(data.data.map((item) => ({ ...item, quantity: item.quantity })));
         setCartCount(data.data.length);
+        setReady(true);
       } else if (data?.err) {
         console.log(data.err);
       }
@@ -118,7 +122,10 @@ function Cart() {
 
   return (
     <div className="cart-wrapper">
-      <PageTitle pageName={t('cart.pageTitle')} />
+      <PageTitle
+        pageName={t('cart.pageTitle')}
+        ready={ready}
+      />
 
       <div className="cart">
         <div className="cart__left">
@@ -239,6 +246,7 @@ function Cart() {
               id="cart-note"
               placeholder={t('cart.note.placeholder')}
               value={note}
+              maxLength={400}
               onChange={(e) => setNote(e.target.value)}
             />
           </div>
@@ -270,7 +278,18 @@ function Cart() {
                   <>
                     {t('cart.shipping.congrats')}{' '}
                     <span className="cart__shipping-progress-label--highlight">
-                      {t('cart.shipping.freeShipping')}
+                      <ShinyText
+                        text={t('cart.shipping.freeShipping')}
+                        speed={2}
+                        delay={0}
+                        color="#fea90c"
+                        shineColor="#ffffff"
+                        spread={100}
+                        direction="left"
+                        yoyo={true}
+                        pauseOnHover={false}
+                        disabled={false}
+                      />
                     </span>
                   </>
                 ) : (
@@ -279,7 +298,18 @@ function Cart() {
                       amount: formatPrice(remaining / activeCurrency.rate),
                     })}{' '}
                     <span className="cart__shipping-progress-label--highlight">
-                      {t('cart.shipping.freeShipping')}
+                      <ShinyText
+                        text={t('cart.shipping.freeShipping')}
+                        speed={2}
+                        delay={0}
+                        color="#fea90c"
+                        shineColor="#ffffff"
+                        spread={100}
+                        direction="left"
+                        yoyo={true}
+                        pauseOnHover={false}
+                        disabled={false}
+                      />
                     </span>
                   </>
                 )}
@@ -304,7 +334,21 @@ function Cart() {
 
             <div className="divider"></div>
 
-            <p className="cart__comment">{t('cart.summary.taxNote')}</p>
+            <p className="cart__comment">
+              {' '}
+              <ShinyText
+                text={t('cart.summary.taxNote')}
+                speed={2}
+                delay={0}
+                color="#4d5574"
+                shineColor="#ffffff"
+                spread={100}
+                direction="left"
+                yoyo={true}
+                pauseOnHover={false}
+                disabled={false}
+              />
+            </p>
 
             <div className="cart__terms">
               <input
@@ -314,7 +358,22 @@ function Cart() {
                 onChange={(e) => setTermsAccepted(e.target.checked)}
               />
               <p className="cart__terms--text">
-                {t('cart.terms.agree')} <span className="terms">{t('cart.terms.link')}</span>
+                {t('cart.terms.agree')}{' '}
+                <span className="terms">
+                  {' '}
+                  <ShinyText
+                    text={t('cart.terms.link')}
+                    speed={2}
+                    delay={0}
+                    color="#fea90c"
+                    shineColor="#ffffff"
+                    spread={100}
+                    direction="left"
+                    yoyo={true}
+                    pauseOnHover={false}
+                    disabled={false}
+                  />
+                </span>
               </p>
             </div>
 

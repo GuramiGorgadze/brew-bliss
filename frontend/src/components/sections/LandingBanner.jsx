@@ -5,6 +5,8 @@ import wing1 from '../../assets/wing1.png';
 import wing2 from '../../assets/wing2.png';
 import landingBeer from '../../assets/landing-beer.webp';
 import heroBanner from '../../assets/Hero_Banner.webp';
+import BlurText from './reactBits/BlurText';
+import ShinyText from './reactBits/ShinyText';
 
 function LandingBanner() {
   const { t, i18n } = useTranslation();
@@ -29,8 +31,30 @@ function LandingBanner() {
           />
         </div>
 
-        <h2 className="landing-banner__title">{t('landingBanner.title')}</h2>
-        <p className="landing-banner__text">{t('landingBanner.text')}</p>
+        <h2 className="landing-banner__title">
+          <BlurText
+            text={t('landingBanner.title')}
+            delay={100}
+            animateBy="words"
+            direction="top"
+            className="text-2xl mb-8"
+          />
+        </h2>
+        <p className="landing-banner__text">
+          {' '}
+          <ShinyText
+            text={t('landingBanner.text')}
+            speed={2}
+            delay={0}
+            color="#b5b5b5"
+            shineColor="#ffffff"
+            spread={120}
+            direction="left"
+            yoyo={true}
+            pauseOnHover={true}
+            disabled={false}
+          />
+        </p>
 
         <div className="landing-banner__actions">
           <Link to="./products">

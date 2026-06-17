@@ -1,4 +1,4 @@
-@use "../abstracts" as *;
+@use '../abstracts' as *;
 
 .our-story {
   display: flex;
@@ -74,7 +74,7 @@
   &__cards {
     display: flex;
     gap: calc(20px * var(--app-scale));
-    margin: 0 30px;
+    margin: 0 calc(30px * var(--app-scale));
     margin-top: calc(50px * var(--app-scale));
 
     &__card {
@@ -110,6 +110,7 @@
 @media (max-width: 1024px) {
   .our-story {
     margin: 50px 20px;
+
     &__desc {
       width: 100%;
 
@@ -122,6 +123,7 @@
       width: 100%;
     }
   }
+
   .team {
     &__cards {
       flex-wrap: wrap;

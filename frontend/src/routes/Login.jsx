@@ -20,7 +20,12 @@ function Login() {
   const [resetEmail, setResetEmail] = useState('');
   const [resetSent, setResetSent] = useState(false);
 
-  useEffect(() => useFakeLoader(), []);
+  const [ready, setReady] = useState(false);
+
+  useEffect(() => {
+    useFakeLoader();
+    setReady(true);
+  }, []);
 
   const loginSchema = yup.object({
     email: yup
@@ -86,7 +91,10 @@ function Login() {
 
   return (
     <div className="auth-wrapper">
-      <PageTitle pageName={t('login.pageTitle')} />
+      <PageTitle
+        pageName={t('login.pageTitle')}
+        ready={ready}
+      />
 
       {!showResetForm ? (
         <div className="auth">

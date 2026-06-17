@@ -2,8 +2,8 @@
   --slide-size: 25%;
   cursor: pointer;
   width: auto;
-  margin: 100px auto;
-  padding: 0 95px;
+  margin: calc(100px * var(--app-scale)) auto;
+  padding: 0 calc(95px * var(--app-scale));
 
   &__viewport {
     overflow: hidden;

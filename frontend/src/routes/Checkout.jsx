@@ -10,6 +10,7 @@ import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import clsx from 'clsx';
 import { useUserData } from '../context/UserContext.jsx';
+import toast from 'react-hot-toast';
 
 const localize = (field, lang) => {
   if (!field) return '';
@@ -40,7 +41,10 @@ function Checkout() {
   const totalQty = cartItems.reduce((sum, item) => sum + item.quantity, 0);
   const total = cartItems.reduce((sum, item) => sum + getSubtotal(item), 0);
   const freeShippingThreshold = 500 * activeCurrency.rate;
-  const shipping = total * activeCurrency.rate >= freeShippingThreshold ? 'FREE' : formatPrice(10);
+  const shipping =
+    total * activeCurrency.rate >= freeShippingThreshold
+      ? t('checkout.shippingFree')
+      : formatPrice(10);
 
   const schema = yup.object({
     email: yup
@@ -108,6 +112,7 @@ function Checkout() {
   }, [userData]);
 
   const onSubmit = async (formData) => {
+    const toastId = toast.loading(t('checkout.processing'));
     try {
       const payload = {
         cardNumber: formData.cardNumber,
@@ -128,11 +133,14 @@ function Checkout() {
 
       const res = await api.placeOrder(payload);
       if (res?.data) {
+        toast.success(t('checkout.orderSuccess'), { id: toastId });
         navigate('/order-success', { state: { fromCheckout: true } });
+      } else {
+        throw new Error('Order execution context failed');
       }
     } catch (err) {
       console.error('Order failed:', err);
-      toast.error('Something went wrong. Please try again.');
+      toast.error(t('checkout.orderError'), { id: toastId });
     }
   };
 
@@ -171,7 +179,7 @@ function Checkout() {
       <div className="checkout__left">
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="contact">
-            <h2 className="contact__title">Contact</h2>
+            <h2 className="contact__title">{t('checkout.contact')}</h2>
             <div className="float-field">
               <input
                 className={clsx('float-field__input', { error: errors.email })}
@@ -185,14 +193,14 @@ function Checkout() {
                 className="float-field__label"
                 htmlFor="email"
               >
-                Email or mobile phone number
+                {t('checkout.emailLabel')}
               </label>
               {errors.email && <p className="float-field__error">{errors.email.message}</p>}
             </div>
           </div>
 
           <div className="delivery">
-            <h2 className="delivery__title">Delivery</h2>
+            <h2 className="delivery__title">{t('checkout.delivery')}</h2>
 
             <div className="float-field">
               <input
@@ -207,7 +215,7 @@ function Checkout() {
                 className="float-field__label"
                 htmlFor="country"
               >
-                Country / Region
+                {t('checkout.countryLabel')}
               </label>
               {errors.country && <p className="float-field__error">{errors.country.message}</p>}
             </div>
@@ -226,7 +234,7 @@ function Checkout() {
                   className="float-field__label"
                   htmlFor="firstName"
                 >
-                  First name (optional)
+                  {t('checkout.firstNameLabel')}
                 </label>
                 {errors.firstName && (
                   <p className="float-field__error">{errors.firstName.message}</p>
@@ -246,7 +254,7 @@ function Checkout() {
                   className="float-field__label"
                   htmlFor="lastName"
                 >
-                  Last name
+                  {t('checkout.lastNameLabel')}
                 </label>
                 {errors.lastName && <p className="float-field__error">{errors.lastName.message}</p>}
               </div>
@@ -265,7 +273,7 @@ function Checkout() {
                 className="float-field__label"
                 htmlFor="address"
               >
-                Address
+                {t('checkout.addressLabel')}
               </label>
               {errors.address && <p className="float-field__error">{errors.address.message}</p>}
             </div>
@@ -283,7 +291,7 @@ function Checkout() {
                 className="float-field__label"
                 htmlFor="apartment"
               >
-                Apartment, suite, etc. (optional)
+                {t('checkout.apartmentLabel')}
               </label>
             </div>
 
@@ -301,7 +309,7 @@ function Checkout() {
                   className="float-field__label"
                   htmlFor="city"
                 >
-                  City
+                  {t('checkout.cityLabel')}
                 </label>
                 {errors.city && <p className="float-field__error">{errors.city.message}</p>}
               </div>
@@ -319,14 +327,14 @@ function Checkout() {
                   className="float-field__label"
                   htmlFor="zip"
                 >
-                  Postal code (optional)
+                  {t('checkout.zipLabel')}
                 </label>
               </div>
             </div>
           </div>
 
           <div className="payment">
-            <h2 className="payment__title">Payment</h2>
+            <h2 className="payment__title">{t('checkout.payment')}</h2>
 
             <div className="float-field">
               <input
@@ -342,7 +350,7 @@ function Checkout() {
                 className="float-field__label"
                 htmlFor="cardNumber"
               >
-                Card number
+                {t('checkout.cardNumberLabel')}
               </label>
               <i className="bi bi-lock float-field__icon" />
               {errors.cardNumber && (
@@ -365,7 +373,7 @@ function Checkout() {
                   className="float-field__label"
                   htmlFor="expirationDate"
                 >
-                  Expiration date (MM / YY)
+                  {t('checkout.expirationDateLabel')}
                 </label>
                 {errors.expirationDate && (
                   <p className="float-field__error">{errors.expirationDate.message}</p>
@@ -385,7 +393,7 @@ function Checkout() {
                   className="float-field__label"
                   htmlFor="securityCode"
                 >
-                  Security code
+                  {t('checkout.securityCodeLabel')}
                 </label>
                 <i className="bi bi-question-circle float-field__icon" />
                 {errors.securityCode && (
@@ -407,7 +415,7 @@ function Checkout() {
                 className="float-field__label"
                 htmlFor="nameOnCard"
               >
-                Name on card
+                {t('checkout.nameOnCardLabel')}
               </label>
               {errors.nameOnCard && (
                 <p className="float-field__error">{errors.nameOnCard.message}</p>
@@ -420,7 +428,7 @@ function Checkout() {
             type="submit"
             disabled={isSubmitting}
           >
-            {isSubmitting ? 'Processing...' : 'Pay Now'}
+            {t('checkout.payNow')}
           </button>
         </form>
       </div>
@@ -463,20 +471,29 @@ function Checkout() {
           })}
 
           <div className="checkout__right--row">
-            <p>Subtotal · {totalQty} items</p>
+            <p>
+              {t('checkout.subtotal')} · {totalQty} {t('checkout.items')}
+            </p>
             <p>{formatPrice(total)}</p>
           </div>
 
           <div className="checkout__right--row">
-            <p>Shipping</p>
+            <p>{t('checkout.shipping')}</p>
             <p>{shipping}</p>
           </div>
 
+          {note && (
+            <div className="checkout__right--note">
+              <p>{t('checkout.note')}</p>
+              <p>{note}</p>
+            </div>
+          )}
+
           <div className="checkout__right--row">
-            <h6>Total</h6>
+            <h6>{t('checkout.total')}</h6>
             <h6>
               <span>{activeCurrency.code}</span>
-              {formatPrice(total + (shipping === 'FREE' ? 0 : 10))}
+              {formatPrice(total + (shipping === t('checkout.shippingFree') ? 0 : 10))}
             </h6>
           </div>
         </div>

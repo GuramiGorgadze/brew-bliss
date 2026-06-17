@@ -1,41 +1,41 @@
-@use "../abstracts" as *;
+@use '../abstracts' as *;
 
 .contact {
   &__cards {
     display: flex;
     width: 100%;
     justify-content: space-evenly;
-    gap: 20px;
-    padding: 40px;
+    gap: calc(20px * var(--app-scale));
+    padding: calc(40px * var(--app-scale));
     box-sizing: border-box;
 
     .card {
       display: flex;
       flex-direction: column;
       background-color: $bg-muted;
-      padding: 20px 20px;
+      padding: calc(20px * var(--app-scale)) calc(20px * var(--app-scale));
       align-items: center;
       width: 100%;
       justify-content: center;
-      gap: 10px;
-      border-radius: 10px;
+      gap: calc(10px * var(--app-scale));
+      border-radius: calc(10px * var(--app-scale));
 
       &__image-wrapper {
         background-color: $color-accent;
         color: $color-white;
-        padding: 8px;
-        border-radius: 10px;
+        padding: calc(8px * var(--app-scale));
+        border-radius: calc(10px * var(--app-scale));
         display: flex;
         justify-content: center;
         align-items: center;
 
         i {
-          font-size: 22px;
+          font-size: calc(22px * var(--app-scale));
         }
       }
 
       &__title {
-        font-size: 18px;
+        font-size: calc(18px * var(--app-scale));
         font-weight: 400;
         text-align: center;
         width: 100%;
@@ -49,13 +49,13 @@
         }
 
         &--heading {
-          font-size: 13px;
+          font-size: calc(13px * var(--app-scale));
           font-weight: 400;
         }
 
         &--info {
           color: $text-subtle;
-          font-size: 14px;
+          font-size: calc(14px * var(--app-scale));
         }
       }
     }
@@ -64,44 +64,44 @@
   .get-in-touch {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    padding: 0 40px;
-    gap: 20px;
-    padding-bottom: 50px;
+    padding: 0 calc(40px * var(--app-scale));
+    gap: calc(20px * var(--app-scale));
+    padding-bottom: calc(50px * var(--app-scale));
 
     &__left {
       display: flex;
       flex-direction: column;
-      gap: 10px;
+      gap: calc(10px * var(--app-scale));
 
       &--title {
         display: flex;
         align-items: center;
-        gap: 10px;
+        gap: calc(10px * var(--app-scale));
 
         p {
-          font-size: 27px;
+          font-size: calc(27px * var(--app-scale));
         }
       }
 
       &--wing {
-        height: 20px;
+        height: calc(20px * var(--app-scale));
       }
 
       &--desc {
         color: $border-default;
-        font-size: 14px;
+        font-size: calc(14px * var(--app-scale));
       }
 
       &--input {
         display: flex;
-        border: $border-default 1px solid;
-        border-radius: 7px;
-        padding: 10px;
-        gap: 10px;
+        border: $border-default calc(1px * var(--app-scale)) solid;
+        border-radius: calc(7px * var(--app-scale));
+        padding: calc(10px * var(--app-scale));
+        gap: calc(10px * var(--app-scale));
 
         i {
           color: $border-default;
-          font-size: 20px;
+          font-size: calc(20px * var(--app-scale));
         }
 
         input {
@@ -110,7 +110,7 @@
           width: 100%;
 
           &::placeholder {
-            font-size: 12px;
+            font-size: calc(12px * var(--app-scale));
           }
         }
       }
@@ -119,8 +119,8 @@
         background-color: $color-accent;
         border: none;
         width: 100%;
-        padding: 15px 20px;
-        border-radius: 5px;
+        padding: calc(15px * var(--app-scale)) calc(20px * var(--app-scale));
+        border-radius: calc(5px * var(--app-scale));
         cursor: pointer;
         color: $text-primary;
         transition: 0.3s ease;
@@ -134,13 +134,13 @@
       .textarea {
         background-color: transparent;
         resize: vertical;
-        max-height: 200px;
-        min-height: 125px;
+        max-height: calc(200px * var(--app-scale));
+        min-height: calc(125px * var(--app-scale));
         transition: 0.3s ease;
         color: $border-default;
 
         &:focus {
-          border: 1px solid $color-accent;
+          border: calc(1px * var(--app-scale)) solid $color-accent;
         }
       }
     }
@@ -149,7 +149,7 @@
       width: 100%;
       iframe {
         border: none;
-        border-radius: 10px;
+        border-radius: calc(10px * var(--app-scale));
         outline: none;
         width: 100%;
       }

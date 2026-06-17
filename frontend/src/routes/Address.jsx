@@ -7,6 +7,8 @@ import { updateAddress } from '../api/api';
 import { Link } from 'react-router-dom';
 import { useLoader } from '../context/LoaderContext';
 import toast from 'react-hot-toast';
+import BlurText from '../components/sections/reactBits/BlurText';
+import ShinyText from '../components/sections/reactBits/ShinyText';
 
 function Address() {
   const { userData, login } = useUserData();
@@ -42,14 +44,35 @@ function Address() {
   return (
     <div className="address">
       <div className="address__header">
-        <h2 className="address__title">{t('address.title')}</h2>
+        <h2 className="address__title">
+          {' '}
+          <BlurText
+            text={t('address.title')}
+            delay={100}
+            animateBy="words"
+            direction="top"
+            className="text-2xl mb-8"
+          />
+        </h2>
         <div className="address__divider"></div>
       </div>
 
       <div className="address__body">
         <h2 className="address__body-title">
           <Link to="/account">
-            <i className="bi bi-chevron-left"></i>
+            <ShinyText
+              text={<i className="bi bi-chevron-left"></i>}
+              speed={2}
+              delay={0}
+              color="#fea90c"
+              shineColor="#ffffff"
+              spread={100}
+              direction="left"
+              yoyo={true}
+              pauseOnHover={false}
+              disabled={false}
+            />
+            
           </Link>
           {t('address.editAddress')}
         </h2>

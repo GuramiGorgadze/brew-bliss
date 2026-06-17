@@ -130,7 +130,7 @@
       "editAddress": "MODIFIER L'ADRESSE",
       "viewWishlist": "VOIR LA LISTE D'ENVIES",
       "logout": "SE DÉCONNECTER",
-      "orders": "MEINE BESTELLUNGEN"
+      "orders": "MES COMMANDES"
     },
     "details": {
       "title": "Détails du compte :",
@@ -145,10 +145,11 @@
       "address2": "Adresse 2"
     },
     "orders": {
-      "title": "Mes commandes",
+      "title": "Mes commandes :",
       "empty": "Vous n'avez pas encore passé de commande.",
       "order": "Commande",
       "total": "Total",
+      "note": "Note",
       "status": "Statut",
       "date": "Date",
       "items": "Articles"
@@ -319,6 +320,31 @@
     }
   },
   "checkout": {
+    "shippingFree": "Gratuit",
+    "processing": "Traitement de votre commande...",
+    "orderSuccess": "Commande passée avec succès !",
+    "orderError": "Une erreur est survenue. Veuillez réessayer.",
+    "contact": "Informations de contact",
+    "emailLabel": "Adresse e-mail",
+    "delivery": "Adresse de livraison",
+    "countryLabel": "Pays/Région",
+    "firstNameLabel": "Prénom",
+    "lastNameLabel": "Nom",
+    "addressLabel": "Adresse",
+    "apartmentLabel": "Appartement, bureau, etc. (optionnel)",
+    "cityLabel": "Ville",
+    "zipLabel": "Code postal",
+    "payment": "Détails de paiement",
+    "cardNumberLabel": "Numéro de carte",
+    "expirationDateLabel": "Date d'expiration (MM/AA)",
+    "securityCodeLabel": "Code de sécurité (CVV)",
+    "nameOnCardLabel": "Nom sur la carte",
+    "payNow": "Payer maintenant",
+    "subtotal": "Sous-total",
+    "items": "articles",
+    "shipping": "Livraison",
+    "note": "Note de commande",
+    "total": "Total",
     "validation": {
       "emailRequired": "L'e-mail est requis",
       "emailInvalid": "Adresse e-mail invalide",

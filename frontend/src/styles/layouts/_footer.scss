@@ -2,14 +2,14 @@
 
 .footer {
   background-color: $border-subtle;
-  padding: 0 20px;
-  padding-top: 50px;
+  padding: 0 calc(20px * var(--app-scale));
+  padding-top: calc(50px * var(--app-scale));
   margin-top: 0;
 
   &__top {
     display: grid;
     grid-template-columns: 2fr 1fr 1fr 2.4fr;
-    gap: 20px;
+    gap: calc(20px * var(--app-scale));
   }
 
   &__brand {
@@ -18,28 +18,28 @@
   }
 
   &__brand-logo {
-    height: 64px;
-    width: 113px;
+    height: calc(64px * var(--app-scale));
+    width: calc(113px * var(--app-scale));
   }
 
   &__brand-slogan {
     color: $text-slogan;
     text-transform: capitalize;
     line-height: 1.8;
-    font-size: 16px;
-    margin-top: 30px;
+    font-size: calc(16px * var(--app-scale));
+    margin-top: calc(30px * var(--app-scale));
     width: 75%;
   }
 
   &__contact {
     display: flex;
     flex-direction: column;
-    gap: 7px;
-    margin-top: 25px;
+    gap: calc(7px * var(--app-scale));
+    margin-top: calc(25px * var(--app-scale));
   }
 
   &__contact-info {
-    font-size: 14px;
+    font-size: calc(14px * var(--app-scale));
 
     .grey {
       color: $text-slogan;
@@ -50,18 +50,18 @@
   &__links {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: calc(10px * var(--app-scale));
   }
 
   &__links-title {
     font-weight: 400;
-    font-size: 18px;
-    margin-bottom: 20px;
+    font-size: calc(18px * var(--app-scale));
+    margin-bottom: calc(20px * var(--app-scale));
   }
 
   &__links-item {
     color: $text-slogan;
-    font-size: 14px;
+    font-size: calc(14px * var(--app-scale));
     text-decoration: none;
 
     &:hover {
@@ -72,43 +72,43 @@
   &__newsletter {
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: calc(20px * var(--app-scale));
   }
 
   &__newsletter-title {
     font-weight: 400;
-    font-size: 18px;
+    font-size: calc(18px * var(--app-scale));
   }
 
   &__newsletter-desc {
     color: $text-slogan;
     text-transform: capitalize;
-    font-size: 13.5px;
+    font-size: calc(13.5px * var(--app-scale));
   }
 
   &__newsletter-form {
     display: flex;
-    gap: 10px;
+    gap: calc(10px * var(--app-scale));
     justify-content: space-between;
 
     &--input {
-      border: 1px solid $border-default;
-      padding: 0 10px;
-      border-radius: 10px;
+      border: calc(1px * var(--app-scale)) solid $border-default;
+      padding: 0 calc(10px * var(--app-scale));
+      border-radius: calc(10px * var(--app-scale));
       display: flex;
       align-items: center;
       width: 100%;
     }
 
     i {
-      font-size: 20px;
+      font-size: calc(20px * var(--app-scale));
       color: $border-dark;
     }
   }
 
   &__newsletter-input {
     background-color: transparent;
-    padding: 15px;
+    padding: calc(15px * var(--app-scale));
     border: none;
     width: 100%;
 
@@ -120,9 +120,9 @@
   &__newsletter-btn {
     background-color: $text-primary;
     color: $color-white;
-    padding: 0 20px;
-    font-size: 16px;
-    border-radius: 10px;
+    padding: 0 calc(20px * var(--app-scale));
+    font-size: calc(16px * var(--app-scale));
+    border-radius: calc(10px * var(--app-scale));
     border: none;
     transition: 0.5s ease;
     cursor: pointer;
@@ -134,12 +134,12 @@
 
   &__newsletter-follow {
     font-weight: 400;
-    font-size: 18px;
+    font-size: calc(18px * var(--app-scale));
   }
 
   &__socials {
     display: flex;
-    gap: 10px;
+    gap: calc(10px * var(--app-scale));
   }
 
   &__socials-link {
@@ -147,8 +147,8 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 7px;
-    border-radius: 5px;
+    padding: calc(7px * var(--app-scale));
+    border-radius: calc(5px * var(--app-scale));
     transition: 0.3s ease;
 
     &:hover {
@@ -157,20 +157,20 @@
   }
 
   &__socials-icon {
-    height: 18px;
+    height: calc(18px * var(--app-scale));
   }
 
   &__bottom {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-top: 40px;
-    padding-bottom: 20px;
+    margin-top: calc(40px * var(--app-scale));
+    padding-bottom: calc(20px * var(--app-scale));
   }
 
   &__copyright {
     color: $border-default;
-    font-size: 14px;
+    font-size: calc(14px * var(--app-scale));
 
     .orange {
       color: $color-accent;
@@ -180,10 +180,10 @@
 
   &__cards {
     display: flex;
-    gap: 5px;
+    gap: calc(5px * var(--app-scale));
 
     img {
-      height: 30px;
+      height: calc(30px * var(--app-scale));
     }
   }
 
@@ -198,12 +198,12 @@
     justify-content: space-between;
     background: none;
     border: none;
-    padding: 16px 0;
+    padding: calc(16px * var(--app-scale)) 0;
     cursor: pointer;
     text-align: left;
 
     h2 {
-      font-size: 15px;
+      font-size: calc(15px * var(--app-scale));
       font-weight: 500;
       color: $text-primary;
       margin: 0;
@@ -211,7 +211,7 @@
   }
 
   &__mobile-icon {
-    font-size: 14px;
+    font-size: calc(14px * var(--app-scale));
     color: $text-slogan;
     transition: transform 0.3s ease;
 
@@ -223,7 +223,7 @@
   &__mobile-content {
     display: flex;
     flex-direction: column;
-    gap: 14px;
+    gap: calc(14px * var(--app-scale));
     max-height: 0;
     overflow: hidden;
     transition:
@@ -234,8 +234,8 @@
     box-sizing: border-box;
 
     &.is-open {
-      max-height: 500px;
-      padding-bottom: 20px;
+      max-height: calc(500px * var(--app-scale));
+      padding-bottom: calc(20px * var(--app-scale));
     }
   }
 }

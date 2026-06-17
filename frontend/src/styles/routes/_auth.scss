@@ -10,14 +10,14 @@
     display: flex;
     flex-direction: column;
     background-color: $color-white;
-    width: 540px;
-    border-radius: 10px;
+    width: calc(540px * var(--app-scale));
+    border-radius: calc(10px * var(--app-scale));
     box-sizing: border-box;
-    padding: 50px;
-    margin: 40px;
+    padding: calc(50px * var(--app-scale));
+    margin: calc(40px * var(--app-scale));
 
     &__title {
-      font-size: 30px;
+      font-size: calc(30px * var(--app-scale));
       font-weight: 500;
     }
 
@@ -34,8 +34,8 @@
         flex-direction: column;
 
         &__label {
-          font-size: 14px;
-          margin: 10px 0;
+          font-size: calc(14px * var(--app-scale));
+          margin: calc(10px * var(--app-scale)) 0;
 
           .required {
             color: $color-accent;
@@ -43,14 +43,14 @@
         }
 
         &__input {
-          height: 50px;
-          border: 1px solid $border-default;
-          border-radius: 12px;
+          height: calc(50px * var(--app-scale));
+          border: calc(1px * var(--app-scale)) solid $border-default;
+          border-radius: calc(12px * var(--app-scale));
           outline: none;
-          padding: 0 20px;
+          padding: 0 calc(20px * var(--app-scale));
 
           &:focus {
-            border: 1px solid $color-accent;
+            border: calc(1px * var(--app-scale)) solid $color-accent;
           }
 
           &::placeholder {
@@ -59,21 +59,21 @@
         }
 
         &__error {
-          height: 15px;
-          font-size: 13px;
+          height: calc(15px * var(--app-scale));
+          font-size: calc(13px * var(--app-scale));
           color: $color-accent;
-          margin: 5px 0;
+          margin: calc(5px * var(--app-scale)) 0;
         }
       }
 
       &__forgot-password {
-        font-size: 14px;
+        font-size: calc(14px * var(--app-scale));
         font-weight: 500;
         transition: 0.3s;
         cursor: pointer;
         width: 100%;
-        margin-top: 5px;
-        margin-bottom: 15px;
+        margin-top: calc(5px * var(--app-scale));
+        margin-bottom: calc(15px * var(--app-scale));
 
         &:hover {
           color: $color-accent;
@@ -88,7 +88,7 @@
         cursor: pointer;
         font-size: calc(14px * var(--app-scale));
         background-color: $color-accent;
-        margin-top: 15px;
+        margin-top: calc(15px * var(--app-scale));
 
         &:hover {
           background-color: $color-accent-hover;
@@ -98,15 +98,14 @@
 
       &__register {
         height: calc(50px * var(--app-scale));
-        border: 2px solid $color-accent;
+        border: calc(2px * var(--app-scale)) solid $color-accent;
         border-radius: calc(5px * var(--app-scale));
         transition: 0.6s;
         cursor: pointer;
-        font-size: calc(14px * var(--app-scale));
+        font-size: calc(15px * var(--app-scale));
         background-color: transparent;
         width: 100%;
-        margin-top: 15px;
-        font-size: 15px;
+        margin-top: calc(15px * var(--app-scale));
         color: $text-primary;
 
         &:hover {
@@ -114,35 +113,36 @@
           color: $color-white;
         }
       }
+
       .auth__form__google {
         display: flex;
         height: calc(50px * var(--app-scale));
         align-items: center;
         justify-content: center;
-        gap: 10px;
+        gap: calc(10px * var(--app-scale));
         width: 100%;
-        border: 1px solid #ddd;
-        border-radius: 5px;
+        border: calc(1px * var(--app-scale)) solid #ddd;
+        border-radius: calc(5px * var(--app-scale));
         background: white;
         cursor: pointer;
-        font-size: 14px;
-        margin-top: 15px;
+        font-size: calc(14px * var(--app-scale));
+        margin-top: calc(15px * var(--app-scale));
         transition: 0.3s ease;
-      }
 
-      .auth__form__google img {
-        width: 18px;
-        height: 18px;
-      }
+        img {
+          width: calc(18px * var(--app-scale));
+          height: calc(18px * var(--app-scale));
+        }
 
-      .auth__form__google:hover {
-        background: #f0efef;
+        &:hover {
+          background: #f0efef;
+        }
       }
     }
 
     &__reset-text {
-      font-size: 15px;
-      margin: 15px 0;
+      font-size: calc(15px * var(--app-scale));
+      margin: calc(15px * var(--app-scale)) 0;
       color: $border-default;
     }
   }

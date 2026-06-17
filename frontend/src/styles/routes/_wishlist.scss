@@ -4,33 +4,33 @@
   .wishlist {
     display: flex;
     flex-direction: column;
-    padding: 50px 100px;
+    padding: calc(50px * var(--app-scale)) calc(100px * var(--app-scale));
 
     &--title {
-      font-size: 30px;
+      font-size: calc(30px * var(--app-scale));
       text-align: center;
-      color: text-primary;
+      color: $text-primary;
     }
 
     &--desc {
-      font-size: 16px;
+      font-size: calc(16px * var(--app-scale));
       color: $text-desc;
-      margin-bottom: 30px;
+      margin-bottom: calc(30px * var(--app-scale));
       text-align: center;
     }
 
     &--products {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
-      gap: 20px;
-      width: 100%;
+      display: flex;
+      gap: calc(20px * var(--app-scale));
+      flex-wrap: wrap;
+      justify-content: center;
 
       .product-card {
-        width: 100%;
+        width: calc(270px * var(--app-scale));
       }
 
       .wishlist {
-        padding: 4px;
+        padding: calc(4px * var(--app-scale));
       }
     }
 
@@ -40,10 +40,10 @@
       justify-content: center;
       align-items: center;
       width: 100%;
-      margin: 100px 0;
+      margin: calc(100px * var(--app-scale)) 0;
 
       p {
-        font-size: 16px;
+        font-size: calc(16px * var(--app-scale));
         color: $text-primary;
       }
     }

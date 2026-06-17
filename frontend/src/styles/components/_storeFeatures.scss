@@ -1,9 +1,9 @@
-@use "../abstracts" as *;
+@use '../abstracts' as *;
 
 .store-features {
   display: flex;
   justify-content: center;
-  gap: 20px;
+  gap: calc(20px * var(--app-scale));
   margin: 0 calc(95px * var(--app-scale));
   margin-top: calc(100px * var(--app-scale));
 
@@ -62,13 +62,13 @@
     transform: translateY(0);
   }
   30% {
-    transform: translateY(-10px);
+    transform: translateY(calc(-10px * var(--app-scale)));
   }
   50% {
     transform: translateY(0);
   }
   70% {
-    transform: translateY(-6px);
+    transform: translateY(calc(-6px * var(--app-scale)));
   }
   100% {
     transform: translateY(0);
@@ -80,6 +80,7 @@
     margin: 10px;
     margin-top: 40px;
     flex-wrap: wrap;
+
     .feature-card {
       width: 45%;
       display: flex;

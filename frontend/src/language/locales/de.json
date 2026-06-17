@@ -125,7 +125,7 @@
       "editAddress": "ADRESSE BEARBEITEN",
       "viewWishlist": "WUNSCHLISTE ANZEIGEN",
       "logout": "ABMELDEN",
-      "orders": "MES COMMANDES"
+      "orders": "MEINE BESTELLUNGEN"
     },
     "details": {
       "title": "Kontodetails:",
@@ -140,10 +140,11 @@
       "address2": "Adresse 2"
     },
     "orders": {
-      "title": "Meine Bestellungen",
+      "title": "Meine Bestellungen:",
       "empty": "Sie haben noch keine Bestellungen aufgegeben.",
       "order": "Bestellung",
       "total": "Gesamt",
+      "note": "Hinweis",
       "status": "Status",
       "date": "Datum",
       "items": "Artikel"
@@ -319,6 +320,31 @@
     "loginToReview": "Anmelden, um eine Bewertung zu schreiben"
   },
   "checkout": {
+    "shippingFree": "Kostenlos",
+    "processing": "Ihre Bestellung wird verarbeitet...",
+    "orderSuccess": "Bestellung erfolgreich aufgegeben!",
+    "orderError": "Etwas ist schiefgelaufen. Bitte versuchen Sie es erneut.",
+    "contact": "Kontaktinformationen",
+    "emailLabel": "E-Mail-Adresse",
+    "delivery": "Lieferadresse",
+    "countryLabel": "Land/Region",
+    "firstNameLabel": "Vorname",
+    "lastNameLabel": "Nachname",
+    "addressLabel": "Adresse",
+    "apartmentLabel": "Wohnung, Suite, etc. (optional)",
+    "cityLabel": "Stadt",
+    "zipLabel": "Postleitzahl",
+    "payment": "Zahlungsdetails",
+    "cardNumberLabel": "Kartennummer",
+    "expirationDateLabel": "Ablaufdatum (MM/JJ)",
+    "securityCodeLabel": "Sicherheitscode (CVV)",
+    "nameOnCardLabel": "Name auf der Karte",
+    "payNow": "Jetzt bezahlen",
+    "subtotal": "Zwischensumme",
+    "items": "Artikel",
+    "shipping": "Versand",
+    "note": "Bestellhinweis",
+    "total": "Gesamtsumme",
     "validation": {
       "emailRequired": "E-Mail ist erforderlich",
       "emailInvalid": "Ungültige E-Mail-Adresse",

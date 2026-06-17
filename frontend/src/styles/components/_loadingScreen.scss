@@ -30,7 +30,7 @@
     border-radius: 50%;
     display: inline-block;
     position: relative;
-    border: 3px solid;
+    border: calc(3px * var(--app-scale)) solid;
     border-color: $loader-secondary $loader-secondary transparent transparent;
     box-sizing: border-box;
     animation: rotation 1s linear infinite;
@@ -46,7 +46,7 @@
     top: 0;
     bottom: 0;
     margin: auto;
-    border: 3px solid;
+    border: calc(3px * var(--app-scale)) solid;
     border-color: transparent transparent $loader-primary $loader-primary;
     width: calc(80px * var(--app-scale));
     height: calc(80px * var(--app-scale));

@@ -1,15 +1,15 @@
-@use "../abstracts" as *;
+@use '../abstracts' as *;
 
 .sale-banner {
   height: calc(475px * var(--app-scale));
   background-image: url(../../assets/promo-background2.1.webp);
   background-size: cover;
   background-position: calc(-100px * var(--app-scale));
-  padding: 100px 130px;
+  padding: calc(100px * var(--app-scale)) calc(130px * var(--app-scale));
   box-sizing: border-box;
   display: flex;
   justify-content: start;
-  margin: 50px 0;
+  margin: calc(50px * var(--app-scale)) 0;
 
   &__left {
     display: flex;
@@ -18,12 +18,12 @@
     &__paragraph-wrapper {
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: calc(10px * var(--app-scale));
 
       &__paragraph {
         text-transform: uppercase;
         font-weight: 400;
-        letter-spacing: 2px;
+        letter-spacing: calc(2px * var(--app-scale));
       }
 
       &__line {
@@ -35,13 +35,13 @@
 
     &__title {
       font-weight: 500;
-      margin: 20px 0;
-      width: 250px;
+      margin: calc(20px * var(--app-scale)) 0;
+      width: calc(250px * var(--app-scale));
     }
 
     &__btn {
       width: auto;
-      padding: 0 30px;
+      padding: 0 calc(30px * var(--app-scale));
       height: calc(50px * var(--app-scale));
       border: none;
       border-radius: calc(5px * var(--app-scale));

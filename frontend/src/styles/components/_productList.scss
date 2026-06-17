@@ -9,9 +9,8 @@
   margin: 0 auto;
   padding: 0 calc(100px * var(--app-scale));
   box-sizing: border-box;
-  margin-top: 50px;
+  margin-top: calc(50px * var(--app-scale));
   margin-bottom: calc(100px * var(--app-scale));
-
 
   .product-list-right {
     display: flex;
@@ -23,21 +22,21 @@
       display: none;
       align-items: center;
       justify-content: space-between;
-      border-radius: 5px;
+      border-radius: calc(5px * var(--app-scale));
       background-color: $color-white;
-      padding: 10px 15px;
+      padding: calc(10px * var(--app-scale)) calc(15px * var(--app-scale));
       cursor: pointer;
 
       .left {
         display: flex;
-        gap: 5px;
+        gap: calc(5px * var(--app-scale));
         justify-content: center;
         align-items: center;
 
         i,
         p {
           font-weight: 800;
-          font-size: 15px;
+          font-size: calc(15px * var(--app-scale));
           color: $text-primary;
         }
       }
@@ -50,7 +49,7 @@
 
     .active-filters-badges {
       display: flex;
-      gap: 8px;
+      gap: calc(8px * var(--app-scale));
       justify-content: flex-start;
       flex-wrap: wrap;
 
@@ -59,8 +58,8 @@
         max-width: calc(250px * var(--app-scale));
         height: auto;
         background-color: $color-white;
-        border: $border-dark solid 1px;
-        border-radius: 3px;
+        border: $border-dark solid calc(1px * var(--app-scale));
+        border-radius: calc(3px * var(--app-scale));
         display: flex;
         justify-content: center;
         align-items: center;
@@ -93,7 +92,7 @@
   .nothing-found-wrapper {
     background-color: $color-white;
     height: calc(100px * var(--app-scale));
-    border: 1px solid $border-dark;
+    border: calc(1px * var(--app-scale)) solid $border-dark;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -150,7 +149,7 @@
   position: fixed;
   top: 0;
   left: 0;
-  width: 350px;
+  width: calc(350px * var(--app-scale));
   height: 100%;
   background-color: $color-white;
   z-index: 51;
@@ -163,15 +162,15 @@
   }
 
   &__info {
-    padding: 0 30px;
+    padding: 0 calc(30px * var(--app-scale));
   }
 
   &__title {
     background-color: $text-primary;
-    padding: 15px 25px;
+    padding: calc(15px * var(--app-scale)) calc(25px * var(--app-scale));
 
     h2 {
-      font-size: 14px;
+      font-size: calc(14px * var(--app-scale));
       color: $color-white;
     }
   }
@@ -180,8 +179,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 15px 25px;
-    font-size: 18px;
+    padding: calc(15px * var(--app-scale)) calc(25px * var(--app-scale));
+    font-size: calc(18px * var(--app-scale));
   }
 }
 

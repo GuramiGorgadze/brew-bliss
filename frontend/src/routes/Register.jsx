@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect,useState } from 'react';
 import clsx from 'clsx';
 import { useTranslation } from 'react-i18next';
 import { useLoader } from '../context/LoaderContext';
@@ -16,7 +16,12 @@ function Register() {
   const { t } = useTranslation();
 
   const { useFakeLoader } = useLoader();
-  useEffect(() => useFakeLoader(), []);
+  const [ready, setReady] = useState(false);
+
+  useEffect(() => {
+    useFakeLoader();
+    setReady(true);
+  }, []);
 
   const schema = yup.object({
     firstName: yup
@@ -78,7 +83,10 @@ function Register() {
 
   return (
     <div className="auth-wrapper">
-      <PageTitle pageName={t('register.pageTitle')} />
+      <PageTitle
+        pageName={t('register.pageTitle')}
+        ready={ready}
+      />
 
       <div className="auth">
         <h2 className="auth__title">{t('register.title')}</h2>

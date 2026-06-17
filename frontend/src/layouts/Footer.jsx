@@ -14,6 +14,8 @@ import Mastercard from '../assets/payments/mastercard.svg';
 import PayPal from '../assets/payments/paypal.svg';
 import Visa from '../assets/payments/visa.svg';
 import toast from 'react-hot-toast';
+import ShinyText from '../components/sections/reactBits/ShinyText';
+import BlurText from '../components/sections/reactBits/BlurText';
 
 function Footer() {
   const { t, i18n } = useTranslation();
@@ -60,7 +62,6 @@ function Footer() {
             alt={t('footer.brand.logoAlt')}
           />
           <p className="footer__brand-slogan">{t('footer.brand.slogan')}</p>
-
           <div className="footer__contact">
             <p className="footer__contact-info">
               {t('footer.contact.addressLabel')}{' '}
@@ -78,7 +79,15 @@ function Footer() {
         </div>
 
         <div className="footer__links">
-          <h4 className="footer__links-title">{t('footer.sections.websiteLinks')}</h4>
+          <h4 className="footer__links-title">
+            <BlurText
+              text={t('footer.sections.websiteLinks')}
+              delay={100}
+              animateBy="words"
+              direction="top"
+              className="text-2xl mb-8"
+            />
+          </h4>
           <Link
             className="footer__links-item"
             to="/"
@@ -91,14 +100,12 @@ function Footer() {
           >
             {t('footer.links.myAccount')}
           </Link>
-
           <Link
             className="footer__links-item"
             to="/cart"
           >
             {t('footer.links.cart')}
           </Link>
-
           <Link
             className="footer__links-item"
             to="/wishlist"
@@ -108,7 +115,15 @@ function Footer() {
         </div>
 
         <div className="footer__links">
-          <h4 className="footer__links-title">{t('footer.sections.ourCompany')}</h4>
+          <h4 className="footer__links-title">
+            <BlurText
+              text={t('footer.sections.ourCompany')}
+              delay={100}
+              animateBy="words"
+              direction="top"
+              className="text-2xl mb-8"
+            />
+          </h4>
           <Link
             className="footer__links-item"
             to="/products"
@@ -136,7 +151,15 @@ function Footer() {
         </div>
 
         <div className="footer__newsletter">
-          <h4 className="footer__newsletter-title">{t('footer.newsletter.title')}</h4>
+          <h4 className="footer__newsletter-title">
+            <BlurText
+              text={t('footer.newsletter.title')}
+              delay={100}
+              animateBy="words"
+              direction="top"
+              className="text-2xl mb-8"
+            />
+          </h4>
           <p className="footer__newsletter-desc">{t('footer.newsletter.description')}</p>
           <div className="footer__newsletter-form">
             <div className="footer__newsletter-form--input">
@@ -157,7 +180,20 @@ function Footer() {
               {t('footer.newsletter.button')}
             </button>
           </div>
-          <h5 className="footer__newsletter-follow">{t('footer.socials.followUs')}</h5>
+          <h5 className="footer__newsletter-follow">
+            <ShinyText
+              text={t('footer.socials.followUs')}
+              speed={2}
+              delay={0}
+              color="#fea90c"
+              shineColor="#ffffff"
+              spread={100}
+              direction="left"
+              yoyo={true}
+              pauseOnHover={false}
+              disabled={false}
+            />
+          </h5>
           <div className="footer__socials">
             <a
               className="footer__socials-link"
@@ -215,7 +251,15 @@ function Footer() {
             className="footer__mobile-header"
             onClick={() => toggleSection('company')}
           >
-            <h2>{t('footer.sections.ourCompany')}</h2>
+            <h2>
+              <BlurText
+                text={t('footer.sections.ourCompany')}
+                delay={100}
+                animateBy="words"
+                direction="top"
+                className="text-2xl mb-8"
+              />
+            </h2>
             <i
               className={`bi bi-chevron-down footer__mobile-icon ${openSection === 'company' ? 'is-open' : ''}`}
             ></i>
@@ -259,7 +303,15 @@ function Footer() {
             className="footer__mobile-header"
             onClick={() => toggleSection('service')}
           >
-            <h2>{t('footer.sections.customerService')}</h2>
+            <h2>
+              <BlurText
+                text={t('footer.sections.customerService')}
+                delay={100}
+                animateBy="words"
+                direction="top"
+                className="text-2xl mb-8"
+              />
+            </h2>
             <i
               className={`bi bi-chevron-down footer__mobile-icon ${openSection === 'service' ? 'is-open' : ''}`}
             ></i>
@@ -297,7 +349,15 @@ function Footer() {
             className="footer__mobile-header"
             onClick={() => toggleSection('newsletter')}
           >
-            <h2>{t('footer.newsletter.title')}</h2>
+            <h2>
+              <BlurText
+                text={t('footer.newsletter.title')}
+                delay={100}
+                animateBy="words"
+                direction="top"
+                className="text-2xl mb-8"
+              />
+            </h2>
             <i
               className={`bi bi-chevron-down footer__mobile-icon ${openSection === 'newsletter' ? 'is-open' : ''}`}
             ></i>
@@ -305,7 +365,20 @@ function Footer() {
           <div
             className={`footer__mobile-content ${openSection === 'newsletter' ? 'is-open' : ''}`}
           >
-            <p className="footer__newsletter-desc">{t('footer.newsletter.description')}</p>
+            <p className="footer__newsletter-desc">
+              <ShinyText
+                text={t('footer.newsletter.description')}
+                speed={2}
+                delay={0}
+                color="#92949f"
+                shineColor="#ffffff"
+                spread={100}
+                direction="left"
+                yoyo={true}
+                pauseOnHover={false}
+                disabled={false}
+              />
+            </p>
             <div className="footer__newsletter-form">
               <div className="footer__newsletter-form--input">
                 <i className="bi bi-envelope"></i>
@@ -325,7 +398,20 @@ function Footer() {
                 {t('footer.newsletter.button')}
               </button>
             </div>
-            <h5 className="footer__newsletter-follow">{t('footer.socials.followUs')}</h5>
+            <h5 className="footer__newsletter-follow">
+              <ShinyText
+                text={t('footer.socials.followUs')}
+                speed={2}
+                delay={0}
+                color="#fea90c"
+                shineColor="#ffffff"
+                spread={100}
+                direction="left"
+                yoyo={true}
+                pauseOnHover={false}
+                disabled={false}
+              />
+            </h5>
             <div className="footer__socials">
               <a
                 className="footer__socials-link"
@@ -383,9 +469,36 @@ function Footer() {
       <div className="footer__bottom">
         <div className="footer__copyright">
           {t('footer.bottom.copyrightBefore')}{' '}
-          <span className="orange">{t('footer.bottom.brandName')}</span>
+          <span className="orange">
+            <ShinyText
+              text={t('footer.bottom.brandName')}
+              speed={2}
+              delay={0}
+              color="#fea90c"
+              shineColor="#ffffff"
+              spread={100}
+              direction="left"
+              yoyo={true}
+              pauseOnHover={false}
+              disabled={false}
+            />
+          </span>
           {t('footer.bottom.copyrightAfter')}{' '}
-          <span className="orange">{t('footer.bottom.poweredBy')}</span>.
+          <span className="orange">
+            <ShinyText
+              text={t('footer.bottom.poweredBy')}
+              speed={2}
+              delay={0}
+              color="#fea90c"
+              shineColor="#ffffff"
+              spread={100}
+              direction="left"
+              yoyo={true}
+              pauseOnHover={false}
+              disabled={false}
+            />
+          </span>
+          .
         </div>
         <div className="footer__cards">
           <img

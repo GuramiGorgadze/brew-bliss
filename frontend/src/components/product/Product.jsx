@@ -8,8 +8,10 @@ import * as api from '../../api/api';
 import QuickAddModal from './QuickAddModal';
 import toast from 'react-hot-toast';
 import { useUserData } from '../../context/UserContext.jsx';
+import ShinyText from '../sections/reactBits/ShinyText';
+import BlurText from '../sections/reactBits/BlurText';
 
-function Product({ product }) {
+function Product({ product, onWishlistChange }) {
   const { t, i18n } = useTranslation();
   const lang = i18n.language;
   const { formatPrice } = useCurrency();
@@ -39,6 +41,7 @@ function Product({ product }) {
       if (wishlisted) {
         await api.removeFromWishlist(product._id);
         remove(product._id);
+        onWishlistChange?.(product._id);
         toast(t('productCard.removedFromWishlist'), { id: toastId });
       } else {
         await api.addToWishlist(product._id);
@@ -104,7 +107,20 @@ function Product({ product }) {
           >
             {title}
           </h3>
-          <p className="product-card__size">{variant?.size}</p>
+          <p className="product-card__size">
+            <ShinyText
+              text={variant?.size}
+              speed={2}
+              delay={0}
+              color="#696969"
+              shineColor="#ffffff"
+              spread={100}
+              direction="left"
+              yoyo={true}
+              pauseOnHover={false}
+              disabled={false}
+            />
+          </p>
           <div className="product-card__stars">
             <p className="product-page__reviews">
               {Array.from({ length: 5 }, (_, i) => (
@@ -126,7 +142,21 @@ function Product({ product }) {
           <div className="product-card__price">
             {formatPrice(price)}
             {hasDiscount && (
-              <span className="product-card__old-price">{formatPrice(compareAtPrice)}</span>
+              <span className="product-card__old-price">
+                {' '}
+                <ShinyText
+                  text={formatPrice(compareAtPrice)}
+                  speed={2}
+                  delay={0}
+                  color="#696969"
+                  shineColor="#ffffff"
+                  spread={100}
+                  direction="left"
+                  yoyo={true}
+                  pauseOnHover={false}
+                  disabled={false}
+                />
+              </span>
             )}
           </div>
         </div>

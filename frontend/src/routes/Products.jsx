@@ -8,6 +8,7 @@ function Products() {
   const [originalProducts, setOriginalProducts] = useState([]);
   const { useDataLoader } = useLoader();
   const { t, i18n } = useTranslation();
+  const [ready, setReady] = useState(false);
 
   useEffect(() => {
     const fetchProductsData = async () => {
@@ -15,6 +16,7 @@ function Products() {
 
       if (data?.data) {
         setOriginalProducts(data.data);
+        setReady(true);
       } else if (data.err) {
         console.log(data.err);
       }
@@ -25,7 +27,10 @@ function Products() {
 
   return (
     <>
-      <PageTitle pageName={t('products.pageTitle')} />
+      <PageTitle
+        pageName={t('products.pageTitle')}
+        ready={ready}
+      />
       <ProductList originalProducts={originalProducts} />
       <InstagramCarousel />
     </>

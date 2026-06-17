@@ -8,6 +8,8 @@ import wing1 from '../../assets/wing1.png';
 import wing2 from '../../assets/wing2.png';
 import { Product } from '../../components';
 import * as api from '../../api/api';
+import BlurText from './reactBits/BlurText';
+import ShinyText from './reactBits/ShinyText';
 
 function ArrivalsCarousel() {
   const [products, setProducts] = useState([]);
@@ -62,7 +64,16 @@ function ArrivalsCarousel() {
             alt=""
             className="wing"
           />
-          <p>{t('arrivalsCarousel.title')}</p>
+          <p>
+            {' '}
+            <BlurText
+              text={t('arrivalsCarousel.title')}
+              delay={100}
+              animateBy="words"
+              direction="top"
+              className="text-2xl mb-8"
+            />
+          </p>
           <img
             src={wing2}
             alt=""
@@ -70,7 +81,21 @@ function ArrivalsCarousel() {
           />
         </div>
 
-        <p className="arrivals-carousel__right--text">{t('arrivalsCarousel.text')}</p>
+        <p className="arrivals-carousel__right--text">
+          {' '}
+          <ShinyText
+            text={t('arrivalsCarousel.text')}
+            speed={2}
+            delay={0}
+            color="#696969"
+            shineColor="#ffffff"
+            spread={120}
+            direction="left"
+            yoyo={true}
+            pauseOnHover={false}
+            disabled={false}
+          />
+        </p>
 
         <div className="arrivals-carousel__right--carousel">
           <button

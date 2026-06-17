@@ -140,10 +140,11 @@
       "address2": "Address 2"
     },
     "orders": {
-      "title": "My Orders",
+      "title": "My Orders:",
       "empty": "You haven't placed any orders yet.",
       "order": "Order",
       "total": "Total",
+      "note": "Note",
       "status": "Status",
       "date": "Date",
       "items": "Items"
@@ -319,6 +320,31 @@
     "loginToReview": "Log in to leave a review"
   },
   "checkout": {
+    "shippingFree": "Free",
+    "processing": "Processing your order...",
+    "orderSuccess": "Order placed successfully!",
+    "orderError": "Something went wrong. Please try again.",
+    "contact": "Contact Information",
+    "emailLabel": "Email Address",
+    "delivery": "Delivery Address",
+    "countryLabel": "Country/Region",
+    "firstNameLabel": "First Name",
+    "lastNameLabel": "Last Name",
+    "addressLabel": "Address",
+    "apartmentLabel": "Apartment, suite, etc. (optional)",
+    "cityLabel": "City",
+    "zipLabel": "ZIP / Postal Code",
+    "payment": "Payment Details",
+    "cardNumberLabel": "Card Number",
+    "expirationDateLabel": "Expiration Date (MM/YY)",
+    "securityCodeLabel": "Security Code (CVV)",
+    "nameOnCardLabel": "Name on Card",
+    "payNow": "Pay Now",
+    "subtotal": "Subtotal",
+    "items": "items",
+    "shipping": "Shipping",
+    "note": "Order Note",
+    "total": "Total",
     "validation": {
       "emailRequired": "Email is required",
       "emailInvalid": "Invalid email address",
@@ -335,9 +361,7 @@
       "securityCodeRequired": "Security code is required",
       "securityCodeInvalid": "Security code must be 3 or 4 digits",
       "nameOnCardRequired": "Name on card is required"
-    },
-    "payBtn": "Pay Now",
-    "processingBtn": "Processing..."
+    }
   },
   "resetPassword": {
     "pageTitle": "Reset Password",

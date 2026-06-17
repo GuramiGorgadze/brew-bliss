@@ -105,7 +105,9 @@ function FilterSection({
 
             return (
               <li key={cat}>
+                {/* Fixed the missing open anchor tag below */}
                 <a
+                  href="#"
                   onClick={(e) => handleCategoryClick(e, cat)}
                   className={clsx('filter-section__category-link', {
                     'filter-section__category-link__active': isActive,
@@ -136,7 +138,11 @@ function FilterSection({
           </div>
         </div>
 
-        {availabilityOpen && (
+        <div
+          className={clsx('filter-section__collapsible', {
+            'filter-section__collapsible--closed': !availabilityOpen,
+          })}
+        >
           <div className="filter-section__options">
             <div className="filter-section__option">
               <label className="filter-section__checkbox">
@@ -162,7 +168,8 @@ function FilterSection({
               <p>{t('filterSection.outOfStock', { count: stockCounts.outOfStock })}</p>
             </div>
           </div>
-        )}
+        </div>
+
         <span className="filter-section__divider"></span>
       </div>
 
@@ -177,66 +184,69 @@ function FilterSection({
           </div>
         </div>
 
-        {priceOpen && (
-          <>
-            <p className="filter-section__highest-price">
-              {t('filterSection.highestPrice')} <span>$200.00</span>
-            </p>
+        <div
+          className={clsx('filter-section__collapsible', {
+            'filter-section__collapsible--closed': !priceOpen,
+          })}
+        >
+          <p className="filter-section__highest-price">
+            {t('filterSection.highestPrice')} <span>$200.00</span>
+          </p>
 
-            <div className="filter-section__slider-container">
-              <Slider
-                range
-                min={0}
-                max={200}
-                value={localPrice}
-                onChange={handleSliderChange}
-                onChangeComplete={handleSliderAfterChange}
-                trackStyle={[{ backgroundColor: '#FF9E00', height: 8 }]}
-                handleStyle={[
-                  {
-                    borderColor: '#FF9E00',
-                    backgroundColor: '#FFF',
-                    height: 16,
-                    width: 16,
-                    marginLeft: 8,
-                    borderRadius: 3,
-                    marginTop: -4,
-                    opacity: 1,
-                  },
-                  {
-                    borderColor: '#FF9E00',
-                    backgroundColor: '#FFF',
-                    height: 16,
-                    width: 16,
-                    borderRadius: 3,
-                    marginLeft: -8,
-                    marginTop: -4,
-                    opacity: 1,
-                  },
-                ]}
-                railStyle={{ backgroundColor: '#E5E5E5', height: 8 }}
-              />
-            </div>
+          <div className="filter-section__slider-container">
+            <Slider
+              range
+              min={0}
+              max={200}
+              value={localPrice}
+              onChange={handleSliderChange}
+              onChangeComplete={handleSliderAfterChange}
+              trackStyle={[{ backgroundColor: '#FF9E00', height: 8 }]}
+              handleStyle={[
+                {
+                  borderColor: '#FF9E00',
+                  backgroundColor: '#FFF',
+                  height: 16,
+                  width: 16,
+                  marginLeft: 8,
+                  borderRadius: 3,
+                  marginTop: -4,
+                  opacity: 1,
+                },
+                {
+                  borderColor: '#FF9E00',
+                  backgroundColor: '#FFF',
+                  height: 16,
+                  width: 16,
+                  borderRadius: 3,
+                  marginLeft: -8,
+                  marginTop: -4,
+                  opacity: 1,
+                },
+              ]}
+              railStyle={{ backgroundColor: '#E5E5E5', height: 8 }}
+            />
+          </div>
 
-            <div className="filter-section__price-inputs">
-              <span>$</span>
-              <input
-                className="filter-section__price-input"
-                type="number"
-                placeholder={t('filterSection.priceFrom')}
-                value={filters.minPrice}
-                onChange={(e) => handlePrice('minPrice', e.target.value)}
-              />
-              <input
-                className="filter-section__price-input"
-                type="number"
-                placeholder={t('filterSection.priceTo')}
-                value={filters.maxPrice}
-                onChange={(e) => handlePrice('maxPrice', e.target.value)}
-              />
-            </div>
-          </>
-        )}
+          <div className="filter-section__price-inputs">
+            <span>$</span>
+            <input
+              className="filter-section__price-input"
+              type="number"
+              placeholder={t('filterSection.priceFrom')}
+              value={filters.minPrice}
+              onChange={(e) => handlePrice('minPrice', e.target.value)}
+            />
+            <input
+              className="filter-section__price-input"
+              type="number"
+              placeholder={t('filterSection.priceTo')}
+              value={filters.maxPrice}
+              onChange={(e) => handlePrice('maxPrice', e.target.value)}
+            />
+          </div>
+        </div>
+
         <span className="filter-section__divider"></span>
       </div>
 

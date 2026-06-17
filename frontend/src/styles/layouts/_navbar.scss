@@ -97,8 +97,8 @@
     border-radius: 50%;
     color: $color-white;
     font-size: calc(12px * var(--app-scale));
-    height: 14px;
-    width: 14px;
+    height: calc(14px * var(--app-scale));
+    width: calc(14px * var(--app-scale));
     display: flex;
     justify-content: center;
     align-items: center;
@@ -128,10 +128,10 @@
   background-color: rgba(0, 0, 0, 0.5);
   z-index: 998;
   animation: overlayIn 0.3s ease forwards;
-      cursor:
-      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 32 32'%3E%3Cline x1='4' y1='4' x2='28' y2='28' stroke='white' stroke-width='2' stroke-linecap='round'/%3E%3Cline x1='28' y1='4' x2='4' y2='28' stroke='white' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E")
-        16 16,
-      pointer;
+  cursor:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 32 32'%3E%3Cline x1='4' y1='4' x2='28' y2='28' stroke='white' stroke-width='2' stroke-linecap='round'/%3E%3Cline x1='28' y1='4' x2='4' y2='28' stroke='white' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E")
+      16 16,
+    pointer;
 
   &--closing {
     animation: overlayOut 0.3s ease forwards;

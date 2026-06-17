@@ -11,12 +11,15 @@ import TikTok from '../assets/icons/tiktok-icon.svg';
 import wing1 from '../assets/wing1.png';
 import wing2 from '../assets/wing2.png';
 import toast from 'react-hot-toast';
+import BlurText from '../components/sections/reactBits/BlurText';
+import ShinyText from '../components/sections/reactBits/ShinyText';
 
 function Contact() {
   const { useFakeLoader } = useLoader();
   const { userData } = useUserData();
   const { t, i18n } = useTranslation();
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [ready, setReady] = useState(false);
 
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
@@ -25,6 +28,7 @@ function Contact() {
 
   useEffect(() => {
     useFakeLoader();
+    setReady(true);
   }, []);
 
   useEffect(() => {
@@ -61,7 +65,10 @@ function Contact() {
 
   return (
     <div className="contact">
-      <PageTitle pageName={t('contact.pageTitle')} />
+      <PageTitle
+        pageName={t('contact.pageTitle')}
+        ready={ready}
+      />
 
       <div className="contact__cards">
         <div className="card">
@@ -165,7 +172,16 @@ function Contact() {
               alt=""
               className="get-in-touch__left--wing"
             />
-            <p>{t('contact.getInTouch.title')}</p>
+            <p>
+              {' '}
+              <BlurText
+                text={t('contact.getInTouch.title')}
+                delay={100}
+                animateBy="words"
+                direction="top"
+                className="text-2xl mb-8"
+              />
+            </p>
             <img
               src={wing2}
               alt=""
@@ -174,7 +190,21 @@ function Contact() {
           </div>
 
           <div className="get-in-touch__left--desc">
-            <p>{t('contact.getInTouch.hours')}</p>
+            <p>
+              {' '}
+              <ShinyText
+                text={t('contact.getInTouch.hours')}
+                speed={2}
+                delay={0}
+                color="#696969"
+                shineColor="#ffffff"
+                spread={120}
+                direction="left"
+                yoyo={true}
+                pauseOnHover={false}
+                disabled={false}
+              />
+            </p>
           </div>
 
           <div className="get-in-touch__left--input">

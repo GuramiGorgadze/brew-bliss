@@ -1,7 +1,8 @@
-import React from 'react';
+import { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
+import { useLoader } from '../context/LoaderContext';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import clsx from 'clsx';
@@ -12,6 +13,13 @@ function ResetPassword() {
   const { token } = useParams();
   const navigate = useNavigate();
   const { t } = useTranslation();
+  const { useFakeLoader } = useLoader();
+  const [ready, setReady] = useState(false);
+
+  useEffect(() => {
+    useFakeLoader();
+    setReady(true);
+  }, []);
 
   const schema = yup.object({
     password: yup
@@ -48,7 +56,10 @@ function ResetPassword() {
 
   return (
     <div className="auth-wrapper">
-      <PageTitle pageName={t('resetPassword.pageTitle')} />
+      <PageTitle
+        pageName={t('resetPassword.pageTitle')}
+        ready={ready}
+      />
       <div className="auth">
         <h2 className="auth__title">{t('resetPassword.title')}</h2>
         <form

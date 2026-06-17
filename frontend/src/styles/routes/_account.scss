@@ -63,7 +63,7 @@
     gap: calc(10px * var(--app-scale));
     padding: calc(10px * var(--app-scale)) calc(15px * var(--app-scale));
     background-color: $color-white;
-    border: solid 1px $text-primary;
+    border: calc(1px * var(--app-scale)) solid $text-primary;
     border-radius: calc(10px * var(--app-scale));
     font-size: calc(13px * var(--app-scale));
     align-items: center;
@@ -120,12 +120,12 @@
     width: calc(150px * var(--app-scale));
     text-align: left;
     padding: calc(10px * var(--app-scale)) calc(15px * var(--app-scale));
-    border: 1px solid #dddddd;
+    border: calc(1px * var(--app-scale)) solid #dddddd;
   }
 
   &__table-data {
     padding: calc(10px * var(--app-scale)) calc(15px * var(--app-scale));
-    border: 1px solid #dddddd;
+    border: calc(1px * var(--app-scale)) solid #dddddd;
     width: auto;
     font-size: calc(16px * var(--app-scale));
     text-transform: none;
@@ -162,6 +162,7 @@
     flex-direction: column;
     gap: calc(16px * var(--app-scale));
     margin-top: calc(20px * var(--app-scale));
+    min-height: calc(350px * var(--app-scale));
   }
 
   &__orders-empty {
@@ -173,7 +174,7 @@
   &__order {
     background-color: $color-white;
     border-radius: calc(10px * var(--app-scale));
-    border: 1px solid #dddddd;
+    border: calc(1px * var(--app-scale)) solid #dddddd;
     overflow: hidden;
   }
 
@@ -183,7 +184,7 @@
     gap: calc(12px * var(--app-scale));
     padding: calc(12px * var(--app-scale)) calc(16px * var(--app-scale));
     background-color: $bg-navbar;
-    border-bottom: 1px solid #dddddd;
+    border-bottom: calc(1px * var(--app-scale)) solid #dddddd;
   }
 
   &__order-number {
@@ -247,15 +248,24 @@
 
   &__order-footer {
     display: flex;
-    justify-content: flex-end;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: calc(4px * var(--app-scale));
     padding: calc(10px * var(--app-scale)) calc(16px * var(--app-scale));
-    border-top: 1px solid #dddddd;
+    border-top: calc(1px * var(--app-scale)) solid #dddddd;
   }
 
   &__order-total {
     font-weight: 700;
     font-size: calc(14px * var(--app-scale));
     color: $text-primary;
+  }
+
+  &__order-note {
+    font-size: calc(12px * var(--app-scale));
+    color: $text-desc;
+    font-style: italic;
+    align-self: flex-start;
   }
 
   &__pagination {
@@ -269,7 +279,7 @@
   &__pagination-btn {
     width: calc(36px * var(--app-scale));
     height: calc(36px * var(--app-scale));
-    border: 1px solid $text-primary;
+    border: calc(1px * var(--app-scale)) solid $text-primary;
     border-radius: calc(6px * var(--app-scale));
     background: $color-white;
     font-size: calc(13px * var(--app-scale));

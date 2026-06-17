@@ -1,62 +1,62 @@
 @use '../abstracts' as *;
 
 .toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 calc(10px * var(--app-scale));
+  height: calc(50px * var(--app-scale));
+  border: calc(1px * var(--app-scale)) $text-subtle solid;
+  border-radius: calc(10px * var(--app-scale));
+  width: 100%;
+  box-sizing: border-box;
+
+  &__views {
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    padding: 0 calc(10px * var(--app-scale));
-    height: calc(50px * var(--app-scale));
-    border: 1px $text-subtle solid;
-    border-radius: calc(10px * var(--app-scale));
-    width: 100%;
-    box-sizing: border-box;
+    justify-content: center;
+    gap: calc(20px * var(--app-scale));
+  }
 
-    &__views {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: calc(20px * var(--app-scale));
+  &__view-btn {
+    background: none;
+    border: none;
+    color: $icon-inactive;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &--active {
+      color: $text-primary;
+    }
+  }
+
+  &__count {
+    font-size: calc(14px * var(--app-scale));
+  }
+
+  &__sort {
+    display: flex;
+    gap: calc(10px * var(--app-scale));
+    align-items: center;
+
+    label {
+      font-size: calc(14px * var(--app-scale));
     }
 
-    &__view-btn {
-        background: none;
-        border: none;
-        color: $icon-inactive;
-        cursor: pointer;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-
-        &--active {
-            color: $text-primary;
-        }
+    select {
+      height: calc(30px * var(--app-scale));
+      font-size: calc(14px * var(--app-scale));
+      width: calc(150px * var(--app-scale));
+      background-color: $border-subtle;
+      border-radius: calc(5px * var(--app-scale));
+      border: none;
+      outline: none;
+      appearance: none;
+      text-align: center;
     }
-
-    &__count {
-        font-size: calc(14px * var(--app-scale));
-    }
-
-    &__sort {
-        display: flex;
-        gap: calc(10px * var(--app-scale));
-        align-items: center;
-
-        label {
-            font-size: calc(14px * var(--app-scale));
-        }
-
-        select {
-            height: calc(30px * var(--app-scale));
-            font-size: calc(14px * var(--app-scale));
-            width: calc(150px * var(--app-scale));
-            background-color: $border-subtle;
-            border-radius: calc(5px * var(--app-scale));
-            border: none;
-            outline: none;
-            appearance: none;
-            text-align: center;
-        }
-    }
+  }
 }
 
 @media (max-width: 768px) {
@@ -64,25 +64,27 @@
     display: none;
   }
 }
+
 @media (max-width: 900px) {
-    .toolbar {
-        &__views {
-            gap: 10px;
-        }
-
-        &__count {
-            font-size: 12px;
-        }
-
-        &__sort {
-            gap: 5px;
-
-            label {
-                font-size: 12px;
-            }
-            select {
-                width: 110px;
-            }
-        }
+  .toolbar {
+    &__views {
+      gap: 10px;
     }
+
+    &__count {
+      font-size: 12px;
+    }
+
+    &__sort {
+      gap: 5px;
+
+      label {
+        font-size: 12px;
+      }
+
+      select {
+        width: 110px;
+      }
+    }
+  }
 }

@@ -1,12 +1,12 @@
-@use "../abstracts" as *;
+@use '../abstracts' as *;
 
 .scroll-btn {
   position: fixed;
-  bottom: 70px;
-  right: 40px;
-  height: 55px;
-  width: 55px;
-  font-size: 17px;
+  bottom: calc(70px * var(--app-scale));
+  right: calc(40px * var(--app-scale));
+  height: calc(55px * var(--app-scale));
+  width: calc(55px * var(--app-scale));
+  font-size: calc(17px * var(--app-scale));
   border-radius: 50%;
   border: none;
   background-color: $color-accent;
@@ -15,11 +15,12 @@
   z-index: 40;
 
   opacity: 0;
-  transform: translateY(12px);
+  transform: translateY(calc(12px * var(--app-scale)));
   transition:
     opacity 0.25s ease,
     transform 0.25s ease,
-    0.5s ease;
+    background-color 0.5s ease,
+    color 0.5s ease;
   pointer-events: none;
 
   &--visible {

@@ -1,4 +1,4 @@
-@use "../abstracts" as *;
+@use '../abstracts' as *;
 
 .address {
   display: flex;
@@ -78,11 +78,11 @@
   &__field-input {
     height: calc(45px * var(--app-scale));
     border-radius: calc(10px * var(--app-scale));
-    border: 1px solid $text-desc;
+    border: calc(1px * var(--app-scale)) solid $text-desc;
     padding-left: calc(15px * var(--app-scale));
 
     &:focus {
-      border: 1px solid $color-accent;
+      border: calc(1px * var(--app-scale)) solid $color-accent;
     }
   }
 

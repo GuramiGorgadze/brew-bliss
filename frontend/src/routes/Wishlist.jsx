@@ -6,6 +6,7 @@ import EmptyWishlist from '../assets/icons/empty-wishlist.svg';
 
 function Wishlist() {
   const [wishlistItems, setWishlistItems] = useState([]);
+  const [ready, setReady] = useState(false);
   const { useDataLoader } = useLoader();
 
   useEffect(() => {
@@ -16,13 +17,17 @@ function Wishlist() {
       } else if (data?.err) {
         console.log(data.err);
       }
+      setReady(true);
     };
     fetchWishlist();
   }, []);
 
   return (
     <div className="wishlist-wrapper">
-      <PageTitle pageName="Wishlist" />
+      <PageTitle
+        pageName="Wishlist"
+        ready={ready}
+      />
 
       <div className="wishlist">
         <div className="wishlist--title">Your favourite products</div>

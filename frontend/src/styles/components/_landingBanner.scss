@@ -6,7 +6,7 @@
   justify-content: center;
   height: calc(650px * var(--app-scale));
   background-size: cover;
-  padding: 20px calc(100px * var(--app-scale));
+  padding: calc(20px * var(--app-scale)) calc(100px * var(--app-scale));
   color: $text-on-dark;
   padding-top: calc(50px * var(--app-scale));
   background-attachment: fixed;
@@ -67,7 +67,7 @@
 
     &--orange {
       background-color: $color-accent;
-      padding: 0 30px;
+      padding: 0 calc(30px * var(--app-scale));
 
       &:hover {
         background-color: $color-accent-hover;
@@ -77,7 +77,7 @@
 
     &--grey {
       background-color: $bg-muted;
-      padding: 0 30px;
+      padding: 0 calc(30px * var(--app-scale));
 
       &:hover {
         background-color: $color-accent;
@@ -146,6 +146,11 @@
 
     &__title {
       line-height: 1.1;
+      text-align: center;
+
+      p {
+        justify-content: center;
+      }
     }
 
     &__new-arrival {
