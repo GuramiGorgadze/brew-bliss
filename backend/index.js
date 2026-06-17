@@ -23,22 +23,26 @@ app.use(corsMiddleware);
 app.use(compressionMiddleware);
 app.use(express.json());
 app.use(cookieParser());
-app.use("/api", apiLimiter);
 app.use(passport.initialize());
 
-app.use("/api/products", ProductsRouter);
-app.use("/api/users", UsersRouter);
+app.use("/api/users/login", authLimiter);
+app.use("/api/users/register", authLimiter);
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 app.use(express.static(path.join(__dirname, "../frontend/dist")));
 
-app.get("/{*any}", (req, res) => {
+app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "../frontend/dist/index.html"));
 });
 
-app.listen(PORT, () => {
-  console.log("server has started");
-  connectDB(process.env.CONNECTION_STRING);
-});
+const startServer = async () => {
+  await connectDB(process.env.CONNECTION_STRING);
+
+  app.listen(PORT, () => {
+    console.log("server has started");
+  });
+};
+
+startServer();
