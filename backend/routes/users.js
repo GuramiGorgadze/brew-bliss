@@ -20,7 +20,7 @@ import {
   addToWishlist,
   removeFromWishlist,
   placeOrder,
-  getOrders
+  getOrders,
 } from "../controllers/users.js";
 import { authLimiter } from "../middlewares/security.js";
 
@@ -43,8 +43,8 @@ UsersRouter.post("/contact", contact);
 UsersRouter.post("/newsletter", newsletter);
 UsersRouter.post("/forgot", forgotPasswordUser);
 UsersRouter.post("/reset", resetPasswordUser);
-UsersRouter.post('/order', placeOrder);
-UsersRouter.get('/orders', getOrders);
+UsersRouter.post("/order", placeOrder);
+UsersRouter.get("/orders", getOrders);
 
 UsersRouter.get(
   "/auth/google",
@@ -57,7 +57,7 @@ UsersRouter.get(
 UsersRouter.get(
   "/auth/google/callback",
   passport.authenticate("google", {
-    failureRedirect: "http://localhost:5173/login",
+    failureRedirect: `${process.env.CLIENT_URL}/login`,
     session: false,
   }),
   (req, res) => {
@@ -69,7 +69,7 @@ UsersRouter.get(
       secure: false,
       maxAge: 24 * 60 * 60 * 1000,
     });
-    res.redirect("http://localhost:5173/account");
+    res.redirect(`${process.env.CLIENT_URL}/account`);
   },
 );
 

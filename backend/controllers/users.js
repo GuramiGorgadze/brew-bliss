@@ -332,7 +332,7 @@ export const forgotPasswordUser = async (req, res) => {
       process.env.JWT_RESET_PASS_SECRET_KEY,
       { expiresIn: "15m" },
     );
-    const url = `http://localhost:5173/reset-password/${access_token}`;
+    const url = `${process.env.CLIENT_URL}/reset-password/${access_token}`;
 
     await sendResetPasswordMail(email, url);
     return res.status(200).json({ data: "Reset link sent to your email" });
