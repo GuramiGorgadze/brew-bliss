@@ -182,6 +182,12 @@
   }
 }
 
+@media (max-width: 425px) {
+  .landing-banner {
+    background-attachment: local;
+  }
+}
+
 @media (max-width: 375px) {
   .landing-banner {
     &__btn {

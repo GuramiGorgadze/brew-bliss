@@ -45,6 +45,10 @@
       font: inherit;
       padding: calc(4px * var(--app-scale)) calc(8px * var(--app-scale));
 
+      * {
+        color: $color-white;
+      }
+
       .arrow {
         font-size: calc(10px * var(--app-scale));
         transition: transform 0.3s ease;
