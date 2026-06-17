@@ -291,11 +291,20 @@ export const getWishlist = async (req, res) => {
 export const contact = async (req, res) => {
   try {
     const { email, message } = req.body;
+
+    console.log("CONTACT REQUEST:", email, message);
+
     await sendContactMail(email, message);
+
+    console.log("EMAIL SENT SUCCESSFULLY");
+
     return res.status(200).json({ data: "Message sent successfully" });
   } catch (err) {
     console.error("CONTACT ERROR FULL:", err);
-    return res.status(500).json({ err: err.message });
+
+    return res.status(500).json({
+      err: err.message,
+    });
   }
 };
 
