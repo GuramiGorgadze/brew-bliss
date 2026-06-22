@@ -3661,6 +3661,9 @@ img {
   background-color: #0e0e0e;
   color: #ffffff;
 }
+.account__nav-btn:hover i {
+  color: #ffffff;
+}
 .account .active {
   background-color: #0e0e0e;
   color: #ffffff;
@@ -4003,6 +4006,9 @@ img {
 }
 .address__btn:hover {
   background-color: #0f0f0f;
+  color: #ffffff;
+}
+.address__btn:hover i {
   color: #ffffff;
 }
 

@@ -116,6 +116,10 @@
     &:hover {
       background-color: $color-accent-hover;
       color: $color-white;
+
+      i {
+        color: $color-white;
+      }
     }
   }
 }
