@@ -108,9 +108,17 @@
     align-items: center;
     gap: calc(5px * var(--app-scale));
 
+    i {
+      transition: 0.5s ease;
+    }
+    
     &--reset {
       background-color: $text-price-sale;
       color: $color-white;
+
+      i {
+        color: $color-white;
+      }
     }
 
     &:hover {
