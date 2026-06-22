@@ -70,10 +70,7 @@ function Login() {
       navigate('/account');
     } catch (error) {
       setError('root.serverError', {
-        message:
-          error.response?.data?.message ||
-          error.response?.data?.err ||
-          t('login.validation.serverError'),
+        message: error.response?.data?.message || t('login.validation.serverError'),
       });
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
