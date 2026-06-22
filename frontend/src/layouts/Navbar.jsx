@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { Link, NavLink, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useUserData } from '../context/UserContext';
@@ -60,6 +60,19 @@ function Navbar() {
       setMenuClosing(false);
     }, 300);
   };
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (langDropdownRef.current && !langDropdownRef.current.contains(event.target)) {
+        setIsLangOpen(false);
+      }
+      if (currencyDropdownRef.current && !currencyDropdownRef.current.contains(event.target)) {
+        setIsCurrencyOpen(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
 
   const handleSearchSubmit = () => {
     if (!searchQuery.trim()) return;
@@ -250,7 +263,11 @@ function Navbar() {
                 onClick={closeMenu}
                 to="/wishlist"
               >
-                <div className="drawer__link">{t('drawer.wishlist', { count: wishlistCount })}</div>
+                <div className="drawer__link">
+                  {t(wishlistCount > 0 ? 'drawer.wishlist' : 'drawer.wishlist_empty', {
+                    count: wishlistCount,
+                  })}
+                </div>
               </Link>
               <div className="drawer__divider"></div>
               <Link

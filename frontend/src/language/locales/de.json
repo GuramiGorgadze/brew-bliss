@@ -22,6 +22,7 @@
     "close": "Schließen",
     "account": "Konto",
     "wishlist": "Wunschliste ({{count}})",
+    "wishlist_empty": "Wunschliste",
     "aboutUs": "Über uns",
     "contactUs": "Kontaktieren Sie uns"
   },

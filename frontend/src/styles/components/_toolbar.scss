@@ -26,6 +26,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    color: $icon-inactive;
 
     &--active {
       color: $text-primary;

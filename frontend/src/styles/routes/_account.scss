@@ -73,6 +73,7 @@
 
     i {
       font-size: calc(18px * var(--app-scale));
+      color: $text-primary;
     }
 
     &--logout {
@@ -89,6 +90,10 @@
     background-color: $text-primary;
     color: $color-white;
     cursor: default;
+
+    i {
+      color: $color-white;
+    }
   }
 
   &__details {

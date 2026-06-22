@@ -26,7 +26,8 @@
     "shop": "Boutique",
     "close": "Fermer",
     "account": "Compte",
-    "wishlist": "Liste d'envies ({{count}})",
+    "wishlist": "Liste de souhaits ({{count}})",
+    "wishlist_empty": "Liste de souhaits",
     "aboutUs": "À propos de nous",
     "contactUs": "Contactez-nous"
   },

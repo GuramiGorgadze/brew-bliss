@@ -80,8 +80,13 @@ function ProductSingle() {
     if (isSubmittingReview) return;
 
     if (!loggedIn) {
-      toast.error(t('auth.loginToReview'), {
-        icon: <i className="bi bi-exclamation-circle-fill" />,
+      toast.error(t('auth.loginToWishlist'), {
+        icon: (
+          <i
+            className="bi bi-exclamation-circle-fill"
+            style={{ color: '#FEA90C' }}
+          />
+        ),
       });
       return;
     }
@@ -153,7 +158,12 @@ function ProductSingle() {
 
     if (!loggedIn) {
       toast.error(t('auth.loginToWishlist'), {
-        icon: <i className="bi bi-exclamation-circle-fill" />,
+        icon: (
+          <i
+            className="bi bi-exclamation-circle-fill"
+            style={{ color: '#FEA90C' }}
+          />
+        ),
       });
       return;
     }

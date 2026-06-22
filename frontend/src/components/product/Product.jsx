@@ -30,7 +30,12 @@ function Product({ product, onWishlistChange }) {
 
     if (!loggedIn) {
       toast.error(t('auth.loginToWishlist'), {
-        icon: <i className="bi bi-exclamation-circle-fill" />,
+        icon: (
+          <i
+            className="bi bi-exclamation-circle-fill"
+            style={{ color: '#FEA90C' }}
+          />
+        ),
       });
       return;
     }
@@ -58,8 +63,13 @@ function Product({ product, onWishlistChange }) {
 
   const handleAddToCart = () => {
     if (!loggedIn) {
-      toast.error(t('auth.loginToAddToCart'), {
-        icon: <i className="bi bi-exclamation-circle-fill" />,
+      toast.error(t('auth.loginToWishlist'), {
+        icon: (
+          <i
+            className="bi bi-exclamation-circle-fill"
+            style={{ color: '#FEA90C' }}
+          />
+        ),
       });
       return;
     }
