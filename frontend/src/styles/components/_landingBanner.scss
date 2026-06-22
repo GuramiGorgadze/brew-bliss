@@ -120,6 +120,7 @@
     padding-top: 40px;
     padding-bottom: 60px;
     background-position: 50%;
+    background-attachment: scroll;
 
     &__right {
       display: flex;
@@ -179,12 +180,6 @@
       height: calc(60px * var(--app-scale));
       max-width: 200px;
     }
-  }
-}
-
-@media (max-width: 425px) {
-  .landing-banner {
-    background-attachment: local;
   }
 }
 
