@@ -7,23 +7,38 @@ function BeerSommelier() {
   const lang = i18n.language;
 
   const [open, setOpen] = useState(false);
+  const [closing, setClosing] = useState(false);
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState('');
   const [loading, setLoading] = useState(false);
 
   const endRef = useRef(null);
   const panelRef = useRef(null);
+  const fabRef = useRef(null);
+
+  const close = () => {
+    setClosing(true);
+    setTimeout(() => {
+      setOpen(false);
+      setClosing(false);
+    }, 250);
+  };
 
   useEffect(() => {
     if (!open) return;
 
     const handleKey = (e) => {
-      if (e.key === 'Escape') setOpen(false);
+      if (e.key === 'Escape') close();
     };
 
     const handleClickOutside = (e) => {
-      if (panelRef.current && !panelRef.current.contains(e.target)) {
-        setOpen(false);
+      if (
+        panelRef.current &&
+        !panelRef.current.contains(e.target) &&
+        fabRef.current &&
+        !fabRef.current.contains(e.target)
+      ) {
+        close();
       }
     };
 
@@ -43,11 +58,7 @@ function BeerSommelier() {
   const send = async (text) => {
     if (!text.trim() || loading) return;
 
-    const userMsg = {
-      role: 'user',
-      content: text,
-    };
-
+    const userMsg = { role: 'user', content: text };
     const nextMessages = [...messages, userMsg];
 
     setMessages(nextMessages);
@@ -56,21 +67,11 @@ function BeerSommelier() {
 
     try {
       const reply = await api.askSommelier(nextMessages, lang);
-
-      setMessages([
-        ...nextMessages,
-        {
-          role: 'assistant',
-          content: reply,
-        },
-      ]);
+      setMessages([...nextMessages, { role: 'assistant', content: reply }]);
     } catch (err) {
       setMessages([
         ...nextMessages,
-        {
-          role: 'assistant',
-          content: 'Something went wrong. Try again!',
-        },
+        { role: 'assistant', content: 'Something went wrong. Try again!' },
       ]);
     } finally {
       setLoading(false);
@@ -80,8 +81,9 @@ function BeerSommelier() {
   return (
     <>
       <button
+        ref={fabRef}
         className="sommelier-fab"
-        onClick={() => setOpen((prev) => !prev)}
+        onClick={() => (open ? close() : setOpen(true))}
         aria-label="Open beer sommelier"
       >
         🍺
@@ -89,14 +91,13 @@ function BeerSommelier() {
 
       {open && (
         <div
-          className="sommelier-panel"
+          className={`sommelier-panel${closing ? ' sommelier-panel--closing' : ''}`}
           ref={panelRef}
         >
           <div className="sommelier-header">
             <span>Beer Sommelier</span>
-
             <button
-              onClick={() => setOpen(false)}
+              onClick={close}
               aria-label="Close"
             >
               ✕
@@ -135,14 +136,11 @@ function BeerSommelier() {
               value={input}
               onChange={(e) => setInput(e.target.value)}
               onKeyDown={(e) => {
-                if (e.key === 'Enter') {
-                  send(input);
-                }
+                if (e.key === 'Enter') send(input);
               }}
               placeholder="Ask about beer..."
               disabled={loading}
             />
-
             <button
               onClick={() => send(input)}
               disabled={loading}

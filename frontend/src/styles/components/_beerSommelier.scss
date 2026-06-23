@@ -25,7 +25,7 @@
   position: fixed;
   bottom: calc(140px * var(--app-scale));
   left: calc(40px * var(--app-scale));
-  width: calc(340px * var(--app-scale));
+  width: calc(400px * var(--app-scale));
   max-height: calc(400px * var(--app-scale));
   background-color: $color-white;
   border-radius: calc(16px * var(--app-scale));
@@ -34,6 +34,10 @@
   overflow: hidden;
   z-index: 39;
   animation: sommelier-slide-in 0.3s ease;
+
+  &--closing {
+    animation: sommelier-slide-out 0.25s ease forwards;
+  }
 }
 
 @keyframes sommelier-slide-in {
@@ -44,6 +48,17 @@
   to {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+@keyframes sommelier-slide-out {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(calc(12px * var(--app-scale)));
   }
 }
 
@@ -193,5 +208,13 @@
       opacity: 0.4;
       cursor: default;
     }
+  }
+}
+
+@media (max-width: 500px) {
+  .sommelier-panel {
+    width: auto;
+    left: 20px;
+    margin-right: 20px;
   }
 }
