@@ -5,13 +5,13 @@ const createTransporter = () => {
   console.log("[mailer] Creating transporter for:", user);
 
   if (!user || !process.env.MAIL_SENDER_PASS) {
-    console.error(
-      "[mailer] Missing MAIL_SENDER_EMAIL or MAIL_SENDER_PASS env vars",
-    );
+    console.error("[mailer] Missing MAIL_SENDER_EMAIL or MAIL_SENDER_PASS env vars");
   }
 
   return nodemailer.createTransport({
-    service: "gmail",
+    host: "smtp.gmail.com",
+    port: 465,
+    secure: true,
     auth: {
       user,
       pass: process.env.MAIL_SENDER_PASS,
