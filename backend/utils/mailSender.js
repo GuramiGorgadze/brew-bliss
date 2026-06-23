@@ -1,24 +1,33 @@
 import nodemailer from "nodemailer";
 
-const createTransporter = () =>
-  nodemailer.createTransport({
-    service: "smtp.gmail.com",
-    port: 465,
-    secure: true,
+const createTransporter = () => {
+  const user = process.env.MAIL_SENDER_EMAIL;
+  console.log("[mailer] Creating transporter for:", user);
+
+  if (!user || !process.env.MAIL_SENDER_PASS) {
+    console.error(
+      "[mailer] Missing MAIL_SENDER_EMAIL or MAIL_SENDER_PASS env vars",
+    );
+  }
+
+  return nodemailer.createTransport({
+    service: "gmail",
     auth: {
-      user: process.env.MAIL_SENDER_EMAIL,
+      user,
       pass: process.env.MAIL_SENDER_PASS,
     },
   });
+};
 
 const sendResetPasswordMail = async (to, url) => {
+  console.log("[mailer] sendResetPasswordMail → to:", to);
   const transporter = createTransporter();
-
-  await transporter.sendMail({
-    from: process.env.MAIL_SENDER_EMAIL,
-    to: to,
-    subject: "[Brew Bliss] Password Reset",
-    html: `
+  try {
+    const info = await transporter.sendMail({
+      from: process.env.MAIL_SENDER_EMAIL,
+      to: to,
+      subject: "[Brew Bliss] Password Reset",
+      html: `
         <div style="margin: 0; padding: 0; background-color: #F5F0E8; font-family: Georgia, 'Times New Roman', serif;">
             <table width="100%" cellpadding="0" cellspacing="0" style="background-color: #F5F0E8; padding: 50px 20px;">
                 <tr>
@@ -71,18 +80,37 @@ const sendResetPasswordMail = async (to, url) => {
             </table>
         </div>
         `,
-  });
+    });
+    console.log(
+      "[mailer] sendResetPasswordMail sent, messageId:",
+      info.messageId,
+    );
+  } catch (err) {
+    console.error("[mailer] sendResetPasswordMail failed:", err.message, {
+      code: err.code,
+      command: err.command,
+      address: err.address,
+      port: err.port,
+    });
+    throw err;
+  }
 };
 
 const sendContactMail = async (to, message) => {
+  console.log(
+    "[mailer] sendContactMail → from:",
+    to,
+    "| message length:",
+    message?.length,
+  );
   const transporter = createTransporter();
-
-  await transporter.sendMail({
-    from: process.env.MAIL_SENDER_EMAIL,
-    to: process.env.MAIL_SENDER_EMAIL,
-    replyTo: to,
-    subject: "[Brew Bliss] Contact Form",
-    html: `
+  try {
+    const info = await transporter.sendMail({
+      from: process.env.MAIL_SENDER_EMAIL,
+      to: process.env.MAIL_SENDER_EMAIL,
+      replyTo: to,
+      subject: "[Brew Bliss] Contact Form",
+      html: `
         <div style="margin: 0; padding: 0; background-color: #F5F0E8; font-family: Georgia, 'Times New Roman', serif;">
             <table width="100%" cellpadding="0" cellspacing="0" style="background-color: #F5F0E8; padding: 50px 20px;">
                 <tr>
@@ -134,17 +162,28 @@ const sendContactMail = async (to, message) => {
             </table>
         </div>
         `,
-  });
+    });
+    console.log("[mailer] sendContactMail sent, messageId:", info.messageId);
+  } catch (err) {
+    console.error("[mailer] sendContactMail failed:", err.message, {
+      code: err.code,
+      command: err.command,
+      address: err.address,
+      port: err.port,
+    });
+    throw err;
+  }
 };
 
 const sendNewsletterMail = async (to) => {
+  console.log("[mailer] sendNewsletterMail → to:", to);
   const transporter = createTransporter();
-
-  await transporter.sendMail({
-    from: process.env.MAIL_SENDER_EMAIL,
-    to: to,
-    subject: "[Brew Bliss] You're subscribed!",
-    html: `
+  try {
+    const info1 = await transporter.sendMail({
+      from: process.env.MAIL_SENDER_EMAIL,
+      to: to,
+      subject: "[Brew Bliss] You're subscribed!",
+      html: `
         <div style="margin: 0; padding: 0; background-color: #F5F0E8; font-family: Georgia, 'Times New Roman', serif;">
             <table width="100%" cellpadding="0" cellspacing="0" style="background-color: #F5F0E8; padding: 50px 20px;">
                 <tr>
@@ -197,18 +236,35 @@ const sendNewsletterMail = async (to) => {
             </table>
         </div>
         `,
-  });
+    });
+    console.log(
+      "[mailer] sendNewsletterMail subscriber email sent, messageId:",
+      info1.messageId,
+    );
 
-  await transporter.sendMail({
-    from: process.env.MAIL_SENDER_EMAIL,
-    to: process.env.MAIL_SENDER_EMAIL,
-    subject: "[Brew Bliss] New Newsletter Subscriber",
-    html: `
+    const info2 = await transporter.sendMail({
+      from: process.env.MAIL_SENDER_EMAIL,
+      to: process.env.MAIL_SENDER_EMAIL,
+      subject: "[Brew Bliss] New Newsletter Subscriber",
+      html: `
         <div style="font-family: Georgia, serif; padding: 40px; background-color: #F5F0E8;">
             <p style="font-size: 16px; color: #0F0F0F;">New subscriber: <a href="mailto:${to}" style="color: #FEA90C;">${to}</a></p>
         </div>
         `,
-  });
+    });
+    console.log(
+      "[mailer] sendNewsletterMail admin notification sent, messageId:",
+      info2.messageId,
+    );
+  } catch (err) {
+    console.error("[mailer] sendNewsletterMail failed:", err.message, {
+      code: err.code,
+      command: err.command,
+      address: err.address,
+      port: err.port,
+    });
+    throw err;
+  }
 };
 
 export { sendResetPasswordMail, sendContactMail, sendNewsletterMail };
