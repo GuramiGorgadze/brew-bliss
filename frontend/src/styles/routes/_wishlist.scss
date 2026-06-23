@@ -70,3 +70,15 @@
     }
   }
 }
+
+@media (max-width: 500px) {
+  .wishlist-wrapper {
+    .wishlist {
+        &--products {
+          .product-card {
+            width: 100%;
+          }
+        }
+    }
+  }
+}
