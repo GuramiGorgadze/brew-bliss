@@ -5,10 +5,12 @@ const createTransporter = () => {
   console.log("[mailer] Creating transporter for:", user);
 
   if (!user || !process.env.MAIL_SENDER_PASS) {
-    console.error("[mailer] Missing MAIL_SENDER_EMAIL or MAIL_SENDER_PASS env vars");
+    console.error(
+      "[mailer] Missing MAIL_SENDER_EMAIL or MAIL_SENDER_PASS env vars",
+    );
   }
 
-  return nodemailer.createTransport({
+  const transporter = nodemailer.createTransport({
     host: "smtp.gmail.com",
     port: 465,
     secure: true,
@@ -17,6 +19,20 @@ const createTransporter = () => {
       pass: process.env.MAIL_SENDER_PASS,
     },
   });
+
+  console.log("[mailer] Transporter created, verifying connection...");
+  transporter.verify((err, success) => {
+    if (err) {
+      console.error("[mailer] Transporter verify failed:", err.message, {
+        code: err.code,
+        command: err.command,
+      });
+    } else {
+      console.log("[mailer] Transporter verify success:", success);
+    }
+  });
+
+  return transporter;
 };
 
 const sendResetPasswordMail = async (to, url) => {
