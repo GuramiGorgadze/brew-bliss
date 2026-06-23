@@ -12,6 +12,29 @@ function BeerSommelier() {
   const [loading, setLoading] = useState(false);
 
   const endRef = useRef(null);
+  const panelRef = useRef(null);
+
+  useEffect(() => {
+    if (!open) return;
+
+    const handleKey = (e) => {
+      if (e.key === 'Escape') setOpen(false);
+    };
+
+    const handleClickOutside = (e) => {
+      if (panelRef.current && !panelRef.current.contains(e.target)) {
+        setOpen(false);
+      }
+    };
+
+    document.addEventListener('keydown', handleKey);
+    document.addEventListener('mousedown', handleClickOutside);
+
+    return () => {
+      document.removeEventListener('keydown', handleKey);
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [open]);
 
   useEffect(() => {
     endRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -65,7 +88,10 @@ function BeerSommelier() {
       </button>
 
       {open && (
-        <div className="sommelier-panel">
+        <div
+          className="sommelier-panel"
+          ref={panelRef}
+        >
           <div className="sommelier-header">
             <span>Beer Sommelier</span>
 

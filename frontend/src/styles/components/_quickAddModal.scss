@@ -142,24 +142,24 @@
     overflow-y: auto;
 
     .product-page {
-      __reviews {
+      &__reviews {
         margin: calc(10px * var(--app-scale)) 0;
       }
 
-      __price {
+      &__price {
         margin-bottom: calc(4px * var(--app-scale));
       }
 
-      __shipping {
+      &__shipping {
         margin-top: calc(16px * var(--app-scale));
       }
 
-      __promo {
+      &__promo {
         font-size: calc(13px * var(--app-scale));
         margin-top: calc(8px * var(--app-scale));
       }
 
-      __size {
+      &__size {
         margin-top: calc(16px * var(--app-scale));
 
         &-options {
@@ -167,17 +167,17 @@
         }
       }
 
-      __quantity {
+      &__quantity {
         &-label {
           margin: calc(14px * var(--app-scale)) 0 calc(10px * var(--app-scale));
         }
       }
 
-      __actions {
+      &__actions {
         margin-top: calc(16px * var(--app-scale));
       }
 
-      __additional-info-text {
+      &__additional-info-text {
         margin-top: calc(15px * var(--app-scale));
       }
     }
@@ -229,7 +229,7 @@
   .quick-add-modal {
     &__details {
       .product-page {
-        __size {
+        &__size {
           &-btn {
             font-size: 14px;
           }
