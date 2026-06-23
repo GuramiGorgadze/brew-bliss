@@ -521,5 +521,14 @@
   "arrivalsCarousel": {
     "title": "Nouvelles Arrivées",
     "text": "De nouvelles nouveautés, rien que pour vous – explorez maintenant !"
+  },
+  "sommelier": {
+    "title": "Sommelier à bière",
+    "emptyState": "Posez-moi n'importe quelle question — accords mets-bières, styles de bière, recommandations",
+    "placeholder": "Posez une question sur la bière...",
+    "send": "Envoyer",
+    "error": "Une erreur est survenue. Réessayez !",
+    "ariaFab": "Ouvrir le sommelier à bière",
+    "ariaClose": "Fermer"
   }
 }

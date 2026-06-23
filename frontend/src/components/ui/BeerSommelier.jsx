@@ -1,9 +1,10 @@
 import React, { useState, useRef, useEffect } from 'react';
 import * as api from '../../api/api';
 import { useTranslation } from 'react-i18next';
+import BeerIcon from '../../assets/icons/beer.svg';
 
 function BeerSommelier() {
-  const { i18n } = useTranslation();
+  const { i18n, t } = useTranslation();
   const lang = i18n.language;
 
   const [open, setOpen] = useState(false);
@@ -84,9 +85,12 @@ function BeerSommelier() {
         ref={fabRef}
         className="sommelier-fab"
         onClick={() => (open ? close() : setOpen(true))}
-        aria-label="Open beer sommelier"
+        aria-label={t('sommelier.ariaFab')}
       >
-        🍺
+        <img
+          src={BeerIcon}
+          alt=""
+        />
       </button>
 
       {open && (
@@ -95,10 +99,10 @@ function BeerSommelier() {
           ref={panelRef}
         >
           <div className="sommelier-header">
-            <span>Beer Sommelier</span>
+            <span>{t('sommelier.title')}</span>
             <button
               onClick={close}
-              aria-label="Close"
+              aria-label={t('sommelier.ariaClose')}
             >
               ✕
             </button>
@@ -106,9 +110,7 @@ function BeerSommelier() {
 
           <div className="sommelier-messages">
             {messages.length === 0 && (
-              <p className="sommelier-empty">
-                Ask me anything — food pairings, beer styles, recommendations 🍺
-              </p>
+              <p className="sommelier-empty">{t('sommelier.emptyState')}</p>
             )}
 
             {messages.map((m, i) => (
@@ -138,14 +140,14 @@ function BeerSommelier() {
               onKeyDown={(e) => {
                 if (e.key === 'Enter') send(input);
               }}
-              placeholder="Ask about beer..."
+              placeholder={t('sommelier.placeholder')}
               disabled={loading}
             />
             <button
               onClick={() => send(input)}
               disabled={loading}
             >
-              Send
+              {t('sommelier.send')}
             </button>
           </div>
         </div>

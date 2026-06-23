@@ -513,5 +513,14 @@
   "arrivalsCarousel": {
     "title": "New Arrivals",
     "text": "Fresh additions, just for you – explore now!"
+  },
+  "sommelier": {
+    "title": "Beer Sommelier",
+    "emptyState": "Ask me anything — food pairings, beer styles, recommendations",
+    "placeholder": "Ask about beer...",
+    "send": "Send",
+    "error": "Something went wrong. Try again!",
+    "ariaFab": "Open beer sommelier",
+    "ariaClose": "Close"
   }
 }

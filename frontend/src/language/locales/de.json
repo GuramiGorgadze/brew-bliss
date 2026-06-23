@@ -524,5 +524,14 @@
   "arrivalsCarousel": {
     "title": "Neuerscheinungen",
     "text": "Frische Neuzugänge, nur für Sie – jetzt entdecken!"
+  },
+  "sommelier": {
+    "title": "Biersommelier",
+    "emptyState": "Fragen Sie mich alles — Speiseempfehlungen, Bierstile, Empfehlungen",
+    "placeholder": "Fragen Sie etwas über Bier...",
+    "send": "Senden",
+    "error": "Etwas ist schiefgelaufen. Versuchen Sie es erneut!",
+    "ariaFab": "Biersommelier öffnen",
+    "ariaClose": "Schließen"
   }
 }
