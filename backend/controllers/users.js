@@ -292,19 +292,27 @@ export const contact = async (req, res) => {
   try {
     const { email, message } = req.body;
 
-    console.log("CONTACT REQUEST:", email, message);
+    console.log("[contact] Incoming request → email:", email, "| message length:", message?.length);
 
+    if (!email || !message) {
+      console.warn("[contact] Missing fields → email:", email, "| message:", message);
+      return res.status(400).json({ err: "Email and message are required" });
+    }
+
+    console.log("[contact] Calling sendContactMail...");
     await sendContactMail(email, message);
-
-    console.log("EMAIL SENT SUCCESSFULLY");
+    console.log("[contact] sendContactMail resolved successfully");
 
     return res.status(200).json({ data: "Message sent successfully" });
   } catch (err) {
-    console.error("CONTACT ERROR FULL:", err);
-
-    return res.status(500).json({
-      err: err.message,
+    console.error("[contact] Failed to send email:", err.message, {
+      code: err.code,
+      command: err.command,
+      address: err.address,
+      port: err.port,
     });
+
+    return res.status(500).json({ err: err.message });
   }
 };
 
