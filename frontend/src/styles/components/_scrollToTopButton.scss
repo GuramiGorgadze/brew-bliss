@@ -35,6 +35,8 @@
 
   &:hover {
     background-color: $text-primary;
+    transform: scale(1.08);
+
     * {
       color: $color-white;
     }

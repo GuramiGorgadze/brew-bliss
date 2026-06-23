@@ -1,0 +1,197 @@
+@use '../abstracts' as *;
+
+.sommelier-fab {
+  position: fixed;
+  bottom: calc(70px * var(--app-scale));
+  left: calc(40px * var(--app-scale));
+  height: calc(55px * var(--app-scale));
+  width: calc(55px * var(--app-scale));
+  font-size: calc(22px * var(--app-scale));
+  border-radius: 50%;
+  border: none;
+  background-color: $color-accent;
+  color: $text-primary;
+  cursor: pointer;
+  z-index: 40;
+  transition: 0.5s ease;
+
+  &:hover {
+    background-color: $text-primary;
+    transform: scale(1.08);
+  }
+}
+
+.sommelier-panel {
+  position: fixed;
+  bottom: calc(140px * var(--app-scale));
+  left: calc(40px * var(--app-scale));
+  width: calc(340px * var(--app-scale));
+  max-height: calc(400px * var(--app-scale));
+  background-color: $color-white;
+  border-radius: calc(16px * var(--app-scale));
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  z-index: 39;
+  animation: sommelier-slide-in 0.3s ease;
+}
+
+@keyframes sommelier-slide-in {
+  from {
+    opacity: 0;
+    transform: translateY(calc(12px * var(--app-scale)));
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.sommelier-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: calc(14px * var(--app-scale)) calc(16px * var(--app-scale));
+  background-color: $color-accent;
+  font-size: calc(14px * var(--app-scale));
+
+  button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: calc(16px * var(--app-scale));
+    line-height: 1;
+    transition: 0.5s ease;
+
+    &:hover {
+      color: $text-primary;
+      transform: rotate(180deg);
+    }
+  }
+
+  * {
+    color: $color-white;
+  }
+}
+
+.sommelier-messages {
+  overflow-y: auto;
+  padding: calc(14px * var(--app-scale));
+  display: flex;
+  flex-direction: column;
+  gap: calc(10px * var(--app-scale));
+}
+
+.sommelier-empty {
+  font-size: calc(13px * var(--app-scale));
+  color: rgba($text-primary, 0.45);
+  text-align: center;
+  margin: calc(40px * var(--app-scale)) calc(20px * var(--app-scale));
+  line-height: 1.6;
+}
+
+.sommelier-msg {
+  max-width: 80%;
+  font-size: calc(13px * var(--app-scale));
+  line-height: 1.5;
+  padding: calc(9px * var(--app-scale)) calc(13px * var(--app-scale));
+  border-radius: calc(14px * var(--app-scale));
+
+  &--user {
+    align-self: flex-end;
+    background-color: $color-accent;
+    color: $color-white;
+    border-bottom-right-radius: calc(4px * var(--app-scale));
+  }
+
+  &--assistant {
+    align-self: flex-start;
+    background-color: rgba($text-primary, 0.06);
+    color: $text-primary;
+    border-bottom-left-radius: calc(4px * var(--app-scale));
+  }
+}
+
+.sommelier-typing {
+  display: flex;
+  align-items: center;
+  gap: calc(4px * var(--app-scale));
+  padding: calc(12px * var(--app-scale)) calc(14px * var(--app-scale));
+
+  span {
+    display: block;
+    width: calc(6px * var(--app-scale));
+    height: calc(6px * var(--app-scale));
+    border-radius: 50%;
+    background-color: rgba($text-primary, 0.35);
+    animation: sommelier-bounce 1.2s infinite;
+
+    &:nth-child(2) {
+      animation-delay: 0.2s;
+    }
+    &:nth-child(3) {
+      animation-delay: 0.4s;
+    }
+  }
+}
+
+@keyframes sommelier-bounce {
+  0%,
+  60%,
+  100% {
+    transform: translateY(0);
+  }
+  30% {
+    transform: translateY(calc(-5px * var(--app-scale)));
+  }
+}
+
+.sommelier-input-row {
+  display: flex;
+  gap: calc(8px * var(--app-scale));
+  padding: calc(12px * var(--app-scale));
+  border-top: calc(1px * var(--app-scale)) solid $border-subtle;
+  flex-shrink: 0;
+
+  input {
+    flex: 1;
+    border: calc(1px * var(--app-scale)) solid $border-subtle;
+    border-radius: calc(20px * var(--app-scale));
+    padding: calc(8px * var(--app-scale)) calc(14px * var(--app-scale));
+    font-size: calc(13px * var(--app-scale));
+    outline: none;
+    background-color: rgba($text-primary, 0.04);
+    color: $text-primary;
+    transition: border-color 0.5s ease;
+
+    &:focus {
+      border-color: $color-accent;
+    }
+
+    &:disabled {
+      opacity: 0.5;
+    }
+  }
+
+  button {
+    flex-shrink: 0;
+    padding: calc(8px * var(--app-scale)) calc(14px * var(--app-scale));
+    border-radius: calc(20px * var(--app-scale));
+    border: none;
+    background-color: $color-accent;
+    color: $text-primary;
+    font-size: calc(13px * var(--app-scale));
+    cursor: pointer;
+    transition: 0.5s ease;
+    color: $color-white;
+
+    &:hover {
+      background-color: $text-primary;
+    }
+
+    &:disabled {
+      opacity: 0.4;
+      cursor: default;
+    }
+  }
+}

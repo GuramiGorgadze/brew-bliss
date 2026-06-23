@@ -255,3 +255,19 @@ export const getOrders = async () => {
     throw new Error(err.response?.data?.err || 'Error fetching orders');
   }
 };
+
+export const askSommelier = async (messages, lang) => {
+  try {
+    const response = await axios.post(
+      '/api/products/sommelier',
+      { messages, lang },
+      {
+        headers: { 'Content-Type': 'application/json' },
+        withCredentials: true,
+      }
+    );
+    return response.data.data;
+  } catch (err) {
+    throw new Error(err.response?.data?.err || 'Error reaching sommelier');
+  }
+};

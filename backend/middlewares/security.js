@@ -21,7 +21,7 @@ export const helmetMiddleware = helmet({
 
 const allowedOrigins = [
   "https://brew-bliss.onrender.com",
-  "http://localhost:3000",
+  "http://localhost:5173",
 ];
 
 export const corsMiddleware = cors({

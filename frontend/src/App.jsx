@@ -3,7 +3,7 @@ import * as api from './api/api.js';
 import './styles/style.scss';
 
 import { Navbar, Footer, Main, TopBar } from './layouts';
-import { LoadingScreen, ProtectedRoute, ScrollToTopButton } from './components';
+import { LoadingScreen, ProtectedRoute, ScrollToTopButton, BeerSommelier } from './components';
 import { Routes, Route } from 'react-router-dom';
 import {
   Home,
@@ -179,6 +179,7 @@ function App() {
         </Routes>
       </Main>
       <Footer />
+      <BeerSommelier />
       <LoadingScreen />
     </>
   );

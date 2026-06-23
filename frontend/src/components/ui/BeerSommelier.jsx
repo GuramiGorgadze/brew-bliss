@@ -1,0 +1,133 @@
+import React, { useState, useRef, useEffect } from 'react';
+import * as api from '../../api/api';
+import { useTranslation } from 'react-i18next';
+
+function BeerSommelier() {
+  const { i18n } = useTranslation();
+  const lang = i18n.language;
+
+  const [open, setOpen] = useState(false);
+  const [messages, setMessages] = useState([]);
+  const [input, setInput] = useState('');
+  const [loading, setLoading] = useState(false);
+
+  const endRef = useRef(null);
+
+  useEffect(() => {
+    endRef.current?.scrollIntoView({ behavior: 'smooth' });
+  }, [messages]);
+
+  const send = async (text) => {
+    if (!text.trim() || loading) return;
+
+    const userMsg = {
+      role: 'user',
+      content: text,
+    };
+
+    const nextMessages = [...messages, userMsg];
+
+    setMessages(nextMessages);
+    setInput('');
+    setLoading(true);
+
+    try {
+      const reply = await api.askSommelier(nextMessages, lang);
+
+      setMessages([
+        ...nextMessages,
+        {
+          role: 'assistant',
+          content: reply,
+        },
+      ]);
+    } catch (err) {
+      setMessages([
+        ...nextMessages,
+        {
+          role: 'assistant',
+          content: 'Something went wrong. Try again!',
+        },
+      ]);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  return (
+    <>
+      <button
+        className="sommelier-fab"
+        onClick={() => setOpen((prev) => !prev)}
+        aria-label="Open beer sommelier"
+      >
+        🍺
+      </button>
+
+      {open && (
+        <div className="sommelier-panel">
+          <div className="sommelier-header">
+            <span>Beer Sommelier</span>
+
+            <button
+              onClick={() => setOpen(false)}
+              aria-label="Close"
+            >
+              ✕
+            </button>
+          </div>
+
+          <div className="sommelier-messages">
+            {messages.length === 0 && (
+              <p className="sommelier-empty">
+                Ask me anything — food pairings, beer styles, recommendations 🍺
+              </p>
+            )}
+
+            {messages.map((m, i) => (
+              <div
+                key={i}
+                className={`sommelier-msg sommelier-msg--${m.role}`}
+              >
+                {m.content}
+              </div>
+            ))}
+
+            {loading && (
+              <div className="sommelier-msg sommelier-msg--assistant sommelier-typing">
+                <span />
+                <span />
+                <span />
+              </div>
+            )}
+
+            <div ref={endRef} />
+          </div>
+
+          <div className="sommelier-input-row">
+            <input
+              value={input}
+              onChange={(e) => setInput(e.target.value)}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter') {
+                  send(input);
+                }
+              }}
+              placeholder="Ask about beer..."
+              disabled={loading}
+            />
+
+            <button
+              onClick={() => send(input)}
+              disabled={loading}
+            >
+              Send
+            </button>
+          </div>
+        </div>
+      )}
+    </>
+  );
+}
+
+export default BeerSommelier;

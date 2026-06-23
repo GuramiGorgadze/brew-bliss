@@ -72,7 +72,6 @@ function Address() {
               pauseOnHover={false}
               disabled={false}
             />
-            
           </Link>
           {t('address.editAddress')}
         </h2>

@@ -17,3 +17,4 @@ export { default as PageTitle } from './ui/PageTitle';
 export { default as ProtectedRoute } from './ui/ProtectedRoute';
 export { default as ScrollToTopButton } from './ui/ScrollToTopButton';
 export { default as ImageMagnifier } from './ui/ImageMagnifier';
+export { default as BeerSommelier } from './ui/BeerSommelier';

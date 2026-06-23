@@ -1,6 +1,7 @@
 import Products from "../models/products.js";
 import Users from "../models/users.js";
 import jwt from "jsonwebtoken";
+import Groq from "groq-sdk";
 
 export const getProducts = async (req, res) => {
   try {
@@ -65,5 +66,65 @@ export const addReview = async (req, res) => {
   } catch (err) {
     console.error(err);
     return res.status(500).json({ err: "Something went wrong" });
+  }
+};
+
+export const sommelier = async (req, res) => {
+  try {
+    const { messages, lang } = req.body;
+
+    const client = new Groq({ apiKey: process.env.GROQ_API_KEY });
+
+    if (!messages || !Array.isArray(messages)) {
+      return res.status(400).json({ err: "Messages array is required" });
+    }
+
+    const products = await Products.find().select(
+      "name description rating reviews",
+    );
+    const productList = products
+      .map(
+        (p) =>
+          `- ${p.name}: ${p.description} (Rating: ${p.rating?.toFixed(1) ?? "N/A"}/5)`,
+      )
+      .join("\n");
+
+    const systemPrompt = `You are an expert beer sommelier with deep knowledge of:
+- Beer styles (ales, lagers, stouts, IPAs, sours, etc.)
+- Food and beer pairings
+- Brewing processes and ingredients
+- Regional and craft beer recommendations
+- Flavor profiles and tasting notes
+
+You have access to our current beer catalog. When relevant, recommend beers from this list:
+${productList}
+
+Be conversational, enthusiastic, and helpful. Keep responses concise (2-4 sentences) unless the user asks for detail.
+Respond in the user's language. Current language code: ${lang || "en"}.`;
+
+    const response = await client.chat.completions.create({
+      model: "llama-3.3-70b-versatile",
+      max_tokens: 1024,
+      messages: [
+        { role: "system", content: systemPrompt },
+        ...messages.map((m) => ({
+          role: m.role,
+          content: m.content,
+        })),
+      ],
+    });
+
+    const reply = response.choices[0]?.message?.content;
+
+    if (!reply) {
+      return res.status(500).json({ err: "No response from AI" });
+    }
+
+    return res.status(200).json({ data: reply });
+  } catch (err) {
+    console.error("Sommelier error:", err);
+    return res
+      .status(500)
+      .json({ err: err.message || "Internal server error" });
   }
 };
