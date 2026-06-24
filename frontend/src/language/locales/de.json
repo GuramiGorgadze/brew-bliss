@@ -491,7 +491,8 @@
     "addedToWishlist": "Auf die Wunschliste gesetzt",
     "removedFromWishlist": "Von der Wunschliste entfernt",
     "wishlistError": "Etwas ist schiefgelaufen",
-    "wishlistLoading": "Wunschliste wird aktualisiert..."
+    "wishlistLoading": "Wunschliste wird aktualisiert...",
+    "seen": "Gesehen"
   },
   "productList": {
     "filterAndSort": "FILTERN & SORTIEREN",

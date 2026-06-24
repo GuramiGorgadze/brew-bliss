@@ -488,7 +488,8 @@
     "addedToWishlist": "Ajouté à la liste d'envies",
     "removedFromWishlist": "Retiré de la liste d'envies",
     "wishlistError": "Une erreur est survenue",
-    "wishlistLoading": "Mise à jour de la liste d'envies..."
+    "wishlistLoading": "Mise à jour de la liste d'envies...",
+    "seen": "Déjà vu"
   },
   "productList": {
     "filterAndSort": "FILTRER & TRIER",

@@ -20,6 +20,9 @@ function Product({ product, onWishlistChange }) {
   const [isWishlisting, setIsWishlisting] = useState(false);
   const { loggedIn } = useUserData();
 
+  const seen = JSON.parse(localStorage.getItem('seen_products') || '[]');
+  const isSeen = seen.includes(product._id);
+
   const localize = (field, lang) => field?.[lang] ?? field?.en ?? '';
 
   const { wishlistedIds, add, remove } = useWishlist();
@@ -106,6 +109,12 @@ function Product({ product, onWishlistChange }) {
           })}
           style={{ pointerEvents: isWishlisting ? 'none' : 'auto' }}
         />
+
+        {isSeen && (
+          <span className="product-card__seen-badge">
+            <i className="bi bi-eye" /> {t('productCard.seen')}
+          </span>
+        )}
         {discountPercent > 0 && <span className="product-card__discount">-{discountPercent}%</span>}
       </div>
 

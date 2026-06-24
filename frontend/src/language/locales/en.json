@@ -480,7 +480,8 @@
     "addedToWishlist": "Added to wishlist",
     "removedFromWishlist": "Removed from wishlist",
     "wishlistError": "Something went wrong",
-    "wishlistLoading": "Updating wishlist..."
+    "wishlistLoading": "Updating wishlist...",
+    "seen": "Seen"
   },
   "productList": {
     "filterAndSort": "FILTER & SORT",

@@ -132,8 +132,11 @@ function ProductSingle() {
         setSingleProduct(data.data);
         setSelectedVariant(data.data.variants.find((v) => v.available) ?? data.data.variants[0]);
         setReady(true);
-      } else if (data?.err) {
-        setError(data.err);
+
+        const seen = JSON.parse(localStorage.getItem('seen_products') || '[]');
+        if (!seen.includes(data.data._id)) {
+          localStorage.setItem('seen_products', JSON.stringify([...seen, data.data._id]));
+        }
       }
     };
     fetchSingleProductData();
