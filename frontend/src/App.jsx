@@ -3,7 +3,13 @@ import * as api from './api/api.js';
 import './styles/style.scss';
 
 import { Navbar, Footer, Main, TopBar } from './layouts';
-import { LoadingScreen, ProtectedRoute, ScrollToTopButton, BeerSommelier } from './components';
+import {
+  LoadingScreen,
+  ProtectedRoute,
+  PublicOnlyRoute,
+  ScrollToTopButton,
+  BeerSommelier,
+} from './components';
 import { Routes, Route } from 'react-router-dom';
 import {
   Home,
@@ -114,11 +120,19 @@ function App() {
           />
           <Route
             path="/register"
-            element={<Register />}
+            element={
+              <PublicOnlyRoute>
+                <Register />
+              </PublicOnlyRoute>
+            }
           />
           <Route
             path="/login"
-            element={<Login />}
+            element={
+              <PublicOnlyRoute>
+                <Login />
+              </PublicOnlyRoute>
+            }
           />
           <Route
             path="/reset-password/:token"

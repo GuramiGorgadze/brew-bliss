@@ -15,6 +15,7 @@ export { default as FeaturedCarousel } from './sections/FeaturedCarousel';
 export { default as LoadingScreen } from './ui/LoadingScreen';
 export { default as PageTitle } from './ui/PageTitle';
 export { default as ProtectedRoute } from './ui/ProtectedRoute';
+export { default as PublicOnlyRoute } from './ui/PublicOnlyRoute';
 export { default as ScrollToTopButton } from './ui/ScrollToTopButton';
 export { default as ImageMagnifier } from './ui/ImageMagnifier';
 export { default as BeerSommelier } from './ui/BeerSommelier';
