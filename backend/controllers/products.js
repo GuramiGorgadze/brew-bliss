@@ -153,8 +153,12 @@ export const sommelierSuggestions = async (req, res) => {
     });
 
     const raw = response.choices[0]?.message?.content || "[]";
-    const clean = raw.replace(/```json|```/g, "").trim();
-    const suggestions = JSON.parse(clean);
+    const clean = raw
+      .replace(/```json/g, "")
+      .replace(/```/g, "")
+      .trim();
+    const match = clean.match(/\[.*\]/s);
+    const suggestions = match ? JSON.parse(match[0]) : [];
     return res.status(200).json({ data: suggestions });
   } catch (err) {
     return res.status(200).json({ data: [] });
