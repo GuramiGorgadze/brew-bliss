@@ -81,10 +81,14 @@ export const getUser = async (token) => {
 };
 
 export const updateAddress = async (addressData) => {
-  const response = await axios.put('/api/users/address', JSON.stringify(addressData), {
-    headers: { 'Content-Type': 'application/json' },
-    withCredentials: true,
-  });
+  const response = await axios.put(
+    '/api/users/address',
+    JSON.stringify(addressData),
+    {
+      headers: { 'Content-Type': 'application/json' },
+      withCredentials: true,
+    }
+  );
   return response.data;
 };
 
@@ -224,10 +228,14 @@ export const googleAuth = () => {
 
 export const addReview = async (productId, reviewData) => {
   try {
-    const response = await axios.post(`/api/products/${productId}/reviews`, reviewData, {
-      headers: { 'Content-Type': 'application/json' },
-      withCredentials: true,
-    });
+    const response = await axios.post(
+      `/api/products/${productId}/reviews`,
+      reviewData,
+      {
+        headers: { 'Content-Type': 'application/json' },
+        withCredentials: true,
+      }
+    );
     return response.data;
   } catch (err) {
     throw new Error(err.response?.data?.err || 'Error submitting review');
@@ -269,5 +277,18 @@ export const askSommelier = async (messages, lang) => {
     return response.data.data;
   } catch (err) {
     throw new Error(err.response?.data?.err || 'Error reaching sommelier');
+  }
+};
+
+export const getSommelierSuggestions = async (messages, lang) => {
+  try {
+    const response = await axios.post(
+      '/api/products/sommelier/suggestions',
+      { messages, lang },
+      { headers: { 'Content-Type': 'application/json' }, withCredentials: true }
+    );
+    return response.data.data;
+  } catch {
+    return [];
   }
 };

@@ -3,6 +3,12 @@ import * as api from '../../api/api';
 import { useTranslation } from 'react-i18next';
 import BeerIcon from '../../assets/icons/beer.svg';
 
+const DEFAULT_SUGGESTIONS = [
+  'Recommend me a beer',
+  'What beer pairs with pizza?',
+  'Whats a good beer for beginners?',
+];
+
 function BeerSommelier() {
   const { i18n, t } = useTranslation();
   const lang = i18n.language;
@@ -12,6 +18,8 @@ function BeerSommelier() {
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState('');
   const [loading, setLoading] = useState(false);
+  const [suggestions, setSuggestions] = useState(DEFAULT_SUGGESTIONS);
+  const [loadingSuggestions, setLoadingSuggestions] = useState(false);
 
   const endRef = useRef(null);
   const panelRef = useRef(null);
@@ -56,6 +64,25 @@ function BeerSommelier() {
     endRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, [messages]);
 
+  const fetchSuggestions = async (updatedMessages) => {
+    setLoadingSuggestions(true);
+    try {
+      const result = await api.getSommelierSuggestions(updatedMessages, lang);
+      if (Array.isArray(result) && result.length > 0) {
+        setSuggestions(result);
+      } else {
+        setSuggestions(DEFAULT_SUGGESTIONS);
+      }
+    } catch {
+      setSuggestions(DEFAULT_SUGGESTIONS);
+    } finally {
+      setLoadingSuggestions(false);
+      setTimeout(() => {
+        endRef.current?.scrollIntoView({ behavior: 'smooth' });
+      }, 50);
+    }
+  };
+
   const send = async (text) => {
     if (!text.trim() || loading) return;
 
@@ -65,15 +92,19 @@ function BeerSommelier() {
     setMessages(nextMessages);
     setInput('');
     setLoading(true);
+    setSuggestions([]);
 
     try {
       const reply = await api.askSommelier(nextMessages, lang);
-      setMessages([...nextMessages, { role: 'assistant', content: reply }]);
+      const finalMessages = [...nextMessages, { role: 'assistant', content: reply }];
+      setMessages(finalMessages);
+      fetchSuggestions(finalMessages);
     } catch (err) {
       setMessages([
         ...nextMessages,
         { role: 'assistant', content: 'Something went wrong. Try again!' },
       ]);
+      setSuggestions(DEFAULT_SUGGESTIONS);
     } finally {
       setLoading(false);
     }
@@ -132,6 +163,23 @@ function BeerSommelier() {
 
             <div ref={endRef} />
           </div>
+
+          {suggestions.length > 0 && (
+            <div
+              className={`sommelier-suggestions${loadingSuggestions ? ' sommelier-suggestions--loading' : ''}`}
+            >
+              {suggestions.map((s, i) => (
+                <button
+                  key={i}
+                  className="sommelier-suggestion-chip"
+                  onClick={() => send(s)}
+                  disabled={loading}
+                >
+                  {s}
+                </button>
+              ))}
+            </div>
+          )}
 
           <div className="sommelier-input-row">
             <input

@@ -80,13 +80,16 @@ export const sommelier = async (req, res) => {
     }
 
     const products = await Products.find().select(
-      "name description rating reviews",
+      "name description rating variants",
     );
     const productList = products
-      .map(
-        (p) =>
-          `- ${p.name}: ${p.description} (Rating: ${p.rating?.toFixed(1) ?? "N/A"}/5)`,
-      )
+      .map((p) => {
+        const prices = p.variants
+          ?.filter((v) => v.available)
+          .map((v) => `${v.size}: $${v.price}`)
+          .join(", ");
+        return `- ${p.name}: ${p.description} (Rating: ${p.rating?.toFixed(1) ?? "N/A"}/5, Prices: ${prices || "N/A"})`;
+      })
       .join("\n");
 
     const systemPrompt = `You are an expert beer sommelier with deep knowledge of:
@@ -126,5 +129,34 @@ Respond in the user's language. Current language code: ${lang || "en"}.`;
     return res
       .status(500)
       .json({ err: err.message || "Internal server error" });
+  }
+};
+
+export const sommelierSuggestions = async (req, res) => {
+  try {
+    const { messages, lang } = req.body;
+    const client = new Groq({ apiKey: process.env.GROQ_API_KEY });
+
+    const response = await client.chat.completions.create({
+      model: "llama-3.3-70b-versatile",
+      max_tokens: 150,
+      messages: [
+        {
+          role: "system",
+          content: `Based on this beer sommelier conversation, generate exactly 3 short follow-up question suggestions. 
+                    Return ONLY a raw JSON array of 3 strings with no markdown, no backticks, no explanation. 
+                    Output must start with [ and end with ]. Example: ["What food pairs with this?", "Any similar beers?", "Tell me more about IPAs"]. 
+                    Respond in language: ${lang || "en"}.`,
+        },
+        ...messages.map((m) => ({ role: m.role, content: m.content })),
+      ],
+    });
+
+    const raw = response.choices[0]?.message?.content || "[]";
+    const clean = raw.replace(/```json|```/g, "").trim();
+    const suggestions = JSON.parse(clean);
+    return res.status(200).json({ data: suggestions });
+  } catch (err) {
+    return res.status(200).json({ data: [] });
   }
 };
