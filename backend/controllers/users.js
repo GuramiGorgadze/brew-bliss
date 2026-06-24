@@ -291,28 +291,10 @@ export const getWishlist = async (req, res) => {
 export const contact = async (req, res) => {
   try {
     const { email, message } = req.body;
-
-    console.log("[contact] Incoming request → email:", email, "| message length:", message?.length);
-
-    if (!email || !message) {
-      console.warn("[contact] Missing fields → email:", email, "| message:", message);
-      return res.status(400).json({ err: "Email and message are required" });
-    }
-
-    console.log("[contact] Calling sendContactMail...");
     await sendContactMail(email, message);
-    console.log("[contact] sendContactMail resolved successfully");
-
     return res.status(200).json({ data: "Message sent successfully" });
   } catch (err) {
-    console.error("[contact] Failed to send email:", err.message, {
-      code: err.code,
-      command: err.command,
-      address: err.address,
-      port: err.port,
-    });
-
-    return res.status(500).json({ err: err.message });
+    return res.status(500).json({ err: "Something went wrong" });
   }
 };
 
@@ -336,7 +318,9 @@ export const forgotPasswordUser = async (req, res) => {
 
     const user = await Users.findOne({ email });
     if (!user) {
-      return res.status(400).json({ message: "No account found with that email" });
+      return res
+        .status(400)
+        .json({ message: "No account found with that email" });
     }
 
     if (!user.password) {
