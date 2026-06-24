@@ -2,7 +2,7 @@ import axios from 'axios';
 
 export const getProducts = async () => {
   try {
-    const response = await axios.get(`/api/products`, {
+    const response = await axios.get(`http://localhost:3000/api/products`, {
       withCredentials: true,
     });
     return response.data;
@@ -13,7 +13,7 @@ export const getProducts = async () => {
 
 export const getProductById = async (id) => {
   try {
-    const response = await axios.get(`/api/products/${id}`, {
+    const response = await axios.get(`http://localhost:3000/api/products/${id}`, {
       withCredentials: true,
     });
     return response.data;
@@ -24,7 +24,7 @@ export const getProductById = async (id) => {
 
 export const registerUser = async (email, password, confirmPassword, firstName, lastName) => {
   const response = await axios.post(
-    '/api/users/register',
+    'http://localhost:3000/api/users/register',
     JSON.stringify({ firstName, lastName, email, password, confirmPassword }),
     {
       headers: { 'Content-Type': 'application/json' },
@@ -36,7 +36,7 @@ export const registerUser = async (email, password, confirmPassword, firstName, 
 
 export const loginUser = async (email, password) => {
   const response = await axios.post(
-    '/api/users/login',
+    'http://localhost:3000/api/users/login',
     JSON.stringify({ email: email, password: password }),
     {
       headers: { 'Content-Type': 'application/json' },
@@ -47,14 +47,14 @@ export const loginUser = async (email, password) => {
 };
 
 export const logoutUser = async () => {
-  await axios.post('/api/users/logout', null, {
+  await axios.post('http://localhost:3000/api/users/logout', null, {
     withCredentials: true,
   });
 };
 
 export const getToken = async () => {
   try {
-    const response = await axios.post('/api/users/get-token', null, {
+    const response = await axios.post('http://localhost:3000/api/users/get-token', null, {
       withCredentials: true,
     });
     return response.data;
@@ -69,7 +69,7 @@ export const getToken = async () => {
 
 export const getUser = async (token) => {
   try {
-    const response = await axios.get('/api/users/get', {
+    const response = await axios.get('http://localhost:3000/api/users/get', {
       headers: { Authorization: token },
       withCredentials: true,
     });
@@ -81,7 +81,7 @@ export const getUser = async (token) => {
 };
 
 export const updateAddress = async (addressData) => {
-  const response = await axios.put('/api/users/address', JSON.stringify(addressData), {
+  const response = await axios.put('http://localhost:3000/api/users/address', JSON.stringify(addressData), {
     headers: { 'Content-Type': 'application/json' },
     withCredentials: true,
   });
@@ -91,7 +91,7 @@ export const updateAddress = async (addressData) => {
 export const addToCart = async (productId, variantSize, quantity) => {
   try {
     const response = await axios.post(
-      '/api/users/cart/add',
+      'http://localhost:3000/api/users/cart/add',
       { productId, variantSize, quantity },
       { withCredentials: true }
     );
@@ -104,7 +104,7 @@ export const addToCart = async (productId, variantSize, quantity) => {
 export const removeFromCart = async (productId, variantSize) => {
   try {
     const response = await axios.post(
-      '/api/users/cart/remove',
+      'http://localhost:3000/api/users/cart/remove',
       { productId, variantSize },
       { withCredentials: true }
     );
@@ -116,7 +116,7 @@ export const removeFromCart = async (productId, variantSize) => {
 
 export const getCart = async () => {
   try {
-    const response = await axios.get('/api/users/cart', {
+    const response = await axios.get('http://localhost:3000/api/users/cart', {
       withCredentials: true,
     });
     return response.data;
@@ -128,7 +128,7 @@ export const getCart = async () => {
 export const addToWishlist = async (productId) => {
   try {
     const response = await axios.post(
-      '/api/users/wishlist/add',
+      'http://localhost:3000/api/users/wishlist/add',
       { productId },
       { withCredentials: true }
     );
@@ -141,7 +141,7 @@ export const addToWishlist = async (productId) => {
 export const removeFromWishlist = async (productId) => {
   try {
     const response = await axios.post(
-      '/api/users/wishlist/remove',
+      'http://localhost:3000/api/users/wishlist/remove',
       { productId },
       { withCredentials: true }
     );
@@ -153,7 +153,7 @@ export const removeFromWishlist = async (productId) => {
 
 export const getWishlist = async () => {
   try {
-    const response = await axios.get('/api/users/wishlist', {
+    const response = await axios.get('http://localhost:3000/api/users/wishlist', {
       withCredentials: true,
     });
     return response.data;
@@ -165,7 +165,7 @@ export const getWishlist = async () => {
 export const updateCartQuantity = async (productId, variantSize, quantity) => {
   try {
     const response = await axios.put(
-      '/api/users/cart/update',
+      'http://localhost:3000/api/users/cart/update',
       { productId, variantSize, quantity },
       { withCredentials: true }
     );
@@ -177,7 +177,7 @@ export const updateCartQuantity = async (productId, variantSize, quantity) => {
 
 export const contact = async (data) => {
   try {
-    const response = await axios.post('/api/users/contact', data, {
+    const response = await axios.post('http://localhost:3000/api/users/contact', data, {
       headers: { 'Content-Type': 'application/json' },
       withCredentials: true,
     });
@@ -190,7 +190,7 @@ export const contact = async (data) => {
 
 export const newsletter = async (email) => {
   const response = await axios.post(
-    '/api/users/newsletter',
+    'http://localhost:3000/api/users/newsletter',
     { email },
     {
       headers: { 'Content-Type': 'application/json' },
@@ -202,7 +202,7 @@ export const newsletter = async (email) => {
 
 export const forgotPassword = async (email) => {
   const response = await axios.post(
-    '/api/users/forgot',
+    'http://localhost:3000/api/users/forgot',
     { email },
     { headers: { 'Content-Type': 'application/json' }, withCredentials: true }
   );
@@ -211,7 +211,7 @@ export const forgotPassword = async (email) => {
 
 export const resetPassword = async (token, password) => {
   const response = await axios.post(
-    '/api/users/reset',
+    'http://localhost:3000/api/users/reset',
     { password },
     { headers: { 'Content-Type': 'application/json', Authorization: token }, withCredentials: true }
   );
@@ -219,12 +219,12 @@ export const resetPassword = async (token, password) => {
 };
 
 export const googleAuth = () => {
-  window.location.href = '/api/users/auth/google';
+  window.location.href = 'http://localhost:3000/api/users/auth/google';
 };
 
 export const addReview = async (productId, reviewData) => {
   try {
-    const response = await axios.post(`/api/products/${productId}/reviews`, reviewData, {
+    const response = await axios.post(`http://localhost:3000/api/products/${productId}/reviews`, reviewData, {
       headers: { 'Content-Type': 'application/json' },
       withCredentials: true,
     });
@@ -236,7 +236,7 @@ export const addReview = async (productId, reviewData) => {
 
 export const placeOrder = async (payload) => {
   try {
-    const response = await axios.post('/api/users/order', payload, {
+    const response = await axios.post('http://localhost:3000/api/users/order', payload, {
       withCredentials: true,
     });
     return response.data;
@@ -247,7 +247,7 @@ export const placeOrder = async (payload) => {
 
 export const getOrders = async () => {
   try {
-    const response = await axios.get('/api/users/orders', {
+    const response = await axios.get('http://localhost:3000/api/users/orders', {
       withCredentials: true,
     });
     return response.data;
@@ -259,7 +259,7 @@ export const getOrders = async () => {
 export const askSommelier = async (messages, lang) => {
   try {
     const response = await axios.post(
-      '/api/products/sommelier',
+      'http://localhost:3000/api/products/sommelier',
       { messages, lang },
       {
         headers: { 'Content-Type': 'application/json' },
