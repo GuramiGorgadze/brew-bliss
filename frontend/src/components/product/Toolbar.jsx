@@ -14,13 +14,13 @@ function Toolbar({ count, view, onViewChange, onSortChange, originalProducts }) 
           className={clsx('toolbar__view-btn', view === 'grid-wrap' && 'toolbar__view-btn--active')}
           onClick={() => onViewChange('grid-wrap')}
         >
-          <GridWrap />
+          <GridWrap className="grid-btn" />
         </button>
         <button
           className={clsx('toolbar__view-btn', view === 'grid-list' && 'toolbar__view-btn--active')}
           onClick={() => onViewChange('grid-list')}
         >
-          <GridList />
+          <GridList className="grid-btn" />
         </button>
         {originalProducts.length === count && (
           <span className="toolbar__count">{t('productList.productsCount', { count })}</span>
