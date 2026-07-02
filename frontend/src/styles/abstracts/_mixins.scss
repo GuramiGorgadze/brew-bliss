@@ -1,0 +1,39 @@
+@mixin flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin flex-between {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+@mixin transition($duration: 0.3s) {
+  transition: all $duration ease;
+}
+
+@mixin card-shadow {
+  box-shadow: 10px 10px 60px -29px rgba(0, 0, 0, 0.45);
+  -webkit-box-shadow: 10px 10px 60px -29px rgba(0, 0, 0, 0.45);
+  -moz-box-shadow: 10px 10px 60px -29px rgba(0, 0, 0, 0.45);
+}
+
+@mixin size($width, $height: $width) {
+  width: $width;
+  height: $height;
+}
+
+@mixin button-reset {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+@mixin truncate {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

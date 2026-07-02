@@ -1,9 +1,7 @@
 @use '../abstracts' as *;
 
 .product-page {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  @include flex-center;
   flex-direction: column;
   width: 100%;
   box-sizing: border-box;
@@ -27,15 +25,13 @@
       font-size: calc(22px * var(--app-scale));
       padding: calc(8px * var(--app-scale));
       background-color: $bg-body;
-      display: flex;
-      justify-content: center;
-      align-items: center;
+      @include flex-center;
       border-radius: calc(3px * var(--app-scale));
       position: absolute;
       top: calc(10px * var(--app-scale));
       right: calc(10px * var(--app-scale));
       opacity: 0.5;
-      transition: 0.3s ease;
+      @include transition;
       cursor: pointer;
 
       &:hover {
@@ -75,9 +71,7 @@
     .bi {
       font-size: calc(13px * var(--app-scale));
       color: $color-accent;
-      display: flex;
-      justify-content: center;
-      align-items: center;
+      @include flex-center;
     }
   }
 
@@ -120,14 +114,11 @@
       transform: translateY(-50%);
       transition: left 0.4s ease;
       z-index: 1;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      @include flex-center;
     }
 
     &-icon {
-      height: calc(25px * var(--app-scale));
-      width: calc(25px * var(--app-scale));
+      @include size(calc(25px * var(--app-scale)));
       background-color: $color-accent;
       border-radius: 50%;
       padding: calc(2px * var(--app-scale));
@@ -191,7 +182,7 @@
       background-color: transparent;
       border-radius: calc(5px * var(--app-scale));
       cursor: pointer;
-      transition: 0.2s ease;
+      @include transition(0.2s);
 
       &--active {
         background-color: $color-accent-hover;
@@ -265,12 +256,9 @@
     }
 
     &-btn {
-      background: transparent;
-      border: none;
+      @include button-reset;
       font-size: calc(20px * var(--app-scale));
       color: $text-primary;
-      cursor: pointer;
-      padding: 0;
       line-height: 1;
       user-select: none;
     }
@@ -284,8 +272,7 @@
   }
 
   &__actions {
-    display: flex;
-    justify-content: space-between;
+    @include flex-between;
     margin-top: calc(15px * var(--app-scale));
     gap: calc(20px * var(--app-scale));
   }
@@ -297,7 +284,7 @@
     border: none;
     color: $color-white;
     cursor: pointer;
-    transition: 0.5s ease;
+    @include transition(0.5s);
 
     &--dark {
       background-color: $color-accent-hover;
@@ -354,12 +341,10 @@
     }
 
     a {
-      display: flex;
-      justify-content: center;
-      align-items: center;
+      @include flex-center;
       background-color: $bg-muted;
       border-radius: calc(7px * var(--app-scale));
-      transition: background-color 0.3s ease;
+      @include transition;
 
       &:hover {
         background-color: $color-accent;
@@ -377,18 +362,11 @@
     position: fixed;
     bottom: 0;
     width: 100%;
-    display: flex;
-    justify-content: space-between;
+    @include flex-between;
     padding: calc(10px * var(--app-scale)) 0;
-    align-items: center;
     background-color: $color-white;
     z-index: 30;
-    box-shadow: calc(10px * var(--app-scale)) calc(10px * var(--app-scale))
-      calc(60px * var(--app-scale)) calc(-29px * var(--app-scale)) rgba(0, 0, 0, 0.45);
-    -webkit-box-shadow: calc(10px * var(--app-scale)) calc(10px * var(--app-scale))
-      calc(60px * var(--app-scale)) calc(-29px * var(--app-scale)) rgba(0, 0, 0, 0.45);
-    -moz-box-shadow: calc(10px * var(--app-scale)) calc(10px * var(--app-scale))
-      calc(60px * var(--app-scale)) calc(-29px * var(--app-scale)) rgba(0, 0, 0, 0.45);
+    @include card-shadow;
 
     transform: translateY(100%);
     opacity: 0;
@@ -475,12 +453,7 @@
       border-radius: calc(8px * var(--app-scale));
       padding: calc(20px * var(--app-scale));
       z-index: 40;
-      box-shadow: calc(10px * var(--app-scale)) calc(10px * var(--app-scale))
-        calc(60px * var(--app-scale)) calc(-29px * var(--app-scale)) rgba(0, 0, 0, 0.45);
-      -webkit-box-shadow: calc(10px * var(--app-scale)) calc(10px * var(--app-scale))
-        calc(60px * var(--app-scale)) calc(-29px * var(--app-scale)) rgba(0, 0, 0, 0.45);
-      -moz-box-shadow: calc(10px * var(--app-scale)) calc(10px * var(--app-scale))
-        calc(60px * var(--app-scale)) calc(-29px * var(--app-scale)) rgba(0, 0, 0, 0.45);
+      @include card-shadow;
 
       animation: popoverIn 0.22s cubic-bezier(0.22, 1, 0.36, 1) both;
 
@@ -519,9 +492,7 @@
       }
 
       &__toggle {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
+        @include flex-between;
         width: 100%;
         background: transparent;
         border: none;
@@ -550,7 +521,7 @@
         gap: calc(5px * var(--app-scale));
 
         .bi {
-          transition: 0.5s ease;
+          @include transition(0.5s);
           font-size: calc(30px * var(--app-scale));
         }
 
@@ -577,7 +548,7 @@
 
         .hover {
           color: $text-primary;
-          transition: 0.5s ease;
+          @include transition(0.5s);
 
           &:hover {
             color: $color-accent;
@@ -595,7 +566,7 @@
         border: none;
         border-radius: calc(5px * var(--app-scale));
         cursor: pointer;
-        transition: 0.5s ease;
+        @include transition(0.5s);
         margin-bottom: calc(50px * var(--app-scale));
 
         &:hover {
@@ -643,11 +614,8 @@
           color: $color-accent;
           font-size: calc(30px * var(--app-scale));
           border-radius: calc(3px * var(--app-scale));
-          height: calc(40px * var(--app-scale));
-          width: calc(40px * var(--app-scale));
-          display: flex;
-          justify-content: center;
-          align-items: center;
+          @include size(calc(40px * var(--app-scale)));
+          @include flex-center;
           font-weight: 900;
         }
 
