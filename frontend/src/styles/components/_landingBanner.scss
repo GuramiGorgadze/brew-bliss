@@ -4,7 +4,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  height: calc(650px * var(--app-scale));
+  height: 90vh;
   background-size: cover;
   padding: calc(20px * var(--app-scale)) calc(100px * var(--app-scale));
   color: $text-on-dark;
