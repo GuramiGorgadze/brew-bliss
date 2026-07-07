@@ -5,6 +5,9 @@ import connectDB from "./db/connection.js";
 import ProductsRouter from "./routes/products.js";
 import UsersRouter from "./routes/users.js";
 import passport from "./config/passport.js";
+import morgan from "morgan";
+
+app.use(morgan("combined"));
 import {
   helmetMiddleware,
   corsMiddleware,
@@ -19,6 +22,8 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 app.set("trust proxy", 1);
+
+app.use(morgan("combined"));
 
 app.use(helmetMiddleware);
 app.use(corsMiddleware);
