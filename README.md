@@ -174,6 +174,8 @@ Mock user credentials to login and explore:
 | **Email** | `john.doe@gmail.com` |
 | **Password** | `Jo7n!D0e$` |
 
+*Create .env file and copy the .env.example environment variables into it. These values have been committed only for testing.* 
+
 ### 3 · Install dependencies
 
 ```bash
