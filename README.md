@@ -167,6 +167,13 @@ MAIL_SENDER_EMAIL=your_gmail_address
 MAIL_SENDER_PASS=your_gmail_app_password
 ```
 
+Mock user credentials to login and explore:
+
+| Field | Value |
+|---|---|
+| **Email** | `john.doe@gmail.com` |
+| **Password** | `Jo7n!D0e$` |
+
 ### 3 · Install dependencies
 
 ```bash
