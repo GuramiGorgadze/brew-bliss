@@ -6,8 +6,6 @@ import ProductsRouter from "./routes/products.js";
 import UsersRouter from "./routes/users.js";
 import passport from "./config/passport.js";
 import morgan from "morgan";
-
-app.use(morgan("combined"));
 import {
   helmetMiddleware,
   corsMiddleware,
